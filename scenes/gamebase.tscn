@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://bw1jvqsj3l017"]
+
+[ext_resource type="PackedScene" uid="uid://cqsj6ljppkot6" path="res://scenes/mainchara.tscn" id="1_bp8ss"]
+[ext_resource type="Texture2D" uid="uid://cvkfdpomduqmy" path="res://art/tiles1crosscross.png" id="2_cleu5"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2t0pf"]
+texture = ExtResource("2_cleu5")
+0:0/size_in_atlas = Vector2i(2, 4)
+0:0/0 = 0
+2:0/size_in_atlas = Vector2i(2, 4)
+2:0/0 = 0
+4:0/size_in_atlas = Vector2i(2, 4)
+4:0/0 = 0
+6:0/size_in_atlas = Vector2i(2, 4)
+6:0/0 = 0
+8:0/size_in_atlas = Vector2i(4, 4)
+8:0/0 = 0
+12:0/size_in_atlas = Vector2i(4, 4)
+12:0/0 = 0
+16:0/size_in_atlas = Vector2i(4, 4)
+16:0/0 = 0
+20:0/size_in_atlas = Vector2i(4, 4)
+20:0/0 = 0
+24:0/size_in_atlas = Vector2i(4, 4)
+24:0/0 = 0
+28:0/size_in_atlas = Vector2i(4, 2)
+28:0/0 = 0
+28:2/size_in_atlas = Vector2i(4, 2)
+28:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_qyy62"]
+sources/0 = SubResource("TileSetAtlasSource_2t0pf")
+
+[node name="gamebase" type="Node2D"]
+
+[node name="mainchara" parent="." instance=ExtResource("1_bp8ss")]
+top_level = true
+position = Vector2(192, 108)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(192, 108)
+zoom = Vector2(2, 2)
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_qyy62")
+format = 2
+layer_0/name = "ground"
+layer_0/tile_data = PackedInt32Array(65539, 0, 0, 327683, 0, 0, 589827, 0, 0, 851971, 0, 0, 65556, 393216, 0, 327700, 393216, 0, 589844, 393216, 0, 851988, 393216, 0, 65542, 524288, 0, 327690, 524288, 0, 589838, 524288, 0, 851985, 524288, 0, 589841, 786432, 0, 589834, 1048576, 0, 851974, 1048576, 0, 851978, 786432, 0, 65550, 1048576, 0, 65546, 786432, 0, 327686, 1048576, 0, 589830, 524288, 0, 327697, 786432, 0, 327693, 262144, 0, 327694, 262144, 0, 65553, 131072, 0, 65554, 131072, 0, 851982, 131072, 0, 851981, 131072, 0, 720919, 1310720, 0, 262144, 1310720, 0, 65559, 1572864, 0, 262167, 1835008, 2, 327703, 1835008, 2, 393239, 1835008, 2, 458775, 1835008, 2, 524311, 1835008, 2, 589847, 1835008, 2, 917527, 1835008, 2, 458752, 1835008, 2, 524288, 1835008, 2, 589824, 1835008, 2, 655360, 1835008, 2, 720896, 1835008, 2, 786432, 1835008, 2, 851968, 1835008, 2, 917504, 1835008, 2, 0, 1835008, 2, 65536, 1835008, 2)
