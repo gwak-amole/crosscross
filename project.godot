@@ -11,8 +11,17 @@ config_version=5
 [application]
 
 config/name="crosscross"
+run/main_scene="res://scenes/menu.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Globalaudio="*res://scenes/globalaudio.tscn"
+
+[display]
+
+window/stretch/mode="canvas_items"
 
 [editor_plugins]
 

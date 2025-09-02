@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="EnemyProfile" load_steps=4 format=3 uid="uid://bh7x7rhhmroki"]
+
+[ext_resource type="PackedScene" uid="uid://dlxwdwtbgriny" path="res://scenes/officewoman_anim.tscn" id="1_44os1"]
+[ext_resource type="Script" path="res://scripts/EnemyProfile.gd" id="1_p3wyp"]
+[ext_resource type="SpriteFrames" uid="uid://c4htfwhoqb5gx" path="res://art/frames/officewoman_frames.tres" id="2_idge2"]
+
+[resource]
+script = ExtResource("1_p3wyp")
+display_name = "Officewoman"
+speed = 120.0
+language = "jp"
+anim_idle = "idle"
+anim_contact = "contact"
+sprite_frames = ExtResource("2_idge2")
+dialogue_scene = ExtResource("1_44os1")
+dialogue_text = "あっ、すみません！"
+choices = PackedStringArray("触んないで", "すっせん", "うるさい", "めんどくさいな〜")
+correct_idx = 1
+gender = "female"

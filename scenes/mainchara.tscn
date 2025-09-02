@@ -196,3 +196,11 @@ animation = &"idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_bsa8o")
+
+[node name="player_hitbox" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="player_hitbox"]
+polygon = PackedVector2Array(0, -12, -8, -10, -11, -3, -23, 3, 0, 13, 22, 5, 10, -3, 8, -10)
+
+[connection signal="body_entered" from="player_hitbox" to="." method="_on_player_hitbox_body_entered"]
+[connection signal="body_exited" from="player_hitbox" to="." method="_on_player_hitbox_body_exited"]

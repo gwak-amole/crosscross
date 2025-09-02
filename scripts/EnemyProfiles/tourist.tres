@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="EnemyProfile" load_steps=4 format=3 uid="uid://u5ocxjoovxbp"]
+
+[ext_resource type="PackedScene" uid="uid://ck3nxa2d6ufys" path="res://scenes/tourist_animation.tscn" id="1_loiqf"]
+[ext_resource type="Script" path="res://scripts/EnemyProfile.gd" id="1_siel0"]
+[ext_resource type="SpriteFrames" uid="uid://bu6tk5xcle620" path="res://art/frames/tourist_frames.tres" id="2_hhbpc"]
+
+[resource]
+script = ExtResource("1_siel0")
+display_name = "Tourist"
+speed = 120.0
+language = "fr"
+anim_idle = "idle"
+anim_contact = "contact"
+sprite_frames = ExtResource("2_hhbpc")
+dialogue_scene = ExtResource("1_loiqf")
+dialogue_text = "Oh, excusez-moi!"
+choices = PackedStringArray("oui oui baguette", "Qu’est-ce que vous voulez", "Laissez-moi tranquille.", "Pas de problème, ça va")
+correct_idx = 3
+gender = "male"

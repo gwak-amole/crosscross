@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="EnemyProfile" load_steps=4 format=3 uid="uid://ds7xcxw4v7mgd"]
+
+[ext_resource type="Script" path="res://scripts/EnemyProfile.gd" id="1_rblbt"]
+[ext_resource type="PackedScene" uid="uid://bxvtbh60sv1fs" path="res://scenes/officeman_anim.tscn" id="1_ruf50"]
+[ext_resource type="SpriteFrames" uid="uid://crkjjwjf84p28" path="res://art/frames/officeman_frames.tres" id="2_ol4we"]
+
+[resource]
+script = ExtResource("1_rblbt")
+display_name = "Officeman"
+speed = 140.0
+language = "jp"
+anim_idle = "idle"
+anim_contact = "contact"
+sprite_frames = ExtResource("2_ol4we")
+dialogue_scene = ExtResource("1_ruf50")
+dialogue_text = "..."
+choices = PackedStringArray("すみません！", "どけ＾＾", "愛してる", "誰だよお前")
+correct_idx = 0
+gender = "male"

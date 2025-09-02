@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="EnemyProfile" load_steps=4 format=3 uid="uid://6f7mkds6jyhu"]
+
+[ext_resource type="Script" path="res://scripts/EnemyProfile.gd" id="1_0cxcg"]
+[ext_resource type="PackedScene" uid="uid://cm62k35ajy21k" path="res://scenes/gyaru_animation.tscn" id="1_03c3b"]
+[ext_resource type="SpriteFrames" uid="uid://wj2vhyr7gn5i" path="res://art/frames/gyaru.tres" id="2_7jf6m"]
+
+[resource]
+script = ExtResource("1_0cxcg")
+display_name = "Gyaru"
+speed = 120.0
+language = "kr"
+anim_idle = "idle"
+anim_contact = "contact"
+sprite_frames = ExtResource("2_7jf6m")
+dialogue_scene = ExtResource("1_03c3b")
+dialogue_text = "넌 뭔데"
+choices = PackedStringArray("야 넌 몇년생인데?", "정신차려.", "죄송합니다~", "못생겼음")
+correct_idx = 2
+gender = "female"

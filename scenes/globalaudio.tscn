@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://uysoxcpe0gdu"]
+
+[ext_resource type="AudioStream" uid="uid://suy0ebs63aa3" path="res://audio/651533__code_box__airport-lounge.wav" id="1_2jxyt"]
+[ext_resource type="Script" path="res://scripts/globalaudio.gd" id="2_pfhow"]
+
+[node name="globalaudio" type="AudioStreamPlayer"]
+stream = ExtResource("1_2jxyt")
+autoplay = true
+script = ExtResource("2_pfhow")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

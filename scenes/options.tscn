@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=3 uid="uid://cv6o03g7cy6hx"]
+
+[ext_resource type="Texture2D" uid="uid://olou0j7is62" path="res://art/officemandialogue/howtoplay.png" id="1_qtbhj"]
+[ext_resource type="Script" path="res://scripts/options.gd" id="1_wwl5i"]
+[ext_resource type="FontFile" uid="uid://r7libpb4d4ao" path="res://fonts/Jersey_10/Jersey10-Regular.ttf" id="2_q57w2"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_prj5v"]
+font = ExtResource("2_q57w2")
+font_size = 33
+font_color = Color(0.166178, 0.26014, 0.622116, 1)
+
+[node name="how to play" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wwl5i")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_qtbhj")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.34
+anchor_top = 0.463
+anchor_right = 0.649
+anchor_bottom = 0.5
+offset_left = -6.67999
+offset_top = -12.024
+offset_right = 9.35193
+offset_bottom = 195.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "try to cross the street without hitting anyone!
+if you hit someone, they might not speak the same language as you, so try your best to answer (don't use a translator!)
+"
+label_settings = SubResource("LabelSettings_prj5v")
+autowrap_mode = 3
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.697917
+anchor_top = 0.820988
+anchor_right = 0.755208
+anchor_bottom = 0.893519
+theme_override_fonts/font = ExtResource("2_q57w2")
+theme_override_font_sizes/font_size = 35
+text = "back"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

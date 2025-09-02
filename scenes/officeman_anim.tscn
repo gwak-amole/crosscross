@@ -1,0 +1,141 @@
+[gd_scene load_steps=17 format=3 uid="uid://bxvtbh60sv1fs"]
+
+[ext_resource type="Texture2D" uid="uid://c2p48xk5nonek" path="res://art/officemandialogue.png" id="1_4eejk"]
+[ext_resource type="Texture2D" uid="uid://cn3nodrqgy4u5" path="res://art/officemandialogue1.png" id="2_l05iu"]
+[ext_resource type="Texture2D" uid="uid://cielfypd3cjtk" path="res://art/officemandialogue2.png" id="3_25axe"]
+[ext_resource type="Texture2D" uid="uid://sk2s85xj1g6u" path="res://art/officemandialogue2point5.png" id="4_j7v8k"]
+[ext_resource type="Texture2D" uid="uid://ccevkk2g7ms1y" path="res://art/officemandialogue/officemandialogueangry1.png" id="5_tvg8p"]
+[ext_resource type="Texture2D" uid="uid://b14tu33c6do5n" path="res://art/officemandialogue/officemandialogueangry2.png" id="6_88ge8"]
+[ext_resource type="Texture2D" uid="uid://djeakgpr8x7p" path="res://art/officemandialogue/officemandialogueapol1.png" id="7_k2f45"]
+[ext_resource type="Texture2D" uid="uid://dw3dl4sfnybj" path="res://art/officemandialogue/officemandialogueapol2.png" id="8_053b0"]
+[ext_resource type="AudioStream" uid="uid://cp5w2y57ckc75" path="res://audio/488227__plumaudio__happy-blip.wav" id="9_8j0mt"]
+[ext_resource type="AudioStream" uid="uid://0rpc2thbcgos" path="res://audio/crosscross_angry_man.wav" id="9_ilqdr"]
+
+[sub_resource type="Animation" id="Animation_y3o3s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("om_art:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_4eejk")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("om_art:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_etsp4"]
+resource_name = "angry"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("om_art:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("5_tvg8p"), ExtResource("6_88ge8"), ExtResource("5_tvg8p")]
+}
+
+[sub_resource type="Animation" id="Animation_ui4wf"]
+resource_name = "apologize"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("om_art:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.333333, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("7_k2f45"), ExtResource("8_053b0"), ExtResource("7_k2f45")]
+}
+
+[sub_resource type="Animation" id="Animation_cb1rn"]
+resource_name = "appear"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("om_art:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.266667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("1_4eejk"), ExtResource("2_l05iu"), ExtResource("3_25axe")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("om_art:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2161, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_o1aba"]
+resource_name = "hairsway"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("om_art:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("3_25axe"), ExtResource("4_j7v8k"), ExtResource("3_25axe")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4c3er"]
+_data = {
+"RESET": SubResource("Animation_y3o3s"),
+"angry": SubResource("Animation_etsp4"),
+"apologize": SubResource("Animation_ui4wf"),
+"appear": SubResource("Animation_cb1rn"),
+"hairsway": SubResource("Animation_o1aba")
+}
+
+[node name="officeman_anim" type="Node2D"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4c3er")
+}
+
+[node name="om_art" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_4eejk")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_8j0mt")
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_ilqdr")
