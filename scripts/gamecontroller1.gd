@@ -15,6 +15,8 @@ var lives: int
 @onready var audioEnc := get_node(audio_enc)
 @onready var heart_nodes: Array[CanvasItem] = []
 
+var cor_idx : int
+
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -28,6 +30,7 @@ func _ready() -> void:
 	lives = clamp(lives_start, 0, heart_nodes.size())
 	_update_hearts()
 	print("[Hearts] nodes:", heart_nodes.size(), " lives:", lives)
+	dialogue_ui.branch_chosen.connect(_on_branch_chosen)
 
 func _process(delta) -> void:
 	if get_tree().paused == true:
@@ -61,9 +64,9 @@ func _on_enemy_contacted(enemy: Node) -> void:
 		return
 	var picked:int = await dialogue_ui.show_dialogue_from_profile(p)
 	print(picked)
-	print(p.correct_idx)
+	print(cor_idx)
 	dialogue_ui.close_dialogue()
-	var wrong : bool = picked != p.correct_idx
+	var wrong : bool = picked != cor_idx
 	if wrong:
 		_lose_life()
 	
@@ -87,3 +90,7 @@ func _lose_life() -> void:
 
 func _game_over() -> void:
 	get_tree().change_scene_to_file("res://scenes/gameover.tscn")
+	
+func _on_branch_chosen(idx: int) -> void:
+	cor_idx = idx
+	print("branch chosen; correct index =", cor_idx)

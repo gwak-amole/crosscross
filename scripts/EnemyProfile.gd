@@ -10,8 +10,11 @@ class_name EnemyProfile
 
 @export var dialogue_scene: PackedScene
 @export var dialogue_text: String
+@export var dialogue_text_2: String
 @export var choices: PackedStringArray
+@export var choices2: PackedStringArray
 @export var correct_idx: int
+@export var correct_idx_2: int
 @export var gender : String
 
 # Called when the node enters the scene tree for the first time.

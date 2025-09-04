@@ -1,5 +1,6 @@
 extends CanvasLayer
 signal choice_made(idx: int)
+signal branch_chosen(idx: int)
 @export var audio_path : NodePath
 
 @onready var panel := $Panel
@@ -9,16 +10,18 @@ signal choice_made(idx: int)
 @onready var audio := get_node(audio_path)
 var dlg_scene: Node = null
 var cor_idx : int
+var rng = RandomNumberGenerator.new()
+var rand: int
 
 func _ready() -> void:
 	visible = false
-	panel.hide()
-	choices_box.hide()
 	process_mode = Node.PROCESS_MODE_ALWAYS
 
 func show_dialogue_from_profile(p: EnemyProfile) -> int:
+	rand = rng.randi_range(1,2)
 	visible = false
 	panel.hide()
+	choices_box.hide()
 	if is_instance_valid(dlg_scene):
 		dlg_scene.queue_free()
 	
@@ -26,7 +29,6 @@ func show_dialogue_from_profile(p: EnemyProfile) -> int:
 	dlg_scene.process_mode = Node.PROCESS_MODE_ALWAYS
 	panel.add_child(dlg_scene)
 	
-	cor_idx = p.correct_idx
 	var ap = dlg_scene.get_node_or_null("AnimationPlayer")
 	if ap:
 		await get_tree().create_timer(1.5).timeout
@@ -44,8 +46,16 @@ func show_dialogue_from_profile(p: EnemyProfile) -> int:
 	else:
 		print("No AnimationPlayer found in dlg_scene")
 	
-	text.text = p.dialogue_text if p.dialogue_text != "" else "..."
-	_rebuild_buttons(p.choices if p.choices.size() > 0 else PackedStringArray(["OK"]))
+	if rand == 1:
+		cor_idx = p.correct_idx
+		text.text = p.dialogue_text if p.dialogue_text != "" else "..."
+		_rebuild_buttons(p.choices if p.choices.size() > 0 else PackedStringArray(["OK"]))
+	else:
+		cor_idx = p.correct_idx_2
+		text.text = p.dialogue_text_2 if p.dialogue_text_2 != "" else "..."
+		_rebuild_buttons(p.choices2 if p.choices2.size() > 0 else PackedStringArray(["OK"]))
+
+	emit_signal("branch_chosen", cor_idx)
 	
 	var picked := await _wait_for_choice()
 	visible = false

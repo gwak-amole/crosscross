@@ -11,7 +11,7 @@ extends Node2D
 @export var new_time_elapsed := elapsed
 
 # Put Y values you can actually see with your current camera/zoom:
-@export var lanes_x: PackedFloat32Array = [160.0, 220.0, 280.0, 340.0, 400.0]
+@export var lanes_x: PackedFloat32Array = [160.0, 220.0, 280.0, 360.0, 420.0]
 @export var x_spawn_left: float = 200
 @export var x_spawn_right: float = 350
 @export var spawn_margin_y: float = 20.0

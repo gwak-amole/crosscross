@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://caybfrm17jdco" path="res://art/officewomandialogue/officewomanapologize1.png" id="7_nqa7h"]
 [ext_resource type="Texture2D" uid="uid://pvb4gxx4pj4p" path="res://art/officewomandialogue/officewomanapologize2.png" id="8_ey3r2"]
 [ext_resource type="AudioStream" uid="uid://cp5w2y57ckc75" path="res://audio/488227__plumaudio__happy-blip.wav" id="9_g1l7d"]
-[ext_resource type="AudioStream" uid="uid://c8hc2v2cwbhef" path="res://audio/crosscross_angry_woman.wav" id="10_gm1p2"]
+[ext_resource type="AudioStream" uid="uid://xiipkjlpuwxv" path="res://audio/278164__thedweebman__8-bit-wrong-2.wav" id="10_fcj24"]
 
 [sub_resource type="Animation" id="Animation_x0daf"]
 length = 0.001
@@ -137,4 +137,5 @@ offset_bottom = 40.0
 stream = ExtResource("9_g1l7d")
 
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("10_gm1p2")
+stream = ExtResource("10_fcj24")
+volume_db = -10.584
