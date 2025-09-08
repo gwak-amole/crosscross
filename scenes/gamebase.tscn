@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://bw1jvqsj3l017"]
+[gd_scene load_steps=33 format=4 uid="uid://bw1jvqsj3l017"]
 
 [ext_resource type="PackedScene" uid="uid://cqsj6ljppkot6" path="res://scenes/mainchara.tscn" id="1_bp8ss"]
 [ext_resource type="Script" path="res://scripts/parallax_background.gd" id="1_eistd"]
@@ -18,7 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://ds3cujwrod7e1" path="res://art/buttonpressed.png" id="15_xx0pf"]
 [ext_resource type="Texture2D" uid="uid://4hym7kquodgj" path="res://art/buttonhover.png" id="16_f22in"]
 [ext_resource type="FontFile" uid="uid://bgr6t4hvjjyhk" path="res://fonts/NotoSansCJK-VF.ttf.ttc" id="17_akqme"]
-[ext_resource type="AudioStream" uid="uid://dtjgmkv0qe6mx" path="res://audio/789672__jrussell_tm__ambient-sound-of-shops-in-japan.wav" id="19_i5f67"]
+[ext_resource type="Resource" uid="uid://5hd6h5x6h0vu" path="res://scripts/EnemyProfiles/fashionista.tres" id="19_dlvn0"]
 [ext_resource type="AudioStream" uid="uid://bxf6xtesry8up" path="res://audio/ABERRANCE.wav" id="19_yqrax"]
 [ext_resource type="AudioStream" uid="uid://bsb52apuyvh6w" path="res://audio/hurt.wav" id="21_7si0i"]
 [ext_resource type="AudioStream" uid="uid://dnrvj14budh6d" path="res://audio/146765__thenudo__heart-beat.mp3" id="22_4p0ha"]
@@ -32,6 +32,8 @@ outline_color = Color(0.195903, 0.235453, 0.483822, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_thl5d"]
 font_size = 30
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0gs73"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h4k11"]
 texture = ExtResource("2_cleu5")
@@ -127,7 +129,6 @@ script = ExtResource("13_q4efr")
 dialogue_ui_path = NodePath("../Dialogue UI")
 heart_ui_path = NodePath("../CanvasLayer/Hearts/HBoxContainer")
 audio1 = NodePath("../AudioStreamPlayer")
-audio2 = NodePath("../AudioStreamPlayer2")
 audio_enc = NodePath("../encounter")
 
 [node name="Dialogue UI" type="CanvasLayer" parent="."]
@@ -293,6 +294,7 @@ offset_left = 16.0
 offset_top = 14.0
 offset_right = 305.0
 offset_bottom = 99.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_0gs73")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Hearts"]
 layout_mode = 1
@@ -372,7 +374,7 @@ y_sort_enabled = true
 position = Vector2(283, 1)
 
 [node name="Spawner" parent="." instance=ExtResource("8_fmll7")]
-profiles = Array[ExtResource("10_fgj5o")]([ExtResource("11_nbt5j"), ExtResource("12_qqd8v"), ExtResource("13_sqrlo"), ExtResource("14_iyk3s")])
+profiles = Array[ExtResource("10_fgj5o")]([ExtResource("11_nbt5j"), ExtResource("12_qqd8v"), ExtResource("13_sqrlo"), ExtResource("14_iyk3s"), ExtResource("19_dlvn0")])
 controller_path = NodePath("../GameController")
 characters_path = NodePath("../Characters")
 
@@ -381,10 +383,6 @@ characters_path = NodePath("../Characters")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("19_yqrax")
 volume_db = 4.142
-
-[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("19_i5f67")
-volume_db = 0.5
 
 [node name="encounter" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("21_7si0i")

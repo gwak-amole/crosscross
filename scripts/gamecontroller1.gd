@@ -3,7 +3,6 @@ extends Node
 @export var dialogue_ui_path: NodePath
 @export var heart_ui_path : NodePath
 @export var audio1 : NodePath
-@export var audio2 : NodePath
 @export var audio_enc : NodePath
 @export var lives_start: int = 3
 
@@ -11,7 +10,6 @@ var lives: int
 @onready var dialogue_ui := get_node(dialogue_ui_path)
 @onready var hearts_box := get_node(heart_ui_path)
 @onready var audioOne := get_node(audio1)
-@onready var audioTwo := get_node(audio2)
 @onready var audioEnc := get_node(audio_enc)
 @onready var heart_nodes: Array[CanvasItem] = []
 
@@ -35,11 +33,8 @@ func _ready() -> void:
 func _process(delta) -> void:
 	if get_tree().paused == true:
 		audioOne.playing = false
-		audioTwo.playing = false
 	elif audioOne.playing == false:
 		audioOne.play()
-	elif audioTwo.playing == false:
-		audioTwo.play()
 
 func hook_enemy(e: Node) -> void:
 	if not e.has_signal("contacted"): return

@@ -109,11 +109,14 @@ offset_bottom = 648.0
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 z_index = 100
 layout_mode = 1
-anchors_preset = 12
+anchors_preset = 7
+anchor_left = 0.5
 anchor_top = 1.0
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
+offset_left = -228.0
 offset_top = -324.0
+offset_right = 228.0
 grow_horizontal = 2
 grow_vertical = 0
 
@@ -127,10 +130,10 @@ stretch_mode = 3
 
 [node name="Label" type="Label" parent="VBoxContainer/Start Button"]
 layout_mode = 0
-offset_left = 499.0
-offset_top = 5.0
-offset_right = 643.0
-offset_bottom = 91.0
+offset_left = 153.0
+offset_top = 7.0
+offset_right = 297.0
+offset_bottom = 93.0
 text = "start"
 label_settings = SubResource("LabelSettings_7typk")
 horizontal_alignment = 1
@@ -146,10 +149,10 @@ stretch_mode = 3
 
 [node name="Label" type="Label" parent="VBoxContainer/Instructions Button"]
 layout_mode = 0
-offset_left = 483.0
-offset_top = 4.0
-offset_right = 673.0
-offset_bottom = 90.0
+offset_left = 129.0
+offset_top = 1.0
+offset_right = 319.0
+offset_bottom = 87.0
 text = "instructions"
 label_settings = SubResource("LabelSettings_3rocn")
 horizontal_alignment = 1

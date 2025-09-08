@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="EnemyProfile" load_steps=4 format=3 uid="uid://5hd6h5x6h0vu"]
+
+[ext_resource type="PackedScene" uid="uid://5rd5yt3lwmr6" path="res://scenes/fashionista_anim.tscn" id="1_kp717"]
+[ext_resource type="Script" path="res://scripts/EnemyProfile.gd" id="2_0jyon"]
+[ext_resource type="SpriteFrames" uid="uid://dk6ni3hdbhnne" path="res://art/frames/fashionista_frames.tres" id="3_xwqu4"]
+
+[resource]
+script = ExtResource("2_0jyon")
+display_name = "Fashionista"
+speed = 120.0
+language = "cn"
+anim_idle = "idle"
+anim_contact = "contact"
+sprite_frames = ExtResource("3_xwqu4")
+dialogue_scene = ExtResource("1_kp717")
+dialogue_text = "诶，对不起呀"
+dialogue_text_2 = "啊。"
+choices = PackedStringArray("闪开呀", "难看！", "没问题呀", "恭喜发财～")
+choices2 = PackedStringArray("去你的", "对不起！", "你的头发问什么那样", "你的号码是什么")
+correct_idx = 2
+correct_idx_2 = 1
+gender = "male"

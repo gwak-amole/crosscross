@@ -1,0 +1,79 @@
+[gd_resource type="SpriteFrames" load_steps=11 format=3 uid="uid://dk6ni3hdbhnne"]
+
+[ext_resource type="Texture2D" uid="uid://dng2dch7107ir" path="res://art/fashionista dialogue/fashionistacrosscross.png" id="1_nl1nq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ikgwj"]
+atlas = ExtResource("1_nl1nq")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xj368"]
+atlas = ExtResource("1_nl1nq")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lddi4"]
+atlas = ExtResource("1_nl1nq")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mj7j0"]
+atlas = ExtResource("1_nl1nq")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yroab"]
+atlas = ExtResource("1_nl1nq")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vcq34"]
+atlas = ExtResource("1_nl1nq")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6f477"]
+atlas = ExtResource("1_nl1nq")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pma7f"]
+atlas = ExtResource("1_nl1nq")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1vbis"]
+atlas = ExtResource("1_nl1nq")
+region = Rect2(384, 0, 64, 64)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ikgwj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xj368")
+}],
+"loop": true,
+"name": &"contact",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lddi4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mj7j0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yroab")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vcq34")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6f477")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pma7f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1vbis")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 3.0
+}]

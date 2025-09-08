@@ -1,0 +1,140 @@
+[gd_scene load_steps=17 format=3 uid="uid://5rd5yt3lwmr6"]
+
+[ext_resource type="Texture2D" uid="uid://de6tb0x1lc2sj" path="res://art/fashionista dialogue/fashionistadialogueappear0.png" id="1_617wt"]
+[ext_resource type="Texture2D" uid="uid://c2dmukvawaipt" path="res://art/fashionista dialogue/fashionistadialogueappear1.png" id="2_cderd"]
+[ext_resource type="Texture2D" uid="uid://60lgeeg3lbnu" path="res://art/fashionista dialogue/fashionistadialogueappear2.png" id="3_w50oq"]
+[ext_resource type="Texture2D" uid="uid://sttiqy3pym3b" path="res://art/fashionista dialogue/fashionistadialoguehairsway.png" id="4_ggrex"]
+[ext_resource type="Texture2D" uid="uid://drgcawy8yu3as" path="res://art/fashionista dialogue/fashionistadialogueangry1.png" id="5_dvq8d"]
+[ext_resource type="Texture2D" uid="uid://c2ohltky6opsd" path="res://art/fashionista dialogue/fashionistadialogueangry2.png" id="6_8jk3p"]
+[ext_resource type="Texture2D" uid="uid://ocb65p8w0d7n" path="res://art/fashionista dialogue/fashionistadialogueapologize1.png" id="7_nd2mr"]
+[ext_resource type="Texture2D" uid="uid://b1351f34dai7a" path="res://art/fashionista dialogue/fashionistadialogueapologize2.png" id="8_tmlwh"]
+[ext_resource type="AudioStream" uid="uid://cp5w2y57ckc75" path="res://audio/488227__plumaudio__happy-blip.wav" id="9_vxote"]
+[ext_resource type="AudioStream" uid="uid://0rpc2thbcgos" path="res://audio/crosscross_angry_man.wav" id="10_1bdgy"]
+
+[sub_resource type="Animation" id="Animation_aqixg"]
+resource_name = "appear"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("art:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.233333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("1_617wt"), ExtResource("2_cderd"), ExtResource("3_w50oq")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("art:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.233333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_pa6a4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("art:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("art:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_vh0s1"]
+resource_name = "hairsway"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("art:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.866667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("3_w50oq"), ExtResource("4_ggrex"), ExtResource("3_w50oq")]
+}
+
+[sub_resource type="Animation" id="Animation_l7uqd"]
+resource_name = "angry"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("art:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.433333, 0.933333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("5_dvq8d"), ExtResource("6_8jk3p"), ExtResource("5_dvq8d")]
+}
+
+[sub_resource type="Animation" id="Animation_3gdgs"]
+resource_name = "apologize"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("art:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.866667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("7_nd2mr"), ExtResource("8_tmlwh"), ExtResource("7_nd2mr")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_31gvp"]
+_data = {
+"RESET": SubResource("Animation_pa6a4"),
+"angry": SubResource("Animation_l7uqd"),
+"apologize": SubResource("Animation_3gdgs"),
+"appear": SubResource("Animation_aqixg"),
+"hairsway": SubResource("Animation_vh0s1")
+}
+
+[node name="fashionista_anim" type="Node2D"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_31gvp")
+}
+
+[node name="art" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_vxote")
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_1bdgy")
