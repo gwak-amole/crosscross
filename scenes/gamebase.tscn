@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://bw1jvqsj3l017"]
+[gd_scene load_steps=35 format=4 uid="uid://bw1jvqsj3l017"]
 
 [ext_resource type="PackedScene" uid="uid://cqsj6ljppkot6" path="res://scenes/mainchara.tscn" id="1_bp8ss"]
 [ext_resource type="Script" path="res://scripts/parallax_background.gd" id="1_eistd"]
@@ -22,6 +22,7 @@
 [ext_resource type="AudioStream" uid="uid://bxf6xtesry8up" path="res://audio/ABERRANCE.wav" id="19_yqrax"]
 [ext_resource type="AudioStream" uid="uid://bsb52apuyvh6w" path="res://audio/hurt.wav" id="21_7si0i"]
 [ext_resource type="AudioStream" uid="uid://dnrvj14budh6d" path="res://audio/146765__thenudo__heart-beat.mp3" id="22_4p0ha"]
+[ext_resource type="FontFile" uid="uid://r7libpb4d4ao" path="res://fonts/Jersey_10/Jersey10-Regular.ttf" id="23_h7tlf"]
 
 [sub_resource type="Theme" id="Theme_rvl5g"]
 
@@ -120,6 +121,8 @@ texture = ExtResource("2_6qdm8")
 [sub_resource type="TileSet" id="TileSet_uk1lt"]
 sources/0 = SubResource("TileSetAtlasSource_aicro")
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jtfdg"]
+
 [node name="gamebase" type="Node2D"]
 position = Vector2(10, 5)
 metadata/_edit_horizontal_guides_ = [-412.0, 375.0]
@@ -130,6 +133,7 @@ dialogue_ui_path = NodePath("../Dialogue UI")
 heart_ui_path = NodePath("../CanvasLayer/Hearts/HBoxContainer")
 audio1 = NodePath("../AudioStreamPlayer")
 audio_enc = NodePath("../encounter")
+pointspath = NodePath("../points/Panel/Label")
 
 [node name="Dialogue UI" type="CanvasLayer" parent="."]
 script = ExtResource("14_7mv0c")
@@ -391,3 +395,31 @@ volume_db = 1.381
 [node name="dialogue" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("22_4p0ha")
 volume_db = 8.744
+
+[node name="points" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="points"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_jtfdg")
+
+[node name="Label" type="Label" parent="points/Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -38.0
+offset_top = 26.0
+offset_right = -14.0
+offset_bottom = 96.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("23_h7tlf")
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1

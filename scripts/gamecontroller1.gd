@@ -4,6 +4,7 @@ extends Node
 @export var heart_ui_path : NodePath
 @export var audio1 : NodePath
 @export var audio_enc : NodePath
+@export var pointspath : NodePath
 @export var lives_start: int = 3
 
 var lives: int
@@ -12,13 +13,17 @@ var lives: int
 @onready var audioOne := get_node(audio1)
 @onready var audioEnc := get_node(audio_enc)
 @onready var heart_nodes: Array[CanvasItem] = []
+@onready var points := get_node(pointspath)
 
 var cor_idx : int
-
+var times : int = 0
+var points_int : int = 0
+var points_frozen: bool = false
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	heart_nodes.clear()
+	_loop_points()
 	if hearts_box:
 		for c in hearts_box.get_children():
 			if c is CanvasItem:
@@ -42,6 +47,11 @@ func hook_enemy(e: Node) -> void:
 		e.contacted.connect(_on_enemy_contacted)
 
 func _on_enemy_contacted(enemy: Node) -> void:
+	points_int -= (points_int / 10)
+	_update_points()
+	times -= times/5
+	points_frozen = true
+	print("points frozen")
 	print("ctrl contacted so pausing")
 	get_tree().paused = true
 	audioEnc.play()
@@ -71,6 +81,11 @@ func _on_enemy_contacted(enemy: Node) -> void:
 	
 	if lives <= 0:
 		_game_over()
+		
+	if get_tree():
+		await get_tree().create_timer(3.0).timeout
+		points_frozen = false
+		print("points unfrozen")
 
 func _update_hearts() -> void:
 	var shown : int = clamp(lives, 0, heart_nodes.size())
@@ -82,10 +97,48 @@ func _update_hearts() -> void:
 func _lose_life() -> void:
 	lives = max(lives - 1, 0)
 	_update_hearts()
+	points_frozen = true
+	print("points frozen")
+	points_int -= (points_int / 10)
+	_update_points()
+	times -= times/5
+	await get_tree().create_timer(5.0).timeout
+	points_frozen = false
+	print("points unfrozen")
 
 func _game_over() -> void:
-	get_tree().change_scene_to_file("res://scenes/gameover.tscn")
+	var scene = load("res://scenes/gameover.tscn") as PackedScene
+	var go := scene.instantiate()
+	go.final_points = points_int
+	print(points_int)
+	print(go.final_points)
+	var tree = get_tree()
+	var old = tree.current_scene
+	tree.root.add_child(go)
+	tree.current_scene = go
+	if old:
+		old.queue_free()
 	
 func _on_branch_chosen(idx: int) -> void:
 	cor_idx = idx
 	print("branch chosen; correct index =", cor_idx)
+
+func _loop_points() -> void:
+	await get_tree().create_timer(5.0).timeout
+	while true:
+		while get_tree().paused: 
+			await get_tree().create_timer(0.1, true).timeout
+		await _increment_points()
+		await get_tree().create_timer(5.0).timeout
+		print("5 secs passed")
+
+func _increment_points() -> void:
+	if points_frozen == false:
+		times += 1
+		points_int += int(15 * pow(1.2, times))
+		_update_points()
+	elif points_frozen == true:
+		pass
+
+func _update_points() -> void:
+	points.text = str(points_int)
