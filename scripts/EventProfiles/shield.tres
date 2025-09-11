@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EventProfile" load_steps=3 format=3 uid="uid://bw1y1pivebafb"]
+
+[ext_resource type="Script" path="res://scripts/EventProfiles.gd" id="1_uw0wb"]
+[ext_resource type="SpriteFrames" uid="uid://tqulyh6lv0ju" path="res://art/frames/shield.tres" id="2_gtvhn"]
+
+[resource]
+script = ExtResource("1_uw0wb")
+sprite_frames = ExtResource("2_gtvhn")
+effect = 1

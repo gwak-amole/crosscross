@@ -1,12 +1,12 @@
 extends Node2D
 
-@export var profiles: Array[EnemyProfile] = []
-@export var enemy_scene: PackedScene
+@export var profiles: Array[EventProfile] = []
+@export var event_scene: PackedScene
 @export var controller_path: NodePath
 @export var characters_path: NodePath
-@export var start_spawn_every: float = 1.2
-@export var min_spawn_every:= 0.3
-@export var max_on_screen: int = 8
+@export var start_spawn_every: float = 20
+@export var min_spawn_every:= 12
+@export var max_on_screen: int = 2
 @export var half_life_seconds := 45.0
 @export var new_time_elapsed := elapsed
 
@@ -20,10 +20,12 @@ extends Node2D
 @onready var characters := get_node_or_null(characters_path)
 @onready var timer: Timer = $Timer
 var rng := RandomNumberGenerator.new()
+var chance := 0
+var thechance := 0
 var elapsed := 0.0
 
 func _ready() -> void:
-	if enemy_scene == null or characters == null:
+	if event_scene == null or characters == null:
 		push_error("Spawner miswired: set enemy_scene and characters_path in Inspector.")
 		return
 	rng.randomize()
@@ -53,17 +55,22 @@ func _on_spawn_tick() -> void:
 	timer.start()
 
 func _spawn_one() -> void:
-	var e := enemy_scene.instantiate()
+	var e := event_scene.instantiate()
+	chance += rng.randi_range(0, profiles.size()-1)
+	chance += rng.randi_range(0, profiles.size()-1)
+	if chance == 6:
+		thechance = 3
+	elif chance < 6:
+		thechance = rng.randi_range(0, profiles.size()-1)
 	if profiles.size() > 0:
-		e.profile = profiles[rng.randi_range(0, profiles.size()-1)]
+		e.profile = profiles[thechance]
 	characters.add_child(e)
+	chance = 0
+	thechance = 0
 	
 	var ctrl := get_node(controller_path)
-	e.contacted.connect(Callable(ctrl, "_on_enemy_contacted"))
-	print("[SPAWNER] hooked enemy signal")
-	
-	if controller and controller.has_method("hook_enemy"):
-		controller.hook_enemy(e)
+	e.contacted.connect(Callable(ctrl, "_on_event_contacted"))
+	print("[SPAWNER] hooked event signal")
 	
 	var cam := get_viewport().get_camera_2d()
 	var view := get_viewport_rect().size

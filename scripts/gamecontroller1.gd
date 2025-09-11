@@ -46,6 +46,18 @@ func hook_enemy(e: Node) -> void:
 	if not e.contacted.is_connected(_on_enemy_contacted):
 		e.contacted.connect(_on_enemy_contacted)
 
+func on_event_contacted(e: Node) -> void:
+	var p = e.get("profile") if e else null
+	if p == null:
+		if is_instance_valid(e):
+			e.queue_free()
+		get_tree().paused = false
+		return
+		
+	if is_instance_valid(e):
+		e.queue_free()
+	
+
 func _on_enemy_contacted(enemy: Node) -> void:
 	points_int -= (points_int / 10)
 	_update_points()

@@ -1,0 +1,25 @@
+[gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://tqulyh6lv0ju"]
+
+[ext_resource type="Texture2D" uid="uid://i3h2tbwyics2" path="res://art/tileset/events.png" id="1_dvqv5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_013ab"]
+atlas = ExtResource("1_dvqv5")
+region = Rect2(0, 144, 72, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_820vi"]
+atlas = ExtResource("1_dvqv5")
+region = Rect2(72, 144, 72, 72)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_013ab")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_820vi")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
