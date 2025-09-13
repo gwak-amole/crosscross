@@ -1,13 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://cd2p8ucqxhqhv"]
+[gd_scene load_steps=8 format=3 uid="uid://cd2p8ucqxhqhv"]
 
 [ext_resource type="Script" path="res://scripts/event.gd" id="1_ioxw4"]
+[ext_resource type="Script" path="res://scripts/EventProfiles.gd" id="2_4uhdt"]
 [ext_resource type="SpriteFrames" uid="uid://jvygsfiykbhb" path="res://art/frames/coin.tres" id="2_k21h0"]
+[ext_resource type="Resource" uid="uid://w2q3s8a18k27" path="res://scripts/EventProfiles/coin.tres" id="3_ij8wm"]
+[ext_resource type="Resource" uid="uid://bw1y1pivebafb" path="res://scripts/EventProfiles/shield.tres" id="4_cv7ep"]
+[ext_resource type="Resource" uid="uid://ofc1ylam0rtq" path="res://scripts/EventProfiles/charm.tres" id="5_7g0rk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tbquv"]
 size = Vector2(31, 14)
 
 [node name="event" type="Node2D"]
 script = ExtResource("1_ioxw4")
+profile_array = Array[ExtResource("2_4uhdt")]([ExtResource("3_ij8wm"), ExtResource("4_cv7ep"), ExtResource("5_7g0rk")])
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 

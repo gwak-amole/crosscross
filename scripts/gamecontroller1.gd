@@ -1,10 +1,20 @@
 extends Node
 
+signal fever
+signal fever_end
 @export var dialogue_ui_path: NodePath
 @export var heart_ui_path : NodePath
 @export var audio1 : NodePath
 @export var audio_enc : NodePath
 @export var pointspath : NodePath
+@export var coinspath : NodePath
+@export var spawnerpath : NodePath
+@export var anim_path : NodePath
+@export var fevertext_path : NodePath
+@export var texture_path : NodePath
+@export var eventspawnerpath : NodePath
+@export var fevertimerpath : NodePath
+@export var shieldtextpath : NodePath
 @export var lives_start: int = 3
 
 var lives: int
@@ -14,14 +24,32 @@ var lives: int
 @onready var audioEnc := get_node(audio_enc)
 @onready var heart_nodes: Array[CanvasItem] = []
 @onready var points := get_node(pointspath)
+@onready var coins := get_node(coinspath)
+@onready var spawner := get_node(spawnerpath)
+@onready var anim := get_node(anim_path)
+@onready var fevertext := get_node(fevertext_path)
+@onready var texture := get_node(texture_path)
+@onready var eventspawner := get_node(eventspawnerpath)
+@onready var fevertimer := get_node(fevertimerpath)
+@onready var shieldtext := get_node(shieldtextpath)
 
 var cor_idx : int
 var times : int = 0
 var points_int : int = 0
 var points_frozen: bool = false
+var no_of_coins: int = 0
+var power = 1.2
+var shield_active: bool = false
+var cooldown : float = 5.0
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	fevertimer.process_mode = Node.PROCESS_MODE_PAUSABLE
+	fevertimer.one_shot = true
+	if not fevertimer.timeout.is_connected(_on_fevertimer_timeout):
+		fevertimer.timeout.connect(_on_fevertimer_timeout)
+	if not fever.is_connected(_on_fever_request):
+		fever.connect(_on_fever_request)
 	heart_nodes.clear()
 	_loop_points()
 	if hearts_box:
@@ -34,6 +62,8 @@ func _ready() -> void:
 	_update_hearts()
 	print("[Hearts] nodes:", heart_nodes.size(), " lives:", lives)
 	dialogue_ui.branch_chosen.connect(_on_branch_chosen)
+	fevertext.hide()
+	texture.hide()
 
 func _process(delta) -> void:
 	if get_tree().paused == true:
@@ -46,7 +76,7 @@ func hook_enemy(e: Node) -> void:
 	if not e.contacted.is_connected(_on_enemy_contacted):
 		e.contacted.connect(_on_enemy_contacted)
 
-func on_event_contacted(e: Node) -> void:
+func _on_event_contacted(e: Node) -> void:
 	var p = e.get("profile") if e else null
 	if p == null:
 		if is_instance_valid(e):
@@ -54,11 +84,21 @@ func on_event_contacted(e: Node) -> void:
 		get_tree().paused = false
 		return
 		
+	if p.effect == 1:
+		shield_active == true
+		shieldtext.text = "Shield Active"
+
 	if is_instance_valid(e):
 		e.queue_free()
 	
 
 func _on_enemy_contacted(enemy: Node) -> void:
+	if shield_active == true:
+		shield_active = false
+		shieldtext.text = ""
+		return
+	fevertext.hide()
+	texture.hide()
 	points_int -= (points_int / 10)
 	_update_points()
 	times -= times/5
@@ -93,6 +133,14 @@ func _on_enemy_contacted(enemy: Node) -> void:
 	
 	if lives <= 0:
 		_game_over()
+		
+	if spawner.fever_active:
+		print("CHECKING!")
+		fevertext.show()
+		texture.show()
+		anim.play("fever_constant")
+	else:
+		print("fever not active")
 		
 	if get_tree():
 		await get_tree().create_timer(3.0).timeout
@@ -136,21 +184,67 @@ func _on_branch_chosen(idx: int) -> void:
 	print("branch chosen; correct index =", cor_idx)
 
 func _loop_points() -> void:
-	await get_tree().create_timer(5.0).timeout
+	await get_tree().create_timer(cooldown).timeout
 	while true:
 		while get_tree().paused: 
 			await get_tree().create_timer(0.1, true).timeout
 		await _increment_points()
-		await get_tree().create_timer(5.0).timeout
+		await get_tree().create_timer(cooldown).timeout
 		print("5 secs passed")
 
 func _increment_points() -> void:
 	if points_frozen == false:
 		times += 1
-		points_int += int(15 * pow(1.2, times))
+		points_int += int(15 * pow(power, times))
 		_update_points()
 	elif points_frozen == true:
 		pass
 
 func _update_points() -> void:
 	points.text = str(points_int)
+	
+func _on_coin_contacted(e: Node) -> void:
+	no_of_coins += 1
+	coins.text = ("Coins: " + str(no_of_coins))
+	if no_of_coins >= 5:
+		no_of_coins = 0
+		coins.text = ("Coins: " + str(no_of_coins))
+		_fever_start()
+
+func _on_shield_contacted(e: Node) -> void:
+	shieldtext.text = "SHIELD ENGAGED"
+	shield_active = true
+		
+func _fever_done() -> void:
+	power = 1.2
+	cooldown = 5.0
+	print(power)
+	anim.stop()
+	anim.play("fever_fadeout")
+	points.add_theme_color_override("font_color", Color(255, 255, 255))
+	fevertext.hide()
+	texture.hide()
+	anim.stop()
+	emit_signal("fever_end")
+
+func _on_fever_request() -> void:
+	spawner._on_fever_started()
+	eventspawner._start_fever()
+	
+func _fever_start() -> void:
+	anim.play("fever_constant")
+	points.add_theme_color_override("font_color", Color(255, 204, 0))
+	fevertext.show()
+	texture.show()
+	
+	fevertimer.stop()
+	fevertimer.wait_time = 8.0
+	fevertimer.start()
+	
+	print("FEVER FEVER FEVER")
+	emit_signal("fever")
+	power = 1.3
+	cooldown = 2.5
+
+func _on_fevertimer_timeout() -> void:
+	_fever_done()

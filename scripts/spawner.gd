@@ -1,9 +1,12 @@
 extends Node2D
 
+signal fever_done(tf: bool)
 @export var profiles: Array[EnemyProfile] = []
 @export var enemy_scene: PackedScene
 @export var controller_path: NodePath
 @export var characters_path: NodePath
+@export var eventpath : NodePath
+@export var camerapath : NodePath
 @export var start_spawn_every: float = 1.2
 @export var min_spawn_every:= 0.3
 @export var max_on_screen: int = 8
@@ -18,14 +21,22 @@ extends Node2D
 
 @onready var controller := get_node(controller_path)
 @onready var characters := get_node_or_null(characters_path)
+@onready var eventspawner := get_node_or_null(eventpath)
+@onready var camera := get_node_or_null(camerapath)
 @onready var timer: Timer = $Timer
 var rng := RandomNumberGenerator.new()
 var elapsed := 0.0
+var fever_active := false
+var old_speed : int = 0
 
 func _ready() -> void:
 	if enemy_scene == null or characters == null:
 		push_error("Spawner miswired: set enemy_scene and characters_path in Inspector.")
 		return
+	if not controller.fever.is_connected(_on_fever_started):
+		controller.fever.connect(_on_fever_started)
+	if not controller.fever_end.is_connected(_on_fever_ended):
+		controller.fever_end.connect(_on_fever_ended)
 	rng.randomize()
 	timer.one_shot = false
 	timer.wait_time = start_spawn_every
@@ -60,7 +71,6 @@ func _spawn_one() -> void:
 	
 	var ctrl := get_node(controller_path)
 	e.contacted.connect(Callable(ctrl, "_on_enemy_contacted"))
-	print("[SPAWNER] hooked enemy signal")
 	
 	if controller and controller.has_method("hook_enemy"):
 		controller.hook_enemy(e)
@@ -73,4 +83,30 @@ func _spawn_one() -> void:
 	var y: float = top - spawn_margin_y    
 	e.global_position = Vector2(x, y)
 
-	print("Spawned at: ", e.global_position)
+func _on_fever_started() -> void:
+	if fever_active:
+		return
+	fever_active = true
+	print("fever is active")
+	eventspawner._start_fever()
+	old_speed = camera.speed
+	camera.max_scroll_speed = 250
+	camera.speed += 40
+	max_on_screen = 12
+	min_spawn_every = 0.1
+	start_spawn_every = 0.7
+	await get_tree().create_timer(2.0).timeout
+	camera.speed += 10
+	print("yes, here too")
+	
+func _on_fever_ended() -> void:
+	eventspawner._end_fever()
+	max_on_screen = 8
+	min_spawn_every = 0.3
+	start_spawn_every = 1.2
+	timer.wait_time = min_spawn_every
+	timer.start()
+	print("fever inactive")
+	fever_active = false
+	camera.speed = old_speed
+	camera.max_scroll_speed = 200

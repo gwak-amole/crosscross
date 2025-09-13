@@ -2,12 +2,17 @@ extends CanvasLayer
 signal choice_made(idx: int)
 signal branch_chosen(idx: int)
 @export var audio_path : NodePath
+@export var spawnerpath : NodePath
+@export var animpath : NodePath
 
 @onready var panel := $Panel
 @onready var art : Node = $Panel/Art
 @onready var text := $Panel/Overlay/Text
 @onready var choices_box := $Panel/Overlay/Buttons
 @onready var audio := get_node(audio_path)
+@onready var spawner := get_node(spawnerpath)
+@onready var anim := get_node(animpath)
+
 var dlg_scene: Node = null
 var cor_idx : int
 var rng = RandomNumberGenerator.new()

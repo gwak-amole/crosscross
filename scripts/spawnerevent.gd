@@ -4,8 +4,8 @@ extends Node2D
 @export var event_scene: PackedScene
 @export var controller_path: NodePath
 @export var characters_path: NodePath
-@export var start_spawn_every: float = 20
-@export var min_spawn_every:= 12
+@export var start_spawn_every: float = 4
+@export var min_spawn_every:= 2
 @export var max_on_screen: int = 2
 @export var half_life_seconds := 45.0
 @export var new_time_elapsed := elapsed
@@ -20,7 +20,7 @@ extends Node2D
 @onready var characters := get_node_or_null(characters_path)
 @onready var timer: Timer = $Timer
 var rng := RandomNumberGenerator.new()
-var chance := 0
+var chance : int = 0
 var thechance := 0
 var elapsed := 0.0
 
@@ -29,6 +29,7 @@ func _ready() -> void:
 		push_error("Spawner miswired: set enemy_scene and characters_path in Inspector.")
 		return
 	rng.randomize()
+	thechance = rng.randi_range(1, profiles.size()-1)
 	timer.one_shot = false
 	timer.wait_time = start_spawn_every
 	if not timer.timeout.is_connected(_on_spawn_tick):
@@ -56,12 +57,15 @@ func _on_spawn_tick() -> void:
 
 func _spawn_one() -> void:
 	var e := event_scene.instantiate()
-	chance += rng.randi_range(0, profiles.size()-1)
-	chance += rng.randi_range(0, profiles.size()-1)
-	if chance == 6:
-		thechance = 3
-	elif chance < 6:
-		thechance = rng.randi_range(0, profiles.size()-1)
+	chance = rng.randi_range(0, 9)
+	if  chance >= 0  and chance <= 6:
+		thechance = 0
+	elif chance > 6  and chance <= 8:
+		thechance = 1
+	elif chance == 9:
+		thechance = 2
+	print(chance)
+	print(thechance)
 	if profiles.size() > 0:
 		e.profile = profiles[thechance]
 	characters.add_child(e)
@@ -69,7 +73,8 @@ func _spawn_one() -> void:
 	thechance = 0
 	
 	var ctrl := get_node(controller_path)
-	e.contacted.connect(Callable(ctrl, "_on_event_contacted"))
+	e.coin_contacted.connect(Callable(ctrl, "_on_coin_contacted"))
+	e.shield_contacted.connect(Callable(ctrl, "_on_shield_contacted"))
 	print("[SPAWNER] hooked event signal")
 	
 	var cam := get_viewport().get_camera_2d()
@@ -81,3 +86,9 @@ func _spawn_one() -> void:
 	e.global_position = Vector2(x, y)
 
 	print("Spawned at: ", e.global_position)
+	
+func _start_fever() -> void:
+	max_on_screen = 0
+
+func _end_fever() -> void:
+	max_on_screen = 2
