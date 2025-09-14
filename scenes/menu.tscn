@@ -158,5 +158,16 @@ label_settings = SubResource("LabelSettings_3rocn")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 37.0
+offset_top = 23.0
+offset_right = 225.0
+offset_bottom = 75.0
+theme_override_fonts/font = ExtResource("5_qicq6")
+theme_override_font_sizes/font_size = 40
+text = "Leaderboard"
+
 [connection signal="pressed" from="VBoxContainer/Start Button" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Instructions Button" to="." method="_on_instructions_button_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

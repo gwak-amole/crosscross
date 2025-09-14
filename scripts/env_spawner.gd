@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var profiles: Array[EventProfile] = []
+@export var profiles: Array[EnvMishapProfile] = []
 @export var env_scene: PackedScene
 @export var controller_path: NodePath
 @export var characters_path: NodePath
@@ -57,6 +57,7 @@ func _spawn_one() -> void:
 	var e := env_scene.instantiate()
 	thechance = rng.randi_range(0, 2)
 	if profiles.size() > 0:
+		print("chance: ", thechance)
 		e.profile = profiles[thechance]
 	characters.add_child(e)
 	thechance = 0

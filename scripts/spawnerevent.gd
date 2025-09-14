@@ -4,8 +4,8 @@ extends Node2D
 @export var event_scene: PackedScene
 @export var controller_path: NodePath
 @export var characters_path: NodePath
-@export var start_spawn_every: float = 3
-@export var min_spawn_every := 1.5
+@export var start_spawn_every: float = 15
+@export var min_spawn_every := 7
 @export var max_on_screen: int = 2
 @export var half_life_seconds := 45.0
 @export var new_time_elapsed := elapsed

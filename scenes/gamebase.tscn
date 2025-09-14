@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=4 uid="uid://bw1jvqsj3l017"]
+[gd_scene load_steps=91 format=4 uid="uid://bw1jvqsj3l017"]
 
 [ext_resource type="PackedScene" uid="uid://cqsj6ljppkot6" path="res://scenes/mainchara.tscn" id="1_bp8ss"]
 [ext_resource type="Script" path="res://scripts/parallax_background.gd" id="1_eistd"]
@@ -35,11 +35,15 @@
 [ext_resource type="Resource" uid="uid://ofc1ylam0rtq" path="res://scripts/EventProfiles/charm.tres" id="28_ayl4n"]
 [ext_resource type="Script" path="res://scripts/env_spawner.gd" id="32_qn06w"]
 [ext_resource type="PackedScene" uid="uid://cq0cyn7pjxjaw" path="res://scenes/environmentalmishap.tscn" id="33_3jgo4"]
+[ext_resource type="Script" path="res://scripts/EnvMishapProfile.gd" id="33_7amnr"]
+[ext_resource type="Resource" uid="uid://hkaow0faggux" path="res://scripts/EnvMishapProfiles/puddle1.tres" id="34_a80lo"]
 [ext_resource type="Texture2D" uid="uid://cmschvr05ja16" path="res://art/tileset/fever/fever0.png" id="34_b7ekx"]
 [ext_resource type="Texture2D" uid="uid://bce3gpnvacv7k" path="res://art/tileset/charm0.png" id="34_uw75t"]
 [ext_resource type="Texture2D" uid="uid://coj3x4qfqnxix" path="res://art/tileset/charm1.png" id="35_6hqaj"]
 [ext_resource type="Texture2D" uid="uid://0nr3ny323aii" path="res://art/tileset/fever/fever1.png" id="35_bd1qm"]
+[ext_resource type="Resource" uid="uid://behosanmnw3a0" path="res://scripts/EnvMishapProfiles/puddle2.tres" id="35_kwhs7"]
 [ext_resource type="Texture2D" uid="uid://du5ookot54bhc" path="res://art/tileset/coincounter.png" id="36_bt1i5"]
+[ext_resource type="Resource" uid="uid://dyodltilmwavn" path="res://scripts/EnvMishapProfiles/puddle3.tres" id="36_q6nu3"]
 [ext_resource type="Texture2D" uid="uid://c7xg2o4jm6tf0" path="res://art/tileset/fever/fever2.png" id="36_yi8m5"]
 [ext_resource type="Texture2D" uid="uid://crohi481bugr1" path="res://art/tileset/shieldcounter.png" id="37_m4eln"]
 [ext_resource type="Texture2D" uid="uid://ceteumpia1hpe" path="res://art/tileset/continuetimer/continuetimer30.png" id="39_xrlb6"]
@@ -727,14 +731,15 @@ profiles = Array[ExtResource("25_tbtg2")]([ExtResource("26_fmq7n"), ExtResource(
 event_scene = ExtResource("25_tjbff")
 controller_path = NodePath("../GameController")
 characters_path = NodePath("../events")
-start_spawn_every = 3.0
-min_spawn_every = 1.5
+start_spawn_every = 15.0
+min_spawn_every = 7
 max_on_screen = 2
 
 [node name="Timer" type="Timer" parent="EventSpawner"]
 
 [node name="EnvSpawner" type="Node2D" parent="."]
 script = ExtResource("32_qn06w")
+profiles = Array[ExtResource("33_7amnr")]([ExtResource("34_a80lo"), ExtResource("35_kwhs7"), ExtResource("36_q6nu3")])
 env_scene = ExtResource("33_3jgo4")
 controller_path = NodePath("../GameController")
 characters_path = NodePath("../envmishap")

@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="EnvMishapProfile" load_steps=3 format=3 uid="uid://behosanmnw3a0"]
 
 [ext_resource type="Script" path="res://scripts/EnvMishapProfile.gd" id="1_4srqp"]
-[ext_resource type="Texture2D" uid="uid://domo16pjf10lh" path="res://art/tileset/puddle/puddle0.png" id="2_h855s"]
+[ext_resource type="Texture2D" uid="uid://b3hvo1kowex34" path="res://art/tileset/puddle/puddle1.png" id="2_s2wri"]
 
 [resource]
 script = ExtResource("1_4srqp")
-texture = ExtResource("2_h855s")
+texture = ExtResource("2_s2wri")
