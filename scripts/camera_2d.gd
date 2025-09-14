@@ -5,10 +5,12 @@ extends Camera2D
 
 @export var parallax_path: NodePath
 @export var characters_path: NodePath
+@export var envmishappath: NodePath
 
 var speed: float
 @onready var pbg := get_node_or_null(parallax_path)
 @onready var characters := get_node_or_null(characters_path)
+@onready var envmishap := get_node_or_null(envmishappath)
 
 func _ready() -> void:
 	speed = start_scroll_speed
@@ -26,3 +28,5 @@ func _process(delta: float) -> void:
 		
 	if characters:
 		characters.position.y += speed * delta
+	if envmishap:
+		envmishap.position.y += 0

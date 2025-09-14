@@ -20,6 +20,8 @@ signal fever_end
 @export var continuetimerpath : NodePath
 @export var continuecanvaspath : NodePath
 @export var charmtexturepath : NodePath
+@export var animsplashpath : NodePath
+@export var splashtextpath : NodePath
 @export var lives_start: int = 3
 
 var lives: int
@@ -42,6 +44,8 @@ var lives: int
 @onready var continuecanvas := get_node(continuecanvaspath)
 @onready var coinicon := get_node(coiniconpath)
 @onready var charmtexture := get_node(charmtexturepath)
+@onready var animsplash := get_node(animsplashpath)
+@onready var splashtext := get_node(splashtextpath)
 
 var cor_idx : int
 var times : int = 0
@@ -78,6 +82,7 @@ func _ready() -> void:
 	charm.hide()
 	shieldicon.hide()
 	charmtexture.hide()
+	splashtext.hide()
 
 func _process(delta) -> void:
 	if get_tree().paused == true:
@@ -252,7 +257,11 @@ func _on_charm_contacted(e: Node) -> void:
 
 func _on_puddle_contacted(e:Node) -> void:
 	print("puddle contacted")
+	animsplash.play("splashity")
+	splashtext.show()
 	spawner.slowpuddle()
+	await animsplash.animation_finished
+	animsplash.play("pulse")
 		
 func _fever_done() -> void:
 	power = 1.2

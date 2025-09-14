@@ -32,19 +32,19 @@ func _process(delta: float) -> void:
 	
 func player_movement(delta):
 	velocity = Vector2.ZERO
-	if Input.is_action_pressed("ui_right"):
+	if Input.is_action_pressed("right"):
 		velocity.x = speed * slowdown_factor
 		current_dir = "right"
 		play_anim(1)
-	elif Input.is_action_pressed("ui_left"):
+	elif Input.is_action_pressed("left"):
 		velocity.x = -speed * slowdown_factor
 		current_dir = "left"
 		play_anim(1)
-	elif Input.is_action_pressed("ui_down"):
+	elif Input.is_action_pressed("down"):
 		velocity.y = speed * slowdown_factor
 		current_dir = "down"
 		play_anim(1)
-	elif Input.is_action_pressed("ui_up"):
+	elif Input.is_action_pressed("up"):
 		velocity.y = -speed * slowdown_factor
 		current_dir = "up"
 		play_anim(1)

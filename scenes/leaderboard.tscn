@@ -1,15 +1,74 @@
-[gd_scene load_steps=3 format=3 uid="uid://yb28sftv55v"]
+[gd_scene load_steps=16 format=3 uid="uid://yb28sftv55v"]
 
 [ext_resource type="Script" path="res://scripts/leaderboard.gd" id="1_moonv"]
 [ext_resource type="FontFile" uid="uid://r7libpb4d4ao" path="res://fonts/Jersey_10/Jersey10-Regular.ttf" id="2_mi7i6"]
+[ext_resource type="Texture2D" uid="uid://bxvag3rxfjpgl" path="res://art/officemandialogue/enteranim/enteranim0.png" id="3_alyxk"]
+[ext_resource type="Texture2D" uid="uid://cw4d3i2e6kket" path="res://art/officemandialogue/enteranim/enteranim1.png" id="4_5712m"]
+[ext_resource type="Texture2D" uid="uid://bja2gicuq7kvu" path="res://art/officemandialogue/enteranim/enteranim2.png" id="5_6dijl"]
+[ext_resource type="Texture2D" uid="uid://wandc51bm004" path="res://art/officemandialogue/enteranim/enteranim3.png" id="6_lu5jb"]
+[ext_resource type="Texture2D" uid="uid://erijcy5p0vu0" path="res://art/officemandialogue/enteranim/enteranim4.png" id="7_20tvw"]
+[ext_resource type="Texture2D" uid="uid://blmjal2ju0clb" path="res://art/officemandialogue/enteranim/enteranim5.png" id="8_gmei4"]
+[ext_resource type="Texture2D" uid="uid://dl341b8eien57" path="res://art/officemandialogue/enteranim/enteranim6.png" id="9_y185g"]
+[ext_resource type="Texture2D" uid="uid://cu0ccdp1hdm7" path="res://art/officemandialogue/enteranim/enteranim7.png" id="10_0654e"]
+[ext_resource type="Texture2D" uid="uid://ee6ovrdfhp38" path="res://art/officemandialogue/enteranim/enteranim8.png" id="11_pl762"]
+[ext_resource type="Texture2D" uid="uid://bxinjwb1ab362" path="res://art/officemandialogue/enteranim/leaderboard.png" id="12_8kf4d"]
+
+[sub_resource type="Animation" id="Animation_7kiwc"]
+resource_name = "enteranim"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.433333, 0.5, 0.833333, 0.9, 1.23333, 1.3, 1.36667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("3_alyxk"), ExtResource("4_5712m"), ExtResource("5_6dijl"), ExtResource("6_lu5jb"), ExtResource("7_20tvw"), ExtResource("8_gmei4"), ExtResource("9_y185g"), ExtResource("10_0654e"), ExtResource("11_pl762")]
+}
+
+[sub_resource type="Animation" id="Animation_sfyx4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2n3ns"]
+_data = {
+"RESET": SubResource("Animation_sfyx4"),
+"enteranim": SubResource("Animation_7kiwc")
+}
 
 [node name="leaderboard" type="Node2D"]
 script = ExtResource("1_moonv")
 vboxcontpath = NodePath("VBoxContainer")
 
+[node name="background" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -3.0
+offset_top = 2.0
+offset_right = 1149.0
+offset_bottom = 650.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("12_8kf4d")
+
 [node name="TextureRect" type="TextureRect" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 1147.0
+offset_bottom = 644.0
 
 [node name="Label" type="Label" parent="."]
 offset_left = 294.0
@@ -48,6 +107,11 @@ theme_override_fonts/font = ExtResource("2_mi7i6")
 theme_override_font_sizes/font_size = 40
 text = "done
 "
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2n3ns")
+}
 
 [connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

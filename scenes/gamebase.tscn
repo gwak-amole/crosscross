@@ -1,4 +1,4 @@
-[gd_scene load_steps=91 format=4 uid="uid://bw1jvqsj3l017"]
+[gd_scene load_steps=103 format=4 uid="uid://bw1jvqsj3l017"]
 
 [ext_resource type="PackedScene" uid="uid://cqsj6ljppkot6" path="res://scenes/mainchara.tscn" id="1_bp8ss"]
 [ext_resource type="Script" path="res://scripts/parallax_background.gd" id="1_eistd"]
@@ -55,12 +55,20 @@
 [ext_resource type="Texture2D" uid="uid://c4u17qvi6ncgp" path="res://art/tileset/continuetimer/continuetimer36.png" id="45_amroq"]
 [ext_resource type="Texture2D" uid="uid://driwcjeqgonf0" path="res://art/tileset/continuetimer/continuetimer20.png" id="46_ha8ji"]
 [ext_resource type="Texture2D" uid="uid://bb6f2d3ucoplr" path="res://art/tileset/continuetimer/continuetimer21.png" id="47_hjens"]
+[ext_resource type="Texture2D" uid="uid://cdn3b51t3tgvy" path="res://art/tileset/fever/splash/splash0.png" id="47_ypbnq"]
 [ext_resource type="Texture2D" uid="uid://cw8m5eu6fywtj" path="res://art/tileset/continuetimer/continuetimer22.png" id="48_v1n8y"]
+[ext_resource type="Texture2D" uid="uid://f5bi07uhcn8r" path="res://art/tileset/fever/splash/splash1.png" id="48_vfurq"]
 [ext_resource type="Texture2D" uid="uid://1voe3r082gw4" path="res://art/tileset/continuetimer/continuetimer23.png" id="49_56kwd"]
+[ext_resource type="Texture2D" uid="uid://bwtc2n6frxf7d" path="res://art/tileset/fever/splash/splash2.png" id="49_uup0k"]
+[ext_resource type="Texture2D" uid="uid://ct672f8ru2oai" path="res://art/tileset/fever/splash/splash3.png" id="50_6f2jf"]
 [ext_resource type="Texture2D" uid="uid://ddq2ix1vxy81a" path="res://art/tileset/continuetimer/continuetimer24.png" id="50_gn5as"]
 [ext_resource type="Texture2D" uid="uid://dba18d677gtys" path="res://art/tileset/continuetimer/continuetimer25.png" id="51_iwwjy"]
+[ext_resource type="Texture2D" uid="uid://djeqyoyy74y5q" path="res://art/tileset/fever/splash/splash4.png" id="51_pn12x"]
+[ext_resource type="Texture2D" uid="uid://dcbvgwpd5c1xs" path="res://art/tileset/fever/splash/splash5.png" id="52_7ofgf"]
 [ext_resource type="Texture2D" uid="uid://ckup8h3mqd0ie" path="res://art/tileset/continuetimer/continuetimer26.png" id="52_nnlbi"]
 [ext_resource type="Texture2D" uid="uid://cql7sws4ogmh5" path="res://art/tileset/continuetimer/continuetimer10.png" id="53_ht8yi"]
+[ext_resource type="Texture2D" uid="uid://dxc7scp88smcd" path="res://art/tileset/fever/splash/splash6.png" id="53_r112x"]
+[ext_resource type="Texture2D" uid="uid://pv6cyv1lyb4u" path="res://art/tileset/fever/splash/splash7.png" id="54_4vdu8"]
 [ext_resource type="Texture2D" uid="uid://c2u7uuq2vs4gv" path="res://art/tileset/continuetimer/continuetimer11.png" id="54_m5k1v"]
 [ext_resource type="Texture2D" uid="uid://dncdffa5xi7lr" path="res://art/tileset/continuetimer/continuetimer12.png" id="55_ltvf4"]
 [ext_resource type="Texture2D" uid="uid://co66j2712a3jr" path="res://art/tileset/continuetimer/continuetimer13.png" id="56_byldx"]
@@ -311,7 +319,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("TextureRect:modulate")
+tracks/1/path = NodePath("Label:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -323,7 +331,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Label:modulate")
+tracks/2/path = NodePath("TextureRect:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -356,7 +364,7 @@ tracks/1/path = NodePath("Label:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.0333333, 0.166667, 0.366667),
+"times": PackedFloat32Array(0, 0.166667, 0.333333),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -383,6 +391,85 @@ _data = {
 "RESET": SubResource("Animation_87jl5"),
 "fever_constant": SubResource("Animation_s77pm"),
 "fever_fadeout": SubResource("Animation_fk54w")
+}
+
+[sub_resource type="Animation" id="Animation_bbacg"]
+resource_name = "splashity"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.2, 0.266667, 0.333333, 0.4, 0.466667, 0.533333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("47_ypbnq"), ExtResource("48_vfurq"), ExtResource("49_uup0k"), ExtResource("50_6f2jf"), ExtResource("51_pn12x"), ExtResource("52_7ofgf"), ExtResource("53_r112x"), ExtResource("54_4vdu8")]
+}
+
+[sub_resource type="Animation" id="Animation_frbsj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_je36e"]
+resource_name = "pulse"
+length = 1.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("52_7ofgf")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.533333, 0.8, 1.03333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_occ74"]
+_data = {
+"RESET": SubResource("Animation_frbsj"),
+"pulse": SubResource("Animation_je36e"),
+"splashity": SubResource("Animation_bbacg")
 }
 
 [sub_resource type="Animation" id="Animation_e1ir1"]
@@ -446,6 +533,8 @@ charmpath = NodePath("../Dialogue UI/Panel/Overlay/charms/charmbutton")
 continuetimerpath = NodePath("../continuetimer/continuetimeranim")
 continuecanvaspath = NodePath("../continuetimer")
 charmtexturepath = NodePath("../coins/charm")
+animsplashpath = NodePath("../splash/AnimationPlayer")
+splashtextpath = NodePath("../splash/TextureRect")
 
 [node name="Dialogue UI" type="CanvasLayer" parent="."]
 script = ExtResource("14_7mv0c")
@@ -674,26 +763,28 @@ script = ExtResource("1_eistd")
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
 z_index = -10
-motion_scale = Vector2(0, 0.8)
+motion_scale = Vector2(0, 1)
 motion_mirroring = Vector2(0, 648)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="ParallaxBackground/ParallaxLayer"]
 z_index = -10
+position = Vector2(-1, 1)
 tile_map_data = PackedByteArray("AAADAAAAAQAAAAAAAAADAAEAAQAAAAAAAAADAAIAAQAAAAAAAAADAAMAAQAAAAAAAAADAAQAAQAAAAAAAAADAAUAAQAAAAAAAAADAAYAAQAAAAAAAAADAAcAAQAAAAAAAAADAAgAAQAAAAAAAAAMAAAAAQAIAAAAAAAMAAEAAQAIAAAAAAAMAAIAAQAIAAAAAAAMAAMAAQAIAAAAAAAMAAQAAQAIAAAAAAAMAAUAAQAIAAAAAAAMAAYAAQAIAAAAAAAMAAcAAQAIAAAAAAAMAAgAAQAIAAAAAAAFAAAAAQAQAAAAAAAGAAAAAQAQAAAAAAAHAAAAAQAQAAAAAAAIAAAAAQAQAAAAAAAJAAAAAQAQAAAAAAAKAAAAAQAQAAAAAAAKAAEAAQAYAAAAAAAFAAEAAQAYAAAAAAAHAAEAAQAQAAAAAAAIAAEAAQAQAAAAAAAFAAIAAQAQAAAAAAAHAAIAAQAQAAAAAAAJAAIAAQAgAAAAAAALAAIAAQAYAAAAAAAKAAMAAQAYAAAAAAAFAAMAAQAgAAAAAAAHAAMAAQAQAAAAAAAIAAMAAQAQAAAAAAAFAAQAAQAQAAAAAAAGAAQAAQAQAAAAAAAHAAQAAQAQAAAAAAAIAAQAAQAQAAAAAAAKAAQAAQAYAAAAAAAKAAUAAQAQAAAAAAAJAAUAAQAQAAAAAAAIAAUAAQAQAAAAAAAHAAUAAQAQAAAAAAAGAAUAAQAQAAAAAAAEAAUAAQAgAAAAAAAFAAYAAQAQAAAAAAAGAAYAAQAQAAAAAAAHAAYAAQAQAAAAAAAJAAYAAQAYAAAAAAAKAAYAAQAgAAAAAAAFAAcAAQAYAAAAAAAHAAcAAQAgAAAAAAAJAAcAAQAQAAAAAAAKAAcAAQAQAAAAAAAKAAgAAQAQAAAAAAAJAAgAAQAQAAAAAAAIAAgAAQAQAAAAAAAHAAgAAQAQAAAAAAAFAAgAAQAQAAAAAAA=")
 tile_set = SubResource("TileSet_cwad8")
 
 [node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2(0, 0.2)
+motion_scale = Vector2(0, 0.8)
 motion_mirroring = Vector2(0, 512)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="ParallaxBackground/ParallaxLayer4"]
 z_index = -5
+position = Vector2(-9, -3)
 tile_map_data = PackedByteArray("AAAjAA0AAgAQAAAAAAAhABIAAgAAAAAAAAACAAMAAgAAAAAAAAACAAkAAgAIAAAAAAAiABkAAgAIAAAAAQABABcAAgAYAAAAAQABABoAAgAYAAAAAQAjAAYAAgAYAAAAAAAjAAkAAgAYAAAAAAA=")
 tile_set = SubResource("TileSet_uk1lt")
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
 z_index = -100
-motion_scale = Vector2(0, 0.4)
+motion_scale = Vector2(0, 0.8)
 motion_mirroring = Vector2(0, 648)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="ParallaxBackground/ParallaxLayer3"]
@@ -706,6 +797,7 @@ zoom = Vector2(2, 2)
 script = ExtResource("5_rjxyq")
 parallax_path = NodePath("../ParallaxBackground")
 characters_path = NodePath("../Characters")
+envmishappath = NodePath("../envmishap")
 
 [node name="Characters" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -713,7 +805,7 @@ unique_name_in_owner = true
 [node name="mainchara" parent="Characters" instance=ExtResource("1_bp8ss")]
 top_level = true
 y_sort_enabled = true
-position = Vector2(283, 1)
+position = Vector2(294, 0)
 
 [node name="Spawner" parent="." instance=ExtResource("8_fmll7")]
 profiles = Array[ExtResource("10_fgj5o")]([ExtResource("11_nbt5j"), ExtResource("12_qqd8v"), ExtResource("13_sqrlo"), ExtResource("14_iyk3s"), ExtResource("19_dlvn0")])
@@ -722,6 +814,7 @@ characters_path = NodePath("../Characters")
 mainchara_path = NodePath("../Characters/mainchara")
 eventpath = NodePath("../EventSpawner")
 camerapath = NodePath("../Camera2D")
+splashtextpath = NodePath("../splash/TextureRect")
 
 [node name="Timer" type="Timer" parent="Spawner"]
 
@@ -825,10 +918,10 @@ horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="charm" type="TextureRect" parent="coins"]
-offset_left = 772.0
-offset_top = 49.0
-offset_right = 844.0
-offset_bottom = 121.0
+offset_left = 1035.0
+offset_top = 160.0
+offset_right = 1107.0
+offset_bottom = 232.0
 texture = ExtResource("34_uw75t")
 
 [node name="shield" type="CanvasLayer" parent="."]
@@ -874,6 +967,17 @@ theme_override_fonts/font = ExtResource("23_h7tlf")
 theme_override_font_sizes/font_size = 100
 text = "FEVER"
 horizontal_alignment = 1
+
+[node name="splash" type="CanvasLayer" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="splash"]
+libraries = {
+"": SubResource("AnimationLibrary_occ74")
+}
+
+[node name="TextureRect" type="TextureRect" parent="splash"]
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="fevertimer" type="Timer" parent="."]
 

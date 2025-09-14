@@ -11,6 +11,12 @@ func _ready() -> void:
 	audio.play()
 	print(final_points)
 	points.text = ("Points: " + str(final_points))
+	if from_leaderboard == true:
+		pass
+		from_leaderboard = false
+	elif from_leaderboard == false:
+		Globals.attempt += 1
+		add_score((Globals.attempt), final_points)
 
 func _on_texture_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/menu.tscn")
@@ -33,8 +39,6 @@ func _on_button_pressed() -> void:
 		var go := scene.instantiate()
 		go.final_points = final_points
 		go.from_gameover = true
-		Globals.attempt += 1
-		add_score((Globals.attempt), go.final_points)
 		print(go.final_points)
 		var tree = get_tree()
 		var old = tree.current_scene

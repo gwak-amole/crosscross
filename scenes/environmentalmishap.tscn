@@ -1,7 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://cq0cyn7pjxjaw"]
+[gd_scene load_steps=7 format=3 uid="uid://cq0cyn7pjxjaw"]
 
 [ext_resource type="Script" path="res://scripts/environmentalmishap.gd" id="1_0gdcn"]
-[ext_resource type="Texture2D" uid="uid://domo16pjf10lh" path="res://art/tileset/puddle/puddle0.png" id="1_wdorj"]
 [ext_resource type="Script" path="res://scripts/EnvMishapProfile.gd" id="2_wipw2"]
 [ext_resource type="Resource" uid="uid://hkaow0faggux" path="res://scripts/EnvMishapProfiles/puddle1.tres" id="3_u42h4"]
 [ext_resource type="Resource" uid="uid://behosanmnw3a0" path="res://scripts/EnvMishapProfiles/puddle2.tres" id="4_0o42n"]
@@ -11,22 +10,18 @@
 radius = 30.0666
 
 [node name="environmentalmishap" type="CharacterBody2D"]
+z_index = -100
 script = ExtResource("1_0gdcn")
 profile_array = Array[ExtResource("2_wipw2")]([ExtResource("3_u42h4"), ExtResource("4_0o42n"), ExtResource("5_nj6uj")])
-
-[node name="TextureRect" type="TextureRect" parent="."]
-offset_right = 72.0
-offset_bottom = 72.0
-texture = ExtResource("1_wdorj")
+sprite_path = NodePath("Sprite2D")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(36, 36)
-scale = Vector2(2.2, 2.1)
+position = Vector2(0, -28)
+scale = Vector2(2.2, 0.125)
 
 [node name="hitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
-position = Vector2(37, 37)
 shape = SubResource("CircleShape2D_wae6p")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

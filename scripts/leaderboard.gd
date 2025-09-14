@@ -3,10 +3,27 @@ extends Node2D
 signal from_leaderboard
 @export var vboxcontpath : NodePath
 @onready var vboxcont := get_node(vboxcontpath)
+@onready var anim := $AnimationPlayer
+@onready var title := $Label
+@onready var subtitle := $Label3
+@onready var btn := $Button
+@onready var animback := $TextureRect
 var final_points : int = 0
 var from_gameover : bool = false
 
 func _ready() -> void:
+	animback.show()
+	vboxcont.hide()
+	title.hide()
+	subtitle.hide()
+	btn.hide()
+	anim.play("enteranim")
+	await anim.animation_finished
+	vboxcont.show()
+	title.show()
+	subtitle.show()
+	btn.show()
+	animback.hide()
 	display_leaderboard(vboxcont)
 
 func display_leaderboard(container: VBoxContainer) -> void:
@@ -34,4 +51,5 @@ func _on_button_pressed() -> void:
 		if old:
 			old.queue_free()
 	else:
+		from_gameover = false
 		get_tree().change_scene_to_file("res://scenes/menu.tscn")

@@ -1,13 +1,44 @@
-[gd_scene load_steps=5 format=3 uid="uid://cv6o03g7cy6hx"]
+[gd_scene load_steps=17 format=3 uid="uid://cv6o03g7cy6hx"]
 
 [ext_resource type="Texture2D" uid="uid://olou0j7is62" path="res://art/officemandialogue/howtoplay.png" id="1_qtbhj"]
 [ext_resource type="Script" path="res://scripts/options.gd" id="1_wwl5i"]
 [ext_resource type="FontFile" uid="uid://r7libpb4d4ao" path="res://fonts/Jersey_10/Jersey10-Regular.ttf" id="2_q57w2"]
+[ext_resource type="Texture2D" uid="uid://dtq5eyka26sms" path="res://art/officemandialogue/enteranim/howtoplayblank.png" id="3_iei2f"]
+[ext_resource type="Texture2D" uid="uid://ee6ovrdfhp38" path="res://art/officemandialogue/enteranim/enteranim8.png" id="3_jqdse"]
+[ext_resource type="Texture2D" uid="uid://bxvag3rxfjpgl" path="res://art/officemandialogue/enteranim/enteranim0.png" id="4_yv75f"]
+[ext_resource type="Texture2D" uid="uid://cw4d3i2e6kket" path="res://art/officemandialogue/enteranim/enteranim1.png" id="5_0dcad"]
+[ext_resource type="Texture2D" uid="uid://bja2gicuq7kvu" path="res://art/officemandialogue/enteranim/enteranim2.png" id="6_rtaqu"]
+[ext_resource type="Texture2D" uid="uid://wandc51bm004" path="res://art/officemandialogue/enteranim/enteranim3.png" id="7_attam"]
+[ext_resource type="Texture2D" uid="uid://erijcy5p0vu0" path="res://art/officemandialogue/enteranim/enteranim4.png" id="8_c8faa"]
+[ext_resource type="Texture2D" uid="uid://blmjal2ju0clb" path="res://art/officemandialogue/enteranim/enteranim5.png" id="9_huatj"]
+[ext_resource type="Texture2D" uid="uid://dl341b8eien57" path="res://art/officemandialogue/enteranim/enteranim6.png" id="10_s1ry2"]
+[ext_resource type="Texture2D" uid="uid://cu0ccdp1hdm7" path="res://art/officemandialogue/enteranim/enteranim7.png" id="11_vu3pu"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_prj5v"]
 font = ExtResource("2_q57w2")
 font_size = 33
 font_color = Color(0.166178, 0.26014, 0.622116, 1)
+
+[sub_resource type="Animation" id="Animation_r7ji6"]
+resource_name = "enteranim"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("animation:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.133333, 0.466667, 0.533333, 0.866667, 0.933333, 1.26667, 1.33333, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("4_yv75f"), ExtResource("5_0dcad"), ExtResource("6_rtaqu"), ExtResource("7_attam"), ExtResource("8_c8faa"), ExtResource("9_huatj"), ExtResource("10_s1ry2"), ExtResource("11_vu3pu"), ExtResource("3_jqdse")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1dq8t"]
+_data = {
+"enteranim": SubResource("Animation_r7ji6")
+}
 
 [node name="how to play" type="Control"]
 layout_mode = 3
@@ -23,6 +54,12 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("1_qtbhj")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_iei2f")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
@@ -54,5 +91,16 @@ theme_override_fonts/font = ExtResource("2_q57w2")
 theme_override_font_sizes/font_size = 35
 text = "back"
 metadata/_edit_use_anchors_ = true
+
+[node name="animation" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_jqdse")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1dq8t")
+}
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

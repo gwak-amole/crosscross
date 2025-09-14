@@ -8,6 +8,7 @@ signal fever_done(tf: bool)
 @export var mainchara_path: NodePath
 @export var eventpath : NodePath
 @export var camerapath : NodePath
+@export var splashtextpath : NodePath
 @export var start_spawn_every: float = 1.2
 @export var min_spawn_every:= 0.3
 @export var max_on_screen: int = 8
@@ -24,6 +25,7 @@ signal fever_done(tf: bool)
 @onready var mainchara := get_node_or_null(mainchara_path)
 @onready var eventspawner := get_node_or_null(eventpath)
 @onready var camera := get_node_or_null(camerapath)
+@onready var splashtext := get_node_or_null(splashtextpath)
 @onready var timer: Timer = $Timer
 var rng := RandomNumberGenerator.new()
 var elapsed := 0.0
@@ -119,6 +121,7 @@ func slowpuddle() -> void:
 		puddle_cooldown = true
 		mainchara.slowdown_factor = 0.5
 		await get_tree().create_timer(3.0).timeout
+		splashtext.hide()
 		puddle_cooldown = false
 		mainchara.slowdown_factor = 1.0
 	elif puddle_cooldown == true:
