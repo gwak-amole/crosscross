@@ -4,6 +4,8 @@ signal branch_chosen(idx: int)
 @export var audio_path : NodePath
 @export var spawnerpath : NodePath
 @export var animpath : NodePath
+@export var charmpath : NodePath
+@export var controllerpath : NodePath
 
 @onready var panel := $Panel
 @onready var art : Node = $Panel/Art
@@ -12,15 +14,23 @@ signal branch_chosen(idx: int)
 @onready var audio := get_node(audio_path)
 @onready var spawner := get_node(spawnerpath)
 @onready var anim := get_node(animpath)
+@onready var charm := get_node(charmpath)
+@onready var controller := get_node(controllerpath)
 
 var dlg_scene: Node = null
 var cor_idx : int
 var rng = RandomNumberGenerator.new()
 var rand: int
+var thecharm : bool = false
 
 func _ready() -> void:
 	visible = false
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	if charm and charm is TextureButton:
+		if not charm.pressed.is_connected(_on_charm_pressed):
+			charm.pressed.connect(_on_charm_pressed)
+	else:
+		push_error("Charm button not found haiya")
 
 func show_dialogue_from_profile(p: EnemyProfile) -> int:
 	rand = rng.randi_range(1,2)
@@ -46,6 +56,9 @@ func show_dialogue_from_profile(p: EnemyProfile) -> int:
 			panel.show()
 		await ap.animation_finished
 		choices_box.show()
+		if controller.charm_active:
+			charm.show()
+			charm.queue_redraw()
 		if ap.has_animation("hairsway"):
 			ap.play("hairsway")
 	else:
@@ -93,6 +106,7 @@ func _rebuild_buttons(choices: PackedStringArray) -> void:
 func _wait_for_choice() -> int:
 	var picked:int = await self.choice_made
 	choices_box.hide()
+	charm.hide()
 	var ap = dlg_scene.get_node_or_null("AnimationPlayer")
 	var pos_response = dlg_scene.get_node_or_null("AudioStreamPlayer")
 	var neg_response = dlg_scene.get_node_or_null("AudioStreamPlayer2")
@@ -110,7 +124,15 @@ func _wait_for_choice() -> int:
 	return picked
 	
 func _on_choice_pressed(idx:int) -> void:
+	if controller.charm_active:
+		thecharm = true
 	emit_signal("choice_made", idx)
+
+func _on_charm_pressed() -> void:
+	choices_box.hide()
+	thecharm = false
+	print("it's reaching here")
+	emit_signal("choice_made", cor_idx)
 
 func close_dialogue():
 	if is_instance_valid(dlg_scene):

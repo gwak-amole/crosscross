@@ -5,6 +5,7 @@ signal fever_done(tf: bool)
 @export var enemy_scene: PackedScene
 @export var controller_path: NodePath
 @export var characters_path: NodePath
+@export var mainchara_path: NodePath
 @export var eventpath : NodePath
 @export var camerapath : NodePath
 @export var start_spawn_every: float = 1.2
@@ -13,7 +14,6 @@ signal fever_done(tf: bool)
 @export var half_life_seconds := 45.0
 @export var new_time_elapsed := elapsed
 
-# Put Y values you can actually see with your current camera/zoom:
 @export var lanes_x: PackedFloat32Array = [160.0, 220.0, 280.0, 360.0, 420.0]
 @export var x_spawn_left: float = 200
 @export var x_spawn_right: float = 350
@@ -21,13 +21,16 @@ signal fever_done(tf: bool)
 
 @onready var controller := get_node(controller_path)
 @onready var characters := get_node_or_null(characters_path)
+@onready var mainchara := get_node_or_null(mainchara_path)
 @onready var eventspawner := get_node_or_null(eventpath)
 @onready var camera := get_node_or_null(camerapath)
 @onready var timer: Timer = $Timer
 var rng := RandomNumberGenerator.new()
 var elapsed := 0.0
 var fever_active := false
-var old_speed : int = 0
+var old_speed : float = 0
+var old_maincharaspeed : float = 0
+var puddle_cooldown := false
 
 func _ready() -> void:
 	if enemy_scene == null or characters == null:
@@ -77,7 +80,7 @@ func _spawn_one() -> void:
 	
 	var cam := get_viewport().get_camera_2d()
 	var view := get_viewport_rect().size
-	var top := cam.global_position.y - (view.y * 0.5)  # top edge of screen in world space
+	var top := cam.global_position.y - (view.y * 0.5)
 
 	var x: float = lanes_x[rng.randi_range(0, lanes_x.size() - 1)]
 	var y: float = top - spawn_margin_y    
@@ -110,3 +113,13 @@ func _on_fever_ended() -> void:
 	fever_active = false
 	camera.speed = old_speed
 	camera.max_scroll_speed = 200
+
+func slowpuddle() -> void:
+	if puddle_cooldown == false:
+		puddle_cooldown = true
+		mainchara.slowdown_factor = 0.5
+		await get_tree().create_timer(3.0).timeout
+		puddle_cooldown = false
+		mainchara.slowdown_factor = 1.0
+	elif puddle_cooldown == true:
+		pass

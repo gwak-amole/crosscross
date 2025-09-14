@@ -8,7 +8,8 @@ var enemy_contact_range = false
 var health = 3
 var player_alive = true
 var start_speed := 200
-var speed : float
+@export var speed : float
+@export var slowdown_factor : float = 1
 var max_speed := 350
 var elapsed := 0.0
 
@@ -32,19 +33,19 @@ func _process(delta: float) -> void:
 func player_movement(delta):
 	velocity = Vector2.ZERO
 	if Input.is_action_pressed("ui_right"):
-		velocity.x = speed
+		velocity.x = speed * slowdown_factor
 		current_dir = "right"
 		play_anim(1)
 	elif Input.is_action_pressed("ui_left"):
-		velocity.x = -speed
+		velocity.x = -speed * slowdown_factor
 		current_dir = "left"
 		play_anim(1)
 	elif Input.is_action_pressed("ui_down"):
-		velocity.y = speed
+		velocity.y = speed * slowdown_factor
 		current_dir = "down"
 		play_anim(1)
 	elif Input.is_action_pressed("ui_up"):
-		velocity.y = -speed
+		velocity.y = -speed * slowdown_factor
 		current_dir = "up"
 		play_anim(1)
 	else:

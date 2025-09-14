@@ -2,6 +2,7 @@ extends Node2D
 
 signal coin_contacted(event: Node)
 signal shield_contacted(event: Node)
+signal charm_contacted(event: Node)
 
 @export var profile: EventProfile
 @export var profile_array : Array[EventProfile] = []
@@ -27,4 +28,6 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		emit_signal("coin_contacted", self)
 	if self.profile == profile_array[1]:
 		emit_signal("shield_contacted", self)
+	if self.profile == profile_array[2]:
+		emit_signal("charm_contacted", self)
 	queue_free()

@@ -8,6 +8,7 @@ signal fever_end
 @export var audio_enc : NodePath
 @export var pointspath : NodePath
 @export var coinspath : NodePath
+@export var coiniconpath : NodePath
 @export var spawnerpath : NodePath
 @export var anim_path : NodePath
 @export var fevertext_path : NodePath
@@ -15,6 +16,10 @@ signal fever_end
 @export var eventspawnerpath : NodePath
 @export var fevertimerpath : NodePath
 @export var shieldtextpath : NodePath
+@export var charmpath : NodePath
+@export var continuetimerpath : NodePath
+@export var continuecanvaspath : NodePath
+@export var charmtexturepath : NodePath
 @export var lives_start: int = 3
 
 var lives: int
@@ -31,7 +36,12 @@ var lives: int
 @onready var texture := get_node(texture_path)
 @onready var eventspawner := get_node(eventspawnerpath)
 @onready var fevertimer := get_node(fevertimerpath)
-@onready var shieldtext := get_node(shieldtextpath)
+@onready var shieldicon := get_node(shieldtextpath)
+@onready var charm := get_node(charmpath)
+@onready var continuetimer := get_node(continuetimerpath)
+@onready var continuecanvas := get_node(continuecanvaspath)
+@onready var coinicon := get_node(coiniconpath)
+@onready var charmtexture := get_node(charmtexturepath)
 
 var cor_idx : int
 var times : int = 0
@@ -41,6 +51,7 @@ var no_of_coins: int = 0
 var power = 1.2
 var shield_active: bool = false
 var cooldown : float = 5.0
+var charm_active : bool = false
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -64,6 +75,9 @@ func _ready() -> void:
 	dialogue_ui.branch_chosen.connect(_on_branch_chosen)
 	fevertext.hide()
 	texture.hide()
+	charm.hide()
+	shieldicon.hide()
+	charmtexture.hide()
 
 func _process(delta) -> void:
 	if get_tree().paused == true:
@@ -86,7 +100,7 @@ func _on_event_contacted(e: Node) -> void:
 		
 	if p.effect == 1:
 		shield_active == true
-		shieldtext.text = "Shield Active"
+		shieldicon.show()
 
 	if is_instance_valid(e):
 		e.queue_free()
@@ -95,10 +109,13 @@ func _on_event_contacted(e: Node) -> void:
 func _on_enemy_contacted(enemy: Node) -> void:
 	if shield_active == true:
 		shield_active = false
-		shieldtext.text = ""
+		shieldicon.hide()
 		return
+	coinicon.hide()
+	coins.hide()
 	fevertext.hide()
 	texture.hide()
+	charmtexture.hide()
 	points_int -= (points_int / 10)
 	_update_points()
 	times -= times/5
@@ -126,6 +143,20 @@ func _on_enemy_contacted(enemy: Node) -> void:
 	var wrong : bool = picked != cor_idx
 	if wrong:
 		_lose_life()
+	if lives > 0:
+		continuecanvas.show()
+		continuetimer.play("continuetimer")
+		await continuetimer.animation_finished
+	else:
+		pass
+	continuecanvas.hide()
+	if dialogue_ui.thecharm == true:
+		charm_active = true
+		charmtexture.show()
+	elif dialogue_ui.thecharm == false:
+		charm_active = false
+	coins.show()
+	coinicon.show()
 	
 	get_tree().paused = false
 	if is_instance_valid(enemy):
@@ -205,15 +236,23 @@ func _update_points() -> void:
 	
 func _on_coin_contacted(e: Node) -> void:
 	no_of_coins += 1
-	coins.text = ("Coins: " + str(no_of_coins))
+	coins.text = (str(no_of_coins))
 	if no_of_coins >= 5:
 		no_of_coins = 0
-		coins.text = ("Coins: " + str(no_of_coins))
+		coins.text = (str(no_of_coins))
 		_fever_start()
 
 func _on_shield_contacted(e: Node) -> void:
-	shieldtext.text = "SHIELD ENGAGED"
+	shieldicon.show()
 	shield_active = true
+
+func _on_charm_contacted(e: Node) -> void:
+	charmtexture.show()
+	charm_active = true
+
+func _on_puddle_contacted(e:Node) -> void:
+	print("puddle contacted")
+	spawner.slowpuddle()
 		
 func _fever_done() -> void:
 	power = 1.2

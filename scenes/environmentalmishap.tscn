@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://cq0cyn7pjxjaw"]
+
+[ext_resource type="Script" path="res://scripts/environmentalmishap.gd" id="1_0gdcn"]
+[ext_resource type="Texture2D" uid="uid://domo16pjf10lh" path="res://art/tileset/puddle/puddle0.png" id="1_wdorj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wae6p"]
+radius = 30.0666
+
+[node name="environmentalmishap" type="CharacterBody2D"]
+script = ExtResource("1_0gdcn")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 72.0
+offset_bottom = 72.0
+texture = ExtResource("1_wdorj")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(36, 36)
+scale = Vector2(2.2, 2.1)
+
+[node name="hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(37, 37)
+shape = SubResource("CircleShape2D_wae6p")
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]

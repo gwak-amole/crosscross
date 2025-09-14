@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=4 uid="uid://bw1jvqsj3l017"]
+[gd_scene load_steps=87 format=4 uid="uid://bw1jvqsj3l017"]
 
 [ext_resource type="PackedScene" uid="uid://cqsj6ljppkot6" path="res://scenes/mainchara.tscn" id="1_bp8ss"]
 [ext_resource type="Script" path="res://scripts/parallax_background.gd" id="1_eistd"]
@@ -33,9 +33,36 @@
 [ext_resource type="Resource" uid="uid://w2q3s8a18k27" path="res://scripts/EventProfiles/coin.tres" id="26_fmq7n"]
 [ext_resource type="Resource" uid="uid://bw1y1pivebafb" path="res://scripts/EventProfiles/shield.tres" id="27_c1vwu"]
 [ext_resource type="Resource" uid="uid://ofc1ylam0rtq" path="res://scripts/EventProfiles/charm.tres" id="28_ayl4n"]
+[ext_resource type="Script" path="res://scripts/env_spawner.gd" id="32_qn06w"]
+[ext_resource type="PackedScene" uid="uid://cq0cyn7pjxjaw" path="res://scenes/environmentalmishap.tscn" id="33_3jgo4"]
 [ext_resource type="Texture2D" uid="uid://cmschvr05ja16" path="res://art/tileset/fever/fever0.png" id="34_b7ekx"]
+[ext_resource type="Texture2D" uid="uid://bce3gpnvacv7k" path="res://art/tileset/charm0.png" id="34_uw75t"]
+[ext_resource type="Texture2D" uid="uid://coj3x4qfqnxix" path="res://art/tileset/charm1.png" id="35_6hqaj"]
 [ext_resource type="Texture2D" uid="uid://0nr3ny323aii" path="res://art/tileset/fever/fever1.png" id="35_bd1qm"]
+[ext_resource type="Texture2D" uid="uid://du5ookot54bhc" path="res://art/tileset/coincounter.png" id="36_bt1i5"]
 [ext_resource type="Texture2D" uid="uid://c7xg2o4jm6tf0" path="res://art/tileset/fever/fever2.png" id="36_yi8m5"]
+[ext_resource type="Texture2D" uid="uid://crohi481bugr1" path="res://art/tileset/shieldcounter.png" id="37_m4eln"]
+[ext_resource type="Texture2D" uid="uid://ceteumpia1hpe" path="res://art/tileset/continuetimer/continuetimer30.png" id="39_xrlb6"]
+[ext_resource type="Texture2D" uid="uid://dgjwa8cfufk2t" path="res://art/tileset/continuetimer/continuetimer31.png" id="40_6jf6k"]
+[ext_resource type="Texture2D" uid="uid://c0wri6qicv7gt" path="res://art/tileset/continuetimer/continuetimer32.png" id="41_r8c2t"]
+[ext_resource type="Texture2D" uid="uid://1nhtyxo85iad" path="res://art/tileset/continuetimer/continuetimer33.png" id="42_iltey"]
+[ext_resource type="Texture2D" uid="uid://sxqoas34bvy4" path="res://art/tileset/continuetimer/continuetimer34.png" id="43_8daek"]
+[ext_resource type="Texture2D" uid="uid://d3xwxddfstpvv" path="res://art/tileset/continuetimer/continuetimer35.png" id="44_gxins"]
+[ext_resource type="Texture2D" uid="uid://c4u17qvi6ncgp" path="res://art/tileset/continuetimer/continuetimer36.png" id="45_amroq"]
+[ext_resource type="Texture2D" uid="uid://driwcjeqgonf0" path="res://art/tileset/continuetimer/continuetimer20.png" id="46_ha8ji"]
+[ext_resource type="Texture2D" uid="uid://bb6f2d3ucoplr" path="res://art/tileset/continuetimer/continuetimer21.png" id="47_hjens"]
+[ext_resource type="Texture2D" uid="uid://cw8m5eu6fywtj" path="res://art/tileset/continuetimer/continuetimer22.png" id="48_v1n8y"]
+[ext_resource type="Texture2D" uid="uid://1voe3r082gw4" path="res://art/tileset/continuetimer/continuetimer23.png" id="49_56kwd"]
+[ext_resource type="Texture2D" uid="uid://ddq2ix1vxy81a" path="res://art/tileset/continuetimer/continuetimer24.png" id="50_gn5as"]
+[ext_resource type="Texture2D" uid="uid://dba18d677gtys" path="res://art/tileset/continuetimer/continuetimer25.png" id="51_iwwjy"]
+[ext_resource type="Texture2D" uid="uid://ckup8h3mqd0ie" path="res://art/tileset/continuetimer/continuetimer26.png" id="52_nnlbi"]
+[ext_resource type="Texture2D" uid="uid://cql7sws4ogmh5" path="res://art/tileset/continuetimer/continuetimer10.png" id="53_ht8yi"]
+[ext_resource type="Texture2D" uid="uid://c2u7uuq2vs4gv" path="res://art/tileset/continuetimer/continuetimer11.png" id="54_m5k1v"]
+[ext_resource type="Texture2D" uid="uid://dncdffa5xi7lr" path="res://art/tileset/continuetimer/continuetimer12.png" id="55_ltvf4"]
+[ext_resource type="Texture2D" uid="uid://co66j2712a3jr" path="res://art/tileset/continuetimer/continuetimer13.png" id="56_byldx"]
+[ext_resource type="Texture2D" uid="uid://d4ld8ijuwum7m" path="res://art/tileset/continuetimer/continuetimer14.png" id="57_0bwgm"]
+[ext_resource type="Texture2D" uid="uid://codgevx8k6byx" path="res://art/tileset/continuetimer/continuetimer15.png" id="58_yq1qy"]
+[ext_resource type="Texture2D" uid="uid://daim3hc2jfid7" path="res://art/tileset/continuetimer/continuetimer16.png" id="59_dtb4p"]
 
 [sub_resource type="Theme" id="Theme_rvl5g"]
 
@@ -354,6 +381,43 @@ _data = {
 "fever_fadeout": SubResource("Animation_fk54w")
 }
 
+[sub_resource type="Animation" id="Animation_e1ir1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("continuetimer:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+
+[sub_resource type="Animation" id="Animation_ral5g"]
+resource_name = "continuetimer"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("continuetimer:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.166667, 0.3, 0.433333, 0.566667, 0.7, 1.06667, 1.13333, 1.23333, 1.36667, 1.5, 1.63333, 1.76667, 2.1, 2.16667, 2.26667, 2.4, 2.53333, 2.66667, 2.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("39_xrlb6"), ExtResource("40_6jf6k"), ExtResource("41_r8c2t"), ExtResource("42_iltey"), ExtResource("43_8daek"), ExtResource("44_gxins"), ExtResource("45_amroq"), ExtResource("46_ha8ji"), ExtResource("47_hjens"), ExtResource("48_v1n8y"), ExtResource("49_56kwd"), ExtResource("50_gn5as"), ExtResource("51_iwwjy"), ExtResource("52_nnlbi"), ExtResource("53_ht8yi"), ExtResource("54_m5k1v"), ExtResource("55_ltvf4"), ExtResource("56_byldx"), ExtResource("57_0bwgm"), ExtResource("58_yq1qy"), ExtResource("59_dtb4p")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3gaqo"]
+_data = {
+"RESET": SubResource("Animation_e1ir1"),
+"continuetimer": SubResource("Animation_ral5g")
+}
+
 [node name="gamebase" type="Node2D"]
 position = Vector2(10, 5)
 metadata/_edit_horizontal_guides_ = [-412.0, 375.0]
@@ -366,19 +430,26 @@ audio1 = NodePath("../AudioStreamPlayer")
 audio_enc = NodePath("../encounter")
 pointspath = NodePath("../points/Panel/Label")
 coinspath = NodePath("../coins/Label")
+coiniconpath = NodePath("../coins/TextureRect")
 spawnerpath = NodePath("../Spawner")
 anim_path = NodePath("../fever/AnimationPlayer")
 fevertext_path = NodePath("../fever/Label")
 texture_path = NodePath("../fever/TextureRect")
 eventspawnerpath = NodePath("../EventSpawner")
 fevertimerpath = NodePath("../fevertimer")
-shieldtextpath = NodePath("../shield/Label")
+shieldtextpath = NodePath("../shield/TextureRect")
+charmpath = NodePath("../Dialogue UI/Panel/Overlay/charms/charmbutton")
+continuetimerpath = NodePath("../continuetimer/continuetimeranim")
+continuecanvaspath = NodePath("../continuetimer")
+charmtexturepath = NodePath("../coins/charm")
 
 [node name="Dialogue UI" type="CanvasLayer" parent="."]
 script = ExtResource("14_7mv0c")
 audio_path = NodePath("../dialogue")
 spawnerpath = NodePath("../Spawner")
 animpath = NodePath("../fever/AnimationPlayer")
+charmpath = NodePath("Panel/Overlay/charms/charmbutton")
+controllerpath = NodePath("../GameController")
 
 [node name="Panel" type="Panel" parent="Dialogue UI"]
 anchors_preset = 15
@@ -406,6 +477,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="Text" type="Label" parent="Dialogue UI/Panel/Overlay"]
 layout_mode = 1
@@ -531,6 +603,26 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
+[node name="charms" type="CanvasLayer" parent="Dialogue UI/Panel/Overlay"]
+
+[node name="charmbutton" type="TextureButton" parent="Dialogue UI/Panel/Overlay/charms"]
+top_level = true
+z_index = 100
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -211.0
+offset_top = 84.0
+offset_right = -135.0
+offset_bottom = 156.0
+grow_horizontal = 0
+grow_vertical = 2
+texture_normal = ExtResource("34_uw75t")
+texture_pressed = ExtResource("35_6hqaj")
+texture_hover = ExtResource("35_6hqaj")
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 4
 
@@ -623,6 +715,7 @@ position = Vector2(283, 1)
 profiles = Array[ExtResource("10_fgj5o")]([ExtResource("11_nbt5j"), ExtResource("12_qqd8v"), ExtResource("13_sqrlo"), ExtResource("14_iyk3s"), ExtResource("19_dlvn0")])
 controller_path = NodePath("../GameController")
 characters_path = NodePath("../Characters")
+mainchara_path = NodePath("../Characters/mainchara")
 eventpath = NodePath("../EventSpawner")
 camerapath = NodePath("../Camera2D")
 
@@ -634,11 +727,19 @@ profiles = Array[ExtResource("25_tbtg2")]([ExtResource("26_fmq7n"), ExtResource(
 event_scene = ExtResource("25_tjbff")
 controller_path = NodePath("../GameController")
 characters_path = NodePath("../events")
-start_spawn_every = 4.0
-min_spawn_every = 2
+start_spawn_every = 3.0
+min_spawn_every = 1.5
 max_on_screen = 2
 
 [node name="Timer" type="Timer" parent="EventSpawner"]
+
+[node name="EnvSpawner" type="Node2D" parent="."]
+script = ExtResource("32_qn06w")
+env_scene = ExtResource("33_3jgo4")
+controller_path = NodePath("../GameController")
+characters_path = NodePath("../envmishap")
+
+[node name="Timer" type="Timer" parent="EnvSpawner"]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("19_yqrax")
@@ -655,25 +756,30 @@ volume_db = 8.744
 [node name="points" type="CanvasLayer" parent="."]
 
 [node name="Panel" type="Panel" parent="points"]
-anchors_preset = 5
+anchors_preset = -1
 anchor_left = 0.5
 anchor_right = 0.5
+anchor_bottom = 0.031
 offset_left = -20.0
+offset_top = 30.0
 offset_right = 20.0
-offset_bottom = 40.0
+offset_bottom = 49.912
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_jtfdg")
 
 [node name="Label" type="Label" parent="points/Panel"]
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = 8
 anchor_left = 0.5
+anchor_top = 0.5
 anchor_right = 0.5
-offset_left = -38.0
-offset_top = 26.0
-offset_right = -14.0
-offset_bottom = 96.0
+anchor_bottom = 0.5
+offset_left = -12.0
+offset_top = -17.0
+offset_right = 12.0
+offset_bottom = 53.0
 grow_horizontal = 2
+grow_vertical = 2
 theme_override_fonts/font = ExtResource("23_h7tlf")
 theme_override_font_sizes/font_size = 64
 text = "0"
@@ -683,47 +789,55 @@ vertical_alignment = 1
 [node name="events" type="Node2D" parent="."]
 z_index = -100
 
-[node name="charms" type="CanvasLayer" parent="."]
+[node name="envmishap" type="Node2D" parent="."]
+z_index = -100
 
 [node name="coins" type="CanvasLayer" parent="."]
 
-[node name="Label" type="Label" parent="coins"]
-z_index = -100
+[node name="TextureRect" type="TextureRect" parent="coins"]
 anchors_preset = -1
-anchor_left = 0.936
-anchor_top = 0.758
-anchor_right = 0.964
-anchor_bottom = 0.887
-offset_left = -63.2721
-offset_top = -30.184
-offset_right = -31.5281
-offset_bottom = -29.776
+anchor_left = 0.866319
+anchor_top = 0.00617284
+anchor_right = 0.991319
+anchor_bottom = 0.228395
+grow_horizontal = 0
+texture = ExtResource("36_bt1i5")
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="coins"]
+z_index = 10
+anchors_preset = -1
+anchor_left = 0.868056
+anchor_top = 0.149691
+anchor_right = 0.936632
+anchor_bottom = 0.234568
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("23_h7tlf")
-theme_override_font_sizes/font_size = 40
-text = "Coins:"
+theme_override_font_sizes/font_size = 50
+text = "0"
 horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="charm" type="TextureRect" parent="coins"]
+offset_left = 772.0
+offset_top = 49.0
+offset_right = 844.0
+offset_bottom = 121.0
+texture = ExtResource("34_uw75t")
 
 [node name="shield" type="CanvasLayer" parent="."]
 
-[node name="Label" type="Label" parent="shield"]
-z_index = -100
+[node name="TextureRect" type="TextureRect" parent="shield"]
 anchors_preset = -1
-anchor_left = 0.936
-anchor_top = 0.758
-anchor_right = 0.964
-anchor_bottom = 0.887
-offset_left = -144.272
-offset_top = -132.184
-offset_right = -23.528
-offset_bottom = -131.776
+anchor_left = 0.736979
+anchor_top = 0.00771605
+anchor_right = 0.861979
+anchor_bottom = 0.229938
 grow_horizontal = 0
-grow_vertical = 0
-theme_override_fonts/font = ExtResource("23_h7tlf")
-theme_override_font_sizes/font_size = 40
-horizontal_alignment = 1
-autowrap_mode = 3
+grow_vertical = 2
+texture = ExtResource("37_m4eln")
+metadata/_edit_use_anchors_ = true
 
 [node name="fever" type="CanvasLayer" parent="."]
 
@@ -757,3 +871,16 @@ text = "FEVER"
 horizontal_alignment = 1
 
 [node name="fevertimer" type="Timer" parent="."]
+
+[node name="continuetimer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="continuetimeranim" type="AnimationPlayer" parent="continuetimer"]
+process_mode = 3
+libraries = {
+"": SubResource("AnimationLibrary_3gaqo")
+}
+
+[node name="continuetimer" type="TextureRect" parent="continuetimer"]
+offset_right = 40.0
+offset_bottom = 40.0

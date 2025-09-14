@@ -4,13 +4,12 @@ extends Node2D
 @export var event_scene: PackedScene
 @export var controller_path: NodePath
 @export var characters_path: NodePath
-@export var start_spawn_every: float = 4
-@export var min_spawn_every:= 2
+@export var start_spawn_every: float = 3
+@export var min_spawn_every := 1.5
 @export var max_on_screen: int = 2
 @export var half_life_seconds := 45.0
 @export var new_time_elapsed := elapsed
 
-# Put Y values you can actually see with your current camera/zoom:
 @export var lanes_x: PackedFloat32Array = [160.0, 220.0, 280.0, 360.0, 420.0]
 @export var x_spawn_left: float = 200
 @export var x_spawn_right: float = 350
@@ -75,11 +74,12 @@ func _spawn_one() -> void:
 	var ctrl := get_node(controller_path)
 	e.coin_contacted.connect(Callable(ctrl, "_on_coin_contacted"))
 	e.shield_contacted.connect(Callable(ctrl, "_on_shield_contacted"))
+	e.charm_contacted.connect(Callable(ctrl, "_on_charm_contacted"))
 	print("[SPAWNER] hooked event signal")
 	
 	var cam := get_viewport().get_camera_2d()
 	var view := get_viewport_rect().size
-	var top := cam.global_position.y - (view.y * 0.5)  # top edge of screen in world space
+	var top := cam.global_position.y - (view.y * 0.5) 
 
 	var x: float = lanes_x[rng.randi_range(0, lanes_x.size() - 1)]
 	var y: float = top - spawn_margin_y    
