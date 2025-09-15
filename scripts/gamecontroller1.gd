@@ -9,6 +9,10 @@ signal fever_end
 @export var pointspath : NodePath
 @export var coinspath : NodePath
 @export var coiniconpath : NodePath
+@export var coinsoundpath : NodePath
+@export var splashsoundpath : NodePath
+@export var charmsoundpath : NodePath
+@export var shieldsoundpath : NodePath
 @export var spawnerpath : NodePath
 @export var anim_path : NodePath
 @export var fevertext_path : NodePath
@@ -46,6 +50,10 @@ var lives: int
 @onready var charmtexture := get_node(charmtexturepath)
 @onready var animsplash := get_node(animsplashpath)
 @onready var splashtext := get_node(splashtextpath)
+@onready var coinsound := get_node(coinsoundpath)
+@onready var splashsound := get_node(splashsoundpath)
+@onready var charmsound := get_node(charmsoundpath)
+@onready var shieldsound := get_node(shieldsoundpath)
 
 var cor_idx : int
 var times : int = 0
@@ -241,6 +249,7 @@ func _update_points() -> void:
 	
 func _on_coin_contacted(e: Node) -> void:
 	no_of_coins += 1
+	coinsound.play()
 	coins.text = (str(no_of_coins))
 	if no_of_coins >= 5:
 		no_of_coins = 0
@@ -250,13 +259,16 @@ func _on_coin_contacted(e: Node) -> void:
 func _on_shield_contacted(e: Node) -> void:
 	shieldicon.show()
 	shield_active = true
+	shieldsound.play()
 
 func _on_charm_contacted(e: Node) -> void:
 	charmtexture.show()
 	charm_active = true
+	charmsound.play()
 
 func _on_puddle_contacted(e:Node) -> void:
 	print("puddle contacted")
+	splashsound.play()
 	animsplash.play("splashity")
 	splashtext.show()
 	spawner.slowpuddle()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=103 format=4 uid="uid://bw1jvqsj3l017"]
+[gd_scene load_steps=107 format=4 uid="uid://bw1jvqsj3l017"]
 
 [ext_resource type="PackedScene" uid="uid://cqsj6ljppkot6" path="res://scenes/mainchara.tscn" id="1_bp8ss"]
 [ext_resource type="Script" path="res://scripts/parallax_background.gd" id="1_eistd"]
@@ -51,9 +51,12 @@
 [ext_resource type="Texture2D" uid="uid://c0wri6qicv7gt" path="res://art/tileset/continuetimer/continuetimer32.png" id="41_r8c2t"]
 [ext_resource type="Texture2D" uid="uid://1nhtyxo85iad" path="res://art/tileset/continuetimer/continuetimer33.png" id="42_iltey"]
 [ext_resource type="Texture2D" uid="uid://sxqoas34bvy4" path="res://art/tileset/continuetimer/continuetimer34.png" id="43_8daek"]
+[ext_resource type="AudioStream" uid="uid://b2bks0tw2a532" path="res://audio/276225__littlerobotsoundfactory__coins_single_22.wav" id="43_q3jrc"]
+[ext_resource type="AudioStream" uid="uid://b0dhjdmkccpmn" path="res://audio/376748__zenithinfinitivestudios__fantasy_ui_button_6.wav" id="44_4eoby"]
 [ext_resource type="Texture2D" uid="uid://d3xwxddfstpvv" path="res://art/tileset/continuetimer/continuetimer35.png" id="44_gxins"]
 [ext_resource type="Texture2D" uid="uid://c4u17qvi6ncgp" path="res://art/tileset/continuetimer/continuetimer36.png" id="45_amroq"]
 [ext_resource type="Texture2D" uid="uid://driwcjeqgonf0" path="res://art/tileset/continuetimer/continuetimer20.png" id="46_ha8ji"]
+[ext_resource type="AudioStream" uid="uid://code2vjsqqu88" path="res://audio/518850__mrickey13__item-equip.mp3" id="46_wbrt7"]
 [ext_resource type="Texture2D" uid="uid://bb6f2d3ucoplr" path="res://art/tileset/continuetimer/continuetimer21.png" id="47_hjens"]
 [ext_resource type="Texture2D" uid="uid://cdn3b51t3tgvy" path="res://art/tileset/fever/splash/splash0.png" id="47_ypbnq"]
 [ext_resource type="Texture2D" uid="uid://cw8m5eu6fywtj" path="res://art/tileset/continuetimer/continuetimer22.png" id="48_v1n8y"]
@@ -72,6 +75,7 @@
 [ext_resource type="Texture2D" uid="uid://c2u7uuq2vs4gv" path="res://art/tileset/continuetimer/continuetimer11.png" id="54_m5k1v"]
 [ext_resource type="Texture2D" uid="uid://dncdffa5xi7lr" path="res://art/tileset/continuetimer/continuetimer12.png" id="55_ltvf4"]
 [ext_resource type="Texture2D" uid="uid://co66j2712a3jr" path="res://art/tileset/continuetimer/continuetimer13.png" id="56_byldx"]
+[ext_resource type="AudioStream" uid="uid://vo5phegbnpg4" path="res://audio/649976__sounddesignforyou__squelching-sfx-4.wav" id="56_ufn6x"]
 [ext_resource type="Texture2D" uid="uid://d4ld8ijuwum7m" path="res://art/tileset/continuetimer/continuetimer14.png" id="57_0bwgm"]
 [ext_resource type="Texture2D" uid="uid://codgevx8k6byx" path="res://art/tileset/continuetimer/continuetimer15.png" id="58_yq1qy"]
 [ext_resource type="Texture2D" uid="uid://daim3hc2jfid7" path="res://art/tileset/continuetimer/continuetimer16.png" id="59_dtb4p"]
@@ -522,6 +526,10 @@ audio_enc = NodePath("../encounter")
 pointspath = NodePath("../points/Panel/Label")
 coinspath = NodePath("../coins/Label")
 coiniconpath = NodePath("../coins/TextureRect")
+coinsoundpath = NodePath("../coins/coinsound")
+splashsoundpath = NodePath("../splash/splashsound")
+charmsoundpath = NodePath("../coins/charmsound")
+shieldsoundpath = NodePath("../shield/shieldsound")
 spawnerpath = NodePath("../Spawner")
 anim_path = NodePath("../fever/AnimationPlayer")
 fevertext_path = NodePath("../fever/Label")
@@ -924,6 +932,13 @@ offset_right = 1107.0
 offset_bottom = 232.0
 texture = ExtResource("34_uw75t")
 
+[node name="coinsound" type="AudioStreamPlayer" parent="coins"]
+stream = ExtResource("43_q3jrc")
+volume_db = 5.983
+
+[node name="charmsound" type="AudioStreamPlayer" parent="coins"]
+stream = ExtResource("44_4eoby")
+
 [node name="shield" type="CanvasLayer" parent="."]
 
 [node name="TextureRect" type="TextureRect" parent="shield"]
@@ -936,6 +951,10 @@ grow_horizontal = 0
 grow_vertical = 2
 texture = ExtResource("37_m4eln")
 metadata/_edit_use_anchors_ = true
+
+[node name="shieldsound" type="AudioStreamPlayer" parent="shield"]
+stream = ExtResource("46_wbrt7")
+volume_db = 5.522
 
 [node name="fever" type="CanvasLayer" parent="."]
 
@@ -978,6 +997,10 @@ libraries = {
 [node name="TextureRect" type="TextureRect" parent="splash"]
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="splashsound" type="AudioStreamPlayer" parent="splash"]
+stream = ExtResource("56_ufn6x")
+volume_db = 5.982
 
 [node name="fevertimer" type="Timer" parent="."]
 

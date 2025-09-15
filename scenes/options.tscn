@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cv6o03g7cy6hx"]
+[gd_scene load_steps=21 format=3 uid="uid://cv6o03g7cy6hx"]
 
 [ext_resource type="Texture2D" uid="uid://olou0j7is62" path="res://art/officemandialogue/howtoplay.png" id="1_qtbhj"]
 [ext_resource type="Script" path="res://scripts/options.gd" id="1_wwl5i"]
@@ -13,6 +13,9 @@
 [ext_resource type="Texture2D" uid="uid://blmjal2ju0clb" path="res://art/officemandialogue/enteranim/enteranim5.png" id="9_huatj"]
 [ext_resource type="Texture2D" uid="uid://dl341b8eien57" path="res://art/officemandialogue/enteranim/enteranim6.png" id="10_s1ry2"]
 [ext_resource type="Texture2D" uid="uid://cu0ccdp1hdm7" path="res://art/officemandialogue/enteranim/enteranim7.png" id="11_vu3pu"]
+[ext_resource type="AudioStream" uid="uid://ctoer8llha4x8" path="res://audio/467519__arnasarnas__hip-hop-beat-6.wav" id="14_hgm02"]
+[ext_resource type="AudioStream" uid="uid://cwwgbkaesp3a3" path="res://audio/450614__breviceps__8-bit-collect-sound-timer-countdown.wav" id="14_w32m2"]
+[ext_resource type="AudioStream" uid="uid://c3waforn2awnf" path="res://audio/371882__sanaku__dramatic-camera-zoom.ogg" id="15_7d384"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_prj5v"]
 font = ExtResource("2_q57w2")
@@ -21,7 +24,7 @@ font_color = Color(0.166178, 0.26014, 0.622116, 1)
 
 [sub_resource type="Animation" id="Animation_r7ji6"]
 resource_name = "enteranim"
-length = 1.5
+length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -29,14 +32,66 @@ tracks/0/path = NodePath("animation:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.0333333, 0.133333, 0.466667, 0.533333, 0.866667, 0.933333, 1.26667, 1.33333, 1.4),
+"times": PackedFloat32Array(0, 0.1, 0.566667, 0.633333, 1.16667, 1.23333, 1.73333, 1.8, 1.86667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [ExtResource("4_yv75f"), ExtResource("5_0dcad"), ExtResource("6_rtaqu"), ExtResource("7_attam"), ExtResource("8_c8faa"), ExtResource("9_huatj"), ExtResource("10_s1ry2"), ExtResource("11_vu3pu"), ExtResource("3_jqdse")]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("readysetgo:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.566667, 1.16667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("zoom:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.7),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_xotu5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("readysetgo:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("zoom:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1dq8t"]
 _data = {
+"RESET": SubResource("Animation_xotu5"),
 "enteranim": SubResource("Animation_r7ji6")
 }
 
@@ -102,5 +157,14 @@ texture = ExtResource("3_jqdse")
 libraries = {
 "": SubResource("AnimationLibrary_1dq8t")
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_hgm02")
+
+[node name="readysetgo" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_w32m2")
+
+[node name="zoom" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_7d384")
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

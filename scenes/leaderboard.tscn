@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://yb28sftv55v"]
+[gd_scene load_steps=19 format=3 uid="uid://yb28sftv55v"]
 
 [ext_resource type="Script" path="res://scripts/leaderboard.gd" id="1_moonv"]
 [ext_resource type="FontFile" uid="uid://r7libpb4d4ao" path="res://fonts/Jersey_10/Jersey10-Regular.ttf" id="2_mi7i6"]
@@ -12,10 +12,13 @@
 [ext_resource type="Texture2D" uid="uid://cu0ccdp1hdm7" path="res://art/officemandialogue/enteranim/enteranim7.png" id="10_0654e"]
 [ext_resource type="Texture2D" uid="uid://ee6ovrdfhp38" path="res://art/officemandialogue/enteranim/enteranim8.png" id="11_pl762"]
 [ext_resource type="Texture2D" uid="uid://bxinjwb1ab362" path="res://art/officemandialogue/enteranim/leaderboard.png" id="12_8kf4d"]
+[ext_resource type="AudioStream" uid="uid://ctoer8llha4x8" path="res://audio/467519__arnasarnas__hip-hop-beat-6.wav" id="13_du1fk"]
+[ext_resource type="AudioStream" uid="uid://cwwgbkaesp3a3" path="res://audio/450614__breviceps__8-bit-collect-sound-timer-countdown.wav" id="14_cq1j0"]
+[ext_resource type="AudioStream" uid="uid://c3waforn2awnf" path="res://audio/371882__sanaku__dramatic-camera-zoom.ogg" id="15_ynb74"]
 
 [sub_resource type="Animation" id="Animation_7kiwc"]
 resource_name = "enteranim"
-length = 1.5
+length = 2.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -23,10 +26,34 @@ tracks/0/path = NodePath("TextureRect:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.433333, 0.5, 0.833333, 0.9, 1.23333, 1.3, 1.36667),
+"times": PackedFloat32Array(0, 0.1, 0.566667, 0.633333, 1.16667, 1.23333, 1.73333, 1.8, 1.86667),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [ExtResource("3_alyxk"), ExtResource("4_5712m"), ExtResource("5_6dijl"), ExtResource("6_lu5jb"), ExtResource("7_20tvw"), ExtResource("8_gmei4"), ExtResource("9_y185g"), ExtResource("10_0654e"), ExtResource("11_pl762")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("readysetgo:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.566667, 1.16667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("zoom:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.6),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_sfyx4"]
@@ -42,6 +69,30 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [null]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("readysetgo:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("zoom:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2n3ns"]
@@ -112,6 +163,15 @@ text = "done
 libraries = {
 "": SubResource("AnimationLibrary_2n3ns")
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_du1fk")
+
+[node name="readysetgo" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_cq1j0")
+
+[node name="zoom" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_ynb74")
 
 [connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

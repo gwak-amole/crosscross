@@ -8,10 +8,14 @@ signal from_leaderboard
 @onready var subtitle := $Label3
 @onready var btn := $Button
 @onready var animback := $TextureRect
+@onready var audio := $AudioStreamPlayer
 var final_points : int = 0
 var from_gameover : bool = false
+var animstillplaying : bool = true
 
 func _ready() -> void:
+	animstillplaying = true
+	Globalaudio.stop()
 	animback.show()
 	vboxcont.hide()
 	title.hide()
@@ -19,12 +23,19 @@ func _ready() -> void:
 	btn.hide()
 	anim.play("enteranim")
 	await anim.animation_finished
+	animstillplaying = false
+	audio.play()
 	vboxcont.show()
 	title.show()
 	subtitle.show()
 	btn.show()
 	animback.hide()
 	display_leaderboard(vboxcont)
+
+func _process(delta) -> void:
+	if animstillplaying == false:
+		if audio.is_playing() == false:
+			audio.play()
 
 func display_leaderboard(container: VBoxContainer) -> void:
 	for child in container.get_children():

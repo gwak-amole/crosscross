@@ -37,6 +37,7 @@ func show_dialogue_from_profile(p: EnemyProfile) -> int:
 	visible = false
 	panel.hide()
 	choices_box.hide()
+	text.hide()
 	if is_instance_valid(dlg_scene):
 		dlg_scene.queue_free()
 	
@@ -55,6 +56,7 @@ func show_dialogue_from_profile(p: EnemyProfile) -> int:
 			audio.play()
 			panel.show()
 		await ap.animation_finished
+		text.show()
 		choices_box.show()
 		if controller.charm_active:
 			charm.show()
