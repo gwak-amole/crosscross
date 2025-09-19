@@ -6,6 +6,8 @@ signal branch_chosen(idx: int)
 @export var animpath : NodePath
 @export var charmpath : NodePath
 @export var controllerpath : NodePath
+@export var tutanimpath : NodePath
+@export var tutlabelpath : NodePath
 
 @onready var panel := $Panel
 @onready var art : Node = $Panel/Art
@@ -16,12 +18,16 @@ signal branch_chosen(idx: int)
 @onready var anim := get_node(animpath)
 @onready var charm := get_node(charmpath)
 @onready var controller := get_node(controllerpath)
+@onready var tutanim := get_node(tutanimpath)
+@onready var tutlabel := get_node(tutlabelpath)
 
 var dlg_scene: Node = null
 var cor_idx : int
 var rng = RandomNumberGenerator.new()
 var rand: int
 var thecharm : bool = false
+var tutorial_wanted : bool = false
+var again_tutorial_wanted : bool = false
 
 func _ready() -> void:
 	visible = false
@@ -31,6 +37,11 @@ func _ready() -> void:
 			charm.pressed.connect(_on_charm_pressed)
 	else:
 		push_error("Charm button not found haiya")
+	if again_tutorial_wanted == false:
+		var yes: bool = await controller.tutorial
+		tutorial_wanted = yes
+	else:
+		tutorial_wanted = false
 
 func show_dialogue_from_profile(p: EnemyProfile) -> int:
 	rand = rng.randi_range(1,2)
@@ -38,6 +49,8 @@ func show_dialogue_from_profile(p: EnemyProfile) -> int:
 	panel.hide()
 	choices_box.hide()
 	text.hide()
+	tutlabel.hide()
+	choices_box.PROCESS_MODE_DISABLED
 	if is_instance_valid(dlg_scene):
 		dlg_scene.queue_free()
 	
@@ -55,14 +68,19 @@ func show_dialogue_from_profile(p: EnemyProfile) -> int:
 			visible = true
 			audio.play()
 			panel.show()
+			choices_box.PROCESS_MODE_ALWAYS
 		await ap.animation_finished
+		if ap.has_animation("hairsway"):
+				ap.play("hairsway")
 		text.show()
 		choices_box.show()
-		if controller.charm_active:
-			charm.show()
-			charm.queue_redraw()
-		if ap.has_animation("hairsway"):
-			ap.play("hairsway")
+		if tutorial_wanted:
+			tutlabel.show()
+			tutanim.play("introtodialogue")
+			print("introtodialogue")
+			tutanim.animation_finished.connect(_on_intro_finished, CONNECT_ONE_SHOT)
+			again_tutorial_wanted = false
+			print("not wantec")
 	else:
 		print("No AnimationPlayer found in dlg_scene")
 	
@@ -104,11 +122,21 @@ func _rebuild_buttons(choices: PackedStringArray) -> void:
 				btn.visible = true
 				btn.pressed.connect(Callable(self, "_on_choice_pressed").bind(idx))
 				idx += 1
+	
+	await get_tree().create_timer(2.0).timeout
+	for row in rows:
+		for btn in row:
+			if btn is TextureButton and btn.visible:
+				btn.disabled = false
 		
 func _wait_for_choice() -> int:
 	var picked:int = await self.choice_made
 	choices_box.hide()
 	charm.hide()
+	if tutanim:
+		tutanim.stop()
+		tutanim.play("RESET")
+	tutlabel.hide()
 	var ap = dlg_scene.get_node_or_null("AnimationPlayer")
 	var pos_response = dlg_scene.get_node_or_null("AudioStreamPlayer")
 	var neg_response = dlg_scene.get_node_or_null("AudioStreamPlayer2")
@@ -137,10 +165,29 @@ func _on_charm_pressed() -> void:
 	emit_signal("choice_made", cor_idx)
 
 func close_dialogue():
+	if tutanim:
+		tutanim.stop()
+		tutanim.play("RESET")
+	tutlabel.hide()
 	if is_instance_valid(dlg_scene):
 		var ap:= dlg_scene.get_node_or_null(("AnimationPlayer"))
 		if ap: ap.stop()
 		dlg_scene.queue_free()
 		dlg_scene = null
+	tutlabel.hide()
+	tutorial_wanted = false
 	audio.stop()
 	visible = false
+
+func _on_intro_finished(anim_name: String) -> void:
+	if anim_name == "introtodialogue":
+		if controller.charm_active:
+			if tutorial_wanted:
+				print("here's a charm")
+				tutanim.play("heresacharm")
+			charm.show()
+			charm.queue_redraw()
+		else:
+			if tutorial_wanted:
+				tutanim.play("heresnotacharm")
+				print("here's not a charm")

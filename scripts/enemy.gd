@@ -1,13 +1,15 @@
 extends CharacterBody2D
 signal contacted(enemy: CharacterBody2D)
-
+signal heytut
 
 @export var dir: Vector2 = Vector2.LEFT
 @export var profile: EnemyProfile
+@export var tutorialpath : NodePath
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var hitbox: Area2D = $enemy_hitbox
 @onready var onscreen: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
+@onready var tutorial := get_node(tutorialpath)
 
 var _anim_idle: StringName = &"idle"
 var _anim_contact: StringName = &"contact"
@@ -51,4 +53,5 @@ func _on_enemy_hitbox_area_entered(area: Area2D) -> void:
 	emit_signal("contacted", self)
 
 func _on_screen_exited() -> void:
+	emit_signal("heytut")
 	queue_free()

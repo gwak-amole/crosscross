@@ -2,6 +2,7 @@ extends Node
 
 signal fever
 signal fever_end
+signal tutorial(yes:bool)
 @export var dialogue_ui_path: NodePath
 @export var heart_ui_path : NodePath
 @export var audio1 : NodePath
@@ -26,6 +27,12 @@ signal fever_end
 @export var charmtexturepath : NodePath
 @export var animsplashpath : NodePath
 @export var splashtextpath : NodePath
+@export var tutanimpath : NodePath
+@export var wyltutlabelpath : NodePath
+@export var wyltutbtnpath : NodePath
+@export var wyltutbtn2path : NodePath
+@export var gameplayrootpath : NodePath
+@export var tutexplainpath : NodePath
 @export var lives_start: int = 3
 
 var lives: int
@@ -54,6 +61,12 @@ var lives: int
 @onready var splashsound := get_node(splashsoundpath)
 @onready var charmsound := get_node(charmsoundpath)
 @onready var shieldsound := get_node(shieldsoundpath)
+@onready var tutanim := get_node(tutanimpath)
+@onready var tutexplain := get_node(tutexplainpath)
+@onready var wyltutlabel := get_node(wyltutlabelpath)
+@onready var wyltutyes := get_node(wyltutbtnpath)
+@onready var wyltutno := get_node(wyltutbtn2path)
+@onready var gameplayroot := get_node(gameplayrootpath)
 
 var cor_idx : int
 var times : int = 0
@@ -64,10 +77,14 @@ var power = 1.2
 var shield_active: bool = false
 var cooldown : float = 5.0
 var charm_active : bool = false
+var tutorial_wanted : bool = false
+var puddle_tut_wanted : bool = false
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	fevertimer.process_mode = Node.PROCESS_MODE_PAUSABLE
+	wyltutyes.process_mode = Node.PROCESS_MODE_ALWAYS
+	wyltutno.process_mode = Node.PROCESS_MODE_ALWAYS
 	fevertimer.one_shot = true
 	if not fevertimer.timeout.is_connected(_on_fevertimer_timeout):
 		fevertimer.timeout.connect(_on_fevertimer_timeout)
@@ -91,6 +108,19 @@ func _ready() -> void:
 	shieldicon.hide()
 	charmtexture.hide()
 	splashtext.hide()
+	print("YES type:", wyltutyes.get_class(), " NO type:", wyltutno.get_class())
+	if not (wyltutyes as BaseButton).pressed.is_connected(_on_yes_pressed):
+		(wyltutyes as BaseButton).pressed.connect(_on_yes_pressed)
+	if not (wyltutno as BaseButton).pressed.is_connected(_on_no_pressed):
+		(wyltutno as BaseButton).pressed.connect(_on_no_pressed)
+	await _tutorial_ask()
+	if tutorial_wanted:
+		print('welcome is playing')
+		tutanim.play("welcome")
+		await tutanim.animation_finished
+		tutanim.stop()
+		tutexplain.hide()
+		puddle_tut_wanted = true
 
 func _process(delta) -> void:
 	if get_tree().paused == true:
@@ -129,6 +159,7 @@ func _on_enemy_contacted(enemy: Node) -> void:
 	fevertext.hide()
 	texture.hide()
 	charmtexture.hide()
+	points.hide()
 	points_int -= (points_int / 10)
 	_update_points()
 	times -= times/5
@@ -170,6 +201,7 @@ func _on_enemy_contacted(enemy: Node) -> void:
 		charm_active = false
 	coins.show()
 	coinicon.show()
+	points.show()
 	
 	get_tree().paused = false
 	if is_instance_valid(enemy):
@@ -267,6 +299,13 @@ func _on_charm_contacted(e: Node) -> void:
 	charmsound.play()
 
 func _on_puddle_contacted(e:Node) -> void:
+	if puddle_tut_wanted:
+		if tutanim.is_playing() == false:
+			tutexplain.show()
+			tutanim.play("puddle")
+			puddle_tut_wanted = false
+		else:
+			pass
 	print("puddle contacted")
 	splashsound.play()
 	animsplash.play("splashity")
@@ -274,6 +313,8 @@ func _on_puddle_contacted(e:Node) -> void:
 	spawner.slowpuddle()
 	await animsplash.animation_finished
 	animsplash.play("pulse")
+	await tutanim.animation_finished
+	tutexplain.hide()
 		
 func _fever_done() -> void:
 	power = 1.2
@@ -308,3 +349,31 @@ func _fever_start() -> void:
 
 func _on_fevertimer_timeout() -> void:
 	_fever_done()
+
+func _tutorial_ask() -> void:
+	print("hello? aaa")
+	wyltutlabel.show()
+	wyltutyes.show()
+	wyltutno.show()
+	get_tree().paused = true
+	print("huh?")
+	
+	await get_tree().process_frame
+	var yes: bool = await tutorial
+	print(yes)
+	
+	wyltutlabel.hide()
+	wyltutyes.hide()
+	wyltutno.hide()
+	get_tree().paused = false
+	
+
+func _on_yes_pressed() -> void:
+	tutorial_wanted = true
+	print("yes")
+	emit_signal("tutorial", true)
+
+func _on_no_pressed() -> void:
+	tutorial_wanted = false
+	print("no")
+	emit_signal("tutorial", false)

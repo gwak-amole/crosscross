@@ -6,8 +6,10 @@ signal charm_contacted(event: Node)
 
 @export var profile: EventProfile
 @export var profile_array : Array[EventProfile] = []
+@export var tutorialpath : NodePath
 @onready var anim: AnimatedSprite2D = $CharacterBody2D/AnimatedSprite2D
 @onready var onscreen: VisibleOnScreenNotifier2D = $CharacterBody2D/VisibleOnScreenNotifier2D
+@onready var tutorial := get_node(tutorialpath)
 
 func _ready():
 	self.process_mode = Node.PROCESS_MODE_ALWAYS
@@ -18,6 +20,7 @@ func _ready():
 		anim.play("default")
 
 func _on_screen_exited() -> void:
+	
 	queue_free()
 
 
@@ -30,4 +33,5 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		emit_signal("shield_contacted", self)
 	if self.profile == profile_array[2]:
 		emit_signal("charm_contacted", self)
+	
 	queue_free()

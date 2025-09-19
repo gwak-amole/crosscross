@@ -4,6 +4,7 @@ extends Node2D
 @export var event_scene: PackedScene
 @export var controller_path: NodePath
 @export var characters_path: NodePath
+@export var tutanimpath: NodePath
 @export var start_spawn_every: float = 15
 @export var min_spawn_every := 7
 @export var max_on_screen: int = 2
@@ -17,11 +18,16 @@ extends Node2D
 
 @onready var controller := get_node(controller_path)
 @onready var characters := get_node_or_null(characters_path)
+@onready var tutanim := get_node_or_null(tutanimpath)
 @onready var timer: Timer = $Timer
 var rng := RandomNumberGenerator.new()
 var chance : int = 0
 var thechance := 0
 var elapsed := 0.0
+var coin_tutorial_wanted := false
+var shield_tutorial_wanted := false
+var coin_again_tutorial_wanted := false
+var shield_again_tutorial_wanted := false
 
 func _ready() -> void:
 	if event_scene == null or characters == null:
@@ -34,6 +40,16 @@ func _ready() -> void:
 	if not timer.timeout.is_connected(_on_spawn_tick):
 		timer.timeout.connect(_on_spawn_tick)
 	timer.start()
+	if coin_again_tutorial_wanted == false:
+		var yes:bool = await controller.tutorial
+		coin_tutorial_wanted = yes
+	else:
+		coin_tutorial_wanted = false
+	if shield_again_tutorial_wanted == false:
+		var yes:bool = await controller.tutorial
+		shield_tutorial_wanted = yes
+	else:
+		shield_tutorial_wanted = false
 
 func _process(delta):
 	elapsed += delta
@@ -68,6 +84,14 @@ func _spawn_one() -> void:
 	if profiles.size() > 0:
 		e.profile = profiles[thechance]
 	characters.add_child(e)
+	if coin_tutorial_wanted:
+		if thechance == 0:
+			tutanim.play("coin")
+			coin_again_tutorial_wanted = false
+	if shield_tutorial_wanted:
+		if thechance == 1:
+			tutanim.play("shield")
+			shield_again_tutorial_wanted = false
 	chance = 0
 	thechance = 0
 	

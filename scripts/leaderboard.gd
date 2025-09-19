@@ -12,6 +12,7 @@ signal from_leaderboard
 var final_points : int = 0
 var from_gameover : bool = false
 var animstillplaying : bool = true
+var childcount : int = 0
 
 func _ready() -> void:
 	animstillplaying = true
@@ -40,7 +41,8 @@ func _process(delta) -> void:
 func display_leaderboard(container: VBoxContainer) -> void:
 	for child in container.get_children():
 		child.queue_free()
-	for entry in Globals.leaderboard:
+	var entries = Globals.leaderboard.slice(0,7)
+	for entry in entries:
 		var label = Label.new()
 		var font = load("res://fonts/Jersey_10/Jersey10-Regular.ttf")
 		label.add_theme_font_override("font", font)
