@@ -115,11 +115,6 @@ func _ready() -> void:
 		(wyltutno as BaseButton).pressed.connect(_on_no_pressed)
 	await _tutorial_ask()
 	if tutorial_wanted:
-		print('welcome is playing')
-		tutanim.play("welcome")
-		await tutanim.animation_finished
-		tutanim.stop()
-		tutexplain.hide()
 		puddle_tut_wanted = true
 
 func _process(delta) -> void:

@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("1_rblbt")
 display_name = "Officeman"
-speed = 140.0
+speed = 5.0
 language = "jp"
 anim_idle = "idle"
 anim_contact = "contact"
@@ -20,3 +20,4 @@ choices2 = PackedStringArray("気をつけてくださいよ", "ふん、まあ�
 correct_idx = 0
 correct_idx_2 = 2
 gender = "male"
+is_rps = false

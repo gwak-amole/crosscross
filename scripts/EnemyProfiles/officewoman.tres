@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("1_p3wyp")
 display_name = "Officewoman"
-speed = 120.0
+speed = 5.0
 language = "jp"
 anim_idle = "idle"
 anim_contact = "contact"
@@ -20,3 +20,4 @@ choices2 = PackedStringArray("電話番号貸してくれよ", "気持ち悪い"
 correct_idx = 1
 correct_idx_2 = 3
 gender = "female"
+is_rps = false

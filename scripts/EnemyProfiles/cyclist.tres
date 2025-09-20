@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="EnemyProfile" load_steps=4 format=3 uid="uid://bt1fp2dgpa7ly"]
+
+[ext_resource type="Script" path="res://scripts/EnemyProfile.gd" id="1_ch8q8"]
+[ext_resource type="PackedScene" uid="uid://5rd5yt3lwmr6" path="res://scenes/fashionista_anim.tscn" id="1_kxw8g"]
+[ext_resource type="SpriteFrames" uid="uid://dy4gnute8on78" path="res://art/frames/cyclist.tres" id="2_rxm8h"]
+
+[resource]
+script = ExtResource("1_ch8q8")
+display_name = "Cyclist"
+speed = 40.0
+language = "jp"
+anim_idle = "idle"
+anim_contact = "contact"
+sprite_frames = ExtResource("2_rxm8h")
+dialogue_scene = ExtResource("1_kxw8g")
+dialogue_text = "Rock, Paper, Scissors!"
+dialogue_text_2 = "rock paper scissors?"
+choices = PackedStringArray("Rock", "Paper", "Scissors")
+choices2 = PackedStringArray("Rock", "Paper", "Scissors")
+correct_idx = 2
+correct_idx_2 = 2
+gender = "female"
+is_rps = true

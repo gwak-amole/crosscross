@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("1_siel0")
 display_name = "Tourist"
-speed = 120.0
+speed = 0.0
 language = "fr"
 anim_idle = "idle"
 anim_contact = "contact"
@@ -20,3 +20,4 @@ choices2 = PackedStringArray("Pas grave!", "I can\'t speak French", "Regardez o√
 correct_idx = 3
 correct_idx_2 = 0
 gender = "male"
+is_rps = false

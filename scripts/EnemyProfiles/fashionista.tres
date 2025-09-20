@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("2_0jyon")
 display_name = "Fashionista"
-speed = 120.0
+speed = 0.0
 language = "cn"
 anim_idle = "idle"
 anim_contact = "contact"
@@ -20,3 +20,4 @@ choices2 = PackedStringArray("去你的", "对不起！", "你的头发问什么
 correct_idx = 2
 correct_idx_2 = 1
 gender = "male"
+is_rps = false

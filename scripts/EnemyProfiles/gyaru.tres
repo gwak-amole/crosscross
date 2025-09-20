@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("1_0cxcg")
 display_name = "Gyaru"
-speed = 120.0
+speed = 0.0
 language = "kr"
 anim_idle = "idle"
 anim_contact = "contact"
@@ -20,3 +20,4 @@ choices2 = PackedStringArray("전화번호좀", "와 아주그냥 미녀잖아",
 correct_idx = 2
 correct_idx_2 = 1
 gender = "female"
+is_rps = false

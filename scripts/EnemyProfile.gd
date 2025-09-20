@@ -16,6 +16,7 @@ class_name EnemyProfile
 @export var correct_idx: int
 @export var correct_idx_2: int
 @export var gender : String
+@export var is_rps: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
