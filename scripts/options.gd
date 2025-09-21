@@ -3,7 +3,7 @@ extends Control
 @onready var anim := $AnimationPlayer
 @onready var blank := $TextureRect2
 @onready var bg := $TextureRect
-@onready var lbl := $Label
+@onready var pnl := $Panel
 @onready var btn := $Button
 @onready var audio := $AudioStreamPlayer
 
@@ -15,13 +15,13 @@ func _ready() -> void:
 	animback.show()
 	blank.show()
 	bg.hide()
-	lbl.hide()
 	btn.hide()
+	pnl.hide()
 	anim.play("enteranim")
 	await anim.animation_finished
 	Globalaudio.volume_db = 0
 	blank.hide()
 	bg.show()
-	lbl.show()
 	btn.show()
+	pnl.show()
 	animback.hide()

@@ -6,6 +6,7 @@
 [node name="globalaudio" type="AudioStreamPlayer"]
 stream = ExtResource("1_2jxyt")
 autoplay = true
+bus = &"music"
 script = ExtResource("2_pfhow")
 
 [connection signal="finished" from="." to="." method="_on_finished"]

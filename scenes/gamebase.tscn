@@ -1,4 +1,4 @@
-[gd_scene load_steps=120 format=4 uid="uid://bw1jvqsj3l017"]
+[gd_scene load_steps=129 format=4 uid="uid://bw1jvqsj3l017"]
 
 [ext_resource type="PackedScene" uid="uid://cqsj6ljppkot6" path="res://scenes/mainchara.tscn" id="1_bp8ss"]
 [ext_resource type="Script" path="res://scripts/parallax_background.gd" id="1_eistd"]
@@ -8,21 +8,30 @@
 [ext_resource type="Texture2D" uid="uid://cd4v405ml1721" path="res://art/heartcrosscross.png" id="6_34388"]
 [ext_resource type="PackedScene" uid="uid://w2k6b6mh3hiv" path="res://scenes/spawner.tscn" id="8_fmll7"]
 [ext_resource type="Texture2D" uid="uid://nahjdn3kpjvf" path="res://art/tileset/tileset2.png" id="10_4fvsr"]
+[ext_resource type="Texture2D" uid="uid://1bc3fa66u4ka" path="res://art/cyclistdialogue/rps/rock.png" id="10_drd71"]
 [ext_resource type="Script" path="res://scripts/EnemyProfile.gd" id="10_fgj5o"]
 [ext_resource type="Script" path="res://scripts/dialoguetutlabel.gd" id="11_h4wgb"]
 [ext_resource type="Texture2D" uid="uid://cjt53euarbd2p" path="res://art/fashionista dialogue/tilesetsnew/tatemonov2.png" id="11_k3hto"]
+[ext_resource type="Texture2D" uid="uid://cffeg36yjux6j" path="res://art/cyclistdialogue/rps/rockpressed.png" id="11_n502p"]
 [ext_resource type="Resource" uid="uid://ds7xcxw4v7mgd" path="res://scripts/EnemyProfiles/officeman.tres" id="11_nbt5j"]
+[ext_resource type="Texture2D" uid="uid://bpsyo6v13758w" path="res://art/cyclistdialogue/rps/rockhovered.png" id="12_07rjc"]
 [ext_resource type="Texture2D" uid="uid://cf51kwo6da07n" path="res://art/fashionista dialogue/tilesetsnew/tatemonov3.png" id="12_51d7v"]
 [ext_resource type="Resource" uid="uid://bh7x7rhhmroki" path="res://scripts/EnemyProfiles/officewoman.tres" id="12_qqd8v"]
 [ext_resource type="Script" path="res://scripts/gamecontroller1.gd" id="13_q4efr"]
 [ext_resource type="Resource" uid="uid://u5ocxjoovxbp" path="res://scripts/EnemyProfiles/tourist.tres" id="13_sqrlo"]
+[ext_resource type="Texture2D" uid="uid://cxcn5c2103y68" path="res://art/cyclistdialogue/rps/paper.png" id="13_th5a2"]
 [ext_resource type="Texture2D" uid="uid://c4lmjf5wedv7q" path="res://art/tileset/sidewalk.png" id="14_1suvw"]
+[ext_resource type="Texture2D" uid="uid://u2b7fs5jg4kn" path="res://art/cyclistdialogue/rps/paperpressed.png" id="14_3kvvc"]
 [ext_resource type="Script" path="res://scripts/dialogue_ui.gd" id="14_7mv0c"]
 [ext_resource type="Texture2D" uid="uid://tyex4le2n117" path="res://art/buttonnormal.png" id="14_cb1aa"]
 [ext_resource type="Resource" uid="uid://6f7mkds6jyhu" path="res://scripts/EnemyProfiles/gyaru.tres" id="14_iyk3s"]
+[ext_resource type="Texture2D" uid="uid://cvbk1vq3tg6um" path="res://art/cyclistdialogue/rps/paperhovered.png" id="15_rj3pp"]
 [ext_resource type="Texture2D" uid="uid://ds3cujwrod7e1" path="res://art/buttonpressed.png" id="15_xx0pf"]
+[ext_resource type="Texture2D" uid="uid://cigjl7bb1afvv" path="res://art/cyclistdialogue/rps/scissors.png" id="16_5gh8d"]
 [ext_resource type="Texture2D" uid="uid://4hym7kquodgj" path="res://art/buttonhover.png" id="16_f22in"]
 [ext_resource type="FontFile" uid="uid://bgr6t4hvjjyhk" path="res://fonts/NotoSansCJK-VF.ttf.ttc" id="17_akqme"]
+[ext_resource type="Texture2D" uid="uid://bk4dfdvbsq41h" path="res://art/cyclistdialogue/rps/scissorspressed.png" id="17_o4g14"]
+[ext_resource type="Texture2D" uid="uid://b8f7pmepvw8er" path="res://art/cyclistdialogue/rps/scissorshovered.png" id="18_tqgl0"]
 [ext_resource type="Resource" uid="uid://5hd6h5x6h0vu" path="res://scripts/EnemyProfiles/fashionista.tres" id="19_dlvn0"]
 [ext_resource type="AudioStream" uid="uid://bxf6xtesry8up" path="res://audio/ABERRANCE.wav" id="19_yqrax"]
 [ext_resource type="AudioStream" uid="uid://bsb52apuyvh6w" path="res://audio/hurt.wav" id="21_7si0i"]
@@ -1029,7 +1038,7 @@ anchor_bottom = 1.0
 offset_left = -503.0
 offset_top = -163.0
 offset_right = 503.0
-offset_bottom = -15.0
+offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 0
 alignment = 1
@@ -1043,70 +1052,26 @@ alignment = 1
 process_mode = 3
 layout_mode = 2
 size_flags_horizontal = 8
-texture_normal = ExtResource("14_cb1aa")
-texture_pressed = ExtResource("15_xx0pf")
-texture_hover = ExtResource("16_f22in")
-
-[node name="Label" type="Label" parent="Dialogue UI/Panel/Overlay/rpsbuttons/HBoxContainer/Rock"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("17_akqme")
-label_settings = SubResource("LabelSettings_thl5d")
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 3
+texture_normal = ExtResource("10_drd71")
+texture_pressed = ExtResource("11_n502p")
+texture_hover = ExtResource("12_07rjc")
 
 [node name="Paper" type="TextureButton" parent="Dialogue UI/Panel/Overlay/rpsbuttons/HBoxContainer"]
 process_mode = 3
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-texture_normal = ExtResource("14_cb1aa")
-texture_pressed = ExtResource("15_xx0pf")
-texture_hover = ExtResource("16_f22in")
+texture_normal = ExtResource("13_th5a2")
+texture_pressed = ExtResource("14_3kvvc")
+texture_hover = ExtResource("15_rj3pp")
 
-[node name="Label" type="Label" parent="Dialogue UI/Panel/Overlay/rpsbuttons/HBoxContainer/Paper"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("17_akqme")
-label_settings = SubResource("LabelSettings_thl5d")
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 3
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="Dialogue UI/Panel/Overlay/rpsbuttons"]
-layout_mode = 2
-size_flags_vertical = 4
-alignment = 1
-
-[node name="Scissors" type="TextureButton" parent="Dialogue UI/Panel/Overlay/rpsbuttons/HBoxContainer2"]
+[node name="Scissors" type="TextureButton" parent="Dialogue UI/Panel/Overlay/rpsbuttons/HBoxContainer"]
 process_mode = 3
 layout_mode = 2
 size_flags_horizontal = 8
-texture_normal = ExtResource("14_cb1aa")
-texture_pressed = ExtResource("15_xx0pf")
-texture_hover = ExtResource("16_f22in")
-
-[node name="Label" type="Label" parent="Dialogue UI/Panel/Overlay/rpsbuttons/HBoxContainer2/Scissors"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_fonts/font = ExtResource("17_akqme")
-label_settings = SubResource("LabelSettings_thl5d")
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 3
+texture_normal = ExtResource("16_5gh8d")
+texture_pressed = ExtResource("17_o4g14")
+texture_hover = ExtResource("18_tqgl0")
 
 [node name="tutorial" type="CanvasLayer" parent="Dialogue UI/Panel/Overlay"]
 
@@ -1239,14 +1204,17 @@ characters_path = NodePath("../envmishap")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("19_yqrax")
 volume_db = 4.142
+bus = &"music"
 
 [node name="encounter" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("21_7si0i")
 volume_db = 1.381
+bus = &"sfx"
 
 [node name="dialogue" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("22_4p0ha")
 volume_db = 8.744
+bus = &"music"
 
 [node name="points" type="CanvasLayer" parent="."]
 
@@ -1323,9 +1291,11 @@ texture = ExtResource("34_uw75t")
 [node name="coinsound" type="AudioStreamPlayer" parent="coins"]
 stream = ExtResource("43_q3jrc")
 volume_db = 5.983
+bus = &"sfx"
 
 [node name="charmsound" type="AudioStreamPlayer" parent="coins"]
 stream = ExtResource("44_4eoby")
+bus = &"sfx"
 
 [node name="shield" type="CanvasLayer" parent="."]
 
@@ -1343,6 +1313,7 @@ metadata/_edit_use_anchors_ = true
 [node name="shieldsound" type="AudioStreamPlayer" parent="shield"]
 stream = ExtResource("46_wbrt7")
 volume_db = 5.522
+bus = &"sfx"
 
 [node name="fever" type="CanvasLayer" parent="."]
 
@@ -1389,6 +1360,7 @@ offset_bottom = 40.0
 [node name="splashsound" type="AudioStreamPlayer" parent="splash"]
 stream = ExtResource("56_ufn6x")
 volume_db = 5.982
+bus = &"sfx"
 
 [node name="fevertimer" type="Timer" parent="."]
 

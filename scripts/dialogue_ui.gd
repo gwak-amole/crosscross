@@ -31,6 +31,7 @@ var tutorial_wanted : bool = false
 var again_tutorial_wanted : bool = false
 var is_rps_mode : bool = false
 var enemy_move : int = -1
+var charm_override : bool = false
 
 func _ready() -> void:
 	visible = false
@@ -99,7 +100,6 @@ func show_dialogue_from_profile(p: EnemyProfile) -> int:
 		_play_rps_minigame(p)
 		emit_signal("branch_chosen", 2)
 		var picked:int = await _wait_for_choice()
-		visible = false
 		return picked
 	else:
 		rand = rng.randi_range(1,2)
@@ -158,11 +158,44 @@ func _wait_for_choice() -> int:
 		tutanim.play("RESET")
 	tutlabel.hide()
 	var ap = dlg_scene.get_node_or_null("AnimationPlayer")
+	var playeranim = dlg_scene.get_node_or_null("playeranim")
+	var playertexture = dlg_scene.get_node_or_null("playerhand")
 	var pos_response = dlg_scene.get_node_or_null("AudioStreamPlayer")
 	var neg_response = dlg_scene.get_node_or_null("AudioStreamPlayer2")
 	
 	if is_rps_mode:
+		if enemy_move == 0:
+			text.text = "Rock!"
+			ap.play("rock")
+			if charm_override:
+				charm_override = false
+				picked = 1
+		elif enemy_move == 1:
+			text.text = "Paper!"
+			ap.play("paper")
+			if charm_override:
+				charm_override = false
+				picked = 2
+		elif enemy_move == 2:
+			text.text = "Scissors!"
+			ap.play("scissors")
+			if charm_override:
+				charm_override = false
+				picked = 0
+		playertexture.show()
+		if picked == 0:
+			playeranim.play("rock")
+		elif picked == 1:
+			playeranim.play("paper")
+		elif picked == 2:
+			playeranim.play("scissors")
+		print(picked)
+		print(enemy_move)
+		await get_tree().create_timer(2.0).timeout
 		if picked == enemy_move:
+			is_rps_mode = false
+			text.hide()
+			playertexture.hide()
 			ap.play("angry")
 			neg_response.play()
 			await get_tree().create_timer(2.0).timeout
@@ -171,16 +204,21 @@ func _wait_for_choice() -> int:
 		elif (picked == 0 and enemy_move == 2) \
 		or (picked == 1 and enemy_move == 0) \
 		or (picked == 2 and enemy_move == 1):
+			is_rps_mode = false
+			text.hide()
+			playertexture.hide()
 			ap.play("apologize")
 			pos_response.play()
 			await get_tree().create_timer(2.0).timeout
 			visible = false
 			return 2
 		else:
+			is_rps_mode = false
+			text.hide()
+			playertexture.hide()
 			ap.play("angry")
 			neg_response.play()
 			await get_tree().create_timer(2.0).timeout
-			visible = false
 			return 0
 	else:
 		var wrong : bool = picked != cor_idx
@@ -204,10 +242,11 @@ func _on_choice_pressed(idx:int) -> void:
 func _on_charm_pressed() -> void:
 	choices_box.hide()
 	charm.hide()
+	charm_override = true
 	thecharm = false
 	print("it's reaching here")
 	if rps_choices_box.visible == true:
-		emit_signal("choice_made", 2)
+		emit_signal("choice_made", cor_idx)
 		print("charm choice")
 	else:
 		emit_signal("choice_made", cor_idx)
@@ -274,9 +313,6 @@ func _rebuild_rps_buttons(choices: PackedStringArray) -> void:
 			for btn in row.get_children():
 				if btn is TextureButton:
 					if idx < choices.size():
-						var lbl: Label = btn.get_node("Label")
-						lbl.text = choices[idx]
-
 						btn.visible = true
 						btn.disabled = false
 
