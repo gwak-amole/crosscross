@@ -1,4 +1,4 @@
-[gd_scene load_steps=129 format=4 uid="uid://bw1jvqsj3l017"]
+[gd_scene load_steps=155 format=4 uid="uid://bw1jvqsj3l017"]
 
 [ext_resource type="PackedScene" uid="uid://cqsj6ljppkot6" path="res://scenes/mainchara.tscn" id="1_bp8ss"]
 [ext_resource type="Script" path="res://scripts/parallax_background.gd" id="1_eistd"]
@@ -28,12 +28,14 @@
 [ext_resource type="Texture2D" uid="uid://cvbk1vq3tg6um" path="res://art/cyclistdialogue/rps/paperhovered.png" id="15_rj3pp"]
 [ext_resource type="Texture2D" uid="uid://ds3cujwrod7e1" path="res://art/buttonpressed.png" id="15_xx0pf"]
 [ext_resource type="Texture2D" uid="uid://cigjl7bb1afvv" path="res://art/cyclistdialogue/rps/scissors.png" id="16_5gh8d"]
+[ext_resource type="AudioStream" uid="uid://cai46fkp8prdj" path="res://audio/crosscrosstutorial.wav" id="16_8umf1"]
 [ext_resource type="Texture2D" uid="uid://4hym7kquodgj" path="res://art/buttonhover.png" id="16_f22in"]
+[ext_resource type="PackedScene" uid="uid://cst0h64fojjuo" path="res://scenes/dialoguebox.tscn" id="16_qaekd"]
 [ext_resource type="FontFile" uid="uid://bgr6t4hvjjyhk" path="res://fonts/NotoSansCJK-VF.ttf.ttc" id="17_akqme"]
 [ext_resource type="Texture2D" uid="uid://bk4dfdvbsq41h" path="res://art/cyclistdialogue/rps/scissorspressed.png" id="17_o4g14"]
 [ext_resource type="Texture2D" uid="uid://b8f7pmepvw8er" path="res://art/cyclistdialogue/rps/scissorshovered.png" id="18_tqgl0"]
+[ext_resource type="Texture2D" uid="uid://dfvihird05hq7" path="res://art/officemandialogue/tutorial/dialoguebox.png" id="19_1mn2x"]
 [ext_resource type="Resource" uid="uid://5hd6h5x6h0vu" path="res://scripts/EnemyProfiles/fashionista.tres" id="19_dlvn0"]
-[ext_resource type="AudioStream" uid="uid://bxf6xtesry8up" path="res://audio/ABERRANCE.wav" id="19_yqrax"]
 [ext_resource type="AudioStream" uid="uid://bsb52apuyvh6w" path="res://audio/hurt.wav" id="21_7si0i"]
 [ext_resource type="AudioStream" uid="uid://dnrvj14budh6d" path="res://audio/146765__thenudo__heart-beat.mp3" id="22_4p0ha"]
 [ext_resource type="FontFile" uid="uid://r7libpb4d4ao" path="res://fonts/Jersey_10/Jersey10-Regular.ttf" id="23_h7tlf"]
@@ -90,7 +92,209 @@
 [ext_resource type="Texture2D" uid="uid://d4ld8ijuwum7m" path="res://art/tileset/continuetimer/continuetimer14.png" id="57_0bwgm"]
 [ext_resource type="Texture2D" uid="uid://codgevx8k6byx" path="res://art/tileset/continuetimer/continuetimer15.png" id="58_yq1qy"]
 [ext_resource type="Texture2D" uid="uid://daim3hc2jfid7" path="res://art/tileset/continuetimer/continuetimer16.png" id="59_dtb4p"]
+[ext_resource type="AudioStream" uid="uid://dv78poq5h755x" path="res://audio/391542__sirplus__lightloop16.wav" id="70_pm85h"]
 [ext_resource type="Script" path="res://scripts/tutorialexplain.gd" id="80_ur0iw"]
+[ext_resource type="Texture2D" uid="uid://ctyruarwmm7it" path="res://art/officemandialogue/tutorial/tutorial0.png" id="92_is8bp"]
+[ext_resource type="Texture2D" uid="uid://btl3vmfna0sp5" path="res://art/officemandialogue/tutorial/dialogue0.png" id="93_8msp4"]
+[ext_resource type="Texture2D" uid="uid://72og7t4e6sst" path="res://art/officemandialogue/tutorial/dialogue1.png" id="94_4lij7"]
+[ext_resource type="Texture2D" uid="uid://ccxfy0l67nkhs" path="res://art/officemandialogue/tutorial/dialogue2.png" id="95_6e11v"]
+[ext_resource type="Texture2D" uid="uid://cty66bljwq75k" path="res://art/officemandialogue/tutorial/coin0.png" id="96_tysbg"]
+[ext_resource type="Texture2D" uid="uid://b04qdgjr3v8yf" path="res://art/officemandialogue/tutorial/coin1.png" id="97_g8ndf"]
+[ext_resource type="Texture2D" uid="uid://p5noewy1xxpc" path="res://art/officemandialogue/tutorial/coin2.png" id="98_jex2v"]
+[ext_resource type="Texture2D" uid="uid://bihku8301hqe0" path="res://art/officemandialogue/tutorial/shield0.png" id="99_tvs27"]
+[ext_resource type="Texture2D" uid="uid://b07wtuhi4w0du" path="res://art/officemandialogue/tutorial/shield1.png" id="100_ywqbt"]
+[ext_resource type="Texture2D" uid="uid://5d7648t2furi" path="res://art/officemandialogue/tutorial/shield2.png" id="101_qfjxq"]
+[ext_resource type="Texture2D" uid="uid://bs3b5svnnegsj" path="res://art/officemandialogue/tutorial/charm0.png" id="102_cvo0u"]
+[ext_resource type="Texture2D" uid="uid://02fpurtd7kw5" path="res://art/officemandialogue/tutorial/charm1.png" id="103_ks5d5"]
+[ext_resource type="Texture2D" uid="uid://bb85kghjmkpfa" path="res://art/officemandialogue/tutorial/tutorial1.png" id="104_qm2tc"]
+[ext_resource type="Script" path="res://scripts/tutorialbox.gd" id="105_s6b1g"]
+
+[sub_resource type="Animation" id="Animation_84thl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("tutorialbox/begintuttexture:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("tutorialbox/begintuttexture:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("tutorialbox/AudioStreamPlayer:volume_db")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_308ey"]
+resource_name = "step_0"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("tutorialbox/begintuttexture:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("92_is8bp")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("tutorialbox/begintuttexture:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_tbwdu"]
+resource_name = "step_1"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("tutorialbox/begintuttexture:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.533333, 1.13333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("93_8msp4"), ExtResource("94_4lij7"), ExtResource("95_6e11v")]
+}
+
+[sub_resource type="Animation" id="Animation_1pkwq"]
+resource_name = "step_2"
+length = 1.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("tutorialbox/begintuttexture:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.366667, 0.8, 1.26667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("96_tysbg"), ExtResource("97_g8ndf"), ExtResource("96_tysbg"), ExtResource("98_jex2v")]
+}
+
+[sub_resource type="Animation" id="Animation_ipwia"]
+resource_name = "step_3"
+length = 1.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("tutorialbox/begintuttexture:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("99_tvs27"), ExtResource("100_ywqbt"), ExtResource("99_tvs27"), ExtResource("101_qfjxq")]
+}
+
+[sub_resource type="Animation" id="Animation_xfof4"]
+resource_name = "step_4"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("tutorialbox/begintuttexture:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.866667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("102_cvo0u"), ExtResource("103_ks5d5"), ExtResource("102_cvo0u")]
+}
+
+[sub_resource type="Animation" id="Animation_heoxf"]
+resource_name = "step_5"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("tutorialbox/begintuttexture:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("104_qm2tc")]
+}
+
+[sub_resource type="Animation" id="Animation_e63h1"]
+resource_name = "step_6"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("tutorialbox/begintuttexture:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("tutorialbox/AudioStreamPlayer:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.233333, 1.13333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-4.09, -75.176]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0uc7b"]
+_data = {
+"RESET": SubResource("Animation_84thl"),
+"step_0": SubResource("Animation_308ey"),
+"step_1": SubResource("Animation_tbwdu"),
+"step_2": SubResource("Animation_1pkwq"),
+"step_3": SubResource("Animation_ipwia"),
+"step_4": SubResource("Animation_xfof4"),
+"step_5": SubResource("Animation_heoxf"),
+"step_6": SubResource("Animation_e63h1")
+}
 
 [sub_resource type="Animation" id="Animation_ewwyk"]
 length = 0.001
@@ -196,15 +400,98 @@ _data = {
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0gs73"]
 
+[sub_resource type="Animation" id="Animation_87jl5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TextureRect:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_s77pm"]
+resource_name = "fever_constant"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("34_b7ekx"), ExtResource("35_bd1qm"), ExtResource("36_yi8m5")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_fk54w"]
+resource_name = "fever_fadeout"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2e5ae"]
+_data = {
+"RESET": SubResource("Animation_87jl5"),
+"fever_constant": SubResource("Animation_s77pm"),
+"fever_fadeout": SubResource("Animation_fk54w")
+}
+
 [sub_resource type="Theme" id="Theme_rvl5g"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_obpca"]
-font_size = 40
-outline_size = 8
-outline_color = Color(0.195903, 0.235453, 0.483822, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_thl5d"]
-font_size = 30
 
 [sub_resource type="Animation" id="Animation_rlks4"]
 resource_name = "heresacharm"
@@ -212,17 +499,14 @@ length = 10.0
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Panel/Overlay/tutorial/tutlabel")
+tracks/0/path = NodePath("Panel/tutlabel")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.0333333, 3.8),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
 "values": [{
 "args": ["oh look! you have a charm"],
-"method": &"type_out"
-}, {
-"args": ["they allow you to skip dialogue!"],
 "method": &"type_out"
 }]
 }
@@ -233,17 +517,14 @@ length = 10.0
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Panel/Overlay/tutorial/tutlabel")
+tracks/0/path = NodePath("Panel/tutlabel")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.0333333, 5.26667),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
 "values": [{
 "args": ["if you have a charm, it'll appear here."],
-"method": &"type_out"
-}, {
-"args": ["they allow you to skip dialogue!"],
 "method": &"type_out"
 }]
 }
@@ -254,7 +535,7 @@ length = 10.0
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Panel/Overlay/tutorial/tutlabel")
+tracks/0/path = NodePath("Panel/tutlabel")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -275,6 +556,14 @@ _data = {
 "heresnotacharm": SubResource("Animation_doub8"),
 "introtodialogue": SubResource("Animation_6xbq6")
 }
+
+[sub_resource type="LabelSettings" id="LabelSettings_obpca"]
+font_size = 40
+outline_size = 8
+outline_color = Color(0.195903, 0.235453, 0.483822, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_thl5d"]
+font_size = 30
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xuypu"]
 texture = ExtResource("2_cleu5")
@@ -490,97 +779,6 @@ sources/1 = SubResource("TileSetAtlasSource_gc6em")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jtfdg"]
 
-[sub_resource type="Animation" id="Animation_87jl5"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [null]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Label:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("TextureRect:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_s77pm"]
-resource_name = "fever_constant"
-length = 0.4
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.166667, 0.333333),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [ExtResource("34_b7ekx"), ExtResource("35_bd1qm"), ExtResource("36_yi8m5")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Label:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.166667, 0.333333),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_fk54w"]
-resource_name = "fever_fadeout"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_2e5ae"]
-_data = {
-"RESET": SubResource("Animation_87jl5"),
-"fever_constant": SubResource("Animation_s77pm"),
-"fever_fadeout": SubResource("Animation_fk54w")
-}
-
 [sub_resource type="Animation" id="Animation_frbsj"]
 length = 0.001
 tracks/0/type = "value"
@@ -701,6 +899,40 @@ _data = {
 position = Vector2(10, 5)
 metadata/_edit_horizontal_guides_ = [-412.0, 375.0]
 
+[node name="beginningtutorial" type="CanvasLayer" parent="."]
+
+[node name="tutorialbox" type="Control" parent="beginningtutorial"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("105_s6b1g")
+controllerpath = NodePath("../../GameController")
+dialogueboxpath = NodePath("dialoguebox")
+
+[node name="begintut" type="AnimationPlayer" parent="beginningtutorial/tutorialbox"]
+process_mode = 3
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_0uc7b")
+}
+
+[node name="begintuttexture" type="TextureRect" parent="beginningtutorial/tutorialbox"]
+process_mode = 3
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="beginningtutorial/tutorialbox"]
+stream = ExtResource("16_8umf1")
+bus = &"music"
+
+[node name="dialoguebox" parent="beginningtutorial/tutorialbox" instance=ExtResource("16_qaekd")]
+layout_mode = 1
+
 [node name="tutorial" type="CanvasLayer" parent="."]
 
 [node name="tutorialview" type="TextureRect" parent="tutorial"]
@@ -740,6 +972,13 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 
+[node name="tuttext" type="TextureRect" parent="tutorial/Control"]
+layout_mode = 0
+offset_top = 160.0
+offset_right = 1152.0
+offset_bottom = 443.0
+texture = ExtResource("19_1mn2x")
+
 [node name="doyouwanttutorial" type="Label" parent="tutorial/Control"]
 layout_mode = 1
 anchors_preset = 8
@@ -774,6 +1013,7 @@ grow_vertical = 2
 [node name="yes" type="Button" parent="tutorial/Control/HBoxContainer"]
 process_mode = 3
 layout_mode = 2
+mouse_filter = 2
 theme_override_fonts/font = ExtResource("23_h7tlf")
 theme_override_font_sizes/font_size = 40
 text = "yes"
@@ -781,6 +1021,7 @@ text = "yes"
 [node name="no" type="Button" parent="tutorial/Control/HBoxContainer"]
 process_mode = 3
 layout_mode = 2
+mouse_filter = 2
 theme_override_fonts/font = ExtResource("23_h7tlf")
 theme_override_font_sizes/font_size = 40
 text = "no"
@@ -805,7 +1046,7 @@ texture_path = NodePath("../fever/TextureRect")
 eventspawnerpath = NodePath("../EventSpawner")
 fevertimerpath = NodePath("../fevertimer")
 shieldtextpath = NodePath("../shield/TextureRect")
-charmpath = NodePath("../Dialogue UI/Panel/Overlay/tutorial/charmbutton")
+charmpath = NodePath("../Dialogue UI/Panel/Overlay/charmbut")
 continuetimerpath = NodePath("../continuetimer/continuetimeranim")
 continuecanvaspath = NodePath("../continuetimer")
 charmtexturepath = NodePath("../coins/charm")
@@ -817,6 +1058,9 @@ wyltutbtnpath = NodePath("../tutorial/Control/HBoxContainer/yes")
 wyltutbtn2path = NodePath("../tutorial/Control/HBoxContainer/no")
 gameplayrootpath = NodePath("..")
 tutexplainpath = NodePath("../tutorial/tutorialexplain")
+begintutpath = NodePath("../beginningtutorial/tutorialbox")
+tutorialhboxpath = NodePath("../tutorial/Control/HBoxContainer")
+tuttextpath = NodePath("../tutorial/Control/tuttext")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 4
@@ -860,16 +1104,48 @@ layout_mode = 2
 texture = ExtResource("6_34388")
 expand_mode = 2
 
+[node name="fever" type="CanvasLayer" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="fever"]
+libraries = {
+"": SubResource("AnimationLibrary_2e5ae")
+}
+
+[node name="TextureRect" type="TextureRect" parent="fever"]
+offset_right = 1152.0
+offset_bottom = 648.0
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="fever"]
+z_index = 250
+z_as_relative = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -163.5
+offset_top = -149.0
+offset_right = 149.5
+offset_bottom = -41.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("23_h7tlf")
+theme_override_font_sizes/font_size = 100
+text = "FEVER"
+horizontal_alignment = 1
+
 [node name="Dialogue UI" type="CanvasLayer" parent="."]
 process_mode = 3
 script = ExtResource("14_7mv0c")
 audio_path = NodePath("../dialogue")
 spawnerpath = NodePath("../Spawner")
 animpath = NodePath("../fever/AnimationPlayer")
-charmpath = NodePath("Panel/Overlay/tutorial/charmbutton")
+charmpath = NodePath("Panel/Overlay/charmbut")
 controllerpath = NodePath("../GameController")
-tutanimpath = NodePath("Panel/Overlay/tutorial/tutorialdialogue")
-tutlabelpath = NodePath("Panel/Overlay/tutorial/tutlabel")
+tutanimpath = NodePath("Panel/tutorialdialogue")
+tutlabelpath = NodePath("Panel/tutlabel")
 
 [node name="Panel" type="Panel" parent="Dialogue UI"]
 anchors_preset = 15
@@ -888,6 +1164,32 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 stretch_mode = 5
+
+[node name="tutorialdialogue" type="AnimationPlayer" parent="Dialogue UI/Panel"]
+process_mode = 3
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_drj28")
+}
+
+[node name="tutlabel" type="Label" parent="Dialogue UI/Panel"]
+process_mode = 3
+z_index = 90
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 48.0
+offset_right = 20.0
+offset_bottom = 92.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("23_h7tlf")
+theme_override_font_sizes/font_size = 40
+script = ExtResource("11_h4wgb")
 
 [node name="Overlay" type="Control" parent="Dialogue UI/Panel"]
 top_level = true
@@ -917,6 +1219,17 @@ theme_override_fonts/font = ExtResource("17_akqme")
 label_settings = SubResource("LabelSettings_obpca")
 vertical_alignment = 1
 
+[node name="charmbut" type="TextureButton" parent="Dialogue UI/Panel/Overlay"]
+layout_mode = 2
+offset_left = 936.0
+offset_top = 402.0
+offset_right = 1008.0
+offset_bottom = 474.0
+mouse_filter = 2
+texture_normal = ExtResource("34_uw75t")
+texture_pressed = ExtResource("34_uw75t")
+texture_focused = ExtResource("35_6hqaj")
+
 [node name="Buttons" type="VBoxContainer" parent="Dialogue UI/Panel/Overlay"]
 layout_mode = 1
 anchors_preset = 7
@@ -925,12 +1238,17 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -503.0
-offset_top = -163.0
+offset_top = -251.0
 offset_right = 503.0
-offset_bottom = -15.0
+offset_bottom = -29.0
 grow_horizontal = 2
 grow_vertical = 0
 alignment = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Dialogue UI/Panel/Overlay/Buttons"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Dialogue UI/Panel/Overlay/Buttons"]
 layout_mode = 2
@@ -942,9 +1260,11 @@ process_mode = 2
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
+mouse_filter = 2
 texture_normal = ExtResource("14_cb1aa")
 texture_pressed = ExtResource("15_xx0pf")
 texture_hover = ExtResource("16_f22in")
+texture_focused = ExtResource("16_f22in")
 
 [node name="Label" type="Label" parent="Dialogue UI/Panel/Overlay/Buttons/HBoxContainer/TextureButton4"]
 layout_mode = 1
@@ -963,9 +1283,11 @@ autowrap_mode = 3
 process_mode = 3
 layout_mode = 2
 size_flags_horizontal = 8
+mouse_filter = 2
 texture_normal = ExtResource("14_cb1aa")
 texture_pressed = ExtResource("15_xx0pf")
 texture_hover = ExtResource("16_f22in")
+texture_focused = ExtResource("16_f22in")
 
 [node name="Label" type="Label" parent="Dialogue UI/Panel/Overlay/Buttons/HBoxContainer/TextureButton5"]
 layout_mode = 1
@@ -990,9 +1312,11 @@ process_mode = 3
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
+mouse_filter = 2
 texture_normal = ExtResource("14_cb1aa")
 texture_pressed = ExtResource("15_xx0pf")
 texture_hover = ExtResource("16_f22in")
+texture_focused = ExtResource("16_f22in")
 
 [node name="Label" type="Label" parent="Dialogue UI/Panel/Overlay/Buttons/HBoxContainer2/TextureButton4"]
 layout_mode = 1
@@ -1011,9 +1335,11 @@ autowrap_mode = 3
 process_mode = 3
 layout_mode = 2
 size_flags_horizontal = 8
+mouse_filter = 2
 texture_normal = ExtResource("14_cb1aa")
 texture_pressed = ExtResource("15_xx0pf")
 texture_hover = ExtResource("16_f22in")
+texture_focused = ExtResource("16_f22in")
 
 [node name="Label" type="Label" parent="Dialogue UI/Panel/Overlay/Buttons/HBoxContainer2/TextureButton5"]
 layout_mode = 1
@@ -1035,88 +1361,54 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -503.0
-offset_top = -163.0
-offset_right = 503.0
-offset_bottom = -1.0
+offset_left = -495.0
+offset_top = -241.0
+offset_right = 501.0
+offset_bottom = -43.0
 grow_horizontal = 2
 grow_vertical = 0
 alignment = 1
 
+[node name="HBoxContainer3" type="HBoxContainer" parent="Dialogue UI/Panel/Overlay/rpsbuttons"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 2
+
 [node name="HBoxContainer" type="HBoxContainer" parent="Dialogue UI/Panel/Overlay/rpsbuttons"]
 layout_mode = 2
-size_flags_vertical = 4
+size_flags_vertical = 3
 alignment = 1
 
 [node name="Rock" type="TextureButton" parent="Dialogue UI/Panel/Overlay/rpsbuttons/HBoxContainer"]
 process_mode = 3
 layout_mode = 2
 size_flags_horizontal = 8
+mouse_filter = 2
 texture_normal = ExtResource("10_drd71")
 texture_pressed = ExtResource("11_n502p")
 texture_hover = ExtResource("12_07rjc")
+texture_focused = ExtResource("12_07rjc")
 
 [node name="Paper" type="TextureButton" parent="Dialogue UI/Panel/Overlay/rpsbuttons/HBoxContainer"]
 process_mode = 3
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
+mouse_filter = 2
 texture_normal = ExtResource("13_th5a2")
 texture_pressed = ExtResource("14_3kvvc")
 texture_hover = ExtResource("15_rj3pp")
+texture_focused = ExtResource("15_rj3pp")
 
 [node name="Scissors" type="TextureButton" parent="Dialogue UI/Panel/Overlay/rpsbuttons/HBoxContainer"]
 process_mode = 3
 layout_mode = 2
 size_flags_horizontal = 8
+mouse_filter = 2
 texture_normal = ExtResource("16_5gh8d")
 texture_pressed = ExtResource("17_o4g14")
 texture_hover = ExtResource("18_tqgl0")
-
-[node name="tutorial" type="CanvasLayer" parent="Dialogue UI/Panel/Overlay"]
-
-[node name="tutorialdialogue" type="AnimationPlayer" parent="Dialogue UI/Panel/Overlay/tutorial"]
-process_mode = 3
-root_node = NodePath("../../../..")
-libraries = {
-"": SubResource("AnimationLibrary_drj28")
-}
-
-[node name="tutlabel" type="Label" parent="Dialogue UI/Panel/Overlay/tutorial"]
-process_mode = 3
-z_index = 90
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_top = 48.0
-offset_right = 20.0
-offset_bottom = 82.0
-grow_horizontal = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 5
-theme_override_fonts/font = ExtResource("23_h7tlf")
-theme_override_font_sizes/font_size = 40
-script = ExtResource("11_h4wgb")
-
-[node name="charmbutton" type="TextureButton" parent="Dialogue UI/Panel/Overlay/tutorial"]
-top_level = true
-z_index = 100
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -211.0
-offset_top = 84.0
-offset_right = -135.0
-offset_bottom = 156.0
-grow_horizontal = 0
-grow_vertical = 2
-texture_normal = ExtResource("34_uw75t")
-texture_pressed = ExtResource("35_6hqaj")
-texture_hover = ExtResource("35_6hqaj")
+texture_focused = ExtResource("18_tqgl0")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 script = ExtResource("1_eistd")
@@ -1202,7 +1494,7 @@ characters_path = NodePath("../envmishap")
 [node name="Timer" type="Timer" parent="EnvSpawner"]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("19_yqrax")
+stream = ExtResource("70_pm85h")
 volume_db = 4.142
 bus = &"music"
 
@@ -1314,37 +1606,6 @@ metadata/_edit_use_anchors_ = true
 stream = ExtResource("46_wbrt7")
 volume_db = 5.522
 bus = &"sfx"
-
-[node name="fever" type="CanvasLayer" parent="."]
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="fever"]
-libraries = {
-"": SubResource("AnimationLibrary_2e5ae")
-}
-
-[node name="TextureRect" type="TextureRect" parent="fever"]
-offset_right = 1152.0
-offset_bottom = 648.0
-
-[node name="Label" type="Label" parent="fever"]
-z_index = 250
-z_as_relative = false
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -163.5
-offset_top = -149.0
-offset_right = 149.5
-offset_bottom = -41.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_fonts/font = ExtResource("23_h7tlf")
-theme_override_font_sizes/font_size = 100
-text = "FEVER"
-horizontal_alignment = 1
 
 [node name="splash" type="CanvasLayer" parent="."]
 

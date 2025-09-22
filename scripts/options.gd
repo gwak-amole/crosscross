@@ -25,3 +25,4 @@ func _ready() -> void:
 	btn.show()
 	pnl.show()
 	animback.hide()
+	btn.grab_focus()

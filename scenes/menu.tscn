@@ -92,6 +92,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_fipnj")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -123,9 +124,12 @@ grow_vertical = 0
 [node name="Start Button" type="TextureButton" parent="VBoxContainer"]
 z_index = 100
 layout_mode = 2
+focus_neighbor_bottom = NodePath("../Instructions Button")
+mouse_filter = 2
 texture_normal = ExtResource("2_t0hpa")
 texture_pressed = ExtResource("3_jo4nu")
 texture_hover = ExtResource("4_hm5kc")
+texture_focused = ExtResource("4_hm5kc")
 stretch_mode = 3
 
 [node name="Label" type="Label" parent="VBoxContainer/Start Button"]
@@ -142,9 +146,12 @@ vertical_alignment = 1
 [node name="Instructions Button" type="TextureButton" parent="VBoxContainer"]
 z_index = 100
 layout_mode = 2
+focus_neighbor_top = NodePath("../Start Button")
+mouse_filter = 2
 texture_normal = ExtResource("5_vub8u")
 texture_pressed = ExtResource("6_yrdkt")
 texture_hover = ExtResource("7_tloel")
+texture_focused = ExtResource("7_tloel")
 stretch_mode = 3
 
 [node name="Label" type="Label" parent="VBoxContainer/Instructions Button"]
@@ -164,6 +171,7 @@ offset_left = 37.0
 offset_top = 23.0
 offset_right = 251.0
 offset_bottom = 75.0
+mouse_filter = 2
 theme_override_fonts/font = ExtResource("5_qicq6")
 theme_override_font_sizes/font_size = 40
 text = "Leaderboard"

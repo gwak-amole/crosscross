@@ -31,6 +31,7 @@ func _ready() -> void:
 	subtitle.show()
 	btn.show()
 	animback.hide()
+	btn.grab_focus()
 	display_leaderboard(vboxcont)
 
 func _process(delta) -> void:

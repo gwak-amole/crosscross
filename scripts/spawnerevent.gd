@@ -62,11 +62,11 @@ func _spawn_one() -> void:
 	var e := event_scene.instantiate()
 	chance = rng.randi_range(0, 9)
 	if  chance >= 0  and chance <= 6:
-		thechance = 2
+		thechance = 0
 	elif chance > 6  and chance <= 8:
 		thechance = 1
 	elif chance == 9:
-		thechance = 0
+		thechance = 2
 	print(chance)
 	print(thechance)
 	if profiles.size() > 0:

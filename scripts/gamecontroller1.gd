@@ -33,6 +33,9 @@ signal tutorial(yes:bool)
 @export var wyltutbtn2path : NodePath
 @export var gameplayrootpath : NodePath
 @export var tutexplainpath : NodePath
+@export var begintutpath : NodePath
+@export var tutorialhboxpath : NodePath
+@export var tuttextpath : NodePath
 @export var lives_start: int = 3
 
 var lives: int
@@ -67,6 +70,9 @@ var lives: int
 @onready var wyltutyes := get_node(wyltutbtnpath)
 @onready var wyltutno := get_node(wyltutbtn2path)
 @onready var gameplayroot := get_node(gameplayrootpath)
+@onready var begintut := get_node(begintutpath)
+@onready var tutorialhbox := get_node(tutorialhboxpath)
+@onready var tuttext := get_node(tuttextpath)
 
 var cor_idx : int
 var times : int = 0
@@ -79,6 +85,7 @@ var cooldown : float = 5.0
 var charm_active : bool = false
 var tutorial_wanted : bool = false
 var puddle_tut_wanted : bool = false
+var charm_used : bool = true
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -90,8 +97,9 @@ func _ready() -> void:
 		fevertimer.timeout.connect(_on_fevertimer_timeout)
 	if not fever.is_connected(_on_fever_request):
 		fever.connect(_on_fever_request)
+	begintut.tutorialfinished.connect(_on_tutorial_finished)
+	dialogue_ui.charm_used.connect(_on_charm_used)
 	heart_nodes.clear()
-	_loop_points()
 	if hearts_box:
 		for c in hearts_box.get_children():
 			if c is CanvasItem:
@@ -108,6 +116,10 @@ func _ready() -> void:
 	shieldicon.hide()
 	charmtexture.hide()
 	splashtext.hide()
+	coinicon.hide()
+	coins.hide()
+	points.hide()
+	hearts_box.hide()
 	print("YES type:", wyltutyes.get_class(), " NO type:", wyltutno.get_class())
 	if not (wyltutyes as BaseButton).pressed.is_connected(_on_yes_pressed):
 		(wyltutyes as BaseButton).pressed.connect(_on_yes_pressed)
@@ -115,7 +127,21 @@ func _ready() -> void:
 		(wyltutno as BaseButton).pressed.connect(_on_no_pressed)
 	await _tutorial_ask()
 	if tutorial_wanted:
+		begintut.show()
 		puddle_tut_wanted = true
+		await begintut.tutorialfinished
+		_loop_points()
+		coinicon.show()
+		coins.show()
+		points.show()
+		hearts_box.show()
+	else:
+		_loop_points()
+		begintut.hide()
+		coinicon.show()
+		coins.show()
+		points.show()
+		hearts_box.show()
 
 func _process(delta) -> void:
 	if get_tree().paused == true:
@@ -189,11 +215,6 @@ func _on_enemy_contacted(enemy: Node) -> void:
 	else:
 		pass
 	continuecanvas.hide()
-	if dialogue_ui.thecharm == true:
-		charm_active = true
-		charmtexture.show()
-	elif dialogue_ui.thecharm == false:
-		charm_active = false
 	coins.show()
 	coinicon.show()
 	points.show()
@@ -212,11 +233,18 @@ func _on_enemy_contacted(enemy: Node) -> void:
 		anim.play("fever_constant")
 	else:
 		print("fever not active")
-		
+	if charm_used == false:
+		charmtexture.show()
+		charm_active = true
+	elif charm_used:
+		charm_used = false
+		charmtexture.hide()
+		charm_active = false
 	if get_tree():
 		await get_tree().create_timer(3.0).timeout
 		points_frozen = false
 		print("points unfrozen")
+	
 
 func _update_hearts() -> void:
 	var shown : int = clamp(lives, 0, heart_nodes.size())
@@ -256,6 +284,7 @@ func _on_branch_chosen(idx: int) -> void:
 
 func _loop_points() -> void:
 	await get_tree().create_timer(cooldown).timeout
+	print("annyeong")
 	while true:
 		while get_tree().paused: 
 			await get_tree().create_timer(0.1, true).timeout
@@ -346,6 +375,8 @@ func _on_fevertimer_timeout() -> void:
 	_fever_done()
 
 func _tutorial_ask() -> void:
+	_focus_tutorial_ask()
+	tuttext.show()
 	print("hello? aaa")
 	wyltutlabel.show()
 	wyltutyes.show()
@@ -360,7 +391,7 @@ func _tutorial_ask() -> void:
 	wyltutlabel.hide()
 	wyltutyes.hide()
 	wyltutno.hide()
-	get_tree().paused = false
+	tuttext.hide()
 	
 
 func _on_yes_pressed() -> void:
@@ -372,3 +403,26 @@ func _on_no_pressed() -> void:
 	tutorial_wanted = false
 	print("no")
 	emit_signal("tutorial", false)
+
+func _on_tutorial_finished() -> void:
+	get_tree().paused = false
+	
+func _on_charm_used() -> void:
+	charm_active = false
+	charm_used = true
+
+func _focus_tutorial_ask() -> void:
+	var cols: Array = []
+	for n in tutorialhbox.get_children():
+		if n is Button and n.visible:
+			(n as Control).focus_mode = Control.FOCUS_ALL
+			cols.append(n)
+	
+	for i in cols.size():
+		var b := cols[i] as Control
+		b.focus_neighbor_left = cols[(i-1 + cols.size()) % cols.size()].get_path()
+		b.focus_neighbor_right = cols[(i+1) % cols.size()].get_path()
+		
+	if cols.size() > 0:
+		await get_tree().process_frame
+		(cols[0] as Control).grab_focus()

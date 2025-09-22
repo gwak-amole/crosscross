@@ -1,6 +1,7 @@
 extends CanvasLayer
 signal choice_made(idx: int)
 signal branch_chosen(idx: int)
+signal charm_used
 @export var audio_path : NodePath
 @export var spawnerpath : NodePath
 @export var animpath : NodePath
@@ -14,6 +15,7 @@ signal branch_chosen(idx: int)
 @onready var text := $Panel/Overlay/Text
 @onready var choices_box := $Panel/Overlay/Buttons
 @onready var rps_choices_box := $Panel/Overlay/rpsbuttons
+@onready var tutorial := $Panel/Overlay/tutorial
 @onready var audio := get_node(audio_path)
 @onready var spawner := get_node(spawnerpath)
 @onready var anim := get_node(animpath)
@@ -52,6 +54,10 @@ func _ready() -> void:
 		if btn is TextureButton:
 			if not btn.pressed.is_connected(_on_rps_choice_pressed):
 				btn.pressed.connect(Callable(self, "_on_rps_choice_pressed").bind(i))
+	for btn in choices_box.get_children():
+		if btn is TextureButton:
+			btn.focus_mode = Control.FOCUS_ALL
+			btn.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 func show_dialogue_from_profile(p: EnemyProfile) -> int:
 	visible = false
@@ -70,11 +76,11 @@ func show_dialogue_from_profile(p: EnemyProfile) -> int:
 	
 	var ap = dlg_scene.get_node_or_null("AnimationPlayer")
 	if ap:
-		await get_tree().create_timer(1.5).timeout
+		await get_tree().create_timer(1.5, true).timeout
 		print("playing animations")
 		if ap.has_animation("appear"):
 			ap.play("appear")
-			await get_tree().create_timer(0.1).timeout
+			await get_tree().create_timer(0.1, true).timeout
 			visible = true
 			audio.play()
 			panel.show()
@@ -85,8 +91,13 @@ func show_dialogue_from_profile(p: EnemyProfile) -> int:
 		text.show()
 		choices_box.show()
 		if controller.charm_active:
+			print("reaches here")
+			charm.disabled = false
 			charm.show()
-			charm.queue_redraw()
+			print("charm showed")
+		else:
+			print("for some reason charm hides")
+			charm.hide()
 		if tutorial_wanted:
 			tutlabel.show()
 			tutanim.play("introtodialogue")
@@ -97,11 +108,21 @@ func show_dialogue_from_profile(p: EnemyProfile) -> int:
 		print("No AnimationPlayer found in dlg_scene")
 	
 	if p.is_rps:
+		rps_choices_box.show()
+		if controller.charm_active:
+			charm.disabled = false
+			move_charm($Panel/Overlay/rpsbuttons/HBoxContainer3)
+			charm.show()
 		_play_rps_minigame(p)
 		emit_signal("branch_chosen", 2)
 		var picked:int = await _wait_for_choice()
 		return picked
 	else:
+		choices_box.show()
+		if controller.charm_active:
+			charm.disabled = false
+			move_charm($Panel/Overlay/Buttons/HBoxContainer3)
+			charm.show()
 		rand = rng.randi_range(1,2)
 		if rand == 1:
 			cor_idx = p.correct_idx
@@ -111,9 +132,8 @@ func show_dialogue_from_profile(p: EnemyProfile) -> int:
 			cor_idx = p.correct_idx_2
 			text.text = p.dialogue_text_2 if p.dialogue_text_2 != "" else "..."
 			_rebuild_buttons(p.choices2 if p.choices2.size() > 0 else PackedStringArray(["OK"]))
-
+		_focus_normal()
 		emit_signal("branch_chosen", cor_idx)
-		
 		var picked := await _wait_for_choice()
 		is_rps_mode = false
 		visible = false
@@ -126,7 +146,7 @@ func _rebuild_buttons(choices: PackedStringArray) -> void:
 	
 	for row in rows:
 		for btn in row:
-			if btn is TextureButton:
+			if btn is TextureButton and btn != charm:
 				btn.visible = false
 				for c in btn.pressed.get_connections():
 					btn.pressed.disconnect(c["callable"])
@@ -136,14 +156,14 @@ func _rebuild_buttons(choices: PackedStringArray) -> void:
 		for btn in row:
 			if idx >= choices.size():
 				break
-			if btn is TextureButton:
+			if btn is TextureButton and btn != charm:
 				var lbl = btn.get_node("Label") as Label
 				lbl.text = choices[idx]
 				btn.visible = true
 				btn.pressed.connect(Callable(self, "_on_choice_pressed").bind(idx))
 				idx += 1
-	
-	await get_tree().create_timer(2.0).timeout
+		
+	await get_tree().create_timer(2.0, true).timeout
 	for row in rows:
 		for btn in row:
 			if btn is TextureButton and btn.visible:
@@ -240,16 +260,13 @@ func _on_choice_pressed(idx:int) -> void:
 	emit_signal("choice_made", idx)
 
 func _on_charm_pressed() -> void:
+	print("reaches here")
 	choices_box.hide()
 	charm.hide()
 	charm_override = true
 	thecharm = false
-	print("it's reaching here")
-	if rps_choices_box.visible == true:
-		emit_signal("choice_made", cor_idx)
-		print("charm choice")
-	else:
-		emit_signal("choice_made", cor_idx)
+	emit_signal("charm_used")
+	emit_signal("choice_made", cor_idx)
 
 func close_dialogue():
 	if tutanim:
@@ -265,6 +282,8 @@ func close_dialogue():
 	tutorial_wanted = false
 	audio.stop()
 	rps_choices_box.hide()
+	charm.hide()
+	move_charm($Panel/Overlay)
 	visible = false
 
 func _on_intro_finished(anim_name: String) -> void:
@@ -289,6 +308,7 @@ func _play_rps_minigame(p: EnemyProfile) -> void:
 	text.text = p.dialogue_text if p.dialogue_text != "" else "..."
 	
 	_rebuild_rps_buttons(p.choices if p.choices.size() > 0 else PackedStringArray(["Rock","Paper","Scissors"]))
+	_focus_rps()
 	print("rps box vis:", rps_choices_box.visible, " mod:", rps_choices_box.modulate)
 
 	enemy_move = rng.randi_range(0, 2)
@@ -311,7 +331,7 @@ func _rebuild_rps_buttons(choices: PackedStringArray) -> void:
 	for row in rps_choices_box.get_children():
 		if row is HBoxContainer:
 			for btn in row.get_children():
-				if btn is TextureButton:
+				if btn is TextureButton and btn != charm:
 					if idx < choices.size():
 						btn.visible = true
 						btn.disabled = false
@@ -323,3 +343,86 @@ func _rebuild_rps_buttons(choices: PackedStringArray) -> void:
 						idx += 1
 					else:
 						btn.visible = false
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_accept"):
+		var f := get_viewport().gui_get_focus_owner()
+		if f is BaseButton and f.is_visible_in_tree():
+			var b := f as BaseButton
+			if b and b.is_visible_in_tree() and not b.disabled:
+				b.emit_signal("pressed")
+				get_viewport().set_input_as_handled()
+
+func _focus_normal() -> void:
+	var matrix : Array = []
+	for hbox in [$Panel/Overlay/Buttons/HBoxContainer.get_children(), $Panel/Overlay/Buttons/HBoxContainer2.get_children(), $Panel/Overlay/Buttons/HBoxContainer3.get_children()]:
+		var cols: Array = []
+		for n in hbox:
+			if n is TextureButton and n.visible:
+				(n as Control).focus_mode = Control.FOCUS_ALL
+				cols.append(n)
+		matrix.append(cols)
+		
+	for r in matrix.size():
+		var cols : Array = matrix[r]
+		var n := cols.size()
+		if n == 0: continue
+		for c in n:
+			var b := cols[c] as Control
+			b.focus_neighbor_left = cols[(c-1 + n) % n].get_path()
+			b.focus_neighbor_right = cols[(c+1) % n].get_path()
+	
+	for r in matrix.size():
+		var cols : Array = matrix[r]
+		for c in cols.size():
+			var b := cols[c] as Control
+			var r_up := (r-1 + matrix.size()) % matrix.size()
+			var r_dn := (r+1) % matrix.size()
+			var up_row: Array = matrix[r_up]
+			var down_row: Array = matrix[r_dn]
+			if c < up_row.size():
+				b.focus_neighbor_top = (up_row[c] as Control).get_path()
+			if c < down_row.size():
+				b.focus_neighbor_bottom = (down_row[c] as Control).get_path()
+		
+		if matrix.size() > 0 and matrix[0].size() > 0:
+			(matrix[0][0] as Control).grab_focus()
+
+func _focus_rps() -> void:
+	var matrix : Array = []
+	for hbox in [$Panel/Overlay/rpsbuttons/HBoxContainer.get_children(), $Panel/Overlay/rpsbuttons/HBoxContainer3.get_children()]:
+		var cols: Array = []
+		for n in hbox:
+			if n is TextureButton and n.visible:
+				(n as Control).focus_mode = Control.FOCUS_ALL
+				cols.append(n)
+		matrix.append(cols)
+		
+	for r in matrix.size():
+		var cols : Array = matrix[r]
+		var n := cols.size()
+		if n == 0: continue
+		for c in n:
+			var b := cols[c] as Control
+			b.focus_neighbor_left = cols[(c-1 + n) % n].get_path()
+			b.focus_neighbor_right = cols[(c+1) % n].get_path()
+	
+	for r in matrix.size():
+		var cols : Array = matrix[r]
+		for c in cols.size():
+			var b := cols[c] as Control
+			var r_up := (r-1 + matrix.size()) % matrix.size()
+			var r_dn := (r+1) % matrix.size()
+			var up_row: Array = matrix[r_up]
+			var down_row: Array = matrix[r_dn]
+			if c < up_row.size():
+				b.focus_neighbor_top = (up_row[c] as Control).get_path()
+			if c < down_row.size():
+				b.focus_neighbor_bottom = (down_row[c] as Control).get_path()
+		
+		if matrix.size() > 0 and matrix[0].size() > 0:
+			(matrix[0][0] as Control).grab_focus()
+
+func move_charm(to_container: Control):
+	charm.get_parent().remove_child(charm)
+	to_container.add_child(charm)

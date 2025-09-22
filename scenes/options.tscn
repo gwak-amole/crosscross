@@ -103,8 +103,9 @@ script = ExtResource("1_wwl5i")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -2.0
+offset_right = 1151.0
+offset_bottom = 648.0
 texture = ExtResource("1_qtbhj")
 
 [node name="TextureRect2" type="TextureRect" parent="."]
@@ -117,10 +118,11 @@ texture = ExtResource("3_iei2f")
 [node name="Button" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.697917
-anchor_top = 0.820988
-anchor_right = 0.755208
-anchor_bottom = 0.893519
+anchor_left = 0.469618
+anchor_top = 0.762346
+anchor_right = 0.52691
+anchor_bottom = 0.834877
+mouse_filter = 2
 theme_override_fonts/font = ExtResource("2_q57w2")
 theme_override_font_sizes/font_size = 35
 text = "back"
@@ -154,9 +156,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -235.0
-offset_top = -71.0
+offset_top = -96.0
 offset_right = 220.0
-offset_bottom = 244.0
+offset_bottom = 147.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_5jo8u")
@@ -169,9 +171,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -171.5
-offset_top = -112.5
+offset_top = -92.5
 offset_right = 169.5
-offset_bottom = 100.5
+offset_bottom = 139.5
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -183,6 +185,7 @@ text = "Master"
 
 [node name="HSlider" parent="Panel/VBoxContainer" instance=ExtResource("16_i14dm")]
 layout_mode = 2
+step = 0.01
 bus_name = "Master"
 
 [node name="Label2" type="Label" parent="Panel/VBoxContainer"]
@@ -193,6 +196,7 @@ text = "Music"
 
 [node name="HSlider2" parent="Panel/VBoxContainer" instance=ExtResource("16_i14dm")]
 layout_mode = 2
+step = 0.01
 bus_name = "music"
 
 [node name="Label3" type="Label" parent="Panel/VBoxContainer"]
@@ -204,6 +208,7 @@ text = "SFX
 
 [node name="HSlider3" parent="Panel/VBoxContainer" instance=ExtResource("16_i14dm")]
 layout_mode = 2
+step = 0.01
 bus_name = "sfx"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
