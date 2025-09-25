@@ -4,6 +4,7 @@ extends Node2D
 @export var env_scene: PackedScene
 @export var controller_path: NodePath
 @export var characters_path: NodePath
+@export var subwaylayerpath : NodePath
 @export var start_spawn_every: float = 2
 @export var min_spawn_every := 1
 @export var max_on_screen: int = 1
@@ -17,10 +18,12 @@ extends Node2D
 
 @onready var controller := get_node(controller_path)
 @onready var characters := get_node_or_null(characters_path)
+@onready var subwaylayer := get_node(subwaylayerpath)
 @onready var timer: Timer = $Timer
 var rng := RandomNumberGenerator.new()
 var thechance := 0
 var elapsed := 0.0
+var no_spawning : bool = false
 
 func _ready() -> void:
 	if env_scene == null or characters == null:
@@ -36,22 +39,27 @@ func _ready() -> void:
 
 func _process(delta):
 	elapsed += delta
+	if subwaylayer.visible:
+		no_spawning = true
 
 func _on_spawn_tick() -> void:
 	if characters.get_child_count() >= max_on_screen:
 		return
-	_spawn_one()
-	var k := pow(0.5, elapsed / max(half_life_seconds, 0.001))
-	var next := min_spawn_every + (start_spawn_every - min_spawn_every) * k
-	if new_time_elapsed > 1:
-		new_time_elapsed = elapsed - floor(elapsed)
-	if new_time_elapsed >= 1:
-		max_on_screen += 1
-		if spawn_margin_y >= 0.3:
-			spawn_margin_y -= 0.2
-		new_time_elapsed -= 1
-	timer.wait_time = next
-	timer.start()
+	if no_spawning:
+		pass
+	else:
+		_spawn_one()
+		var k := pow(0.5, elapsed / max(half_life_seconds, 0.001))
+		var next := min_spawn_every + (start_spawn_every - min_spawn_every) * k
+		if new_time_elapsed > 1:
+			new_time_elapsed = elapsed - floor(elapsed)
+		if new_time_elapsed >= 1:
+			max_on_screen += 1
+			if spawn_margin_y >= 0.3:
+				spawn_margin_y -= 0.2
+			new_time_elapsed -= 1
+		timer.wait_time = next
+		timer.start()
 
 func _spawn_one() -> void:
 	var e := env_scene.instantiate()

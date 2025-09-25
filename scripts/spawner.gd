@@ -22,10 +22,10 @@ signal fever_done(tf: bool)
 
 @onready var controller := get_node(controller_path)
 @onready var characters := get_node_or_null(characters_path)
-@onready var mainchara := get_node_or_null(mainchara_path)
 @onready var eventspawner := get_node_or_null(eventpath)
 @onready var camera := get_node_or_null(camerapath)
 @onready var splashtext := get_node_or_null(splashtextpath)
+@onready var mainchara := get_node(mainchara_path)
 @onready var timer: Timer = $Timer
 var rng := RandomNumberGenerator.new()
 var elapsed := 0.0
@@ -33,6 +33,7 @@ var fever_active := false
 var old_speed : float = 0
 var old_maincharaspeed : float = 0
 var puddle_cooldown := false
+var subway_in := false
 
 func _ready() -> void:
 	if enemy_scene == null or characters == null:
@@ -48,6 +49,7 @@ func _ready() -> void:
 	if not timer.timeout.is_connected(_on_spawn_tick):
 		timer.timeout.connect(_on_spawn_tick)
 	timer.start()
+	
 
 func _process(delta):
 	elapsed += delta
@@ -83,10 +85,13 @@ func _spawn_one() -> void:
 	var cam := get_viewport().get_camera_2d()
 	var view := get_viewport_rect().size
 	var top := cam.global_position.y - (view.y * 0.5)
-
-	var x: float = lanes_x[rng.randi_range(0, lanes_x.size() - 1)]
+	var spawn_lanes = lanes_x
+	if subway_in:
+		spawn_lanes = [160.0, 420.0]
+	var x: float = spawn_lanes[rng.randi_range(0, spawn_lanes.size() - 1)]
 	var y: float = top - spawn_margin_y    
 	e.global_position = Vector2(x, y)
+
 
 func _on_fever_started() -> void:
 	if fever_active:
@@ -126,3 +131,11 @@ func slowpuddle() -> void:
 		mainchara.slowdown_factor = 1.0
 	elif puddle_cooldown == true:
 		pass
+
+func _on_subwayentry_entered() -> void:
+	print("reached here! lanes_x limited")
+	subway_in = true
+
+func _on_subwayentry_exited() -> void:
+	print("reached here! lanes_x fine now")
+	subway_in = false

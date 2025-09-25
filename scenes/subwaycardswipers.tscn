@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://db7b6udtl7tsu"]
+
+[ext_resource type="Texture2D" uid="uid://chj4mvo36lrw3" path="res://art/tileset/subwaycardscannersprite.png" id="1_gh1w6"]
+[ext_resource type="Script" path="res://scripts/subwaycardswipers.gd" id="2_hdxhq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m543a"]
+size = Vector2(37, 113)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tt4lu"]
+size = Vector2(131, 98)
+
+[node name="subwaycardswipers" type="Sprite2D"]
+process_mode = 3
+texture = ExtResource("1_gh1w6")
+script = ExtResource("2_hdxhq")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0.5, -2.5)
+shape = SubResource("RectangleShape2D_m543a")
+
+[node name="hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(2.5, -2)
+shape = SubResource("RectangleShape2D_tt4lu")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-1, -60)
+scale = Vector2(1, 0.3)
+
+[connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]

@@ -84,6 +84,7 @@ grow_vertical = 2
 texture_normal = ExtResource("4_ajvs8")
 texture_pressed = ExtResource("5_by1ue")
 texture_hover = ExtResource("6_commo")
+texture_focused = ExtResource("6_commo")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_oufef")

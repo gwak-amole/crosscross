@@ -26,6 +26,7 @@ var rng := RandomNumberGenerator.new()
 var chance : int = 0
 var thechance := 0
 var elapsed := 0.0
+var subway_in : bool = false
 
 func _ready() -> void:
 	if event_scene == null or characters == null:
@@ -61,11 +62,11 @@ func _on_spawn_tick() -> void:
 func _spawn_one() -> void:
 	var e := event_scene.instantiate()
 	chance = rng.randi_range(0, 9)
-	if  chance >= 0  and chance <= 6:
+	if  chance >= 0  and chance <= 4:
 		thechance = 0
-	elif chance > 6  and chance <= 8:
+	elif chance > 4  and chance <= 7:
 		thechance = 1
-	elif chance == 9:
+	elif chance  > 7  and chance <= 9:
 		thechance = 2
 	print(chance)
 	print(thechance)

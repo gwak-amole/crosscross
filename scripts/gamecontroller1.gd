@@ -36,6 +36,19 @@ signal tutorial(yes:bool)
 @export var begintutpath : NodePath
 @export var tutorialhboxpath : NodePath
 @export var tuttextpath : NodePath
+@export var citylayerpath : NodePath
+@export var subwaylayerpath : NodePath
+@export var characterspath : NodePath
+@export var eventspath : NodePath
+@export var subswitchanimpath : NodePath
+@export var subswitchtextpath : NodePath
+@export var maincharapath : NodePath
+@export var environmentalmishappath : NodePath
+@export var stairexitpath : NodePath
+@export var stairs_scene : PackedScene
+@export var subwayentriespath : NodePath
+@export var subwaypointpath : NodePath
+@export var cardswiperspath : NodePath
 @export var lives_start: int = 3
 
 var lives: int
@@ -73,6 +86,18 @@ var lives: int
 @onready var begintut := get_node(begintutpath)
 @onready var tutorialhbox := get_node(tutorialhboxpath)
 @onready var tuttext := get_node(tuttextpath)
+@onready var citylayer := get_node(citylayerpath)
+@onready var subwaylayer := get_node(subwaylayerpath)
+@onready var characters := get_node(characterspath)
+@onready var events := get_node(eventspath)
+@onready var subswitchanim := get_node(subswitchanimpath)
+@onready var subswitchtext := get_node(subswitchtextpath)
+@onready var mainchara := get_node(maincharapath)
+@onready var envir := get_node(environmentalmishappath)
+@onready var stairexit := get_node(stairexitpath)
+@onready var subwayentries := get_node(subwayentriespath)
+@onready var subwaypoint := get_node(subwaypointpath)
+@onready var cardswipers := get_node(cardswiperspath)
 
 var cor_idx : int
 var times : int = 0
@@ -86,12 +111,22 @@ var charm_active : bool = false
 var tutorial_wanted : bool = false
 var puddle_tut_wanted : bool = false
 var charm_used : bool = true
+var exiting_subway := false
 
 func _ready() -> void:
+	citylayer.visible = true
+	subwaylayer.visible = false
+	subswitchtext.hide()
+	wyltutlabel.hide()
+	wyltutyes.hide()
+	wyltutno.hide()
+	tuttext.hide()
+	fevertext.hide()
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	fevertimer.process_mode = Node.PROCESS_MODE_PAUSABLE
 	wyltutyes.process_mode = Node.PROCESS_MODE_ALWAYS
 	wyltutno.process_mode = Node.PROCESS_MODE_ALWAYS
+	wyltutyes.grab_focus()
 	fevertimer.one_shot = true
 	if not fevertimer.timeout.is_connected(_on_fevertimer_timeout):
 		fevertimer.timeout.connect(_on_fevertimer_timeout)
@@ -237,7 +272,6 @@ func _on_enemy_contacted(enemy: Node) -> void:
 		charmtexture.show()
 		charm_active = true
 	elif charm_used:
-		charm_used = false
 		charmtexture.hide()
 		charm_active = false
 	if get_tree():
@@ -426,3 +460,94 @@ func _focus_tutorial_ask() -> void:
 	if cols.size() > 0:
 		await get_tree().process_frame
 		(cols[0] as Control).grab_focus()
+
+func _on_subway_exit_triggered():
+	if exiting_subway:
+		return
+	exiting_subway = true
+	stairexit.set_deferred("monitoring", false)
+	stairexit.set_deferred("monitorable", false)
+	subswitchtext.show()
+	subswitchanim.play("fade_in")
+	await subswitchanim.animation_finished
+	
+	subwaylayer.visible = false
+	citylayer.visible = true
+	_reset_player_position()
+	
+	for child in characters.get_children():
+		if child != mainchara:
+			child.queue_free()
+	for child in events.get_children():
+		child.queue_free()
+	subswitchtext.hide()
+	for child in envir.get_children():
+		child.queue_free()
+	for child in subwayentries.get_children():
+		if child.name == "stairs":
+			child.queue_free()
+	for child in cardswipers.get_children():
+		child.queue_free()
+	
+	_spawn_stairs_behind_player()
+	
+	subswitchanim.play("fade_out")
+	await subswitchanim.animation_finished
+	
+	subswitchtext.hide()
+	exiting_subway = false
+	
+
+func _on_stairexit_body_entered(body: Node2D) -> void:
+	if body != mainchara:
+		return
+	if subwaylayer.visible == false:
+		return
+	if not exiting_subway:
+		_on_subway_exit_triggered()
+
+func _on_subwayentry_contacted(entry) -> void:
+	print("reached here")
+	print(entry)
+	_switch_scene_to_subway()
+
+func _switch_scene_to_subway() -> void:
+	subswitchtext.show()
+	subswitchanim.play("fade_in")
+	await subswitchanim.animation_finished
+	citylayer.visible = false
+	subwaylayer.visible = true
+	print("Before:", mainchara.global_position)
+	mainchara.global_position = subwaypoint.global_position
+	print("After:", mainchara.global_position)
+	# Reset camera position to start of subway
+	var cam := get_viewport().get_camera_2d()
+	cam.global_position = subwaypoint.global_position # or use a Marker2D as spawn point
+	# Reset parallax layers
+	for l in subwaylayer.get_children():
+		if l is ParallaxLayer:
+			l.motion_offset = Vector2.ZERO
+	_reset_player_position()
+	subswitchanim.play("fade_out")
+	for child in characters.get_children():
+		if child != mainchara:
+			child.queue_free()
+	for child in events.get_children():
+		child.queue_free()
+	for child in envir.get_children():
+		child.queue_free()
+	for child in cardswipers.get_children():
+		child.queue_free()
+	subswitchtext.hide()
+
+func _reset_player_position():
+	mainchara.global_position = subwaypoint.global_position
+
+func _spawn_stairs_behind_player():
+	var stairs := stairs_scene.instantiate()
+	stairs.global_position = mainchara.global_position + Vector2(0, -40)
+	stairs.z_index = mainchara.z_index - 1
+	envir.add_child(stairs)
+	
+func _on_swiper_contacted():
+	print("SWIPE SWIPE SWIPE SWIPE SWIPE")

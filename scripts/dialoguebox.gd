@@ -22,10 +22,12 @@ func _ready() -> void:
 	visible = false
 
 func start_dialogue(lines: Array, reset_box: bool = false) -> void:
+	print(step_idx)
 	thelines = lines
 	step_idx = 0
 	line_idx = 0
 	anim.play("show")
+	anim.play("default")
 	
 	if reset_box:
 		visible = true

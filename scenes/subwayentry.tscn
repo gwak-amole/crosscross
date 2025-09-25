@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://b1ihgd57sbgla"]
+
+[ext_resource type="Script" path="res://scripts/subwayentry.gd" id="1_jkxi0"]
+[ext_resource type="Texture2D" uid="uid://ctj4nfxsjb4uo" path="res://art/tileset/subwayenter.png" id="2_kemvg"]
+[ext_resource type="Script" path="res://SubwayEntryProfile.gd" id="2_pq7ye"]
+[ext_resource type="Resource" uid="uid://cktkrwrkql1fg" path="res://scripts/SubwayEntryProfiles/EntryGreen.tres" id="3_40gfw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dimj6"]
+size = Vector2(100, 45)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iw1ii"]
+size = Vector2(137, 20)
+
+[node name="subwayentry" type="CharacterBody2D"]
+script = ExtResource("1_jkxi0")
+profile_array = Array[ExtResource("2_pq7ye")]([ExtResource("3_40gfw")])
+sprite_path = NodePath("Sprite2D")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(2, 23)
+scale = Vector2(6.6, 9.5)
+
+[node name="hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(0, 4.5)
+shape = SubResource("RectangleShape2D_dimj6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_kemvg")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-66, -68, 71, -68, 72, 69, 63, 70, 54, 26, 31, 26, -38, 27, -53, 27, -61, 68, -70, 67)
+
+[node name="forenemies" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="forenemies"]
+position = Vector2(0.5, -69)
+shape = SubResource("RectangleShape2D_iw1ii")
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="area_entered" from="forenemies" to="." method="_on_forenemies_area_entered"]

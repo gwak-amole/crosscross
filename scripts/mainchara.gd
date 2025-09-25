@@ -25,7 +25,6 @@ func _physics_process(delta: float) -> void:
 
 func _process(delta: float) -> void:
 	elapsed += delta
-	# exponential ramp from base: speed(t) = start * (1+g)^t
 	speed = start_speed * pow(1.0 + growth_per_sec, elapsed)
 	if speed > max_speed:
 		speed = max_speed

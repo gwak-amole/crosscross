@@ -5,7 +5,7 @@ signal puddle_contacted
 @export var profile: EnvMishapProfile
 @export var sprite_path : NodePath
 
-@onready var onscreen: VisibleOnScreenNotifier2D = $CharacterBody2D/VisibleOnScreenNotifier2D
+@onready var onscreen: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
 @onready var sprite := get_node(sprite_path)
 
 func _ready() -> void:

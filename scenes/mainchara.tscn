@@ -187,6 +187,7 @@ animations = [{
 size = Vector2(25, 13.5)
 
 [node name="mainchara" type="CharacterBody2D"]
+z_index = 100
 script = ExtResource("1_rjewh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
