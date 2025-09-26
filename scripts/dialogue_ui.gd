@@ -9,6 +9,8 @@ signal charm_used
 @export var controllerpath : NodePath
 @export var tutanimpath : NodePath
 @export var tutlabelpath : NodePath
+@export var subwaylayerpath : NodePath
+@export var subwayanimationpath : NodePath
 
 @onready var panel := $Panel
 @onready var art : Node = $Panel/Art
@@ -23,6 +25,8 @@ signal charm_used
 @onready var controller := get_node(controllerpath)
 @onready var tutanim := get_node(tutanimpath)
 @onready var tutlabel := get_node(tutlabelpath)
+@onready var subwaylayer := get_node(subwaylayerpath)
+@onready var subwayanim := get_node(subwayanimationpath)
 
 var dlg_scene: Node = null
 var cor_idx : int
@@ -66,6 +70,7 @@ func show_dialogue_from_profile(p: EnemyProfile) -> int:
 	text.hide()
 	tutlabel.hide()
 	rps_choices_box.hide()
+	subwayanim.play("RESET")
 	choices_box.PROCESS_MODE_DISABLED
 	if is_instance_valid(dlg_scene):
 		dlg_scene.queue_free()
@@ -76,34 +81,65 @@ func show_dialogue_from_profile(p: EnemyProfile) -> int:
 	
 	var ap = dlg_scene.get_node_or_null("AnimationPlayer")
 	if ap:
-		await get_tree().create_timer(1.5, true).timeout
-		print("playing animations")
-		if ap.has_animation("appear"):
-			ap.play("appear")
-			await get_tree().create_timer(0.1, true).timeout
-			visible = true
-			audio.play()
-			panel.show()
-			choices_box.PROCESS_MODE_ALWAYS
-		await ap.animation_finished
-		if ap.has_animation("hairsway"):
-				ap.play("hairsway")
-		text.show()
-		choices_box.show()
-		if controller.charm_active:
-			print("reaches here")
-			charm.disabled = false
-			charm.show()
-			print("charm showed")
-		else:
-			print("for some reason charm hides")
-			charm.hide()
-		if tutorial_wanted:
-			tutlabel.show()
-			tutanim.play("introtodialogue")
-			print("introtodialogue")
-			tutanim.animation_finished.connect(_on_intro_finished, CONNECT_ONE_SHOT)
-			print("not wantec")
+		if subwaylayer.visible == false:
+			await get_tree().create_timer(1.5, true).timeout
+			print("playing animations")
+			if ap.has_animation("appear"):
+				ap.play("appear")
+				await get_tree().create_timer(0.1, true).timeout
+				visible = true
+				audio.play()
+				panel.show()
+				choices_box.PROCESS_MODE_ALWAYS
+			await ap.animation_finished
+			if ap.has_animation("hairsway"):
+					ap.play("hairsway")
+			text.show()
+			choices_box.show()
+			if controller.charm_active:
+				print("reaches here")
+				charm.disabled = false
+				charm.show()
+				print("charm showed")
+			else:
+				print("for some reason charm hides")
+				charm.hide()
+			if tutorial_wanted:
+				tutlabel.show()
+				tutanim.play("introtodialogue")
+				print("introtodialogue")
+				tutanim.animation_finished.connect(_on_intro_finished, CONNECT_ONE_SHOT)
+				print("not wantec")
+		elif subwaylayer.visible:
+			await get_tree().create_timer(1.5, true).timeout
+			print("playing animations")
+			if ap.has_animation("subwayappear"):
+				ap.play("subwayappear")
+				await get_tree().create_timer(0.1, true).timeout
+				visible = true
+				audio.play()
+				panel.show()
+				choices_box.PROCESS_MODE_ALWAYS
+			await ap.animation_finished
+			if ap.has_animation("subwayhairsway"):
+					ap.play("subwayhairsway")
+			text.show()
+			choices_box.show()
+			if controller.charm_active:
+				print("reaches here")
+				charm.disabled = false
+				charm.show()
+				print("charm showed")
+			else:
+				print("for some reason charm hides")
+				charm.hide()
+			if tutorial_wanted:
+				tutlabel.show()
+				tutanim.play("introtodialogue")
+				print("introtodialogue")
+				tutanim.animation_finished.connect(_on_intro_finished, CONNECT_ONE_SHOT)
+				print("not wantec")
+			
 	else:
 		print("No AnimationPlayer found in dlg_scene")
 	
@@ -186,19 +222,28 @@ func _wait_for_choice() -> int:
 	if is_rps_mode:
 		if enemy_move == 0:
 			text.text = "Rock!"
-			ap.play("rock")
+			if subwaylayer.visible:
+				ap.play("subwayrock")
+			else:
+				ap.play("rock")
 			if charm_override:
 				charm_override = false
 				picked = 1
 		elif enemy_move == 1:
 			text.text = "Paper!"
-			ap.play("paper")
+			if subwaylayer.visible:
+				ap.play("subwaypaper")
+			else:
+				ap.play("paper")
 			if charm_override:
 				charm_override = false
 				picked = 2
 		elif enemy_move == 2:
 			text.text = "Scissors!"
-			ap.play("scissors")
+			if subwaylayer.visible:
+				ap.play("subwayscissors")
+			else:
+				ap.play("scissors")
 			if charm_override:
 				charm_override = false
 				picked = 0
@@ -216,7 +261,10 @@ func _wait_for_choice() -> int:
 			is_rps_mode = false
 			text.hide()
 			playertexture.hide()
-			ap.play("angry")
+			if subwaylayer.visible:
+				ap.play("subwayangry")
+			else:
+				ap.play("angry")
 			neg_response.play()
 			await get_tree().create_timer(2.0).timeout
 			visible = false
@@ -227,7 +275,10 @@ func _wait_for_choice() -> int:
 			is_rps_mode = false
 			text.hide()
 			playertexture.hide()
-			ap.play("apologize")
+			if subwaylayer.visible:
+				ap.play("subwayapologize")
+			else:
+				ap.play("apologize")
 			pos_response.play()
 			await get_tree().create_timer(2.0).timeout
 			visible = false
@@ -236,7 +287,10 @@ func _wait_for_choice() -> int:
 			is_rps_mode = false
 			text.hide()
 			playertexture.hide()
-			ap.play("angry")
+			if subwaylayer.visible:
+				ap.play("subwayangry")
+			else:
+				ap.play("angry")
 			neg_response.play()
 			await get_tree().create_timer(2.0).timeout
 			return 0
@@ -244,10 +298,16 @@ func _wait_for_choice() -> int:
 		var wrong : bool = picked != cor_idx
 		visible = true
 		if wrong:
-			ap.play("angry")
+			if subwaylayer.visible:
+				ap.play("subwayangry")
+			else:
+				ap.play("angry")
 			neg_response.play()
 		else:
-			ap.play("apologize")
+			if subwaylayer.visible:
+				ap.play("subwayapologize")
+			else:
+				ap.play("apologize")
 			pos_response.play()
 		await get_tree().create_timer(2.0).timeout
 		visible = false
@@ -351,7 +411,9 @@ func _unhandled_input(event: InputEvent) -> void:
 			var b := f as BaseButton
 			if b and b.is_visible_in_tree() and not b.disabled:
 				b.emit_signal("pressed")
-				get_viewport().set_input_as_handled()
+				var vp := get_viewport()
+				if vp:
+					vp.set_input_as_handled()
 
 func _focus_normal() -> void:
 	var matrix : Array = []

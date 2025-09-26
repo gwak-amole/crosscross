@@ -20,9 +20,9 @@ script = ExtResource("2_hdxhq")
 position = Vector2(0.5, -2.5)
 shape = SubResource("RectangleShape2D_m543a")
 
-[node name="hitbox" type="Area2D" parent="."]
+[node name="cardswipe_hitbox" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cardswipe_hitbox"]
 position = Vector2(2.5, -2)
 shape = SubResource("RectangleShape2D_tt4lu")
 
@@ -30,4 +30,4 @@ shape = SubResource("RectangleShape2D_tt4lu")
 position = Vector2(-1, -60)
 scale = Vector2(1, 0.3)
 
-[connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="area_entered" from="cardswipe_hitbox" to="." method="_on_hitbox_area_entered"]

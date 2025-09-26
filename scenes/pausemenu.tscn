@@ -1,0 +1,157 @@
+[gd_scene load_steps=8 format=3 uid="uid://wovmegmtdsd0"]
+
+[ext_resource type="Script" path="res://scripts/pausemenu.gd" id="1_62qja"]
+[ext_resource type="Texture2D" uid="uid://duy7wce4dq1jo" path="res://art/officemandialogue/paused.png" id="2_ofiel"]
+[ext_resource type="FontFile" uid="uid://r7libpb4d4ao" path="res://fonts/Jersey_10/Jersey10-Regular.ttf" id="3_b0w5a"]
+[ext_resource type="Texture2D" uid="uid://1dfjghinhpxf" path="res://art/officemandialogue/pausebtnnormal.png" id="3_s8y4u"]
+[ext_resource type="Texture2D" uid="uid://4gqisqano6yh" path="res://art/officemandialogue/pausebtnpressed.png" id="4_k5lke"]
+[ext_resource type="Texture2D" uid="uid://c3je3g2gq7xho" path="res://art/officemandialogue/pausebtnfocused.png" id="5_ort8r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vo34y"]
+
+[node name="pausemenu" type="CanvasLayer"]
+script = ExtResource("1_62qja")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.152941)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_vo34y")
+
+[node name="TextureRect" type="TextureRect" parent="Control/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -225.0
+offset_top = -140.0
+offset_right = 225.0
+offset_bottom = 140.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_ofiel")
+
+[node name="Label" type="Label" parent="Control/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -56.0
+offset_top = -111.0
+offset_right = 57.0
+offset_bottom = -59.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_b0w5a")
+theme_override_font_sizes/font_size = 45
+text = "PAUSED"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -40.0
+offset_right = 100.0
+offset_bottom = 109.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Resume" type="TextureButton" parent="Control/Panel/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("3_s8y4u")
+texture_pressed = ExtResource("4_k5lke")
+texture_focused = ExtResource("5_ort8r")
+
+[node name="Label" type="Label" parent="Control/Panel/VBoxContainer/Resume"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_b0w5a")
+theme_override_font_sizes/font_size = 25
+text = "Resume"
+horizontal_alignment = 1
+
+[node name="Restart" type="TextureButton" parent="Control/Panel/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("3_s8y4u")
+texture_pressed = ExtResource("4_k5lke")
+texture_focused = ExtResource("5_ort8r")
+
+[node name="Label" type="Label" parent="Control/Panel/VBoxContainer/Restart"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_b0w5a")
+theme_override_font_sizes/font_size = 25
+text = "Replay"
+horizontal_alignment = 1
+
+[node name="Quit" type="TextureButton" parent="Control/Panel/VBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("3_s8y4u")
+texture_pressed = ExtResource("4_k5lke")
+texture_focused = ExtResource("5_ort8r")
+
+[node name="Label" type="Label" parent="Control/Panel/VBoxContainer/Quit"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_b0w5a")
+theme_override_font_sizes/font_size = 25
+text = "Quit"
+horizontal_alignment = 1

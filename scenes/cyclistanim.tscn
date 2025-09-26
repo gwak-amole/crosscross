@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cpj7fwuspwefg"]
+[gd_scene load_steps=47 format=3 uid="uid://cpj7fwuspwefg"]
 
 [ext_resource type="Texture2D" uid="uid://dnpuohw4q6iuk" path="res://art/cyclistdialogue/cyclistdialogueappear0.png" id="1_ys4h6"]
 [ext_resource type="Texture2D" uid="uid://tjpej43muqhk" path="res://art/cyclistdialogue/cyclistdialogueappear1.png" id="2_a7hwy"]
@@ -11,10 +11,20 @@
 [ext_resource type="Texture2D" uid="uid://vh7y8hkwmydh" path="res://art/cyclistdialogue/cyclistdialogueapologize.png" id="9_je4q3"]
 [ext_resource type="Texture2D" uid="uid://beupdhvlkd11x" path="res://art/cyclistdialogue/cyclistdialogueapologize1.png" id="10_s7jha"]
 [ext_resource type="AudioStream" uid="uid://cp5w2y57ckc75" path="res://audio/488227__plumaudio__happy-blip.wav" id="11_ebkue"]
+[ext_resource type="Texture2D" uid="uid://b178yd81u8m8t" path="res://art/cyclistdialogue/cyclistdialoguesubwayappear0.png" id="11_eqvps"]
 [ext_resource type="AudioStream" uid="uid://xiipkjlpuwxv" path="res://audio/278164__thedweebman__8-bit-wrong-2.wav" id="12_5sswo"]
+[ext_resource type="Texture2D" uid="uid://1bf66dksv1bb" path="res://art/cyclistdialogue/cyclistdialoguesubwayappear1.png" id="12_f35v6"]
+[ext_resource type="Texture2D" uid="uid://c1jyi351fxovn" path="res://art/cyclistdialogue/cyclistdialoguesubwayappear2.png" id="13_hjfnp"]
 [ext_resource type="Texture2D" uid="uid://bppexsv4fdwtw" path="res://art/cyclistdialogue/rps/rockplayer.png" id="13_siwjm"]
 [ext_resource type="Texture2D" uid="uid://cx6v7af3a8m40" path="res://art/cyclistdialogue/rps/paperplayer.png" id="14_de0ju"]
+[ext_resource type="Texture2D" uid="uid://bcnrwgucxh48d" path="res://art/cyclistdialogue/cyclistdialoguesubwayhairsway.png" id="14_nkix3"]
+[ext_resource type="Texture2D" uid="uid://c0om4x6w1o0xb" path="res://art/cyclistdialogue/cyclistdialoguesubwayspaper.png" id="15_41e17"]
+[ext_resource type="Texture2D" uid="uid://d15ew6b0elroo" path="res://art/cyclistdialogue/cyclistdialoguesubwayangry0.png" id="15_uyir7"]
 [ext_resource type="Texture2D" uid="uid://6g50gb7m1fso" path="res://art/cyclistdialogue/rps/scissorsplayer.png" id="15_xwuxn"]
+[ext_resource type="Texture2D" uid="uid://c4t8uwxoie8f5" path="res://art/cyclistdialogue/cyclistdialoguesubwayangry1.png" id="16_igup8"]
+[ext_resource type="Texture2D" uid="uid://bqqj38itfwk13" path="res://art/cyclistdialogue/cyclistdialoguesubwayscissors.png" id="16_xshpd"]
+[ext_resource type="Texture2D" uid="uid://c5n0dabvdwmal" path="res://art/cyclistdialogue/cyclistdialoguesubwayapologize0.png" id="17_pxmy4"]
+[ext_resource type="Texture2D" uid="uid://c30c4glh40e8a" path="res://art/cyclistdialogue/cyclistdialoguesubwayapologize1.png" id="18_pokpa"]
 
 [sub_resource type="Animation" id="Animation_bc7o1"]
 length = 0.001
@@ -163,6 +173,126 @@ tracks/0/keys = {
 "values": [ExtResource("6_00tt0")]
 }
 
+[sub_resource type="Animation" id="Animation_smq7y"]
+resource_name = "subwayappear"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("cyclist_art:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.133333, 0.266667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("11_eqvps"), ExtResource("12_f35v6"), ExtResource("13_hjfnp")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("cyclist_art:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.366667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_jyi66"]
+resource_name = "subwayhairsway"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("cyclist_art:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.433333, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("13_hjfnp"), ExtResource("14_nkix3"), ExtResource("13_hjfnp")]
+}
+
+[sub_resource type="Animation" id="Animation_rng6a"]
+resource_name = "subwayrock"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("cyclist_art:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("13_hjfnp")]
+}
+
+[sub_resource type="Animation" id="Animation_6bdwm"]
+resource_name = "subwaypaper"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("cyclist_art:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("15_41e17")]
+}
+
+[sub_resource type="Animation" id="Animation_dt4rd"]
+resource_name = "subwayscissors"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("cyclist_art:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("16_xshpd")]
+}
+
+[sub_resource type="Animation" id="Animation_edloj"]
+resource_name = "subwayangry"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("cyclist_art:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.466667, 0.933333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("15_uyir7"), ExtResource("16_igup8"), ExtResource("15_uyir7")]
+}
+
+[sub_resource type="Animation" id="Animation_l45gh"]
+resource_name = "subwayapologize"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("cyclist_art:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.433333, 0.933333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("17_pxmy4"), ExtResource("18_pokpa"), ExtResource("17_pxmy4")]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rlyla"]
 _data = {
 "RESET": SubResource("Animation_bc7o1"),
@@ -172,7 +302,14 @@ _data = {
 "hairsway": SubResource("Animation_po42e"),
 "paper": SubResource("Animation_r5ehp"),
 "rock": SubResource("Animation_ueu7r"),
-"scissors": SubResource("Animation_m8cdb")
+"scissors": SubResource("Animation_m8cdb"),
+"subwayangry": SubResource("Animation_edloj"),
+"subwayapologize": SubResource("Animation_l45gh"),
+"subwayappear": SubResource("Animation_smq7y"),
+"subwayhairsway": SubResource("Animation_jyi66"),
+"subwaypaper": SubResource("Animation_6bdwm"),
+"subwayrock": SubResource("Animation_rng6a"),
+"subwayscissors": SubResource("Animation_dt4rd")
 }
 
 [sub_resource type="Animation" id="Animation_bjhyu"]

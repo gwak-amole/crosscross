@@ -49,6 +49,7 @@ signal tutorial(yes:bool)
 @export var subwayentriespath : NodePath
 @export var subwaypointpath : NodePath
 @export var cardswiperspath : NodePath
+@export var pausemenupath : NodePath
 @export var lives_start: int = 3
 
 var lives: int
@@ -98,6 +99,7 @@ var lives: int
 @onready var subwayentries := get_node(subwayentriespath)
 @onready var subwaypoint := get_node(subwaypointpath)
 @onready var cardswipers := get_node(cardswiperspath)
+@onready var pausemenu := get_node(pausemenupath)
 
 var cor_idx : int
 var times : int = 0
@@ -355,6 +357,7 @@ func _on_charm_contacted(e: Node) -> void:
 	charmtexture.show()
 	charm_active = true
 	charmsound.play()
+	charm_used = false
 
 func _on_puddle_contacted(e:Node) -> void:
 	if puddle_tut_wanted:
@@ -551,3 +554,16 @@ func _spawn_stairs_behind_player():
 	
 func _on_swiper_contacted():
 	print("SWIPE SWIPE SWIPE SWIPE SWIPE")
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("cancel"):
+		if pausemenu.visible:
+			pausemenu.close()
+		else:
+			pausemenu.open()
+
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	if area.name == "cardswipe_hitbox":
+		var subwayscanner = area.get_parent()
+		subwayscanner.queue_free()

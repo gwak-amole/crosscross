@@ -1,4 +1,4 @@
-[gd_scene load_steps=183 format=4 uid="uid://bw1jvqsj3l017"]
+[gd_scene load_steps=185 format=4 uid="uid://bw1jvqsj3l017"]
 
 [ext_resource type="PackedScene" uid="uid://cqsj6ljppkot6" path="res://scenes/mainchara.tscn" id="1_bp8ss"]
 [ext_resource type="Script" path="res://scripts/parallax_background.gd" id="1_eistd"]
@@ -121,6 +121,7 @@
 [ext_resource type="Texture2D" uid="uid://bb85kghjmkpfa" path="res://art/officemandialogue/tutorial/tutorial1.png" id="104_qm2tc"]
 [ext_resource type="Script" path="res://scripts/tutorialbox.gd" id="105_s6b1g"]
 [ext_resource type="Texture2D" uid="uid://dvj7vo7fu33qv" path="res://art/blankscreen.png" id="117_3msv0"]
+[ext_resource type="PackedScene" uid="uid://wovmegmtdsd0" path="res://scenes/pausemenu.tscn" id="122_7flti"]
 
 [sub_resource type="Animation" id="Animation_84thl"]
 length = 0.001
@@ -642,6 +643,9 @@ sources/0 = SubResource("TileSetAtlasSource_w87ob")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e8jrd"]
 size = Vector2(386, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_252vg"]
+size = Vector2(377, 529)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h3kfu"]
 texture = ExtResource("2_cleu5")
@@ -1209,6 +1213,7 @@ stairs_scene = ExtResource("22_lxjfs")
 subwayentriespath = NodePath("../subwayentries")
 subwaypointpath = NodePath("../Marker2D")
 cardswiperspath = NodePath("../subwaycardswiper")
+pausemenupath = NodePath("../pausemenu")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 4
@@ -1294,6 +1299,8 @@ charmpath = NodePath("Panel/Overlay/charmbut")
 controllerpath = NodePath("../GameController")
 tutanimpath = NodePath("Panel/tutorialdialogue")
 tutlabelpath = NodePath("Panel/tutlabel")
+subwaylayerpath = NodePath("../Subway")
+subwayanimationpath = NodePath("../subwayswitch/AnimationPlayer")
 
 [node name="Panel" type="Panel" parent="Dialogue UI"]
 anchors_preset = 15
@@ -1592,6 +1599,12 @@ position = Vector2(10, 5)
 position = Vector2(289, -1936)
 shape = SubResource("RectangleShape2D_e8jrd")
 
+[node name="Area2D" type="Area2D" parent="Subway"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Subway/Area2D"]
+position = Vector2(298.5, -2214.5)
+shape = SubResource("RectangleShape2D_252vg")
+
 [node name="City" type="ParallaxBackground" parent="."]
 script = ExtResource("1_eistd")
 
@@ -1864,6 +1877,9 @@ texture = ExtResource("117_3msv0")
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(284, -11)
 
+[node name="pausemenu" parent="." instance=ExtResource("122_7flti")]
+
 [connection signal="pressed" from="tutorial/Control/HBoxContainer/yes" to="GameController" method="_on_yes_pressed"]
 [connection signal="pressed" from="tutorial/Control/HBoxContainer/no" to="GameController" method="_on_no_pressed"]
 [connection signal="body_entered" from="Subway/stairexit" to="GameController" method="_on_stairexit_body_entered"]
+[connection signal="area_entered" from="Subway/Area2D" to="GameController" method="_on_area_2d_area_entered"]

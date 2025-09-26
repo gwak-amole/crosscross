@@ -44,6 +44,6 @@ func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
 
 
 func _on_forenemies_area_entered(area: Area2D) -> void:
-	if area.name != "enemy_hitbox":
+	if area.name == "enemy_hitbox":
 		var enemy = area.get_parent()
 		enemy.queue_free()

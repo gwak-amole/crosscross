@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cm62k35ajy21k"]
+[gd_scene load_steps=29 format=3 uid="uid://cm62k35ajy21k"]
 
 [ext_resource type="Texture2D" uid="uid://c524ouq2qdh7s" path="res://art/officewomandialogue/gal/gyaruappear0.png" id="1_ie40g"]
 [ext_resource type="Texture2D" uid="uid://dhdga8h0bl3qy" path="res://art/officewomandialogue/gal/gyaruappear1.png" id="2_0xowe"]
@@ -8,8 +8,16 @@
 [ext_resource type="Texture2D" uid="uid://cg4mh6jo1eh06" path="res://art/officewomandialogue/gal/gyaruangry2.png" id="6_gheny"]
 [ext_resource type="Texture2D" uid="uid://duu78qf2ua2ld" path="res://art/officewomandialogue/gal/gyaruapologize1.png" id="7_dkedn"]
 [ext_resource type="Texture2D" uid="uid://saollpaija2h" path="res://art/officewomandialogue/gal/gyaruapologize2.png" id="8_k7c2w"]
+[ext_resource type="Texture2D" uid="uid://dmhphdrsbm2c6" path="res://art/officewomandialogue/gal/gyarusubwayappear0.png" id="9_4bwfc"]
 [ext_resource type="AudioStream" uid="uid://cp5w2y57ckc75" path="res://audio/488227__plumaudio__happy-blip.wav" id="9_gmski"]
+[ext_resource type="Texture2D" uid="uid://c6t13r50obkup" path="res://art/officewomandialogue/gal/gyarusubwayappear1.png" id="10_5uo87"]
 [ext_resource type="AudioStream" uid="uid://xiipkjlpuwxv" path="res://audio/278164__thedweebman__8-bit-wrong-2.wav" id="10_7md0k"]
+[ext_resource type="Texture2D" uid="uid://bjefvqveoevh3" path="res://art/officewomandialogue/gal/gyarusubwayappear2.png" id="11_jfy31"]
+[ext_resource type="Texture2D" uid="uid://c763pxcp0ly1b" path="res://art/officewomandialogue/gal/gyarusubwayhairsway.png" id="12_1j4hf"]
+[ext_resource type="Texture2D" uid="uid://dvdp10k5u4ukl" path="res://art/officewomandialogue/gal/gyarusubwayangry0.png" id="12_ju78i"]
+[ext_resource type="Texture2D" uid="uid://gh4lljuysp7d" path="res://art/officewomandialogue/gal/gyarusubwayangry1.png" id="13_f7kl0"]
+[ext_resource type="Texture2D" uid="uid://6n4puq7mx7x" path="res://art/officewomandialogue/gal/gyarusubwayapologize0.png" id="13_ojwoq"]
+[ext_resource type="Texture2D" uid="uid://difdsut2fieru" path="res://art/officewomandialogue/gal/gyarusubwayapologize1.png" id="14_er5pa"]
 
 [sub_resource type="Animation" id="Animation_og5la"]
 length = 0.001
@@ -113,13 +121,92 @@ tracks/0/keys = {
 "values": [ExtResource("3_bphna"), ExtResource("4_m3r72"), ExtResource("3_bphna")]
 }
 
+[sub_resource type="Animation" id="Animation_vkx7c"]
+resource_name = "subwayappear"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.166667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("9_4bwfc"), ExtResource("10_5uo87"), ExtResource("11_jfy31")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333, 0.333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_dxbld"]
+resource_name = "subwayangry"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.433333, 0.933333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("12_ju78i"), ExtResource("13_f7kl0"), ExtResource("12_ju78i")]
+}
+
+[sub_resource type="Animation" id="Animation_53e4f"]
+resource_name = "subwayhairsway"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.4, 0.866667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("11_jfy31"), ExtResource("12_1j4hf"), ExtResource("11_jfy31")]
+}
+
+[sub_resource type="Animation" id="Animation_xisa3"]
+resource_name = "subwayapologize"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.4, 0.833333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("13_ojwoq"), ExtResource("14_er5pa"), ExtResource("13_ojwoq")]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0r3k6"]
 _data = {
 "RESET": SubResource("Animation_og5la"),
 "angry": SubResource("Animation_ytcco"),
 "apologize": SubResource("Animation_iu0re"),
 "appear": SubResource("Animation_1rjy8"),
-"hairsway": SubResource("Animation_l0dka")
+"hairsway": SubResource("Animation_l0dka"),
+"subwayangry": SubResource("Animation_dxbld"),
+"subwayapologize": SubResource("Animation_xisa3"),
+"subwayappear": SubResource("Animation_vkx7c"),
+"subwayhairsway": SubResource("Animation_53e4f")
 }
 
 [node name="gyaru_animation" type="Node2D"]
