@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dvwqarevn5k5p"
+path="res://.godot/imported/crosscross_bird_chirp - 27:09:25, 14.16.wav-b9b2ab91c911b820b36d6c6bee7c3d2e.sample"
+
+[deps]
+
+source_file="res://audio/crosscross_bird_chirp - 27:09:25, 14.16.wav"
+dest_files=["res://.godot/imported/crosscross_bird_chirp - 27:09:25, 14.16.wav-b9b2ab91c911b820b36d6c6bee7c3d2e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

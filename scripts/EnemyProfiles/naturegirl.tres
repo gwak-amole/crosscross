@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="EnemyProfile" load_steps=3 format=3 uid="uid://dctyi1foxcrwq"]
+[gd_resource type="Resource" script_class="EnemyProfile" load_steps=4 format=3 uid="uid://dctyi1foxcrwq"]
 
+[ext_resource type="PackedScene" uid="uid://dc3r26vt60fqd" path="res://scenes/naturegirl.tscn" id="1_8d3g3"]
 [ext_resource type="Script" path="res://scripts/EnemyProfile.gd" id="1_ik0px"]
 [ext_resource type="SpriteFrames" uid="uid://dfrwsiirabbcr" path="res://art/frames/naturegirlframes.tres" id="2_tbnqu"]
 
@@ -11,11 +12,12 @@ language = "en"
 anim_idle = "idle"
 anim_contact = "contact"
 sprite_frames = ExtResource("2_tbnqu")
-dialogue_text = ""
-dialogue_text_2 = ""
-choices = PackedStringArray()
-choices2 = PackedStringArray()
-correct_idx = 0
-correct_idx_2 = 0
-gender = ""
+dialogue_scene = ExtResource("1_8d3g3")
+dialogue_text = "Did you notice how the air smells different after it rains?"
+dialogue_text_2 = "Look at that tree's roots breaking through the sidewalk~"
+choices = PackedStringArray("You sound like a hippie :)", "Yeah, it\'s refreshing!", "Isn\'t it just wet dirt", "Groot")
+choices2 = PackedStringArray("Do you hug trees?", "Yeah and it gets expensive to repair.", "That\'s a wildfire hazard.", "True- nature is so strong.")
+correct_idx = 1
+correct_idx_2 = 3
+gender = "female"
 is_rps = false

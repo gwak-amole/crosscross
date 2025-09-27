@@ -65,8 +65,20 @@ func _check_swipe():
 		anim.play("hide")
 		await anim.animation_finished
 		_close_swipe()
+	elif bar.value > target_zone.y:
+		label.text = "Released too late!"
+		audiowrong.play()
+		swipe_done = false
+		first_time = false
+		_start_swipe()
+	elif bar.value < target_zone.x:
+		label.text = "Released too early!"
+		audiowrong.play()
+		swipe_done = false
+		first_time = false
+		_start_swipe()
 	else:
-		label.text = "Failed! Try again."
+		label.text = "Failed!"
 		audiowrong.play()
 		swipe_done = false
 		first_time = false
