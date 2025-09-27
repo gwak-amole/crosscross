@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="EnemyProfile" load_steps=4 format=3 uid="uid://3mni6igxas68"]
+
+[ext_resource type="Script" path="res://scripts/EnemyProfile.gd" id="1_5jn47"]
+[ext_resource type="PackedScene" uid="uid://dyomkbocvw5m2" path="res://scenes/streetartistanim.tscn" id="1_sir2y"]
+[ext_resource type="SpriteFrames" uid="uid://cfjiqlei47a31" path="res://art/frames/streetartistframes.tres" id="2_0w5wu"]
+
+[resource]
+script = ExtResource("1_5jn47")
+display_name = "Street Artist"
+speed = 0.0
+language = "rand"
+anim_idle = "idle"
+anim_contact = "contact"
+sprite_frames = ExtResource("2_0w5wu")
+dialogue_scene = ExtResource("1_sir2y")
+dialogue_text = "Entschuldigung!"
+dialogue_text_2 = "Na, das war knapp."
+choices = PackedStringArray("Es tut mir leid", "Kannst du nicht besser laufen", "Ich spreche kein Deustche.", "Typisch deutsch, so streng")
+choices2 = PackedStringArray("Das war deine Schuld.", "Mach doch keinen Drama daraus", "Ich hab keine Zeit fur so was.", "Keine Sorge, alles in Ordnung.")
+correct_idx = 0
+correct_idx_2 = 3
+gender = "male"
+is_rps = false

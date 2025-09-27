@@ -1,4 +1,4 @@
-[gd_scene load_steps=185 format=4 uid="uid://bw1jvqsj3l017"]
+[gd_scene load_steps=187 format=4 uid="uid://bw1jvqsj3l017"]
 
 [ext_resource type="PackedScene" uid="uid://cqsj6ljppkot6" path="res://scenes/mainchara.tscn" id="1_bp8ss"]
 [ext_resource type="Script" path="res://scripts/parallax_background.gd" id="1_eistd"]
@@ -98,6 +98,7 @@
 [ext_resource type="Texture2D" uid="uid://d4ld8ijuwum7m" path="res://art/tileset/continuetimer/continuetimer14.png" id="57_0bwgm"]
 [ext_resource type="Texture2D" uid="uid://codgevx8k6byx" path="res://art/tileset/continuetimer/continuetimer15.png" id="58_yq1qy"]
 [ext_resource type="Texture2D" uid="uid://daim3hc2jfid7" path="res://art/tileset/continuetimer/continuetimer16.png" id="59_dtb4p"]
+[ext_resource type="Resource" uid="uid://3mni6igxas68" path="res://scripts/EnemyProfiles/streetartist.tres" id="64_ho1un"]
 [ext_resource type="AudioStream" uid="uid://dv78poq5h755x" path="res://audio/391542__sirplus__lightloop16.wav" id="70_pm85h"]
 [ext_resource type="Script" path="res://scripts/subway_spawner.gd" id="75_avgf5"]
 [ext_resource type="Script" path="res://SubwayEntryProfile.gd" id="76_yxi8b"]
@@ -122,6 +123,7 @@
 [ext_resource type="Script" path="res://scripts/tutorialbox.gd" id="105_s6b1g"]
 [ext_resource type="Texture2D" uid="uid://dvj7vo7fu33qv" path="res://art/blankscreen.png" id="117_3msv0"]
 [ext_resource type="PackedScene" uid="uid://wovmegmtdsd0" path="res://scenes/pausemenu.tscn" id="122_7flti"]
+[ext_resource type="PackedScene" uid="uid://bo2viocg7ermv" path="res://scenes/cardswipingactivity.tscn" id="123_kmmca"]
 
 [sub_resource type="Animation" id="Animation_84thl"]
 length = 0.001
@@ -1214,6 +1216,7 @@ subwayentriespath = NodePath("../subwayentries")
 subwaypointpath = NodePath("../Marker2D")
 cardswiperspath = NodePath("../subwaycardswiper")
 pausemenupath = NodePath("../pausemenu")
+cardswipingactivitypath = NodePath("../cardswipingactivity")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 4
@@ -1647,7 +1650,7 @@ characters_path = NodePath("../Characters")
 envmishappath = NodePath("../envmishap")
 
 [node name="Spawner" parent="." instance=ExtResource("8_fmll7")]
-profiles = Array[ExtResource("10_fgj5o")]([ExtResource("11_nbt5j"), ExtResource("12_qqd8v"), ExtResource("13_sqrlo"), ExtResource("14_iyk3s"), ExtResource("19_dlvn0"), ExtResource("29_ki033")])
+profiles = Array[ExtResource("10_fgj5o")]([ExtResource("11_nbt5j"), ExtResource("12_qqd8v"), ExtResource("13_sqrlo"), ExtResource("14_iyk3s"), ExtResource("19_dlvn0"), ExtResource("29_ki033"), ExtResource("64_ho1un")])
 controller_path = NodePath("../GameController")
 characters_path = NodePath("../Characters")
 mainchara_path = NodePath("../mainchara")
@@ -1689,8 +1692,8 @@ controller_path = NodePath("../GameController")
 characters_path = NodePath("../subwayentries")
 subwaylayerpath = NodePath("../Subway")
 enemyspawnerpath = NodePath("../Spawner")
-start_spawn_every = 5.0
-min_spawn_every = 5
+start_spawn_every = 45.0
+min_spawn_every = 40
 
 [node name="Timer" type="Timer" parent="SubwaySpawner"]
 
@@ -1878,6 +1881,8 @@ texture = ExtResource("117_3msv0")
 position = Vector2(284, -11)
 
 [node name="pausemenu" parent="." instance=ExtResource("122_7flti")]
+
+[node name="cardswipingactivity" parent="." instance=ExtResource("123_kmmca")]
 
 [connection signal="pressed" from="tutorial/Control/HBoxContainer/yes" to="GameController" method="_on_yes_pressed"]
 [connection signal="pressed" from="tutorial/Control/HBoxContainer/no" to="GameController" method="_on_no_pressed"]

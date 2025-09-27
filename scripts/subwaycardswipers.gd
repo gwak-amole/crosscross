@@ -12,7 +12,7 @@ func _ready() -> void:
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	if area.name != "player_hitbox": return
-	emit_signal("swiper_contacted", self)
+	emit_signal("swiper_contacted")
 	print("signal swiper emitted")
 
 

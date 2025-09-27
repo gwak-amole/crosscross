@@ -7,7 +7,7 @@
 size = Vector2(37, 113)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tt4lu"]
-size = Vector2(131, 98)
+size = Vector2(131, 5.5)
 
 [node name="subwaycardswipers" type="Sprite2D"]
 process_mode = 3
@@ -23,7 +23,7 @@ shape = SubResource("RectangleShape2D_m543a")
 [node name="cardswipe_hitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="cardswipe_hitbox"]
-position = Vector2(2.5, -2)
+position = Vector2(2, 33)
 shape = SubResource("RectangleShape2D_tt4lu")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]

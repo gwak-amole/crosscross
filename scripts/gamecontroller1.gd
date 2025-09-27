@@ -50,6 +50,7 @@ signal tutorial(yes:bool)
 @export var subwaypointpath : NodePath
 @export var cardswiperspath : NodePath
 @export var pausemenupath : NodePath
+@export var cardswipingactivitypath : NodePath
 @export var lives_start: int = 3
 
 var lives: int
@@ -100,6 +101,7 @@ var lives: int
 @onready var subwaypoint := get_node(subwaypointpath)
 @onready var cardswipers := get_node(cardswiperspath)
 @onready var pausemenu := get_node(pausemenupath)
+@onready var cardswipingactivity := get_node(cardswipingactivitypath)
 
 var cor_idx : int
 var times : int = 0
@@ -114,6 +116,8 @@ var tutorial_wanted : bool = false
 var puddle_tut_wanted : bool = false
 var charm_used : bool = true
 var exiting_subway := false
+var swipercooldown = false
+var swipe_used := false
 
 func _ready() -> void:
 	citylayer.visible = true
@@ -553,7 +557,21 @@ func _spawn_stairs_behind_player():
 	envir.add_child(stairs)
 	
 func _on_swiper_contacted():
-	print("SWIPE SWIPE SWIPE SWIPE SWIPE")
+	if swipe_used:
+		print("Swipe activiyt already done so ignoring")
+		return
+	
+	if not swipercooldown:
+		swipercooldown = true
+		print("SWIPE SWIPE SWIPE SWIPE")
+		
+		cardswipingactivity._start_swipe()
+		await cardswipingactivity.done
+		
+		swipe_used = true
+		await get_tree().create_timer(5.0).timeout
+		swipercooldown = false
+		swipe_used = false
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("cancel"):

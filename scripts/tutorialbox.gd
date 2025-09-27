@@ -84,6 +84,6 @@ func _get_lines_for_step(step: String) -> Array:
 		"step_4":
 			return ["Charms will charm the person you bumped into so that they will forgive you!"]
 		"step_5":
-			return ["Use ARROWS or WASD to move around.", "Choose dialogue options with ARROWS/WASD and SPACE.", "Good luck!"]
+			return ["Use ARROWS or WASD to move around.", "Choose dialogue options with ARROWS/WASD and SPACE.", "Pause the game using ESC.", "Good luck!"]
 		_:
 			return []
