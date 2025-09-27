@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="EnemyProfile" load_steps=4 format=3 uid="uid://caxooqmc5w3xe"]
+
+[ext_resource type="Script" path="res://scripts/EnemyProfile.gd" id="1_5ugvb"]
+[ext_resource type="PackedScene" uid="uid://bwkhs4hbnkl8b" path="res://scenes/streetmusiciananim.tscn" id="1_wej7o"]
+[ext_resource type="SpriteFrames" uid="uid://cqpmy2owh6q7o" path="res://art/frames/streetmusicianframes.tres" id="2_eolpm"]
+
+[resource]
+script = ExtResource("1_5ugvb")
+display_name = "Street Musician"
+speed = 0.0
+language = "kr"
+anim_idle = "idle"
+anim_contact = "contact"
+sprite_frames = ExtResource("2_eolpm")
+dialogue_scene = ExtResource("1_wej7o")
+dialogue_text = "아, 죄송해요..."
+dialogue_text_2 = "좀 정신차려요..."
+choices = PackedStringArray("다쳐 할머니", "왜이래", "걱정마요!", "눈이 왜 주황색이야")
+choices2 = PackedStringArray("사랑해요", "미안해요...", "너도 정신차려", "아줌마 저리 가")
+correct_idx = 2
+correct_idx_2 = 1
+gender = "female"
+is_rps = false

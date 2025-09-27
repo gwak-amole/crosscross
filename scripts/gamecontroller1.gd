@@ -140,6 +140,7 @@ func _ready() -> void:
 		fever.connect(_on_fever_request)
 	begintut.tutorialfinished.connect(_on_tutorial_finished)
 	dialogue_ui.charm_used.connect(_on_charm_used)
+	cardswipingactivity.connect("done", Callable(self, "_on_swipe_done"))
 	heart_nodes.clear()
 	if hearts_box:
 		for c in hearts_box.get_children():
@@ -558,20 +559,18 @@ func _spawn_stairs_behind_player():
 	
 func _on_swiper_contacted():
 	if swipe_used:
-		print("Swipe activiyt already done so ignoring")
+		print("Swipe activity already done so ignoring")
 		return
 	
 	if not swipercooldown:
 		swipercooldown = true
+		swipe_used = true
 		print("SWIPE SWIPE SWIPE SWIPE")
 		
-		cardswipingactivity._start_swipe()
-		await cardswipingactivity.done
-		
-		swipe_used = true
+		await cardswipingactivity._start_swipe()
 		await get_tree().create_timer(5.0).timeout
 		swipercooldown = false
-		swipe_used = false
+		
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("cancel"):
@@ -585,3 +584,8 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.name == "cardswipe_hitbox":
 		var subwayscanner = area.get_parent()
 		subwayscanner.queue_free()
+
+func _on_swipe_done() -> void:
+	cardswipingactivity.first_time = true
+	await get_tree().create_timer(5.0).timeout
+	swipe_used = false

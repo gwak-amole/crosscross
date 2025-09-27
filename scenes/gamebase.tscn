@@ -1,4 +1,4 @@
-[gd_scene load_steps=187 format=4 uid="uid://bw1jvqsj3l017"]
+[gd_scene load_steps=188 format=4 uid="uid://bw1jvqsj3l017"]
 
 [ext_resource type="PackedScene" uid="uid://cqsj6ljppkot6" path="res://scenes/mainchara.tscn" id="1_bp8ss"]
 [ext_resource type="Script" path="res://scripts/parallax_background.gd" id="1_eistd"]
@@ -99,6 +99,7 @@
 [ext_resource type="Texture2D" uid="uid://codgevx8k6byx" path="res://art/tileset/continuetimer/continuetimer15.png" id="58_yq1qy"]
 [ext_resource type="Texture2D" uid="uid://daim3hc2jfid7" path="res://art/tileset/continuetimer/continuetimer16.png" id="59_dtb4p"]
 [ext_resource type="Resource" uid="uid://3mni6igxas68" path="res://scripts/EnemyProfiles/streetartist.tres" id="64_ho1un"]
+[ext_resource type="Resource" uid="uid://caxooqmc5w3xe" path="res://scripts/EnemyProfiles/streetmusician.tres" id="65_1h0d5"]
 [ext_resource type="AudioStream" uid="uid://dv78poq5h755x" path="res://audio/391542__sirplus__lightloop16.wav" id="70_pm85h"]
 [ext_resource type="Script" path="res://scripts/subway_spawner.gd" id="75_avgf5"]
 [ext_resource type="Script" path="res://SubwayEntryProfile.gd" id="76_yxi8b"]
@@ -1144,12 +1145,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -50.5
+offset_left = -110.5
 offset_top = -26.0
-offset_right = 50.5
+offset_right = 110.5
 offset_bottom = 26.0
 grow_horizontal = 2
 grow_vertical = 2
+alignment = 1
 
 [node name="yes" type="Button" parent="tutorial/Control/HBoxContainer"]
 process_mode = 3
@@ -1157,7 +1159,7 @@ layout_mode = 2
 mouse_filter = 2
 theme_override_fonts/font = ExtResource("23_h7tlf")
 theme_override_font_sizes/font_size = 40
-text = "yes"
+text = " yes "
 
 [node name="no" type="Button" parent="tutorial/Control/HBoxContainer"]
 process_mode = 3
@@ -1165,7 +1167,7 @@ layout_mode = 2
 mouse_filter = 2
 theme_override_fonts/font = ExtResource("23_h7tlf")
 theme_override_font_sizes/font_size = 40
-text = "no"
+text = " no "
 
 [node name="GameController" type="Node" parent="."]
 script = ExtResource("13_q4efr")
@@ -1650,7 +1652,7 @@ characters_path = NodePath("../Characters")
 envmishappath = NodePath("../envmishap")
 
 [node name="Spawner" parent="." instance=ExtResource("8_fmll7")]
-profiles = Array[ExtResource("10_fgj5o")]([ExtResource("11_nbt5j"), ExtResource("12_qqd8v"), ExtResource("13_sqrlo"), ExtResource("14_iyk3s"), ExtResource("19_dlvn0"), ExtResource("29_ki033"), ExtResource("64_ho1un")])
+profiles = Array[ExtResource("10_fgj5o")]([ExtResource("11_nbt5j"), ExtResource("12_qqd8v"), ExtResource("13_sqrlo"), ExtResource("14_iyk3s"), ExtResource("19_dlvn0"), ExtResource("29_ki033"), ExtResource("64_ho1un"), ExtResource("65_1h0d5")])
 controller_path = NodePath("../GameController")
 characters_path = NodePath("../Characters")
 mainchara_path = NodePath("../mainchara")
@@ -1692,8 +1694,8 @@ controller_path = NodePath("../GameController")
 characters_path = NodePath("../subwayentries")
 subwaylayerpath = NodePath("../Subway")
 enemyspawnerpath = NodePath("../Spawner")
-start_spawn_every = 45.0
-min_spawn_every = 40
+start_spawn_every = 5.0
+min_spawn_every = 5
 
 [node name="Timer" type="Timer" parent="SubwaySpawner"]
 
@@ -1867,6 +1869,7 @@ offset_bottom = 40.0
 [node name="subwayswitch" type="CanvasLayer" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="subwayswitch"]
+process_mode = 3
 libraries = {
 "": SubResource("AnimationLibrary_kh7s6")
 }

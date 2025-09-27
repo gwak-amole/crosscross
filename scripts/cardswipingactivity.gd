@@ -28,12 +28,15 @@ func _start_swipe():
 	swipe_done = false
 	get_tree().paused = true
 	bar.value = 0
-	show()
 	card.position = start_pos
+	show()
+	
 	if first_time:
 		label.text = "Swipe your card! (Hold SPACE)"
 		anim.play("appear")
 		await anim.animation_finished
+	else:
+		pass
 	
 func _process(delta):
 	if filling and not swipe_done:
