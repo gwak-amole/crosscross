@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="EnemyProfile" load_steps=3 format=3 uid="uid://dctyi1foxcrwq"]
+
+[ext_resource type="Script" path="res://scripts/EnemyProfile.gd" id="1_ik0px"]
+[ext_resource type="SpriteFrames" uid="uid://dfrwsiirabbcr" path="res://art/frames/naturegirlframes.tres" id="2_tbnqu"]
+
+[resource]
+script = ExtResource("1_ik0px")
+display_name = "Nature Girl"
+speed = 0.0
+language = "en"
+anim_idle = "idle"
+anim_contact = "contact"
+sprite_frames = ExtResource("2_tbnqu")
+dialogue_text = ""
+dialogue_text_2 = ""
+choices = PackedStringArray()
+choices2 = PackedStringArray()
+correct_idx = 0
+correct_idx_2 = 0
+gender = ""
+is_rps = false
