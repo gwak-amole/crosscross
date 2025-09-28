@@ -209,6 +209,7 @@ func _wait_for_choice() -> int:
 	var picked:int = await self.choice_made
 	choices_box.hide()
 	rps_choices_box.hide()
+	text.hide()
 	if tutanim:
 		tutanim.stop()
 		tutanim.play("RESET")
@@ -338,11 +339,12 @@ func close_dialogue():
 		if ap: ap.stop()
 		dlg_scene.queue_free()
 		dlg_scene = null
-	tutlabel.hide()
+	text.hide()
 	tutorial_wanted = false
 	audio.stop()
 	rps_choices_box.hide()
 	charm.hide()
+	text.hide()
 	move_charm($Panel/Overlay)
 	visible = false
 
