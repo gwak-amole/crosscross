@@ -120,6 +120,7 @@ var swipercooldown = false
 var swipe_used := false
 
 func _ready() -> void:
+	set_character(Globals.chosen_character)
 	citylayer.visible = true
 	subwaylayer.visible = false
 	subswitchtext.hide()
@@ -591,3 +592,12 @@ func _on_swipe_done() -> void:
 	cardswipingactivity.first_time = true
 	await get_tree().create_timer(5.0).timeout
 	swipe_used = false
+
+func set_character(choice: String):
+	match choice:
+		"0":
+			mainchara.get_node("AnimatedSprite2D").sprite_frames = load("res://art/frames/maincharawalking0.tres")
+		"1":
+			mainchara.get_node("AnimatedSprite2D").sprite_frames = load("res://art/frames/maincharawalking1.tres")
+		"2":
+			mainchara.get_node("AnimatedSprite2D").sprite_frames = load("res://art/frames/maincharawalking2.tres")

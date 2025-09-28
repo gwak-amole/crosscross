@@ -1,0 +1,39 @@
+[gd_resource type="SpriteFrames" load_steps=6 format=3 uid="uid://chblmkjie7vmx"]
+
+[ext_resource type="Texture2D" uid="uid://bvcpsycokje33" path="res://art/maincharas/maincharaprofiles1.png" id="1_4xpnh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dm5cc"]
+atlas = ExtResource("1_4xpnh")
+region = Rect2(0, 0, 200, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kjysu"]
+atlas = ExtResource("1_4xpnh")
+region = Rect2(200, 0, 200, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ce75"]
+atlas = ExtResource("1_4xpnh")
+region = Rect2(400, 0, 200, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_banq4"]
+atlas = ExtResource("1_4xpnh")
+region = Rect2(600, 0, 200, 300)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dm5cc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kjysu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ce75")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_banq4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]

@@ -1,15 +1,42 @@
-[gd_scene load_steps=3 format=3 uid="uid://xjox21x5hafw"]
+[gd_scene load_steps=8 format=3 uid="uid://xjox21x5hafw"]
 
+[ext_resource type="Script" path="res://scripts/characterselect.gd" id="1_djjj8"]
 [ext_resource type="FontFile" uid="uid://r7libpb4d4ao" path="res://fonts/Jersey_10/Jersey10-Regular.ttf" id="1_j6yqu"]
 [ext_resource type="Script" path="res://scripts/cycbutton.gd" id="2_7fhse"]
+[ext_resource type="Texture2D" uid="uid://dtq5eyka26sms" path="res://art/officemandialogue/enteranim/howtoplayblank.png" id="2_ofekc"]
+[ext_resource type="SpriteFrames" uid="uid://dsvqep8ulyeg0" path="res://art/frames/mainchara0.tres" id="3_gape0"]
+[ext_resource type="SpriteFrames" uid="uid://chblmkjie7vmx" path="res://art/frames/mainchara1.tres" id="4_o7xnk"]
+[ext_resource type="SpriteFrames" uid="uid://cmhept455xma0" path="res://art/frames/mainchara2.tres" id="5_g2l17"]
 
 [node name="characterselect" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_djjj8")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_ofekc")
+
+[node name="Confirm" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.461372
+anchor_top = 0.811728
+anchor_right = 0.539497
+anchor_bottom = 0.876543
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_j6yqu")
+theme_override_font_sizes/font_size = 30
+text = "confirm"
+metadata/_edit_use_anchors_ = true
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
@@ -25,38 +52,53 @@ text = "choose your character"
 metadata/_edit_use_anchors_ = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="TextureButton" type="TextureButton" parent="HBoxContainer"]
-layout_mode = 2
-script = ExtResource("2_7fhse")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="HBoxContainer/TextureButton"]
-
-[node name="TextureButton2" type="TextureButton" parent="HBoxContainer"]
-layout_mode = 2
-script = ExtResource("2_7fhse")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="HBoxContainer/TextureButton2"]
-
-[node name="TextureButton3" type="TextureButton" parent="HBoxContainer"]
-layout_mode = 2
-script = ExtResource("2_7fhse")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="HBoxContainer/TextureButton3"]
-
-[node name="Confirm" type="Button" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.461372
-anchor_top = 0.811728
-anchor_right = 0.539497
-anchor_bottom = 0.876543
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -329.0
+offset_top = -165.0
+offset_right = 330.0
+offset_bottom = 148.0
 grow_horizontal = 2
-grow_vertical = 0
-theme_override_fonts/font = ExtResource("1_j6yqu")
-theme_override_font_sizes/font_size = 30
-text = "confirm"
-metadata/_edit_use_anchors_ = true
+grow_vertical = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("2_7fhse")
+characterselectpath = NodePath("../..")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="HBoxContainer/Button"]
+position = Vector2(109, 157)
+sprite_frames = ExtResource("3_gape0")
+frame_progress = 0.595312
+
+[node name="Button2" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("2_7fhse")
+characterselectpath = NodePath("../..")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="HBoxContainer/Button2"]
+position = Vector2(109, 157)
+sprite_frames = ExtResource("4_o7xnk")
+frame_progress = 0.299194
+
+[node name="Button3" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("2_7fhse")
+characterselectpath = NodePath("../..")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="HBoxContainer/Button3"]
+position = Vector2(109, 156)
+sprite_frames = ExtResource("5_g2l17")
+
+[connection signal="pressed" from="Confirm" to="." method="_on_confirm_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/Button" to="HBoxContainer/Button" method="_on_pressed"]
+[connection signal="pressed" from="HBoxContainer/Button2" to="HBoxContainer/Button2" method="_on_pressed"]
+[connection signal="pressed" from="HBoxContainer/Button3" to="HBoxContainer/Button3" method="_on_pressed"]
