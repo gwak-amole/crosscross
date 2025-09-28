@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cqsj6ljppkot6"]
 
 [ext_resource type="Script" path="res://scripts/mainchara.gd" id="1_rjewh"]
-[ext_resource type="SpriteFrames" uid="uid://cj7u7t22rp7x6" path="res://art/frames/maincharawalking2.tres" id="2_ftevw"]
+[ext_resource type="SpriteFrames" uid="uid://bn68erkw1m8r3" path="res://art/frames/maincharawalking1.tres" id="2_5adkq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bsa8o"]
 size = Vector2(25, 13.5)
@@ -11,8 +11,8 @@ z_index = 100
 script = ExtResource("1_rjewh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = ExtResource("2_ftevw")
-animation = &"walkingvert"
+sprite_frames = ExtResource("2_5adkq")
+animation = &"walkingside"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 2)
