@@ -27,12 +27,15 @@ texture = ExtResource("2_ofekc")
 [node name="Confirm" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.461372
-anchor_top = 0.811728
-anchor_right = 0.539497
-anchor_bottom = 0.876543
+anchor_left = 0.461806
+anchor_top = 0.813272
+anchor_right = 0.539931
+anchor_bottom = 0.878087
+offset_top = 10.0
+offset_bottom = 10.0
 grow_horizontal = 2
 grow_vertical = 0
+focus_neighbor_bottom = NodePath("../LineEdit")
 theme_override_fonts/font = ExtResource("1_j6yqu")
 theme_override_font_sizes/font_size = 30
 text = "confirm"
@@ -59,9 +62,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -329.0
-offset_top = -165.0
+offset_top = -205.0
 offset_right = 330.0
-offset_bottom = 148.0
+offset_bottom = 108.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
@@ -69,6 +72,8 @@ alignment = 1
 [node name="Button" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_neighbor_right = NodePath("../Button2")
+focus_neighbor_bottom = NodePath("../../LineEdit")
 script = ExtResource("2_7fhse")
 characterselectpath = NodePath("../..")
 
@@ -80,6 +85,9 @@ frame_progress = 0.595312
 [node name="Button2" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../Button")
+focus_neighbor_right = NodePath("../Button3")
+focus_neighbor_bottom = NodePath("../../LineEdit")
 script = ExtResource("2_7fhse")
 characterselectpath = NodePath("../..")
 
@@ -91,12 +99,32 @@ frame_progress = 0.299194
 [node name="Button3" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../Button2")
+focus_neighbor_bottom = NodePath("../../LineEdit")
 script = ExtResource("2_7fhse")
 characterselectpath = NodePath("../..")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="HBoxContainer/Button3"]
 position = Vector2(109, 156)
 sprite_frames = ExtResource("5_g2l17")
+
+[node name="LineEdit" type="LineEdit" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -198.0
+offset_top = -168.0
+offset_right = 203.0
+offset_bottom = -126.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_j6yqu")
+theme_override_font_sizes/font_size = 30
+placeholder_text = "Player Name"
+alignment = 1
 
 [connection signal="pressed" from="Confirm" to="." method="_on_confirm_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/Button" to="HBoxContainer/Button" method="_on_pressed"]

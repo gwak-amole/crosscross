@@ -49,7 +49,7 @@ func display_leaderboard(container: VBoxContainer) -> void:
 		label.add_theme_font_override("font", font)
 		label.add_theme_font_size_override("font_size", 40)
 		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-		label.text = "%s - %d" % [entry["attempt"], entry["score"]]
+		label.text = "%s - %d" % [entry["name"], entry["score"]]
 		container.add_child(label)
 
 func _on_button_pressed() -> void:

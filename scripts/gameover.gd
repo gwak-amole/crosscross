@@ -17,7 +17,7 @@ func _ready() -> void:
 		from_leaderboard = false
 	elif from_leaderboard == false:
 		Globals.attempt += 1
-		add_score((Globals.attempt), final_points)
+		add_score((Globals.namae), final_points)
 	btn.grab_focus()
 
 func _on_texture_button_pressed() -> void:
@@ -49,8 +49,8 @@ func _on_button_pressed() -> void:
 		if old:
 			old.queue_free()
 
-func add_score(attempt: int, score: int) -> void:
-	Globals.leaderboard.append({"attempt": attempt, "score": score})
+func add_score(namae: String, score: int) -> void:
+	Globals.leaderboard.append({"name": namae, "score": score})
 	sort_leaderboard()
 	
 func sort_leaderboard() -> void:
