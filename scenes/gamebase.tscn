@@ -1,4 +1,4 @@
-[gd_scene load_steps=189 format=4 uid="uid://bw1jvqsj3l017"]
+[gd_scene load_steps=191 format=4 uid="uid://bw1jvqsj3l017"]
 
 [ext_resource type="PackedScene" uid="uid://cqsj6ljppkot6" path="res://scenes/mainchara.tscn" id="1_bp8ss"]
 [ext_resource type="Script" path="res://scripts/parallax_background.gd" id="1_eistd"]
@@ -101,6 +101,7 @@
 [ext_resource type="Resource" uid="uid://3mni6igxas68" path="res://scripts/EnemyProfiles/streetartist.tres" id="64_ho1un"]
 [ext_resource type="Resource" uid="uid://caxooqmc5w3xe" path="res://scripts/EnemyProfiles/streetmusician.tres" id="65_1h0d5"]
 [ext_resource type="Resource" uid="uid://dctyi1foxcrwq" path="res://scripts/EnemyProfiles/naturegirl.tres" id="66_dkr6w"]
+[ext_resource type="Resource" uid="uid://homtcy8ppd25" path="res://scripts/EnemyProfiles/delinquent.tres" id="67_7ctnr"]
 [ext_resource type="AudioStream" uid="uid://dv78poq5h755x" path="res://audio/391542__sirplus__lightloop16.wav" id="70_pm85h"]
 [ext_resource type="Script" path="res://scripts/subway_spawner.gd" id="75_avgf5"]
 [ext_resource type="Script" path="res://SubwayEntryProfile.gd" id="76_yxi8b"]
@@ -650,7 +651,10 @@ sources/0 = SubResource("TileSetAtlasSource_w87ob")
 size = Vector2(386, 18)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_252vg"]
-size = Vector2(377, 529)
+size = Vector2(377, 629)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nn2ib"]
+size = Vector2(370, 47)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h3kfu"]
 texture = ExtResource("2_cleu5")
@@ -1609,8 +1613,24 @@ shape = SubResource("RectangleShape2D_e8jrd")
 [node name="Area2D" type="Area2D" parent="Subway"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Subway/Area2D"]
-position = Vector2(298.5, -2214.5)
+position = Vector2(298.5, -2164.5)
 shape = SubResource("RectangleShape2D_252vg")
+
+[node name="bufferzone" type="Area2D" parent="Subway"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Subway/bufferzone"]
+position = Vector2(296, -1905.5)
+shape = SubResource("RectangleShape2D_nn2ib")
+
+[node name="Country" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Country"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Country/ParallaxLayer"]
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="Country"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="Country/ParallaxLayer2"]
 
 [node name="City" type="ParallaxBackground" parent="."]
 script = ExtResource("1_eistd")
@@ -1654,7 +1674,7 @@ characters_path = NodePath("../Characters")
 envmishappath = NodePath("../envmishap")
 
 [node name="Spawner" parent="." instance=ExtResource("8_fmll7")]
-profiles = Array[ExtResource("10_fgj5o")]([ExtResource("11_nbt5j"), ExtResource("12_qqd8v"), ExtResource("13_sqrlo"), ExtResource("14_iyk3s"), ExtResource("19_dlvn0"), ExtResource("29_ki033"), ExtResource("64_ho1un"), ExtResource("65_1h0d5"), ExtResource("66_dkr6w")])
+profiles = Array[ExtResource("10_fgj5o")]([ExtResource("11_nbt5j"), ExtResource("12_qqd8v"), ExtResource("13_sqrlo"), ExtResource("14_iyk3s"), ExtResource("19_dlvn0"), ExtResource("29_ki033"), ExtResource("64_ho1un"), ExtResource("65_1h0d5"), ExtResource("66_dkr6w"), ExtResource("67_7ctnr")])
 controller_path = NodePath("../GameController")
 characters_path = NodePath("../Characters")
 mainchara_path = NodePath("../mainchara")
@@ -1696,8 +1716,8 @@ controller_path = NodePath("../GameController")
 characters_path = NodePath("../subwayentries")
 subwaylayerpath = NodePath("../Subway")
 enemyspawnerpath = NodePath("../Spawner")
-start_spawn_every = 45.0
-min_spawn_every = 40
+start_spawn_every = 5.0
+min_spawn_every = 5
 
 [node name="Timer" type="Timer" parent="SubwaySpawner"]
 
@@ -1882,6 +1902,20 @@ offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("117_3msv0")
 
+[node name="countryswitch" type="CanvasLayer" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="countryswitch"]
+process_mode = 3
+libraries = {
+"": SubResource("AnimationLibrary_kh7s6")
+}
+
+[node name="TextureRect" type="TextureRect" parent="countryswitch"]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("117_3msv0")
+
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(284, -11)
 
@@ -1889,7 +1923,11 @@ position = Vector2(284, -11)
 
 [node name="cardswipingactivity" parent="." instance=ExtResource("123_kmmca")]
 
+[node name="trainconductorui" type="CanvasLayer" parent="."]
+
 [connection signal="pressed" from="tutorial/Control/HBoxContainer/yes" to="GameController" method="_on_yes_pressed"]
 [connection signal="pressed" from="tutorial/Control/HBoxContainer/no" to="GameController" method="_on_no_pressed"]
 [connection signal="body_entered" from="Subway/stairexit" to="GameController" method="_on_stairexit_body_entered"]
 [connection signal="area_entered" from="Subway/Area2D" to="GameController" method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Subway/bufferzone" to="GameController" method="_on_bufferzone_body_entered"]
+[connection signal="body_exited" from="Subway/bufferzone" to="GameController" method="_on_bufferzone_body_exited"]

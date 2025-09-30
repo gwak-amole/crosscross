@@ -5,11 +5,16 @@ signal confirmed
 @onready var first_btn = $HBoxContainer/Button
 @onready var btns = $HBoxContainer.get_children()
 @onready var name_input : LineEdit = $LineEdit
+@onready var audio := $AudioStreamPlayer
+@onready var anim := $AnimationPlayer
 
 var chosen_character: int = -1
 var selected = null
 
 func _ready():
+	anim.play("fade_in")
+	Globalaudio.stop()
+	audio.play()
 	get_tree().paused = true
 	confirm_btn.disabled = true
 	first_btn.grab_focus()
@@ -46,6 +51,9 @@ func _on_confirm_button_pressed():
 	print(selected)
 	if selected:
 		Globals.chosen_character = selected
+		anim.play("fade_out")
+		await anim.animation_finished
+		audio.stop()
 		get_tree().change_scene_to_file("res://scenes/gamebase.tscn")
 
 func _play_all_btns() -> void:

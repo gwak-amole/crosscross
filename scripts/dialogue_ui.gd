@@ -38,6 +38,8 @@ var again_tutorial_wanted : bool = false
 var is_rps_mode : bool = false
 var enemy_move : int = -1
 var charm_override : bool = false
+var is_delinq : bool = false
+var delinq_success = false
 
 func _ready() -> void:
 	visible = false
@@ -78,7 +80,10 @@ func show_dialogue_from_profile(p: EnemyProfile) -> int:
 	dlg_scene = p.dialogue_scene.instantiate()
 	dlg_scene.process_mode = Node.PROCESS_MODE_ALWAYS
 	panel.add_child(dlg_scene)
-	
+	if p.is_delinq == true:
+		is_delinq = true
+	else:
+		is_delinq = false
 	var ap = dlg_scene.get_node_or_null("AnimationPlayer")
 	if ap:
 		if subwaylayer.visible == false:
@@ -298,6 +303,16 @@ func _wait_for_choice() -> int:
 	else:
 		var wrong : bool = picked != cor_idx
 		visible = true
+		if is_delinq:
+			if wrong:
+				await start_delinq_event()
+				if delinq_success:
+					wrong = false
+				else:
+					wrong = true
+				delinq_success = false
+			else:
+				pass
 		if wrong:
 			if subwaylayer.visible:
 				ap.play("subwayangry")
@@ -490,3 +505,20 @@ func _focus_rps() -> void:
 func move_charm(to_container: Control):
 	charm.get_parent().remove_child(charm)
 	to_container.add_child(charm)
+
+func start_delinq_event() -> void:
+	var ap = dlg_scene.get_node_or_null("AnimationPlayer")
+	ap.play("punch_incoming")
+	await get_tree().create_timer(0.1).timeout
+	var timer = get_tree().create_timer(2.0)
+	while timer.time_left > 0:
+		await get_tree().process_frame
+		if Input.is_action_just_pressed("ui_accept"):
+			delinq_success = true
+			break
+	if delinq_success:
+		ap.play("punch_dodge")
+		await ap.animation_finished
+	else:
+		ap.play("punch")
+		await ap.animation_finished

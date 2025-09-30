@@ -118,6 +118,8 @@ var charm_used : bool = true
 var exiting_subway := false
 var swipercooldown = false
 var swipe_used := false
+var in_transition_buffer = false
+var transitioning = false
 
 func _ready() -> void:
 	set_character(Globals.chosen_character)
@@ -214,6 +216,8 @@ func _on_event_contacted(e: Node) -> void:
 	
 
 func _on_enemy_contacted(enemy: Node) -> void:
+	if in_transition_buffer or transitioning:
+		return
 	if shield_active == true:
 		shield_active = false
 		shieldicon.hide()
@@ -473,13 +477,14 @@ func _focus_tutorial_ask() -> void:
 func _on_subway_exit_triggered():
 	if exiting_subway:
 		return
+	transitioning = true
 	exiting_subway = true
 	stairexit.set_deferred("monitoring", false)
 	stairexit.set_deferred("monitorable", false)
 	subswitchtext.show()
 	subswitchanim.play("fade_in")
 	await subswitchanim.animation_finished
-	
+	transitioning = false
 	subwaylayer.visible = false
 	citylayer.visible = true
 	_reset_player_position()
@@ -562,6 +567,8 @@ func _on_swiper_contacted():
 	if swipe_used:
 		print("Swipe activity already done so ignoring")
 		return
+	if in_transition_buffer or transitioning:
+		return
 	
 	if not swipercooldown:
 		swipercooldown = true
@@ -601,3 +608,13 @@ func set_character(choice: String):
 			mainchara.get_node("AnimatedSprite2D").sprite_frames = load("res://art/frames/maincharawalking1.tres")
 		"2":
 			mainchara.get_node("AnimatedSprite2D").sprite_frames = load("res://art/frames/maincharawalking2.tres")
+
+
+func _on_bufferzone_body_entered(body: Node2D) -> void:
+	if body.name == "mainchara":
+		in_transition_buffer = true
+
+
+func _on_bufferzone_body_exited(body: Node2D) -> void:
+	if body.name == "mainchara":
+		in_transition_buffer = false

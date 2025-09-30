@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="EnemyProfile" load_steps=4 format=3 uid="uid://homtcy8ppd25"]
+
+[ext_resource type="PackedScene" uid="uid://djs3y1jkds1bo" path="res://scenes/delinquentanim.tscn" id="1_5n7c1"]
+[ext_resource type="Script" path="res://scripts/EnemyProfile.gd" id="1_61krg"]
+[ext_resource type="SpriteFrames" uid="uid://0gx737k4tjbv" path="res://art/frames/delinquentframes.tres" id="3_gywf6"]
+
+[resource]
+script = ExtResource("1_61krg")
+display_name = "Delinquent"
+speed = 10.0
+language = "jp"
+anim_idle = "idle"
+anim_contact = "contact"
+sprite_frames = ExtResource("3_gywf6")
+dialogue_scene = ExtResource("1_5n7c1")
+dialogue_text = "おい、どこ見て歩いてんだよ？"
+dialogue_text_2 = "ふつかってんじゃねぇよ！"
+choices = PackedStringArray("お前が見てなかったんだろ", "邪魔なんだけど。", "すみません、気をつけます。", "どうせヒマなんだろ、絡むなよ")
+choices2 = PackedStringArray("はいはい、こわいこわい。", "触んなよ。服が汚れるだろ。", "めんどくせぇな", "ごめんなさい！大丈夫ですか？")
+correct_idx = 2
+correct_idx_2 = 3
+gender = "male"
+is_rps = false
+is_delinq = true
