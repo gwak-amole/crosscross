@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://djs3y1jkds1bo"]
+[gd_scene load_steps=32 format=3 uid="uid://djs3y1jkds1bo"]
 
 [ext_resource type="Texture2D" uid="uid://dhij5jpphpuq6" path="res://art/delinquent dialogue/delinquentappear0.png" id="1_oy6po"]
 [ext_resource type="Texture2D" uid="uid://dsdil7xd2bgsb" path="res://art/delinquent dialogue/delinquentappear1.png" id="2_bsup0"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://dx6neo161jlf1" path="res://art/delinquent dialogue/delinquentpunchdodge0.png" id="12_042e6"]
 [ext_resource type="Texture2D" uid="uid://d3y2543ml2y6j" path="res://art/delinquent dialogue/delinquentpunchdodge1.png" id="13_6rekc"]
 [ext_resource type="FontFile" uid="uid://r7libpb4d4ao" path="res://fonts/Jersey_10/Jersey10-Regular.ttf" id="17_kof1v"]
+[ext_resource type="AudioStream" uid="uid://bsb52apuyvh6w" path="res://audio/hurt.wav" id="18_vflyc"]
 
 [sub_resource type="Animation" id="Animation_a205x"]
 resource_name = "appear"
@@ -357,6 +358,18 @@ tracks/4/keys = {
 "update": 0,
 "values": [Color(0, 0, 0, 1)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("encounter:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_kq8kc"]
 resource_name = "punch"
@@ -395,6 +408,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(0.919931, 0.257106, 0.330931, 1), Color(1, 1, 1, 1), Color(0.919931, 0.257106, 0.330931, 1), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("encounter:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_o6q7v"]
@@ -460,3 +485,8 @@ theme_override_fonts/font = ExtResource("17_kof1v")
 theme_override_font_sizes/font_size = 50
 text = "Space to DODGE!"
 horizontal_alignment = 1
+
+[node name="encounter" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_vflyc")
+volume_db = 1.381
+bus = &"sfx"

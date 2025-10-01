@@ -1,4 +1,4 @@
-[gd_scene load_steps=191 format=4 uid="uid://bw1jvqsj3l017"]
+[gd_scene load_steps=196 format=4 uid="uid://bw1jvqsj3l017"]
 
 [ext_resource type="PackedScene" uid="uid://cqsj6ljppkot6" path="res://scenes/mainchara.tscn" id="1_bp8ss"]
 [ext_resource type="Script" path="res://scripts/parallax_background.gd" id="1_eistd"]
@@ -102,6 +102,8 @@
 [ext_resource type="Resource" uid="uid://caxooqmc5w3xe" path="res://scripts/EnemyProfiles/streetmusician.tres" id="65_1h0d5"]
 [ext_resource type="Resource" uid="uid://dctyi1foxcrwq" path="res://scripts/EnemyProfiles/naturegirl.tres" id="66_dkr6w"]
 [ext_resource type="Resource" uid="uid://homtcy8ppd25" path="res://scripts/EnemyProfiles/delinquent.tres" id="67_7ctnr"]
+[ext_resource type="PackedScene" uid="uid://dokrqm4ubgbrt" path="res://scenes/trainconductor_spawner.tscn" id="68_1pwss"]
+[ext_resource type="PackedScene" uid="uid://hf0i7twub4rg" path="res://scenes/trainconductor.tscn" id="69_a8jjk"]
 [ext_resource type="AudioStream" uid="uid://dv78poq5h755x" path="res://audio/391542__sirplus__lightloop16.wav" id="70_pm85h"]
 [ext_resource type="Script" path="res://scripts/subway_spawner.gd" id="75_avgf5"]
 [ext_resource type="Script" path="res://SubwayEntryProfile.gd" id="76_yxi8b"]
@@ -127,6 +129,8 @@
 [ext_resource type="Texture2D" uid="uid://dvj7vo7fu33qv" path="res://art/blankscreen.png" id="117_3msv0"]
 [ext_resource type="PackedScene" uid="uid://wovmegmtdsd0" path="res://scenes/pausemenu.tscn" id="122_7flti"]
 [ext_resource type="PackedScene" uid="uid://bo2viocg7ermv" path="res://scenes/cardswipingactivity.tscn" id="123_kmmca"]
+[ext_resource type="Script" path="res://scripts/trainconductorui.gd" id="130_8q3g4"]
+[ext_resource type="PackedScene" uid="uid://bnqyg1rw7c7r3" path="res://scenes/trainconductoranim.tscn" id="131_03tk2"]
 
 [sub_resource type="Animation" id="Animation_84thl"]
 length = 0.001
@@ -1040,6 +1044,8 @@ _data = {
 "fade_out": SubResource("Animation_qlmg7")
 }
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ddr6d"]
+
 [node name="gamebase" type="Node2D"]
 position = Vector2(10, 5)
 script = ExtResource("1_rq13a")
@@ -1225,6 +1231,7 @@ subwaypointpath = NodePath("../Marker2D")
 cardswiperspath = NodePath("../subwaycardswiper")
 pausemenupath = NodePath("../pausemenu")
 cardswipingactivitypath = NodePath("../cardswipingactivity")
+trainconductordialoguepath = NodePath("../trainconductorui")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 4
@@ -1684,6 +1691,14 @@ splashtextpath = NodePath("../splash/TextureRect")
 
 [node name="Timer" type="Timer" parent="Spawner"]
 
+[node name="trainconductor_spawner" parent="." instance=ExtResource("68_1pwss")]
+train_scene = ExtResource("69_a8jjk")
+controller_path = NodePath("../GameController")
+characters_path = NodePath("../trainconductor")
+mainchara_path = NodePath("../mainchara")
+eventpath = NodePath("../EventSpawner")
+subwaylayerpath = NodePath("../Subway")
+
 [node name="EventSpawner" parent="." instance=ExtResource("8_fmll7")]
 script = ExtResource("24_tm6at")
 profiles = Array[ExtResource("25_tbtg2")]([ExtResource("26_fmq7n"), ExtResource("27_c1vwu"), ExtResource("28_ayl4n")])
@@ -1792,6 +1807,8 @@ z_index = -100
 
 [node name="Characters" type="Node2D" parent="."]
 unique_name_in_owner = true
+
+[node name="trainconductor" type="Node2D" parent="."]
 
 [node name="mainchara" parent="." instance=ExtResource("1_bp8ss")]
 position = Vector2(285, 2)
@@ -1924,6 +1941,112 @@ position = Vector2(284, -11)
 [node name="cardswipingactivity" parent="." instance=ExtResource("123_kmmca")]
 
 [node name="trainconductorui" type="CanvasLayer" parent="."]
+process_mode = 3
+script = ExtResource("130_8q3g4")
+audio_path = NodePath("../dialogue")
+controllerpath = NodePath("../GameController")
+dialogue_scene = ExtResource("131_03tk2")
+
+[node name="Panel" type="Panel" parent="trainconductorui"]
+process_mode = 3
+z_index = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_ddr6d")
+
+[node name="Overlay" type="Control" parent="trainconductorui/Panel"]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Text" type="Label" parent="trainconductorui/Panel/Overlay"]
+process_mode = 3
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.023
+anchor_top = 0.698
+anchor_right = 0.984
+anchor_bottom = 0.698
+offset_left = -0.496002
+offset_top = -42.304
+offset_right = 0.432007
+offset_bottom = 12.696
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("17_akqme")
+label_settings = SubResource("LabelSettings_obpca")
+vertical_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="trainconductorui/Panel/Overlay"]
+process_mode = 3
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -458.0
+offset_top = 183.0
+offset_right = 458.0
+offset_bottom = 255.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="TextureButton4" type="TextureButton" parent="trainconductorui/Panel/Overlay/HBoxContainer2"]
+process_mode = 3
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+texture_normal = ExtResource("14_cb1aa")
+texture_pressed = ExtResource("15_xx0pf")
+texture_hover = ExtResource("16_f22in")
+texture_focused = ExtResource("16_f22in")
+
+[node name="Label" type="Label" parent="trainconductorui/Panel/Overlay/HBoxContainer2/TextureButton4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("17_akqme")
+label_settings = SubResource("LabelSettings_thl5d")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="TextureButton5" type="TextureButton" parent="trainconductorui/Panel/Overlay/HBoxContainer2"]
+process_mode = 3
+layout_mode = 2
+size_flags_horizontal = 8
+mouse_filter = 2
+texture_normal = ExtResource("14_cb1aa")
+texture_pressed = ExtResource("15_xx0pf")
+texture_hover = ExtResource("16_f22in")
+texture_focused = ExtResource("16_f22in")
+
+[node name="Label" type="Label" parent="trainconductorui/Panel/Overlay/HBoxContainer2/TextureButton5"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("17_akqme")
+label_settings = SubResource("LabelSettings_thl5d")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
 
 [connection signal="pressed" from="tutorial/Control/HBoxContainer/yes" to="GameController" method="_on_yes_pressed"]
 [connection signal="pressed" from="tutorial/Control/HBoxContainer/no" to="GameController" method="_on_no_pressed"]

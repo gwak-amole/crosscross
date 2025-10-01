@@ -51,6 +51,7 @@ signal tutorial(yes:bool)
 @export var cardswiperspath : NodePath
 @export var pausemenupath : NodePath
 @export var cardswipingactivitypath : NodePath
+@export var trainconductordialoguepath : NodePath
 @export var lives_start: int = 3
 
 var lives: int
@@ -102,6 +103,7 @@ var lives: int
 @onready var cardswipers := get_node(cardswiperspath)
 @onready var pausemenu := get_node(pausemenupath)
 @onready var cardswipingactivity := get_node(cardswipingactivitypath)
+@onready var train_dialogue_ui := get_node(trainconductordialoguepath)
 
 var cor_idx : int
 var times : int = 0
@@ -254,7 +256,11 @@ func _on_enemy_contacted(enemy: Node) -> void:
 	dialogue_ui.close_dialogue()
 	var wrong : bool = picked != cor_idx
 	if wrong:
-		_lose_life()
+		if dialogue_ui.delinq_success:
+			pass
+		else:
+			_lose_life()
+	dialogue_ui.delinq_success = false
 	if lives > 0:
 		continuecanvas.show()
 		continuetimer.play("continuetimer")
@@ -618,3 +624,60 @@ func _on_bufferzone_body_entered(body: Node2D) -> void:
 func _on_bufferzone_body_exited(body: Node2D) -> void:
 	if body.name == "mainchara":
 		in_transition_buffer = false
+
+func _on_trainconductor_contacted(conductor: Node) -> void:
+	if in_transition_buffer or transitioning:
+		return
+	if shield_active == true:
+		shield_active = false
+		shieldicon.hide()
+		return
+	coinicon.hide()
+	coins.hide()
+	fevertext.hide()
+	texture.hide()
+	charmtexture.hide()
+	points.hide()
+	points_int -= (points_int / 10)
+	_update_points()
+	times -= times/5
+	points_frozen = true
+	print("points frozen")
+	print("ctrl contacted so pausing")
+	get_tree().paused = true
+	audioEnc.play()
+	print("ctrl paused =", get_tree().paused)
+
+	if train_dialogue_ui == null:
+		push_error("dialogue_ui_path is not set to a DialogueUI node")
+		return
+	var picked:int = await train_dialogue_ui.show_dialogue_from_profile(conductor)
+	print(picked)
+	if picked == 0:
+		pass
+		# switch layers here
+	train_dialogue_ui.close_dialogue()
+	continuecanvas.hide()
+	coins.show()
+	coinicon.show()
+	points.show()
+	
+	get_tree().paused = false
+	
+	if is_instance_valid(conductor):
+		conductor.queue_free()
+	
+	if lives <= 0:
+		_game_over()
+		
+	if spawner.fever_active:
+		print("CHECKING!")
+		fevertext.show()
+		texture.show()
+		anim.play("fever_constant")
+	else:
+		print("fever not active")
+	if get_tree():
+		await get_tree().create_timer(3.0).timeout
+		points_frozen = false
+		print("points unfrozen")

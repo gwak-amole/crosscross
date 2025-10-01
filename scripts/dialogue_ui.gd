@@ -310,7 +310,6 @@ func _wait_for_choice() -> int:
 					wrong = false
 				else:
 					wrong = true
-				delinq_success = false
 			else:
 				pass
 		if wrong:
@@ -510,7 +509,7 @@ func start_delinq_event() -> void:
 	var ap = dlg_scene.get_node_or_null("AnimationPlayer")
 	ap.play("punch_incoming")
 	await get_tree().create_timer(0.1).timeout
-	var timer = get_tree().create_timer(2.0)
+	var timer = get_tree().create_timer(1.75)
 	while timer.time_left > 0:
 		await get_tree().process_frame
 		if Input.is_action_just_pressed("ui_accept"):

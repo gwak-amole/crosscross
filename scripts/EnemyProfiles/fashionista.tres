@@ -21,3 +21,4 @@ correct_idx = 2
 correct_idx_2 = 1
 gender = "male"
 is_rps = false
+is_delinq = false

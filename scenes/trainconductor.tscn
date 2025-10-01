@@ -1,0 +1,116 @@
+[gd_scene load_steps=16 format=3 uid="uid://hf0i7twub4rg"]
+
+[ext_resource type="Texture2D" uid="uid://h7emchyv0jv4" path="res://art/dialoguegeneral/trainconductorcontacted.png" id="1_b33io"]
+[ext_resource type="Script" path="res://scripts/trainconductor.gd" id="1_vygo5"]
+[ext_resource type="Texture2D" uid="uid://cu8arwyh2qj8h" path="res://art/dialoguegeneral/trainconductor.png" id="2_wintw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3t5ev"]
+atlas = ExtResource("1_b33io")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kyoso"]
+atlas = ExtResource("1_b33io")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mpwnb"]
+atlas = ExtResource("2_wintw")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fgjoy"]
+atlas = ExtResource("2_wintw")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pvnco"]
+atlas = ExtResource("2_wintw")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fbwqs"]
+atlas = ExtResource("2_wintw")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ptsm"]
+atlas = ExtResource("2_wintw")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o8sv0"]
+atlas = ExtResource("2_wintw")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qcl36"]
+atlas = ExtResource("2_wintw")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_72ilw"]
+atlas = ExtResource("2_wintw")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tuvmt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3t5ev")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kyoso")
+}],
+"loop": true,
+"name": &"contact",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mpwnb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fgjoy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pvnco")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fbwqs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ptsm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o8sv0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qcl36")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_72ilw")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_74qk0"]
+size = Vector2(38, 12.5)
+
+[node name="trainconductor" type="CharacterBody2D"]
+process_mode = 3
+script = ExtResource("1_vygo5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_tuvmt")
+animation = &"idle"
+frame = 3
+frame_progress = 0.187317
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_74qk0")
+
+[node name="train_hitbox" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="train_hitbox"]
+polygon = PackedVector2Array(-6, -13, 6, -13, 21, -6, 21, 1, 11, 4, 8, 9, -8, 10, -12, 2, -19, 1, -20, -8)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-0.5, -1)
+scale = Vector2(1.65, 1.7)
+
+[connection signal="area_entered" from="train_hitbox" to="." method="_on_train_hitbox_area_entered"]

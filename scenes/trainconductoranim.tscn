@@ -1,0 +1,173 @@
+[gd_scene load_steps=16 format=3 uid="uid://bnqyg1rw7c7r3"]
+
+[ext_resource type="Texture2D" uid="uid://cpjb0q5avkxab" path="res://art/trainconductor/trainconductorappear0.png" id="1_vavvy"]
+[ext_resource type="Texture2D" uid="uid://c3fns8n2ki6yk" path="res://art/trainconductor/trainconductorappear1.png" id="2_kvmkn"]
+[ext_resource type="Texture2D" uid="uid://dwhutspj4fggx" path="res://art/trainconductor/trainconductorappear2.png" id="3_axu1e"]
+[ext_resource type="Texture2D" uid="uid://c6xfl4oh3vl7q" path="res://art/dialoguegeneral/subwaydialoguebg.png" id="4_ctm1q"]
+[ext_resource type="Texture2D" uid="uid://sdyvw8jrvrwv" path="res://art/trainconductor/trainconductorhairsway.png" id="5_hb5t8"]
+[ext_resource type="Texture2D" uid="uid://cvpthvq66yevw" path="res://art/trainconductor/trainconductorticket0.png" id="6_26lec"]
+[ext_resource type="Texture2D" uid="uid://bpjj35axg2puh" path="res://art/trainconductor/trainconductorticket1.png" id="7_jn8ff"]
+[ext_resource type="Texture2D" uid="uid://dlgvkhytl0jl4" path="res://art/trainconductor/trainconductorno0.png" id="8_tibye"]
+[ext_resource type="Texture2D" uid="uid://cgcwhdwgp0e0g" path="res://art/trainconductor/trainconductorno1.png" id="9_o0hqv"]
+
+[sub_resource type="Animation" id="Animation_cc7ku"]
+resource_name = "appear"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("person:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.1, 0.166667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("1_vavvy"), ExtResource("2_kvmkn"), ExtResource("3_axu1e")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("person:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333, 0.333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("bg:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_ctm1q")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("bg:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_x5pq1"]
+resource_name = "hairsway"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("person:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.833333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("3_axu1e"), ExtResource("5_hb5t8"), ExtResource("3_axu1e")]
+}
+
+[sub_resource type="Animation" id="Animation_6rpnb"]
+resource_name = "ticket"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("person:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.833333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("6_26lec"), ExtResource("7_jn8ff"), ExtResource("6_26lec")]
+}
+
+[sub_resource type="Animation" id="Animation_b8nju"]
+resource_name = "bye"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("person:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.433333, 0.866667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("8_tibye"), ExtResource("9_o0hqv"), ExtResource("8_tibye")]
+}
+
+[sub_resource type="Animation" id="Animation_ajw1u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("person:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("person:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("bg:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cfj8x"]
+_data = {
+"RESET": SubResource("Animation_ajw1u"),
+"appear": SubResource("Animation_cc7ku"),
+"bye": SubResource("Animation_b8nju"),
+"hairsway": SubResource("Animation_x5pq1"),
+"ticket": SubResource("Animation_6rpnb")
+}
+
+[node name="trainconductoranim" type="Node2D"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_cfj8x")
+}
+
+[node name="bg" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="person" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
