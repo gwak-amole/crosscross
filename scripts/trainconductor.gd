@@ -58,3 +58,23 @@ func _on_train_hitbox_area_entered(area: Area2D) -> void:
 		anim.play(_anim_contact)
 	print("[TRAIN CONDUCTOR] contact.")
 	emit_signal("contacted", self)
+
+
+func _on_train_slowdown_area_entered(area: Area2D) -> void:
+	if state != State.MOVE: return
+	if area.name == "player_hitbox": return
+	if area.name == "enemy_hitbox" and area.get_parent() != self:
+		print("should be slowing down")
+		set_slowed(true)
+
+
+func _on_train_slowdown_area_exited(area: Area2D) -> void:
+	if state != State.MOVE: return
+	if area.name == "player_hitbox": return
+	if area.name == "enemy_hitbox" and area.get_parent() != self:
+		print("should be exiting")
+		set_slowed(false)
+
+
+func set_slowed(value: bool) -> void:
+	slowed = value

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://hf0i7twub4rg"]
+[gd_scene load_steps=17 format=3 uid="uid://hf0i7twub4rg"]
 
 [ext_resource type="Texture2D" uid="uid://h7emchyv0jv4" path="res://art/dialoguegeneral/trainconductorcontacted.png" id="1_b33io"]
 [ext_resource type="Script" path="res://scripts/trainconductor.gd" id="1_vygo5"]
@@ -90,6 +90,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_74qk0"]
 size = Vector2(38, 12.5)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u6wfh"]
+size = Vector2(20, 65.5)
+
 [node name="trainconductor" type="CharacterBody2D"]
 process_mode = 3
 script = ExtResource("1_vygo5")
@@ -113,4 +116,12 @@ polygon = PackedVector2Array(-6, -13, 6, -13, 21, -6, 21, 1, 11, 4, 8, 9, -8, 10
 position = Vector2(-0.5, -1)
 scale = Vector2(1.65, 1.7)
 
+[node name="train_slowdown" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="train_slowdown"]
+position = Vector2(0, 17.25)
+shape = SubResource("RectangleShape2D_u6wfh")
+
 [connection signal="area_entered" from="train_hitbox" to="." method="_on_train_hitbox_area_entered"]
+[connection signal="area_entered" from="train_slowdown" to="." method="_on_train_slowdown_area_entered"]
+[connection signal="area_exited" from="train_slowdown" to="." method="_on_train_slowdown_area_exited"]

@@ -1946,6 +1946,7 @@ script = ExtResource("130_8q3g4")
 audio_path = NodePath("../dialogue")
 controllerpath = NodePath("../GameController")
 dialogue_scene = ExtResource("131_03tk2")
+dialogue_holder = NodePath("Panel/dialogueholder")
 
 [node name="Panel" type="Panel" parent="trainconductorui"]
 process_mode = 3
@@ -1956,6 +1957,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_ddr6d")
+
+[node name="dialogueholder" type="Control" parent="trainconductorui/Panel"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="Overlay" type="Control" parent="trainconductorui/Panel"]
 process_mode = 3

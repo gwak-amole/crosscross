@@ -3,15 +3,16 @@ signal choice_made(idx: int)
 @export var audio_path : NodePath
 @export var controllerpath : NodePath
 @export var dialogue_scene : PackedScene
+@export var dialogue_holder : NodePath
 
 @onready var panel := $Panel
 @onready var text := $Panel/Overlay/Text
 @onready var choices_box := $Panel/Overlay/HBoxContainer2
 @onready var audio := get_node(audio_path)
 @onready var controller := get_node(controllerpath)
+@onready var dialogueholder := get_node(dialogue_holder)
 
 var dlg_scene: Node = null
-var dlg_sceeene = preload("res://scenes/trainconductoranim.tscn")
 
 func _ready() -> void:
 	visible = false
@@ -26,9 +27,11 @@ func show_dialogue_from_profile(p: Node) -> int:
 	panel.hide()
 	text.hide()
 	choices_box.hide()
+	if is_instance_valid(dlg_scene):
+		dlg_scene.queue_free()
 	dlg_scene = dialogue_scene.instantiate()
 	dlg_scene.process_mode = Node.PROCESS_MODE_ALWAYS
-	panel.add_child(dlg_scene)
+	dialogueholder.add_child(dlg_scene)
 	var ap = dlg_scene.get_node_or_null("AnimationPlayer")
 	if ap:
 		await get_tree().create_timer(1.5, true).timeout
