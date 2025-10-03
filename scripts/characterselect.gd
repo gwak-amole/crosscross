@@ -12,10 +12,9 @@ var chosen_character: int = -1
 var selected = null
 
 func _ready():
-	anim.play("fade_in")
+	get_tree().paused = true
 	Globalaudio.stop()
 	audio.play()
-	get_tree().paused = true
 	confirm_btn.disabled = true
 	first_btn.grab_focus()
 	name_input.connect("text_submitted", Callable(self, "_on_name_submitted"))

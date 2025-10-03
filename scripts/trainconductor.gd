@@ -39,13 +39,7 @@ func _physics_process(delta: float) -> void:
 	if get_tree().paused == true:
 		velocity = Vector2.ZERO
 	else:
-		var actual_speed: float
-		if profile:
-			actual_speed = profile.speed
-		else:
-			actual_speed = speed
-		
-		velocity = dir * actual_speed
+		velocity = Vector2.ZERO
 	move_and_slide()
 
 func _on_train_hitbox_area_entered(area: Area2D) -> void:
@@ -59,6 +53,8 @@ func _on_train_hitbox_area_entered(area: Area2D) -> void:
 	print("[TRAIN CONDUCTOR] contact.")
 	emit_signal("contacted", self)
 
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	queue_free()
 
 func _on_train_slowdown_area_entered(area: Area2D) -> void:
 	if state != State.MOVE: return

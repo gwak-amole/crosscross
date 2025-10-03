@@ -52,6 +52,13 @@ signal tutorial(yes:bool)
 @export var pausemenupath : NodePath
 @export var cardswipingactivitypath : NodePath
 @export var trainconductordialoguepath : NodePath
+@export var countrylayerpath : NodePath
+@export var countryblossomslayerpath : NodePath
+@export var countryswitchanimpath : NodePath
+@export var countrycollisionpath : NodePath
+@export var countryexitpath : NodePath
+@export var countryswitchtextpath : NodePath
+@export var trainconductorspawnerpath : NodePath
 @export var lives_start: int = 3
 
 var lives: int
@@ -104,6 +111,13 @@ var lives: int
 @onready var pausemenu := get_node(pausemenupath)
 @onready var cardswipingactivity := get_node(cardswipingactivitypath)
 @onready var train_dialogue_ui := get_node(trainconductordialoguepath)
+@onready var countrylayer := get_node(countrylayerpath)
+@onready var countryswitchanim := get_node(countryswitchanimpath)
+@onready var countrycollision := get_node(countrycollisionpath)
+@onready var countryblossomslayer := get_node(countryblossomslayerpath)
+@onready var countryexit := get_node(countryexitpath)
+@onready var countryswitchtext := get_node(countryswitchtextpath)
+@onready var trainconductors := get_node(trainconductorspawnerpath)
 
 var cor_idx : int
 var times : int = 0
@@ -122,17 +136,22 @@ var swipercooldown = false
 var swipe_used := false
 var in_transition_buffer = false
 var transitioning = false
+var exiting_country := false
+var from_country := false
 
 func _ready() -> void:
 	set_character(Globals.chosen_character)
 	citylayer.visible = true
 	subwaylayer.visible = false
+	countrylayer.visible = false
+	countryblossomslayer.visible = false
 	subswitchtext.hide()
 	wyltutlabel.hide()
 	wyltutyes.hide()
 	wyltutno.hide()
 	tuttext.hide()
 	fevertext.hide()
+	countrycollision.disabled = true
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	fevertimer.process_mode = Node.PROCESS_MODE_PAUSABLE
 	wyltutyes.process_mode = Node.PROCESS_MODE_ALWAYS
@@ -508,6 +527,8 @@ func _on_subway_exit_triggered():
 			child.queue_free()
 	for child in cardswipers.get_children():
 		child.queue_free()
+	for child in cardswipers.get_children():
+		child.queue_free()
 	
 	_spawn_stairs_behind_player()
 	
@@ -516,6 +537,7 @@ func _on_subway_exit_triggered():
 	
 	subswitchtext.hide()
 	exiting_subway = false
+	from_country = false
 	
 
 func _on_stairexit_body_entered(body: Node2D) -> void:
@@ -532,23 +554,27 @@ func _on_subwayentry_contacted(entry) -> void:
 	_switch_scene_to_subway()
 
 func _switch_scene_to_subway() -> void:
-	subswitchtext.show()
-	subswitchanim.play("fade_in")
-	await subswitchanim.animation_finished
+	if not from_country:
+		subswitchtext.show()
+		subswitchanim.play("fade_in")
+		await subswitchanim.animation_finished
+	stairexit.set_deferred("monitoring", true)
+	stairexit.set_deferred("monitorable", true)
 	citylayer.visible = false
 	subwaylayer.visible = true
 	print("Before:", mainchara.global_position)
 	mainchara.global_position = subwaypoint.global_position
 	print("After:", mainchara.global_position)
-	# Reset camera position to start of subway
+	
 	var cam := get_viewport().get_camera_2d()
 	cam.global_position = subwaypoint.global_position # or use a Marker2D as spawn point
-	# Reset parallax layers
+	
 	for l in subwaylayer.get_children():
 		if l is ParallaxLayer:
 			l.motion_offset = Vector2.ZERO
 	_reset_player_position()
-	subswitchanim.play("fade_out")
+	if not from_country:
+		subswitchanim.play("fade_out")
 	for child in characters.get_children():
 		if child != mainchara:
 			child.queue_free()
@@ -558,7 +584,10 @@ func _switch_scene_to_subway() -> void:
 		child.queue_free()
 	for child in cardswipers.get_children():
 		child.queue_free()
+	for child in cardswipers.get_children():
+		child.queue_free()
 	subswitchtext.hide()
+	from_country = false
 
 func _reset_player_position():
 	mainchara.global_position = subwaypoint.global_position
@@ -620,7 +649,6 @@ func _on_bufferzone_body_entered(body: Node2D) -> void:
 	if body.name == "mainchara":
 		in_transition_buffer = true
 
-
 func _on_bufferzone_body_exited(body: Node2D) -> void:
 	if body.name == "mainchara":
 		in_transition_buffer = false
@@ -654,8 +682,7 @@ func _on_trainconductor_contacted(conductor: Node) -> void:
 	var picked:int = await train_dialogue_ui.show_dialogue_from_profile(conductor)
 	print(picked)
 	if picked == 0:
-		pass
-		# switch layers here
+		_switch_scene_to_country()
 	train_dialogue_ui.close_dialogue()
 	continuecanvas.hide()
 	coins.show()
@@ -681,3 +708,81 @@ func _on_trainconductor_contacted(conductor: Node) -> void:
 		await get_tree().create_timer(3.0).timeout
 		points_frozen = false
 		print("points unfrozen")
+
+func _switch_scene_to_country() -> void:
+	transitioning = true
+	countryswitchtext.show()
+	countryswitchanim.play("fade_in")
+	await countryswitchanim.animation_finished
+	citylayer.visible = false
+	subwaylayer.visible = false
+	countryblossomslayer.visible = true
+	countrylayer.visible = true
+	countrycollision.disabled = false
+	print("Before:", mainchara.global_position)
+	mainchara.global_position = subwaypoint.global_position
+	print("After:", mainchara.global_position)
+	countryexit.set_deferred("monitoring", true)
+	countryexit.set_deferred("monitorable", true)
+	var cam := get_viewport().get_camera_2d()
+	cam.global_position = subwaypoint.global_position
+	countryswitchtext.hide()
+
+	for l in countrylayer.get_children():
+		if l is ParallaxLayer:
+			l.motion_offset = Vector2.ZERO
+	_reset_player_position()
+	countryswitchanim.play("fade_out")
+	for child in characters.get_children():
+		if child != mainchara:
+			child.queue_free()
+	for child in events.get_children():
+		child.queue_free()
+	for child in envir.get_children():
+		child.queue_free()
+	for child in cardswipers.get_children():
+		child.queue_free()
+	for child in trainconductors.get_children():
+		child.queue_free()
+	transitioning = false
+		
+func _on_country_exit_triggered():
+	if exiting_country:
+		return
+	transitioning = true
+	countryswitchtext.show()
+	countryswitchanim.play("fade_in")
+	await countryswitchanim.animation_finished
+	countryswitchtext.modulate.a = 1.0
+	exiting_country = true
+	countryexit.set_deferred("monitoring", false)
+	countryexit.set_deferred("monitorable", false)
+	_reset_player_position()
+	from_country = true
+	countrylayer.visible = false
+	countryblossomslayer.visible = false
+	subwaylayer.visible = true
+	citylayer.visible = false
+	countrycollision.disabled = true
+	_switch_scene_to_subway()
+	countryswitchanim.play("fade_out")
+	await countryswitchanim.animation_finished
+	exiting_country = false
+	transitioning = false
+	countryswitchtext.hide()
+	
+func _on_countryexit_body_entered(body: Node2D) -> void:
+	if body != mainchara:
+		return
+	if countrylayer.visible == false:
+		return
+	if not exiting_country:
+		_on_country_exit_triggered()
+
+func _on_bufferzone_country_body_entered(body: Node2D) -> void:
+	if body.name == "mainchara":
+		in_transition_buffer = true
+
+func _on_bufferzone_country_body_exited(body: Node2D) -> void:
+	if body.name == "mainchara":
+		in_transition_buffer = false

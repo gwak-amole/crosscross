@@ -120,7 +120,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		if f is BaseButton and f.is_visible_in_tree():
 			if not f.disabled:
 				f.emit_signal("pressed")
-				get_viewport().set_input_as_handled()
+				if get_viewport():
+					get_viewport().set_input_as_handled()
 
 func _focus_normal() -> void:
 	var cols: Array = []

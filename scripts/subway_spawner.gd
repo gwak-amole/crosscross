@@ -5,6 +5,7 @@ extends Node2D
 @export var controller_path: NodePath
 @export var characters_path: NodePath
 @export var subwaylayerpath: NodePath
+@export var countrylayerpath: NodePath
 @export var enemyspawnerpath : NodePath
 @export var start_spawn_every: float = 15
 @export var min_spawn_every := 1
@@ -20,6 +21,7 @@ extends Node2D
 @onready var controller := get_node(controller_path)
 @onready var characters := get_node_or_null(characters_path)
 @onready var subwaylayer := get_node(subwaylayerpath)
+@onready var countrylayer := get_node(countrylayerpath)
 @onready var enemyspawner := get_node(enemyspawnerpath)
 @onready var timer: Timer = $Timer
 var rng := RandomNumberGenerator.new()
@@ -44,6 +46,8 @@ func _process(delta):
 
 func _on_spawn_tick() -> void:
 	if subwaylayer.visible:
+		return
+	if countrylayer.visible:
 		return
 	if characters.get_child_count() != 0:
 		return

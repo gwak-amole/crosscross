@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://hf0i7twub4rg"]
+[gd_scene load_steps=16 format=3 uid="uid://hf0i7twub4rg"]
 
 [ext_resource type="Texture2D" uid="uid://h7emchyv0jv4" path="res://art/dialoguegeneral/trainconductorcontacted.png" id="1_b33io"]
 [ext_resource type="Script" path="res://scripts/trainconductor.gd" id="1_vygo5"]
@@ -87,9 +87,6 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_74qk0"]
-size = Vector2(38, 12.5)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u6wfh"]
 size = Vector2(20, 65.5)
 
@@ -102,10 +99,6 @@ sprite_frames = SubResource("SpriteFrames_tuvmt")
 animation = &"idle"
 frame = 3
 frame_progress = 0.187317
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -3)
-shape = SubResource("RectangleShape2D_74qk0")
 
 [node name="train_hitbox" type="Area2D" parent="."]
 
@@ -122,6 +115,10 @@ scale = Vector2(1.65, 1.7)
 position = Vector2(0, 17.25)
 shape = SubResource("RectangleShape2D_u6wfh")
 
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-7, -13, 6, -13, 21, -5, 21, 0, 8, 5, -7, 5, -19, 0, -20, -8, -8, -13)
+
 [connection signal="area_entered" from="train_hitbox" to="." method="_on_train_hitbox_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="area_entered" from="train_slowdown" to="." method="_on_train_slowdown_area_entered"]
 [connection signal="area_exited" from="train_slowdown" to="." method="_on_train_slowdown_area_exited"]
