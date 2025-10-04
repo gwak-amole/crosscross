@@ -1,4 +1,4 @@
-[gd_scene load_steps=214 format=4 uid="uid://bw1jvqsj3l017"]
+[gd_scene load_steps=227 format=4 uid="uid://bw1jvqsj3l017"]
 
 [ext_resource type="PackedScene" uid="uid://cqsj6ljppkot6" path="res://scenes/mainchara.tscn" id="1_bp8ss"]
 [ext_resource type="Script" path="res://scripts/parallax_background.gd" id="1_eistd"]
@@ -134,6 +134,18 @@
 [ext_resource type="PackedScene" uid="uid://bo2viocg7ermv" path="res://scenes/cardswipingactivity.tscn" id="123_kmmca"]
 [ext_resource type="Script" path="res://scripts/trainconductorui.gd" id="130_8q3g4"]
 [ext_resource type="PackedScene" uid="uid://bnqyg1rw7c7r3" path="res://scenes/trainconductoranim.tscn" id="131_03tk2"]
+[ext_resource type="Texture2D" uid="uid://b4i5srg6uxpl6" path="res://art/tileset/trainanimationframes/trainanimationframes.png" id="131_4tbr7"]
+[ext_resource type="Texture2D" uid="uid://dbv4pa2b74wuf" path="res://art/tileset/trainanimationframes/trainanimationframes1.png" id="132_4ix1p"]
+[ext_resource type="Texture2D" uid="uid://d3cg5p2a0thkg" path="res://art/tileset/trainanimationframes/trainanimationframes2.png" id="133_mheei"]
+[ext_resource type="Texture2D" uid="uid://bd65l0l7rr7ix" path="res://art/tileset/trainanimationframes/trainanimationframes3.png" id="134_j3xca"]
+[ext_resource type="Texture2D" uid="uid://botbj8f1mxwf0" path="res://art/tileset/trainanimationframes/trainanimationframes4.png" id="135_1t4d8"]
+[ext_resource type="Texture2D" uid="uid://di22e5pncmc6g" path="res://art/tileset/trainanimationframes/trainanimationframes5.png" id="136_siryg"]
+[ext_resource type="Texture2D" uid="uid://d32a565tepr4" path="res://art/tileset/trainanimationframes/trainanimationframes6.png" id="137_101we"]
+[ext_resource type="Texture2D" uid="uid://bqepidujasmfk" path="res://art/tileset/trainanimationframes/trainanimationframes7.png" id="138_l22qn"]
+[ext_resource type="Texture2D" uid="uid://dxeqsogkh4fey" path="res://art/tileset/trainanimationframes/trainanimationframes8.png" id="139_8dkcw"]
+[ext_resource type="Texture2D" uid="uid://c6osahph5yl8d" path="res://art/tileset/trainanimationframes/trainanimationframes9.png" id="140_hwi2n"]
+[ext_resource type="Texture2D" uid="uid://qan2wqq7d7ma" path="res://art/tileset/trainanimationframes/trainanimationframes10.png" id="141_f804h"]
+[ext_resource type="Texture2D" uid="uid://tu8d45rjdjsu" path="res://art/tileset/trainanimationframes/trainanimationframes11.png" id="142_2nwan"]
 
 [sub_resource type="Animation" id="Animation_84thl"]
 length = 0.001
@@ -1155,29 +1167,54 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/path = NodePath("TextureRect:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_7nu10"]
+[sub_resource type="Animation" id="Animation_wx15t"]
 resource_name = "fade_in"
+length = 1.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/path = NodePath("TextureRect:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.0333333, 0.433333),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("131_4tbr7")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.466667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(0, 0, 0, 1)]
+"values": [Color(0, 0, 0, 1), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_mhb3j"]
@@ -1185,21 +1222,63 @@ resource_name = "fade_out"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/path = NodePath("TextureRect:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.0333333, 0.466667),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [ExtResource("142_2nwan")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.466667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(0, 0, 0, 1), Color(1, 1, 1, 0)]
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_7nu10"]
+resource_name = "going"
+length = 1.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.266667, 0.433333, 0.566667, 0.733333, 0.9, 1.06667, 1.2, 1.36667, 1.53333, 1.73333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("131_4tbr7"), ExtResource("132_4ix1p"), ExtResource("133_mheei"), ExtResource("134_j3xca"), ExtResource("135_1t4d8"), ExtResource("136_siryg"), ExtResource("137_101we"), ExtResource("138_l22qn"), ExtResource("139_8dkcw"), ExtResource("140_hwi2n"), ExtResource("141_f804h"), ExtResource("142_2nwan")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mvk7v"]
 _data = {
 "RESET": SubResource("Animation_2fvpg"),
-"fade_in": SubResource("Animation_7nu10"),
-"fade_out": SubResource("Animation_mhb3j")
+"fade_in": SubResource("Animation_wx15t"),
+"fade_out": SubResource("Animation_mhb3j"),
+"going": SubResource("Animation_7nu10")
 }
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ddr6d"]
@@ -1484,7 +1563,9 @@ controllerpath = NodePath("../GameController")
 tutanimpath = NodePath("Panel/tutorialdialogue")
 tutlabelpath = NodePath("Panel/tutlabel")
 subwaylayerpath = NodePath("../Subway")
+countrylayerpath = NodePath("../Country")
 subwayanimationpath = NodePath("../subwayswitch/AnimationPlayer")
+citylayerpath = NodePath("../City")
 
 [node name="Panel" type="Panel" parent="Dialogue UI"]
 anchors_preset = 15
@@ -1932,8 +2013,7 @@ characters_path = NodePath("../subwayentries")
 subwaylayerpath = NodePath("../Subway")
 countrylayerpath = NodePath("../Country")
 enemyspawnerpath = NodePath("../Spawner")
-start_spawn_every = 50.0
-min_spawn_every = 50
+start_spawn_every = 1.0
 
 [node name="Timer" type="Timer" parent="SubwaySpawner"]
 
@@ -2137,10 +2217,8 @@ libraries = {
 }
 
 [node name="TextureRect" type="TextureRect" parent="countryswitch"]
-visible = false
 offset_right = 40.0
 offset_bottom = 40.0
-texture = ExtResource("117_3msv0")
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(284, -11)

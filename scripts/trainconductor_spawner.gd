@@ -69,6 +69,7 @@ func _on_spawn_tick() -> void:
 func _spawn_one() -> void:
 	if subwaylayer.visible == false:
 		return
+	await get_tree().create_timer(0.5).timeout
 	var e := train_scene.instantiate()
 	characters.add_child(e)
 	

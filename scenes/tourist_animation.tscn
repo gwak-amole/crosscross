@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://ck3nxa2d6ufys"]
+[gd_scene load_steps=25 format=3 uid="uid://ck3nxa2d6ufys"]
 
 [ext_resource type="Texture2D" uid="uid://bakk0rbkq3846" path="res://art/touristdialogue/touristdialogueappear0.png" id="1_3he03"]
 [ext_resource type="Texture2D" uid="uid://driqbp0lii4b7" path="res://art/touristdialogue/touristdialogueappear1.png" id="2_2akx6"]
@@ -8,23 +8,21 @@
 [ext_resource type="Texture2D" uid="uid://bu6ya6efo4ofy" path="res://art/touristdialogue/touristdialogueangry1.png" id="5_rqi1a"]
 [ext_resource type="Texture2D" uid="uid://jwgceu64ipmq" path="res://art/touristdialogue/touristdialogueapologize2.png" id="6_f4dyg"]
 [ext_resource type="Texture2D" uid="uid://b8mecq03w24qy" path="res://art/touristdialogue/touristdialogueangry2.png" id="6_sqyfb"]
+[ext_resource type="Texture2D" uid="uid://bg4hx626sim6k" path="res://art/dialoguegeneral/citydialoguebg.png" id="8_tb7aq"]
+[ext_resource type="Texture2D" uid="uid://bcc5mrqfru5ol" path="res://art/tileset/trainanimationframes/countrydialoguebackground.png" id="9_0sdde"]
 [ext_resource type="AudioStream" uid="uid://cp5w2y57ckc75" path="res://audio/488227__plumaudio__happy-blip.wav" id="9_ctl6r"]
 [ext_resource type="Texture2D" uid="uid://btilswt6rl5wx" path="res://art/touristdialogue/touristdialoguesubwayappear0.png" id="9_kt3xb"]
 [ext_resource type="Texture2D" uid="uid://big1u4urys8kl" path="res://art/touristdialogue/touristdialoguesubwayappear1.png" id="10_eg533"]
 [ext_resource type="AudioStream" uid="uid://0rpc2thbcgos" path="res://audio/crosscross_angry_man.wav" id="10_ujsq2"]
 [ext_resource type="Texture2D" uid="uid://b8hstsl07a6gs" path="res://art/touristdialogue/touristdialoguesubwayappear2.png" id="11_0uhte"]
-[ext_resource type="Texture2D" uid="uid://c4na0c760dwot" path="res://art/touristdialogue/touristdialoguesubwayhairsway.png" id="12_sqxcc"]
-[ext_resource type="Texture2D" uid="uid://bqi0bbmym6lv4" path="res://art/touristdialogue/touristdialoguesubwayapologize0.png" id="13_53r6l"]
-[ext_resource type="Texture2D" uid="uid://bk2vd75e3tc83" path="res://art/touristdialogue/touristdialoguesubwayangry0.png" id="13_mtt61"]
-[ext_resource type="Texture2D" uid="uid://cuwllvuifex0i" path="res://art/touristdialogue/touristdialoguesubwayangry1.png" id="14_g0hcd"]
-[ext_resource type="Texture2D" uid="uid://fkyct35fhsjh" path="res://art/touristdialogue/touristdialoguesubwayapologize1.png" id="14_hugt1"]
+[ext_resource type="Texture2D" uid="uid://c6xfl4oh3vl7q" path="res://art/dialoguegeneral/subwaydialoguebg.png" id="12_hvx50"]
 
 [sub_resource type="Animation" id="Animation_jrc0i"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:texture")
+tracks/0/path = NodePath("person:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -36,7 +34,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("TextureRect:modulate")
+tracks/1/path = NodePath("person:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -45,6 +43,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("bg:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
 
 [sub_resource type="Animation" id="Animation_dfxkq"]
 resource_name = "angry"
@@ -52,7 +62,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:texture")
+tracks/0/path = NodePath("person:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -68,7 +78,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:texture")
+tracks/0/path = NodePath("person:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -83,7 +93,7 @@ resource_name = "appear"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:texture")
+tracks/0/path = NodePath("person:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -95,10 +105,85 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("TextureRect:modulate")
+tracks/1/path = NodePath("person:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.266667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("bg:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("8_tb7aq")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("bg:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.266667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_qeke7"]
+resource_name = "countryappear"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("person:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("1_3he03"), ExtResource("2_2akx6"), ExtResource("3_pv8kj")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("person:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.266667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("bg:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("9_0sdde")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("bg:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(0, 0.266667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
@@ -111,7 +196,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:texture")
+tracks/0/path = NodePath("person:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -126,7 +211,7 @@ resource_name = "subwayappear"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:texture")
+tracks/0/path = NodePath("person:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -138,7 +223,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("TextureRect:modulate")
+tracks/1/path = NodePath("person:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -147,53 +232,29 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
-
-[sub_resource type="Animation" id="Animation_mfgk3"]
-resource_name = "subwayhairsway"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.0333333, 0.466667, 0.933333),
-"transitions": PackedFloat32Array(1, 1, 1),
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("bg:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("11_0uhte"), ExtResource("12_sqxcc"), ExtResource("11_0uhte")]
+"values": [ExtResource("12_hvx50")]
 }
-
-[sub_resource type="Animation" id="Animation_h6ord"]
-resource_name = "subwayangry"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.433333, 0.933333),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [ExtResource("13_mtt61"), ExtResource("14_g0hcd"), ExtResource("13_mtt61")]
-}
-
-[sub_resource type="Animation" id="Animation_xa0qr"]
-resource_name = "subwayapologize"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.0333333, 0.4, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [ExtResource("13_53r6l"), ExtResource("14_hugt1"), ExtResource("13_53r6l")]
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("bg:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ckbgj"]
@@ -202,11 +263,9 @@ _data = {
 "angry": SubResource("Animation_dfxkq"),
 "apologize": SubResource("Animation_l8osx"),
 "appear": SubResource("Animation_i0l7t"),
+"countryappear": SubResource("Animation_qeke7"),
 "hairsway": SubResource("Animation_tjrov"),
-"subwayangry": SubResource("Animation_h6ord"),
-"subwayapologize": SubResource("Animation_xa0qr"),
-"subwayappear": SubResource("Animation_kwlvl"),
-"subwayhairsway": SubResource("Animation_mfgk3")
+"subwayappear": SubResource("Animation_kwlvl")
 }
 
 [node name="tourist_animation" type="Node2D"]
@@ -216,7 +275,12 @@ libraries = {
 "": SubResource("AnimationLibrary_ckbgj")
 }
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="bg" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="person" type="TextureRect" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
 

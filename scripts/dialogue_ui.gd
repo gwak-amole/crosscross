@@ -10,7 +10,9 @@ signal charm_used
 @export var tutanimpath : NodePath
 @export var tutlabelpath : NodePath
 @export var subwaylayerpath : NodePath
+@export var countrylayerpath : NodePath
 @export var subwayanimationpath : NodePath
+@export var citylayerpath : NodePath
 
 @onready var panel := $Panel
 @onready var art : Node = $Panel/Art
@@ -27,6 +29,8 @@ signal charm_used
 @onready var tutlabel := get_node(tutlabelpath)
 @onready var subwaylayer := get_node(subwaylayerpath)
 @onready var subwayanim := get_node(subwayanimationpath)
+@onready var countrylayer := get_node(countrylayerpath)
+@onready var citylayer := get_node(citylayerpath)
 
 var dlg_scene: Node = null
 var cor_idx : int
@@ -72,7 +76,6 @@ func show_dialogue_from_profile(p: EnemyProfile) -> int:
 	text.hide()
 	tutlabel.hide()
 	rps_choices_box.hide()
-	subwayanim.play("RESET")
 	choices_box.PROCESS_MODE_DISABLED
 	if is_instance_valid(dlg_scene):
 		dlg_scene.queue_free()
@@ -86,65 +89,41 @@ func show_dialogue_from_profile(p: EnemyProfile) -> int:
 		is_delinq = false
 	var ap = dlg_scene.get_node_or_null("AnimationPlayer")
 	if ap:
-		if subwaylayer.visible == false:
-			await get_tree().create_timer(1.5, true).timeout
-			print("playing animations")
+		await get_tree().create_timer(1.5, true).timeout
+		print("playing animations")
+		if citylayer.visible:
 			if ap.has_animation("appear"):
 				ap.play("appear")
-				await get_tree().create_timer(0.1, true).timeout
-				visible = true
-				audio.play()
-				panel.show()
-				choices_box.PROCESS_MODE_ALWAYS
-			await ap.animation_finished
-			if ap.has_animation("hairsway"):
-					ap.play("hairsway")
-			text.show()
-			choices_box.show()
-			if controller.charm_active:
-				print("reaches here")
-				charm.disabled = false
-				charm.show()
-				print("charm showed")
-			else:
-				print("for some reason charm hides")
-				charm.hide()
-			if tutorial_wanted:
-				tutlabel.show()
-				tutanim.play("introtodialogue")
-				print("introtodialogue")
-				tutanim.animation_finished.connect(_on_intro_finished, CONNECT_ONE_SHOT)
-				print("not wantec")
-		elif subwaylayer.visible:
-			await get_tree().create_timer(1.5, true).timeout
-			print("playing animations")
+		if subwaylayer.visible:
 			if ap.has_animation("subwayappear"):
 				ap.play("subwayappear")
-				await get_tree().create_timer(0.1, true).timeout
-				visible = true
-				audio.play()
-				panel.show()
-				choices_box.PROCESS_MODE_ALWAYS
-			await ap.animation_finished
-			if ap.has_animation("subwayhairsway"):
-					ap.play("subwayhairsway")
-			text.show()
-			choices_box.show()
-			if controller.charm_active:
-				print("reaches here")
-				charm.disabled = false
-				charm.show()
-				print("charm showed")
-			else:
-				print("for some reason charm hides")
-				charm.hide()
-			if tutorial_wanted:
-				tutlabel.show()
-				tutanim.play("introtodialogue")
-				print("introtodialogue")
-				tutanim.animation_finished.connect(_on_intro_finished, CONNECT_ONE_SHOT)
-				print("not wantec")
-			
+		if countrylayer.visible:
+			if ap.has_animation("countryappear"):
+				ap.play("countryappear")
+		await get_tree().create_timer(0.1, true).timeout
+		visible = true
+		audio.play()
+		panel.show()
+		choices_box.PROCESS_MODE_ALWAYS
+		await ap.animation_finished
+		if ap.has_animation("hairsway"):
+				ap.play("hairsway")
+		text.show()
+		choices_box.show()
+		if controller.charm_active:
+			print("reaches here")
+			charm.disabled = false
+			charm.show()
+			print("charm showed")
+		else:
+			print("for some reason charm hides")
+			charm.hide()
+		if tutorial_wanted:
+			tutlabel.show()
+			tutanim.play("introtodialogue")
+			print("introtodialogue")
+			tutanim.animation_finished.connect(_on_intro_finished, CONNECT_ONE_SHOT)
+			print("not wantec")
 	else:
 		print("No AnimationPlayer found in dlg_scene")
 	
@@ -228,28 +207,19 @@ func _wait_for_choice() -> int:
 	if is_rps_mode:
 		if enemy_move == 0:
 			text.text = "Rock!"
-			if subwaylayer.visible:
-				ap.play("subwayrock")
-			else:
-				ap.play("rock")
+			ap.play("rock")
 			if charm_override:
 				charm_override = false
 				picked = 1
 		elif enemy_move == 1:
 			text.text = "Paper!"
-			if subwaylayer.visible:
-				ap.play("subwaypaper")
-			else:
-				ap.play("paper")
+			ap.play("paper")
 			if charm_override:
 				charm_override = false
 				picked = 2
 		elif enemy_move == 2:
 			text.text = "Scissors!"
-			if subwaylayer.visible:
-				ap.play("subwayscissors")
-			else:
-				ap.play("scissors")
+			ap.play("scissors")
 			if charm_override:
 				charm_override = false
 				picked = 0
@@ -268,8 +238,6 @@ func _wait_for_choice() -> int:
 			text.hide()
 			playertexture.hide()
 			if subwaylayer.visible:
-				ap.play("subwayangry")
-			else:
 				ap.play("angry")
 			neg_response.play()
 			await get_tree().create_timer(2.0).timeout
@@ -281,10 +249,7 @@ func _wait_for_choice() -> int:
 			is_rps_mode = false
 			text.hide()
 			playertexture.hide()
-			if subwaylayer.visible:
-				ap.play("subwayapologize")
-			else:
-				ap.play("apologize")
+			ap.play("apologize")
 			pos_response.play()
 			await get_tree().create_timer(2.0).timeout
 			visible = false
@@ -293,10 +258,7 @@ func _wait_for_choice() -> int:
 			is_rps_mode = false
 			text.hide()
 			playertexture.hide()
-			if subwaylayer.visible:
-				ap.play("subwayangry")
-			else:
-				ap.play("angry")
+			ap.play("angry")
 			neg_response.play()
 			await get_tree().create_timer(2.0).timeout
 			return 0
@@ -313,16 +275,10 @@ func _wait_for_choice() -> int:
 			else:
 				pass
 		if wrong:
-			if subwaylayer.visible:
-				ap.play("subwayangry")
-			else:
-				ap.play("angry")
+			ap.play("angry")
 			neg_response.play()
 		else:
-			if subwaylayer.visible:
-				ap.play("subwayapologize")
-			else:
-				ap.play("apologize")
+			ap.play("apologize")
 			pos_response.play()
 		await get_tree().create_timer(2.0).timeout
 		visible = false

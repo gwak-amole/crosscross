@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bwkhs4hbnkl8b"]
+[gd_scene load_steps=22 format=3 uid="uid://bwkhs4hbnkl8b"]
 
 [ext_resource type="Texture2D" uid="uid://bhplptvg57l6d" path="res://art/dialoguegeneral/streetmusiciandialogue/streetmusicianappear0.png" id="1_hsglr"]
 [ext_resource type="Texture2D" uid="uid://dy71ihvabccu5" path="res://art/dialoguegeneral/streetmusiciandialogue/streetmusicianappear1.png" id="2_6by1f"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://ca63jxknfo7vl" path="res://art/dialoguegeneral/streetmusiciandialogue/streetmusicianangry1.png" id="7_peib4"]
 [ext_resource type="Texture2D" uid="uid://bwrjh75au7mfc" path="res://art/dialoguegeneral/streetmusiciandialogue/streetmusicianapologize0.png" id="7_uimgl"]
 [ext_resource type="Texture2D" uid="uid://pdmbjrwsxg4w" path="res://art/dialoguegeneral/streetmusiciandialogue/streetmusicianapologize1.png" id="8_b07p0"]
+[ext_resource type="Texture2D" uid="uid://bcc5mrqfru5ol" path="res://art/tileset/trainanimationframes/countrydialoguebackground.png" id="11_8vqy5"]
 [ext_resource type="AudioStream" uid="uid://dinf74ro3dr61" path="res://audio/611793__metalfortress__jingle_little_achievement3.wav" id="11_62cje"]
 [ext_resource type="Texture2D" uid="uid://c6xfl4oh3vl7q" path="res://art/dialoguegeneral/subwaydialoguebg.png" id="13_mywcg"]
 
@@ -55,18 +56,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [ExtResource("6_xi5p7"), ExtResource("7_peib4"), ExtResource("6_xi5p7")]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("bg:texture")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("4_qswq4")]
-}
 
 [sub_resource type="Animation" id="Animation_vydu6"]
 resource_name = "apologize"
@@ -82,18 +71,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [ExtResource("7_uimgl"), ExtResource("8_b07p0"), ExtResource("7_uimgl")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("bg:texture")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("4_qswq4")]
 }
 
 [sub_resource type="Animation" id="Animation_j5wls"]
@@ -163,74 +140,6 @@ tracks/0/keys = {
 "update": 1,
 "values": [ExtResource("3_pvba4"), ExtResource("5_mhc4d"), ExtResource("3_pvba4")]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("bg:texture")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("4_qswq4")]
-}
-
-[sub_resource type="Animation" id="Animation_7gigs"]
-resource_name = "subwayangry"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("people:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.833333),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [ExtResource("6_xi5p7"), ExtResource("7_peib4"), ExtResource("6_xi5p7")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("bg:texture")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("13_mywcg")]
-}
-
-[sub_resource type="Animation" id="Animation_ctvfg"]
-resource_name = "subwayapologize"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("people:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.833333),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [ExtResource("7_uimgl"), ExtResource("8_b07p0"), ExtResource("7_uimgl")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("bg:texture")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("13_mywcg")]
-}
 
 [sub_resource type="Animation" id="Animation_ivi2g"]
 resource_name = "subwayappear"
@@ -283,9 +192,8 @@ tracks/3/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_5g1w5"]
-resource_name = "subwayhairsway"
-loop_mode = 1
+[sub_resource type="Animation" id="Animation_8rc5i"]
+resource_name = "countryappear"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -293,22 +201,46 @@ tracks/0/path = NodePath("people:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.833333),
+"times": PackedFloat32Array(0, 0.0666667, 0.166667),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [ExtResource("3_pvba4"), ExtResource("5_mhc4d"), ExtResource("3_pvba4")]
+"values": [ExtResource("1_hsglr"), ExtResource("2_6by1f"), ExtResource("3_pvba4")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("bg:texture")
+tracks/1/path = NodePath("people:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("bg:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("13_mywcg")]
+"values": [ExtResource("11_8vqy5")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("bg:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_33tph"]
@@ -317,11 +249,9 @@ _data = {
 "angry": SubResource("Animation_ggnld"),
 "apologize": SubResource("Animation_vydu6"),
 "appear": SubResource("Animation_j5wls"),
+"countryappear": SubResource("Animation_8rc5i"),
 "hairsway": SubResource("Animation_wn18a"),
-"subwayangry": SubResource("Animation_7gigs"),
-"subwayapologize": SubResource("Animation_ctvfg"),
-"subwayappear": SubResource("Animation_ivi2g"),
-"subwayhairsway": SubResource("Animation_5g1w5")
+"subwayappear": SubResource("Animation_ivi2g")
 }
 
 [node name="streetmusiciananim" type="Node2D"]

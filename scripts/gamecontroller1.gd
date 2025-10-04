@@ -138,6 +138,7 @@ var in_transition_buffer = false
 var transitioning = false
 var exiting_country := false
 var from_country := false
+var stop_audio := false
 
 func _ready() -> void:
 	set_character(Globals.chosen_character)
@@ -174,7 +175,6 @@ func _ready() -> void:
 		push_error("Heart UI path not valid node haiyaa")
 	lives = clamp(lives_start, 0, heart_nodes.size())
 	_update_hearts()
-	print("[Hearts] nodes:", heart_nodes.size(), " lives:", lives)
 	dialogue_ui.branch_chosen.connect(_on_branch_chosen)
 	fevertext.hide()
 	texture.hide()
@@ -186,7 +186,6 @@ func _ready() -> void:
 	coins.hide()
 	points.hide()
 	hearts_box.hide()
-	print("YES type:", wyltutyes.get_class(), " NO type:", wyltutno.get_class())
 	if not (wyltutyes as BaseButton).pressed.is_connected(_on_yes_pressed):
 		(wyltutyes as BaseButton).pressed.connect(_on_yes_pressed)
 	if not (wyltutno as BaseButton).pressed.is_connected(_on_no_pressed):
@@ -210,10 +209,13 @@ func _ready() -> void:
 		hearts_box.show()
 
 func _process(delta) -> void:
-	if get_tree().paused == true:
-		audioOne.playing = false
-	elif audioOne.playing == false:
-		audioOne.play()
+	if stop_audio:
+		pass
+	else:
+		if get_tree().paused == true:
+			audioOne.playing = false
+		elif audioOne.playing == false:
+			audioOne.play()
 
 func hook_enemy(e: Node) -> void:
 	if not e.has_signal("contacted"): return
@@ -253,11 +255,8 @@ func _on_enemy_contacted(enemy: Node) -> void:
 	_update_points()
 	times -= times/5
 	points_frozen = true
-	print("points frozen")
-	print("ctrl contacted so pausing")
 	get_tree().paused = true
 	audioEnc.play()
-	print("ctrl paused =", get_tree().paused)
 	
 	var p = enemy.get("profile") if enemy else null
 	if p == null:
@@ -299,12 +298,11 @@ func _on_enemy_contacted(enemy: Node) -> void:
 		_game_over()
 		
 	if spawner.fever_active:
-		print("CHECKING!")
 		fevertext.show()
 		texture.show()
 		anim.play("fever_constant")
 	else:
-		print("fever not active")
+		pass
 	if charm_used == false:
 		charmtexture.show()
 		charm_active = true
@@ -315,14 +313,11 @@ func _on_enemy_contacted(enemy: Node) -> void:
 		await get_tree().create_timer(3.0).timeout
 		points_frozen = false
 		print("points unfrozen")
-	
 
 func _update_hearts() -> void:
 	var shown : int = clamp(lives, 0, heart_nodes.size())
 	for i in  range(heart_nodes.size()):
-		heart_nodes[i].visible = (i < shown)
-	print("HEarts update -> lives:", lives, " shown", shown)
-	
+		heart_nodes[i].visible = (i < shown)	
 
 func _lose_life() -> void:
 	lives = max(lives - 1, 0)
@@ -355,13 +350,11 @@ func _on_branch_chosen(idx: int) -> void:
 
 func _loop_points() -> void:
 	await get_tree().create_timer(cooldown).timeout
-	print("annyeong")
 	while true:
 		while get_tree().paused: 
 			await get_tree().create_timer(0.1, true).timeout
 		await _increment_points()
 		await get_tree().create_timer(cooldown).timeout
-		print("5 secs passed")
 
 func _increment_points() -> void:
 	if points_frozen == false:
@@ -402,7 +395,6 @@ func _on_puddle_contacted(e:Node) -> void:
 			puddle_tut_wanted = false
 		else:
 			pass
-	print("puddle contacted")
 	splashsound.play()
 	animsplash.play("splashity")
 	splashtext.show()
@@ -438,7 +430,6 @@ func _fever_start() -> void:
 	fevertimer.wait_time = 8.0
 	fevertimer.start()
 	
-	print("FEVER FEVER FEVER")
 	emit_signal("fever")
 	power = 1.3
 	cooldown = 2.5
@@ -449,12 +440,10 @@ func _on_fevertimer_timeout() -> void:
 func _tutorial_ask() -> void:
 	_focus_tutorial_ask()
 	tuttext.show()
-	print("hello? aaa")
 	wyltutlabel.show()
 	wyltutyes.show()
 	wyltutno.show()
 	get_tree().paused = true
-	print("huh?")
 	
 	await get_tree().process_frame
 	var yes: bool = await tutorial
@@ -468,12 +457,10 @@ func _tutorial_ask() -> void:
 
 func _on_yes_pressed() -> void:
 	tutorial_wanted = true
-	print("yes")
 	emit_signal("tutorial", true)
 
 func _on_no_pressed() -> void:
 	tutorial_wanted = false
-	print("no")
 	emit_signal("tutorial", false)
 
 func _on_tutorial_finished() -> void:
@@ -549,7 +536,6 @@ func _on_stairexit_body_entered(body: Node2D) -> void:
 		_on_subway_exit_triggered()
 
 func _on_subwayentry_contacted(entry) -> void:
-	print("reached here")
 	print(entry)
 	_switch_scene_to_subway()
 
@@ -607,9 +593,7 @@ func _on_swiper_contacted():
 	
 	if not swipercooldown:
 		swipercooldown = true
-		swipe_used = true
-		print("SWIPE SWIPE SWIPE SWIPE")
-		
+		swipe_used = true		
 		await cardswipingactivity._start_swipe()
 		await get_tree().create_timer(5.0).timeout
 		swipercooldown = false
@@ -671,10 +655,8 @@ func _on_trainconductor_contacted(conductor: Node) -> void:
 	times -= times/5
 	points_frozen = true
 	print("points frozen")
-	print("ctrl contacted so pausing")
 	get_tree().paused = true
 	audioEnc.play()
-	print("ctrl paused =", get_tree().paused)
 
 	if train_dialogue_ui == null:
 		push_error("dialogue_ui_path is not set to a DialogueUI node")
@@ -703,7 +685,7 @@ func _on_trainconductor_contacted(conductor: Node) -> void:
 		texture.show()
 		anim.play("fever_constant")
 	else:
-		print("fever not active")
+		pass
 	if get_tree():
 		await get_tree().create_timer(3.0).timeout
 		points_frozen = false
@@ -712,7 +694,14 @@ func _on_trainconductor_contacted(conductor: Node) -> void:
 func _switch_scene_to_country() -> void:
 	transitioning = true
 	countryswitchtext.show()
+	stop_audio = true
+	audioOne.stop()
 	countryswitchanim.play("fade_in")
+	countryswitchtext.show()
+	await countryswitchanim.animation_finished
+	countryswitchanim.play("going")
+	await get_tree().create_timer(5.0).timeout
+	countryswitchanim.play("fade_out")
 	await countryswitchanim.animation_finished
 	citylayer.visible = false
 	subwaylayer.visible = false
@@ -725,6 +714,8 @@ func _switch_scene_to_country() -> void:
 	countryexit.set_deferred("monitoring", true)
 	countryexit.set_deferred("monitorable", true)
 	var cam := get_viewport().get_camera_2d()
+	stop_audio = false
+	audioOne.play()
 	cam.global_position = subwaypoint.global_position
 	countryswitchtext.hide()
 
@@ -732,7 +723,6 @@ func _switch_scene_to_country() -> void:
 		if l is ParallaxLayer:
 			l.motion_offset = Vector2.ZERO
 	_reset_player_position()
-	countryswitchanim.play("fade_out")
 	for child in characters.get_children():
 		if child != mainchara:
 			child.queue_free()
@@ -745,15 +735,20 @@ func _switch_scene_to_country() -> void:
 	for child in trainconductors.get_children():
 		child.queue_free()
 	transitioning = false
-		
+
 func _on_country_exit_triggered():
 	if exiting_country:
 		return
 	transitioning = true
-	countryswitchtext.show()
+	stop_audio = true
+	audioOne.stop()
 	countryswitchanim.play("fade_in")
+	countryswitchtext.show()
 	await countryswitchanim.animation_finished
-	countryswitchtext.modulate.a = 1.0
+	countryswitchanim.play("going")
+	await get_tree().create_timer(5.0).timeout
+	countryswitchanim.play("fade_out")
+	await countryswitchanim.animation_finished
 	exiting_country = true
 	countryexit.set_deferred("monitoring", false)
 	countryexit.set_deferred("monitorable", false)
@@ -765,8 +760,8 @@ func _on_country_exit_triggered():
 	citylayer.visible = false
 	countrycollision.disabled = true
 	_switch_scene_to_subway()
-	countryswitchanim.play("fade_out")
-	await countryswitchanim.animation_finished
+	stop_audio = false
+	audioOne.play()
 	exiting_country = false
 	transitioning = false
 	countryswitchtext.hide()
