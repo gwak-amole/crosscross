@@ -8,6 +8,8 @@ func _ready() -> void:
 	await get_tree().process_frame
 	if $VBoxContainer/"Start Button".visible:
 		$VBoxContainer/"Start Button".grab_focus()
+	Globals.chosen_gender = 0
+	Globals.chosen_character = "-1"
 		
 func _on_start_button_pressed() -> void:
 	anim.play("exit")

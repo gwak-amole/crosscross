@@ -620,13 +620,22 @@ func _on_swipe_done() -> void:
 	swipe_used = false
 
 func set_character(choice: String):
-	match choice:
-		"0":
-			mainchara.get_node("AnimatedSprite2D").sprite_frames = load("res://art/frames/maincharawalking0.tres")
-		"1":
-			mainchara.get_node("AnimatedSprite2D").sprite_frames = load("res://art/frames/maincharawalking1.tres")
-		"2":
-			mainchara.get_node("AnimatedSprite2D").sprite_frames = load("res://art/frames/maincharawalking2.tres")
+	if Globals.chosen_gender == 1:
+		match choice:
+			"0":
+				mainchara.get_node("AnimatedSprite2D").sprite_frames = load("res://art/frames/maincharawalking0.tres")
+			"1":
+				mainchara.get_node("AnimatedSprite2D").sprite_frames = load("res://art/frames/maincharawalking1.tres")
+			"2":
+				mainchara.get_node("AnimatedSprite2D").sprite_frames = load("res://art/frames/maincharawalking2.tres")
+	elif Globals.chosen_gender == 2:
+		match choice:
+			"0":
+				mainchara.get_node("AnimatedSprite2D").sprite_frames = load("res://art/frames/maincharawoman0.tres")
+			"1":
+				mainchara.get_node("AnimatedSprite2D").sprite_frames = load("res://art/frames/maincharawoman1.tres")
+			"2":
+				mainchara.get_node("AnimatedSprite2D").sprite_frames = load("res://art/frames/maincharawoman2.tres")
 
 
 func _on_bufferzone_body_entered(body: Node2D) -> void:

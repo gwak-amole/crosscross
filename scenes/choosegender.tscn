@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dwnmxe5wvbknb"]
+[gd_scene load_steps=11 format=3 uid="uid://dwnmxe5wvbknb"]
 
 [ext_resource type="Texture2D" uid="uid://dtq5eyka26sms" path="res://art/officemandialogue/enteranim/howtoplayblank.png" id="1_46m75"]
 [ext_resource type="Script" path="res://scripts/choosegender.gd" id="1_mem5c"]
@@ -7,6 +7,42 @@
 [ext_resource type="Texture2D" uid="uid://b55fq7o5j7f5q" path="res://art/mainscreensandstuff/choosefemale.png" id="3_yona6"]
 [ext_resource type="Texture2D" uid="uid://crimcbpoqg6hd" path="res://art/mainscreensandstuff/choosefemalepressed.png" id="4_nytvm"]
 [ext_resource type="FontFile" uid="uid://r7libpb4d4ao" path="res://fonts/Jersey_10/Jersey10-Regular.ttf" id="6_7y2vt"]
+
+[sub_resource type="Animation" id="Animation_of64d"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_g1s6d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2cse4"]
+_data = {
+"RESET": SubResource("Animation_g1s6d"),
+"fade_out": SubResource("Animation_of64d")
+}
 
 [node name="choosegender" type="Control"]
 layout_mode = 3
@@ -43,12 +79,14 @@ alignment = 1
 layout_mode = 2
 texture_normal = ExtResource("1_pfscp")
 texture_pressed = ExtResource("2_uu7el")
+texture_hover = ExtResource("1_pfscp")
 texture_focused = ExtResource("2_uu7el")
 
 [node name="TextureButton2" type="TextureButton" parent="HBoxContainer"]
 layout_mode = 2
 texture_normal = ExtResource("3_yona6")
 texture_pressed = ExtResource("4_nytvm")
+texture_hover = ExtResource("3_yona6")
 texture_focused = ExtResource("4_nytvm")
 
 [node name="Label" type="Label" parent="."]
@@ -80,6 +118,11 @@ grow_vertical = 0
 theme_override_fonts/font = ExtResource("6_7y2vt")
 theme_override_font_sizes/font_size = 30
 text = "confirm"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2cse4")
+}
 
 [connection signal="pressed" from="HBoxContainer/TextureButton" to="." method="_on_texture_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/TextureButton2" to="." method="_on_texture_button_2_pressed"]
