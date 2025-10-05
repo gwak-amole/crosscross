@@ -2017,8 +2017,8 @@ characters_path = NodePath("../subwayentries")
 subwaylayerpath = NodePath("../Subway")
 countrylayerpath = NodePath("../Country")
 enemyspawnerpath = NodePath("../Spawner")
-start_spawn_every = 30.0
-min_spawn_every = 25
+start_spawn_every = 50.0
+min_spawn_every = 50
 
 [node name="Timer" type="Timer" parent="SubwaySpawner"]
 

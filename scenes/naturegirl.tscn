@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dc3r26vt60fqd"]
+[gd_scene load_steps=21 format=3 uid="uid://dc3r26vt60fqd"]
 
 [ext_resource type="Texture2D" uid="uid://dh7818k8rqmqf" path="res://art/dialoguegeneral/naturegirldialogue/naturegirlappear0.png" id="1_t7ln8"]
 [ext_resource type="Texture2D" uid="uid://bd226e5vvr5pk" path="res://art/dialoguegeneral/naturegirldialogue/naturegirlappear1.png" id="2_qx7vm"]
@@ -151,38 +151,6 @@ tracks/0/keys = {
 "values": [ExtResource("3_q6s55"), ExtResource("5_l3rwi"), ExtResource("3_q6s55")]
 }
 
-[sub_resource type="Animation" id="Animation_0cils"]
-resource_name = "subwayangry"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("people:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.866667),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [ExtResource("5_btjnu"), ExtResource("6_fa4mt"), ExtResource("5_btjnu")]
-}
-
-[sub_resource type="Animation" id="Animation_5f7js"]
-resource_name = "subwayapologize"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("people:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.866667),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [ExtResource("5_a5jf6"), ExtResource("6_0kv35"), ExtResource("5_a5jf6")]
-}
-
 [sub_resource type="Animation" id="Animation_ybr4g"]
 resource_name = "subwayappear"
 tracks/0/type = "value"
@@ -192,10 +160,10 @@ tracks/0/path = NodePath("people:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
+"times": PackedFloat32Array(0, 0.0666667, 0.166667),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": []
+"values": [ExtResource("1_t7ln8"), ExtResource("2_qx7vm"), ExtResource("3_q6s55")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -234,9 +202,8 @@ tracks/3/keys = {
 "values": [Color(1, 1, 1, 0.00784314), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_1bon6"]
-resource_name = "subwayhairsway"
-loop_mode = 1
+[sub_resource type="Animation" id="Animation_uo8n8"]
+resource_name = "countryappear"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -244,10 +211,46 @@ tracks/0/path = NodePath("people:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.866667),
+"times": PackedFloat32Array(0, 0.0666667, 0.166667),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [ExtResource("3_q6s55"), ExtResource("5_l3rwi"), ExtResource("3_q6s55")]
+"values": [ExtResource("1_t7ln8"), ExtResource("2_qx7vm"), ExtResource("3_q6s55")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("people:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.00784314), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("bg:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_er0p4")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("bg:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.00784314), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8qxtn"]
@@ -256,11 +259,9 @@ _data = {
 "angry": SubResource("Animation_kx631"),
 "apologize": SubResource("Animation_yak86"),
 "appear": SubResource("Animation_dy8kd"),
+"countryappear": SubResource("Animation_uo8n8"),
 "hairsway": SubResource("Animation_1alfi"),
-"subwayangry": SubResource("Animation_0cils"),
-"subwayapologize": SubResource("Animation_5f7js"),
-"subwayappear": SubResource("Animation_ybr4g"),
-"subwayhairsway": SubResource("Animation_1bon6")
+"subwayappear": SubResource("Animation_ybr4g")
 }
 
 [node name="naturegirl" type="Node2D"]
