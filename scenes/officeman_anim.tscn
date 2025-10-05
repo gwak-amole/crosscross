@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bxvtbh60sv1fs"]
+[gd_scene load_steps=22 format=3 uid="uid://bxvtbh60sv1fs"]
 
 [ext_resource type="Texture2D" uid="uid://c2p48xk5nonek" path="res://art/officemandialogue.png" id="1_4eejk"]
 [ext_resource type="Texture2D" uid="uid://cn3nodrqgy4u5" path="res://art/officemandialogue1.png" id="2_l05iu"]
@@ -7,17 +7,12 @@
 [ext_resource type="Texture2D" uid="uid://ccevkk2g7ms1y" path="res://art/officemandialogue/officemandialogueangry1.png" id="5_tvg8p"]
 [ext_resource type="Texture2D" uid="uid://b14tu33c6do5n" path="res://art/officemandialogue/officemandialogueangry2.png" id="6_88ge8"]
 [ext_resource type="Texture2D" uid="uid://djeakgpr8x7p" path="res://art/officemandialogue/officemandialogueapol1.png" id="7_k2f45"]
+[ext_resource type="Texture2D" uid="uid://bg4hx626sim6k" path="res://art/dialoguegeneral/citydialoguebg.png" id="8_2vw6x"]
 [ext_resource type="Texture2D" uid="uid://dw3dl4sfnybj" path="res://art/officemandialogue/officemandialogueapol2.png" id="8_053b0"]
 [ext_resource type="AudioStream" uid="uid://cp5w2y57ckc75" path="res://audio/488227__plumaudio__happy-blip.wav" id="9_8j0mt"]
 [ext_resource type="AudioStream" uid="uid://0rpc2thbcgos" path="res://audio/crosscross_angry_man.wav" id="9_ilqdr"]
-[ext_resource type="Texture2D" uid="uid://c5lllk4qhr4j6" path="res://art/officemandialogue/officemandialoguesubwayappear0.png" id="9_v5r2r"]
-[ext_resource type="Texture2D" uid="uid://dins3t4j1kqkj" path="res://art/officemandialogue/officemandialoguesubwayappear1.png" id="10_gxoks"]
-[ext_resource type="Texture2D" uid="uid://cbfdlbj0cjrek" path="res://art/officemandialogue/officemandialoguesubwayappear2.png" id="11_nhf2e"]
-[ext_resource type="Texture2D" uid="uid://c44if8jrui4wa" path="res://art/officemandialogue/officemandialoguesubwayhairsway.png" id="12_bg8eg"]
-[ext_resource type="Texture2D" uid="uid://bk0dw6plhge1g" path="res://art/officemandialogue/officemandialoguesubwayanger0.png" id="13_f0nfj"]
-[ext_resource type="Texture2D" uid="uid://blofbwn67laxt" path="res://art/officemandialogue/officemandialoguesubwayanger1.png" id="14_2p12i"]
-[ext_resource type="Texture2D" uid="uid://biv686uplbsn7" path="res://art/officemandialogue/officemandialoguesubwayapologize0.png" id="15_b2nd7"]
-[ext_resource type="Texture2D" uid="uid://drx8jglunsf44" path="res://art/officemandialogue/officemandialoguesubwayapologize1.png" id="16_fx3n7"]
+[ext_resource type="Texture2D" uid="uid://c6xfl4oh3vl7q" path="res://art/dialoguegeneral/subwaydialoguebg.png" id="13_2mhkd"]
+[ext_resource type="Texture2D" uid="uid://bcc5mrqfru5ol" path="res://art/tileset/trainanimationframes/countrydialoguebackground.png" id="14_r8cqi"]
 
 [sub_resource type="Animation" id="Animation_y3o3s"]
 length = 0.001
@@ -44,6 +39,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("bg:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
 }
 
 [sub_resource type="Animation" id="Animation_etsp4"]
@@ -99,7 +106,82 @@ tracks/1/path = NodePath("om_art:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.2161, 0.4),
+"times": PackedFloat32Array(0.149433, 0.333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("bg:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("8_2vw6x")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("bg:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.166667, 0.366667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_b5h6f"]
+resource_name = "countryappear"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("om_art:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.266667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("1_4eejk"), ExtResource("2_l05iu"), ExtResource("3_25axe")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("om_art:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("bg:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("14_r8cqi")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("bg:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
@@ -121,38 +203,6 @@ tracks/0/keys = {
 "values": [ExtResource("3_25axe"), ExtResource("4_j7v8k"), ExtResource("3_25axe")]
 }
 
-[sub_resource type="Animation" id="Animation_ye160"]
-resource_name = "subwayangry"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("om_art:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.433333, 0.933333),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [ExtResource("13_f0nfj"), ExtResource("14_2p12i"), ExtResource("13_f0nfj")]
-}
-
-[sub_resource type="Animation" id="Animation_84yf5"]
-resource_name = "subwayapologize"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("om_art:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.0333333, 0.466667, 0.9),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [ExtResource("15_b2nd7"), ExtResource("16_fx3n7"), ExtResource("15_b2nd7")]
-}
-
 [sub_resource type="Animation" id="Animation_5gfoq"]
 resource_name = "subwayappear"
 tracks/0/type = "value"
@@ -162,10 +212,10 @@ tracks/0/path = NodePath("om_art:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.166667),
+"times": PackedFloat32Array(0, 0.166667, 0.266667),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [ExtResource("9_v5r2r"), ExtResource("10_gxoks"), ExtResource("11_nhf2e")]
+"values": [ExtResource("1_4eejk"), ExtResource("2_l05iu"), ExtResource("3_25axe")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -179,21 +229,29 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
-
-[sub_resource type="Animation" id="Animation_16h0m"]
-resource_name = "subwayhairsway"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("om_art:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.0333333, 0.466667, 0.933333),
-"transitions": PackedFloat32Array(1, 1, 1),
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("bg:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("11_nhf2e"), ExtResource("12_bg8eg"), ExtResource("11_nhf2e")]
+"values": [ExtResource("13_2mhkd")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("bg:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4c3er"]
@@ -202,11 +260,9 @@ _data = {
 "angry": SubResource("Animation_etsp4"),
 "apologize": SubResource("Animation_ui4wf"),
 "appear": SubResource("Animation_cb1rn"),
+"countryappear": SubResource("Animation_b5h6f"),
 "hairsway": SubResource("Animation_o1aba"),
-"subwayangry": SubResource("Animation_ye160"),
-"subwayapologize": SubResource("Animation_84yf5"),
-"subwayappear": SubResource("Animation_5gfoq"),
-"subwayhairsway": SubResource("Animation_16h0m")
+"subwayappear": SubResource("Animation_5gfoq")
 }
 
 [node name="officeman_anim" type="Node2D"]
@@ -215,6 +271,11 @@ _data = {
 libraries = {
 "": SubResource("AnimationLibrary_4c3er")
 }
+
+[node name="bg" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="om_art" type="TextureRect" parent="."]
 offset_right = 40.0

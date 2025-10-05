@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://ck3nxa2d6ufys"]
+[gd_scene load_steps=22 format=3 uid="uid://ck3nxa2d6ufys"]
 
 [ext_resource type="Texture2D" uid="uid://bakk0rbkq3846" path="res://art/touristdialogue/touristdialogueappear0.png" id="1_3he03"]
 [ext_resource type="Texture2D" uid="uid://driqbp0lii4b7" path="res://art/touristdialogue/touristdialogueappear1.png" id="2_2akx6"]
@@ -11,10 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bg4hx626sim6k" path="res://art/dialoguegeneral/citydialoguebg.png" id="8_tb7aq"]
 [ext_resource type="Texture2D" uid="uid://bcc5mrqfru5ol" path="res://art/tileset/trainanimationframes/countrydialoguebackground.png" id="9_0sdde"]
 [ext_resource type="AudioStream" uid="uid://cp5w2y57ckc75" path="res://audio/488227__plumaudio__happy-blip.wav" id="9_ctl6r"]
-[ext_resource type="Texture2D" uid="uid://btilswt6rl5wx" path="res://art/touristdialogue/touristdialoguesubwayappear0.png" id="9_kt3xb"]
-[ext_resource type="Texture2D" uid="uid://big1u4urys8kl" path="res://art/touristdialogue/touristdialoguesubwayappear1.png" id="10_eg533"]
 [ext_resource type="AudioStream" uid="uid://0rpc2thbcgos" path="res://audio/crosscross_angry_man.wav" id="10_ujsq2"]
-[ext_resource type="Texture2D" uid="uid://b8hstsl07a6gs" path="res://art/touristdialogue/touristdialoguesubwayappear2.png" id="11_0uhte"]
 [ext_resource type="Texture2D" uid="uid://c6xfl4oh3vl7q" path="res://art/dialoguegeneral/subwaydialoguebg.png" id="12_hvx50"]
 
 [sub_resource type="Animation" id="Animation_jrc0i"]
@@ -215,10 +212,10 @@ tracks/0/path = NodePath("person:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.0333333, 0.133333, 0.233333),
+"times": PackedFloat32Array(0, 0.1, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [ExtResource("9_kt3xb"), ExtResource("10_eg533"), ExtResource("11_0uhte")]
+"values": [ExtResource("1_3he03"), ExtResource("2_2akx6"), ExtResource("3_pv8kj")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false

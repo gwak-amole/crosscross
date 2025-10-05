@@ -4,12 +4,10 @@ signal heytut
 
 @export var dir: Vector2 = Vector2.DOWN
 @export var profile: EnemyProfile
-@export var tutorialpath : NodePath
 
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var hitbox: Area2D = $enemy_hitbox
 @onready var onscreen: VisibleOnScreenNotifier2D = $VisibleOnScreenNotifier2D
-@onready var tutorial := get_node(tutorialpath)
 
 var _anim_idle: StringName = &"idle"
 var _anim_contact: StringName = &"contact"

@@ -4,6 +4,7 @@ var leaderboard = []
 var attempt : int = 0
 var chosen_character: String = ""
 var namae : String = ""
+var chosen_gender : int = 0
 
 func _ready():
 	ensure_action_with_key("ui_up", KEY_UP)

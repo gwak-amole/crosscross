@@ -1,32 +1,33 @@
 extends Node2D
 
 signal fever_done(tf: bool)
-@export var profiles: Array[EnemyProfile] = []
-@export var enemy_scene: PackedScene
-@export var controller_path: NodePath
-@export var characters_path: NodePath
-@export var mainchara_path: NodePath
-@export var eventpath : NodePath
-@export var camerapath : NodePath
-@export var splashtextpath : NodePath
+@export var profiles1: Array[EnemyProfile] = []
+@export var characters_path_1: NodePath
+@export var mainchara_path_1: NodePath
+@export var eventpath_1 : NodePath
+@export var camerapath_1 : NodePath
+@export var splashtextpath_1 : NodePath
 @export var start_spawn_every: float = 1.2
 @export var min_spawn_every:= 0.3
 @export var max_on_screen: int = 8
 @export var half_life_seconds := 45.0
 @export var new_time_elapsed := elapsed
+@export var controller_path_1: NodePath
+@export var timerpath: NodePath
+@export var enemy_sceneee: PackedScene
 
 @export var lanes_x: PackedFloat32Array = [160.0, 220.0, 280.0, 360.0, 420.0]
 @export var x_spawn_left: float = 200
 @export var x_spawn_right: float = 350
 @export var spawn_margin_y: float = 20.0
 
-@onready var controller := get_node(controller_path)
-@onready var characters := get_node_or_null(characters_path)
-@onready var eventspawner := get_node_or_null(eventpath)
-@onready var camera := get_node_or_null(camerapath)
-@onready var splashtext := get_node_or_null(splashtextpath)
-@onready var mainchara := get_node(mainchara_path)
-@onready var timer: Timer = $Timer
+@onready var controller := get_node(controller_path_1)
+@onready var characters := get_node_or_null(characters_path_1)
+@onready var eventspawner := get_node_or_null(eventpath_1)
+@onready var camera := get_node_or_null(camerapath_1)
+@onready var splashtext := get_node_or_null(splashtextpath_1)
+@onready var mainchara := get_node(mainchara_path_1)
+@onready var timer := get_node(timerpath)
 var rng := RandomNumberGenerator.new()
 var elapsed := 0.0
 var fever_active := false
@@ -36,8 +37,10 @@ var puddle_cooldown := false
 var subway_in := false
 
 func _ready() -> void:
-	if enemy_scene == null or characters == null:
+	print("hello help i hate my life what.")
+	if enemy_sceneee == null or characters == null:
 		push_error("Spawner miswired: set enemy_scene and characters_path in Inspector.")
+		print("hello help i hate my life what.")
 		return
 	if not controller.fever.is_connected(_on_fever_started):
 		controller.fever.connect(_on_fever_started)
@@ -49,6 +52,8 @@ func _ready() -> void:
 	if not timer.timeout.is_connected(_on_spawn_tick):
 		timer.timeout.connect(_on_spawn_tick)
 	timer.start()
+	print(characters)
+	print(profiles1)
 	
 
 func _process(delta):
@@ -71,12 +76,12 @@ func _on_spawn_tick() -> void:
 	timer.start()
 
 func _spawn_one() -> void:
-	var e := enemy_scene.instantiate()
-	if profiles.size() > 0:
-		e.profile = profiles[rng.randi_range(0, profiles.size()-1)]
+	var e := enemy_sceneee.instantiate()
+	if profiles1.size() > 0:
+		e.profile = profiles1[rng.randi_range(0, profiles1.size()-1)]
 	characters.add_child(e)
 	
-	var ctrl := get_node(controller_path)
+	var ctrl := get_node(controller_path_1)
 	e.contacted.connect(Callable(ctrl, "_on_enemy_contacted"))
 	
 	if controller and controller.has_method("hook_enemy"):
@@ -91,6 +96,7 @@ func _spawn_one() -> void:
 	var x: float = spawn_lanes[rng.randi_range(0, spawn_lanes.size() - 1)]
 	var y: float = top - spawn_margin_y    
 	e.global_position = Vector2(x, y)
+	print("spawned at", e.global_position)
 
 
 func _on_fever_started() -> void:

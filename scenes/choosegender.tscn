@@ -1,0 +1,86 @@
+[gd_scene load_steps=8 format=3 uid="uid://dwnmxe5wvbknb"]
+
+[ext_resource type="Texture2D" uid="uid://dtq5eyka26sms" path="res://art/officemandialogue/enteranim/howtoplayblank.png" id="1_46m75"]
+[ext_resource type="Script" path="res://scripts/choosegender.gd" id="1_mem5c"]
+[ext_resource type="Texture2D" uid="uid://ds7ivajojkajy" path="res://art/mainscreensandstuff/choosemale.png" id="1_pfscp"]
+[ext_resource type="Texture2D" uid="uid://dvx34fxlfpim2" path="res://art/mainscreensandstuff/choosemalepressed.png" id="2_uu7el"]
+[ext_resource type="Texture2D" uid="uid://b55fq7o5j7f5q" path="res://art/mainscreensandstuff/choosefemale.png" id="3_yona6"]
+[ext_resource type="Texture2D" uid="uid://crimcbpoqg6hd" path="res://art/mainscreensandstuff/choosefemalepressed.png" id="4_nytvm"]
+[ext_resource type="FontFile" uid="uid://r7libpb4d4ao" path="res://fonts/Jersey_10/Jersey10-Regular.ttf" id="6_7y2vt"]
+
+[node name="choosegender" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mem5c")
+first_btn_path = NodePath("HBoxContainer/TextureButton")
+
+[node name="bg" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_46m75")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -366.0
+offset_top = -210.0
+offset_right = 366.0
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="TextureButton" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("1_pfscp")
+texture_pressed = ExtResource("2_uu7el")
+texture_focused = ExtResource("2_uu7el")
+
+[node name="TextureButton2" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("3_yona6")
+texture_pressed = ExtResource("4_nytvm")
+texture_focused = ExtResource("4_nytvm")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.482639
+anchor_top = 0.0679012
+anchor_right = 0.517361
+anchor_bottom = 0.104938
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("6_7y2vt")
+theme_override_font_sizes/font_size = 50
+text = "choose your gender"
+metadata/_edit_use_anchors_ = true
+
+[node name="confirmbtn" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -45.0
+offset_top = -77.0
+offset_right = 45.0
+offset_bottom = -35.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("6_7y2vt")
+theme_override_font_sizes/font_size = 30
+text = "confirm"
+
+[connection signal="pressed" from="HBoxContainer/TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/TextureButton2" to="." method="_on_texture_button_2_pressed"]
+[connection signal="pressed" from="confirmbtn" to="." method="_on_confirmbtn_pressed"]

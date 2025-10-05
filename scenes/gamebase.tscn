@@ -1,4 +1,4 @@
-[gd_scene load_steps=227 format=4 uid="uid://bw1jvqsj3l017"]
+[gd_scene load_steps=228 format=4 uid="uid://bw1jvqsj3l017"]
 
 [ext_resource type="PackedScene" uid="uid://cqsj6ljppkot6" path="res://scenes/mainchara.tscn" id="1_bp8ss"]
 [ext_resource type="Script" path="res://scripts/parallax_background.gd" id="1_eistd"]
@@ -107,6 +107,7 @@
 [ext_resource type="Resource" uid="uid://homtcy8ppd25" path="res://scripts/EnemyProfiles/delinquent.tres" id="67_7ctnr"]
 [ext_resource type="PackedScene" uid="uid://dokrqm4ubgbrt" path="res://scenes/trainconductor_spawner.tscn" id="68_1pwss"]
 [ext_resource type="PackedScene" uid="uid://hf0i7twub4rg" path="res://scenes/trainconductor.tscn" id="69_a8jjk"]
+[ext_resource type="PackedScene" uid="uid://cj0g1ga2ecs3f" path="res://scenes/enemy.tscn" id="70_iufsp"]
 [ext_resource type="AudioStream" uid="uid://dv78poq5h755x" path="res://audio/391542__sirplus__lightloop16.wav" id="70_pm85h"]
 [ext_resource type="Script" path="res://scripts/subway_spawner.gd" id="75_avgf5"]
 [ext_resource type="Script" path="res://SubwayEntryProfile.gd" id="76_yxi8b"]
@@ -1321,6 +1322,7 @@ bus = &"music"
 
 [node name="dialoguebox" parent="beginningtutorial/tutorialbox" instance=ExtResource("16_qaekd")]
 layout_mode = 1
+controllerpath = NodePath("../../../GameController")
 
 [node name="tutorial" type="CanvasLayer" parent="."]
 
@@ -1962,13 +1964,15 @@ trainconductorspath = NodePath("../trainconductor")
 envmishappath = NodePath("../envmishap")
 
 [node name="Spawner" parent="." instance=ExtResource("8_fmll7")]
-profiles = Array[ExtResource("10_fgj5o")]([ExtResource("11_nbt5j"), ExtResource("12_qqd8v"), ExtResource("13_sqrlo"), ExtResource("14_iyk3s"), ExtResource("19_dlvn0"), ExtResource("29_ki033"), ExtResource("64_ho1un"), ExtResource("65_1h0d5"), ExtResource("66_dkr6w"), ExtResource("67_7ctnr")])
-controller_path = NodePath("../GameController")
-characters_path = NodePath("../Characters")
-mainchara_path = NodePath("../mainchara")
-eventpath = NodePath("../EventSpawner")
-camerapath = NodePath("../Camera2D")
-splashtextpath = NodePath("../splash/TextureRect")
+profiles1 = Array[ExtResource("10_fgj5o")]([ExtResource("11_nbt5j"), ExtResource("12_qqd8v"), ExtResource("13_sqrlo"), ExtResource("14_iyk3s"), ExtResource("29_ki033"), ExtResource("19_dlvn0"), ExtResource("64_ho1un"), ExtResource("65_1h0d5"), ExtResource("66_dkr6w"), ExtResource("67_7ctnr")])
+characters_path_1 = NodePath("../Characters")
+mainchara_path_1 = NodePath("../mainchara")
+eventpath_1 = NodePath("../EventSpawner")
+camerapath_1 = NodePath("../Camera2D")
+splashtextpath_1 = NodePath("../splash/TextureRect")
+controller_path_1 = NodePath("../GameController")
+timerpath = NodePath("Timer")
+enemy_sceneee = ExtResource("70_iufsp")
 
 [node name="Timer" type="Timer" parent="Spawner"]
 
@@ -2013,7 +2017,8 @@ characters_path = NodePath("../subwayentries")
 subwaylayerpath = NodePath("../Subway")
 countrylayerpath = NodePath("../Country")
 enemyspawnerpath = NodePath("../Spawner")
-start_spawn_every = 1.0
+start_spawn_every = 30.0
+min_spawn_every = 25
 
 [node name="Timer" type="Timer" parent="SubwaySpawner"]
 
