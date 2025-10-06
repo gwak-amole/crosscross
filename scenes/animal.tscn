@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://d0x4ymtdhtmep"]
+
+[ext_resource type="Script" path="res://scripts/animal.gd" id="1_qsmpm"]
+[ext_resource type="SpriteFrames" uid="uid://dtsuq8fildw55" path="res://art/frames/goldenretriever.tres" id="1_wdw2r"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gl23h"]
+height = 34.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d1aw0"]
+height = 36.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wuw0i"]
+size = Vector2(20, 63)
+
+[node name="animal" type="CharacterBody2D"]
+script = ExtResource("1_qsmpm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("1_wdw2r")
+animation = &"idle"
+frame_progress = 0.703671
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -3)
+shape = SubResource("CapsuleShape2D_gl23h")
+
+[node name="animal_hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="animal_hitbox"]
+position = Vector2(0, -3)
+shape = SubResource("CapsuleShape2D_d1aw0")
+
+[node name="animal_slowdown" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="animal_slowdown"]
+position = Vector2(0, 21.5)
+shape = SubResource("RectangleShape2D_wuw0i")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0, -25)
+scale = Vector2(1, 0.2)
+
+[connection signal="area_entered" from="animal_hitbox" to="." method="_on_animal_hitbox_area_entered"]
+[connection signal="area_entered" from="animal_slowdown" to="." method="_on_animal_slowdown_area_entered"]
+[connection signal="area_exited" from="animal_slowdown" to="." method="_on_animal_slowdown_area_exited"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

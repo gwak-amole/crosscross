@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="AnimalProfile" load_steps=3 format=3 uid="uid://deg5x3aaf5ubj"]
+
+[ext_resource type="Script" path="res://scripts/AnimalProfile.gd" id="1_5qino"]
+[ext_resource type="SpriteFrames" uid="uid://ba2tkcl7d8su0" path="res://art/frames/labradorframes.tres" id="2_hhxud"]
+
+[resource]
+script = ExtResource("1_5qino")
+display_name = "Labrador"
+speed = 0.0
+anim_idle = "idle"
+anim_contact = "contact"
+sprite_frames = ExtResource("2_hhxud")

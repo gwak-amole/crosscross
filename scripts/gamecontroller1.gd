@@ -59,6 +59,7 @@ signal tutorial(yes:bool)
 @export var countryexitpath : NodePath
 @export var countryswitchtextpath : NodePath
 @export var trainconductorspawnerpath : NodePath
+@export var dogactivitypath : NodePath
 @export var lives_start: int = 3
 
 var lives: int
@@ -118,6 +119,7 @@ var lives: int
 @onready var countryexit := get_node(countryexitpath)
 @onready var countryswitchtext := get_node(countryswitchtextpath)
 @onready var trainconductors := get_node(trainconductorspawnerpath)
+@onready var dogactivity := get_node(dogactivitypath)
 
 var cor_idx : int
 var times : int = 0
@@ -166,6 +168,7 @@ func _ready() -> void:
 	begintut.tutorialfinished.connect(_on_tutorial_finished)
 	dialogue_ui.charm_used.connect(_on_charm_used)
 	cardswipingactivity.connect("done", Callable(self, "_on_swipe_done"))
+	dogactivity.connect("activity_ended", Callable(self, "_on_dog_activity_ended"))
 	heart_nodes.clear()
 	if hearts_box:
 		for c in hearts_box.get_children():
@@ -790,3 +793,19 @@ func _on_bufferzone_country_body_entered(body: Node2D) -> void:
 func _on_bufferzone_country_body_exited(body: Node2D) -> void:
 	if body.name == "mainchara":
 		in_transition_buffer = false
+
+func _on_animal_contacted(body: Node2D):
+	print("ANIMAL HAS BEEN CONTACTED!!!")
+	get_tree().paused = true
+	audioEnc.play()
+	await get_tree().create_timer(2.0).timeout
+	dogactivity.artificial_ready()
+	await dogactivity.activity_ended
+	body.queue_free()
+	
+func _on_dog_activity_ended():
+	continuecanvas.show()
+	continuetimer.play("continuetimer")
+	await continuetimer.animation_finished
+	continuecanvas.hide()
+	get_tree().paused = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=228 format=4 uid="uid://bw1jvqsj3l017"]
+[gd_scene load_steps=233 format=4 uid="uid://bw1jvqsj3l017"]
 
 [ext_resource type="PackedScene" uid="uid://cqsj6ljppkot6" path="res://scenes/mainchara.tscn" id="1_bp8ss"]
 [ext_resource type="Script" path="res://scripts/parallax_background.gd" id="1_eistd"]
@@ -109,7 +109,11 @@
 [ext_resource type="PackedScene" uid="uid://hf0i7twub4rg" path="res://scenes/trainconductor.tscn" id="69_a8jjk"]
 [ext_resource type="PackedScene" uid="uid://cj0g1ga2ecs3f" path="res://scenes/enemy.tscn" id="70_iufsp"]
 [ext_resource type="AudioStream" uid="uid://dv78poq5h755x" path="res://audio/391542__sirplus__lightloop16.wav" id="70_pm85h"]
+[ext_resource type="PackedScene" uid="uid://3axgnfm00brh" path="res://scenes/animal_spawner.tscn" id="73_mqxyc"]
+[ext_resource type="Script" path="res://scripts/AnimalProfile.gd" id="74_fqsgf"]
+[ext_resource type="PackedScene" uid="uid://d0x4ymtdhtmep" path="res://scenes/animal.tscn" id="74_vdbvj"]
 [ext_resource type="Script" path="res://scripts/subway_spawner.gd" id="75_avgf5"]
+[ext_resource type="Resource" uid="uid://cb5v5vo3cvtps" path="res://scripts/AnimalProfiles/goldenretriever.tres" id="75_iuyn7"]
 [ext_resource type="Script" path="res://SubwayEntryProfile.gd" id="76_yxi8b"]
 [ext_resource type="Resource" uid="uid://cktkrwrkql1fg" path="res://scripts/SubwayEntryProfiles/EntryGreen.tres" id="77_n6b4r"]
 [ext_resource type="PackedScene" uid="uid://b1ihgd57sbgla" path="res://scenes/subwayentry.tscn" id="78_yjkvy"]
@@ -147,6 +151,7 @@
 [ext_resource type="Texture2D" uid="uid://c6osahph5yl8d" path="res://art/tileset/trainanimationframes/trainanimationframes9.png" id="140_hwi2n"]
 [ext_resource type="Texture2D" uid="uid://qan2wqq7d7ma" path="res://art/tileset/trainanimationframes/trainanimationframes10.png" id="141_f804h"]
 [ext_resource type="Texture2D" uid="uid://tu8d45rjdjsu" path="res://art/tileset/trainanimationframes/trainanimationframes11.png" id="142_2nwan"]
+[ext_resource type="PackedScene" uid="uid://34a4v4krbgj7" path="res://scenes/dogactivity.tscn" id="154_8chhl"]
 
 [sub_resource type="Animation" id="Animation_84thl"]
 length = 0.001
@@ -1478,6 +1483,7 @@ countrycollisionpath = NodePath("../Country/StaticBody2D/CollisionPolygon2D")
 countryexitpath = NodePath("../Country/countryexit")
 countryswitchtextpath = NodePath("../countryswitch/TextureRect")
 trainconductorspawnerpath = NodePath("../trainconductor")
+dogactivitypath = NodePath("../dogactivity")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 4
@@ -1961,6 +1967,7 @@ script = ExtResource("5_rjxyq")
 parallax_path = NodePath("../City")
 characters_path = NodePath("../Characters")
 trainconductorspath = NodePath("../trainconductor")
+animalspath = NodePath("../animals")
 envmishappath = NodePath("../envmishap")
 
 [node name="Spawner" parent="." instance=ExtResource("8_fmll7")]
@@ -1983,6 +1990,16 @@ characters_path = NodePath("../trainconductor")
 mainchara_path = NodePath("../mainchara")
 eventpath = NodePath("../EventSpawner")
 subwaylayerpath = NodePath("../Subway")
+
+[node name="AnimalSpawner" parent="." instance=ExtResource("73_mqxyc")]
+profiles1 = Array[ExtResource("74_fqsgf")]([ExtResource("75_iuyn7")])
+animal_scene = ExtResource("74_vdbvj")
+characters_path_1 = NodePath("../animals")
+mainchara_path_1 = NodePath("../mainchara")
+controller_path_1 = NodePath("../GameController")
+subwaylayerpath = NodePath("../Subway")
+citylayerpath = NodePath("../City")
+countrylayerpath = NodePath("../Country")
 
 [node name="EventSpawner" parent="." instance=ExtResource("8_fmll7")]
 script = ExtResource("24_tm6at")
@@ -2017,8 +2034,7 @@ characters_path = NodePath("../subwayentries")
 subwaylayerpath = NodePath("../Subway")
 countrylayerpath = NodePath("../Country")
 enemyspawnerpath = NodePath("../Spawner")
-start_spawn_every = 50.0
-min_spawn_every = 50
+start_spawn_every = 1.0
 
 [node name="Timer" type="Timer" parent="SubwaySpawner"]
 
@@ -2090,6 +2106,8 @@ z_index = -100
 
 [node name="events" type="Node2D" parent="."]
 z_index = -100
+
+[node name="animals" type="Node2D" parent="."]
 
 [node name="Characters" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -2345,6 +2363,8 @@ label_settings = SubResource("LabelSettings_thl5d")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
+
+[node name="dogactivity" parent="." instance=ExtResource("154_8chhl")]
 
 [connection signal="pressed" from="tutorial/Control/HBoxContainer/yes" to="GameController" method="_on_yes_pressed"]
 [connection signal="pressed" from="tutorial/Control/HBoxContainer/no" to="GameController" method="_on_no_pressed"]

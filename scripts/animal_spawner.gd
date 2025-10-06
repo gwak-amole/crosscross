@@ -1,29 +1,34 @@
 extends Node2D
 
 signal fever_done(tf: bool)
-@export var train_scene: PackedScene
-@export var controller_path: NodePath
-@export var characters_path: NodePath
-@export var mainchara_path: NodePath
-@export var eventpath : NodePath
-@export var subwaylayerpath : NodePath
+@export var profiles1: Array[AnimalProfile] = []
+@export var animal_scene: PackedScene
+@export var characters_path_1: NodePath
+@export var mainchara_path_1: NodePath
 @export var start_spawn_every: float = 5
-@export var min_spawn_every:= 4
+@export var min_spawn_every:= 5
 @export var max_on_screen: int = 1
 @export var half_life_seconds := 45.0
 @export var new_time_elapsed := elapsed
+@export var controller_path_1: NodePath
+@export var subwaylayerpath: NodePath
+@export var citylayerpath: NodePath
+@export var countrylayerpath: NodePath
+@export var timerpath: NodePath
+@export var camerapath_1 : NodePath
 
-@export var lanes_x: PackedFloat32Array = [190.0, 390.0]
+@export var lanes_x: PackedFloat32Array = [160.0, 220.0, 280.0, 360.0, 420.0]
 @export var x_spawn_left: float = 200
 @export var x_spawn_right: float = 350
 @export var spawn_margin_y: float = 20.0
 
-@onready var controller := get_node(controller_path)
-@onready var characters := get_node_or_null(characters_path)
-@onready var eventspawner := get_node_or_null(eventpath)
-@onready var mainchara := get_node(mainchara_path)
+@onready var controller := get_node(controller_path_1)
+@onready var characters := get_node_or_null(characters_path_1)
+@onready var mainchara := get_node(mainchara_path_1)
+@onready var timer := get_node(timerpath)
 @onready var subwaylayer := get_node(subwaylayerpath)
-@onready var timer: Timer = $Timer
+@onready var citylayer := get_node(citylayerpath)
+@onready var countrylayer := get_node(countrylayerpath)
 var rng := RandomNumberGenerator.new()
 var elapsed := 0.0
 var fever_active := false
@@ -33,8 +38,10 @@ var puddle_cooldown := false
 var subway_in := false
 
 func _ready() -> void:
-	if train_scene == null or characters == null:
+	print("hello help i hate my life what.")
+	if animal_scene == null or characters == null:
 		push_error("Spawner miswired: set enemy_scene and characters_path in Inspector.")
+		print("hello help i hate my life what.")
 		return
 	if not controller.fever.is_connected(_on_fever_started):
 		controller.fever.connect(_on_fever_started)
@@ -46,7 +53,10 @@ func _ready() -> void:
 	if not timer.timeout.is_connected(_on_spawn_tick):
 		timer.timeout.connect(_on_spawn_tick)
 	timer.start()
+	print(characters)
+	print(profiles1)
 	
+
 func _process(delta):
 	elapsed += delta
 
@@ -67,15 +77,18 @@ func _on_spawn_tick() -> void:
 	timer.start()
 
 func _spawn_one() -> void:
-	if subwaylayer.visible == false:
+	if subwaylayer.visible: 
 		return
-	await get_tree().create_timer(0.5).timeout
-	var e := train_scene.instantiate()
+	if citylayer.visible:
+		return
+	var e := animal_scene.instantiate()
+	if profiles1.size() > 0:
+		e.profile = profiles1[rng.randi_range(0, profiles1.size()-1)]
 	characters.add_child(e)
 	
-	var ctrl := get_node(controller_path)
-	e.contacted.connect(Callable(ctrl, "_on_trainconductor_contacted"))
-	print("TRAIN CONDUCTOR CONTACTED IS IN SPAWNER")
+	var ctrl := get_node(controller_path_1)
+	e.contacted.connect(Callable(ctrl, "_on_animal_contacted"))
+	
 	var cam := get_viewport().get_camera_2d()
 	var view := get_viewport_rect().size
 	var top := cam.global_position.y - (view.y * 0.5)
@@ -85,6 +98,7 @@ func _spawn_one() -> void:
 	var x: float = spawn_lanes[rng.randi_range(0, spawn_lanes.size() - 1)]
 	var y: float = top - spawn_margin_y    
 	e.global_position = Vector2(x, y)
+	print("ANIMAL spawned at", e.global_position)
 
 
 func _on_fever_started() -> void:
@@ -92,16 +106,25 @@ func _on_fever_started() -> void:
 		return
 	fever_active = true
 	print("fever is active")
-	max_on_screen = 1
-	min_spawn_every = 0.1
-	start_spawn_every = 0.7
+	max_on_screen = 2
+	min_spawn_every = 4.5
+	start_spawn_every = 4.5
+	await get_tree().create_timer(2.0).timeout
 	print("yes, here too")
 	
 func _on_fever_ended() -> void:
 	max_on_screen = 1
-	min_spawn_every = 0.3
-	start_spawn_every = 1.2
+	min_spawn_every = 5
+	start_spawn_every = 5
 	timer.wait_time = min_spawn_every
 	timer.start()
 	print("fever inactive")
 	fever_active = false
+
+func _on_subwayentry_entered() -> void:
+	print("reached here! lanes_x limited")
+	subway_in = true
+
+func _on_subwayentry_exited() -> void:
+	print("reached here! lanes_x fine now")
+	subway_in = false

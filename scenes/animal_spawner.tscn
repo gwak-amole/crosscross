@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://3axgnfm00brh"]
+
+[ext_resource type="Script" path="res://scripts/animal_spawner.gd" id="1_7h087"]
+
+[node name="AnimalSpawner" type="Node2D"]
+script = ExtResource("1_7h087")
+timerpath = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="."]

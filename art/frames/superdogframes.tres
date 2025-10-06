@@ -1,0 +1,59 @@
+[gd_resource type="SpriteFrames" load_steps=9 format=3 uid="uid://lwbsankkv01a"]
+
+[ext_resource type="Texture2D" uid="uid://bpxveoo0bri14" path="res://art/animals/dogscontacted.png" id="1_ujklf"]
+[ext_resource type="Texture2D" uid="uid://dd7w7uha3pwx6" path="res://art/animals/dogs.png" id="2_tox5r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fvspt"]
+atlas = ExtResource("1_ujklf")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ff44c"]
+atlas = ExtResource("1_ujklf")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_068nn"]
+atlas = ExtResource("2_tox5r")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x7lud"]
+atlas = ExtResource("2_tox5r")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lb1xp"]
+atlas = ExtResource("2_tox5r")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c8tos"]
+atlas = ExtResource("2_tox5r")
+region = Rect2(448, 0, 64, 64)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fvspt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ff44c")
+}],
+"loop": true,
+"name": &"contact",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_068nn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x7lud")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lb1xp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c8tos")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}]
