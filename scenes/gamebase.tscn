@@ -1,4 +1,4 @@
-[gd_scene load_steps=233 format=4 uid="uid://bw1jvqsj3l017"]
+[gd_scene load_steps=234 format=4 uid="uid://bw1jvqsj3l017"]
 
 [ext_resource type="PackedScene" uid="uid://cqsj6ljppkot6" path="res://scenes/mainchara.tscn" id="1_bp8ss"]
 [ext_resource type="Script" path="res://scripts/parallax_background.gd" id="1_eistd"]
@@ -151,6 +151,7 @@
 [ext_resource type="Texture2D" uid="uid://c6osahph5yl8d" path="res://art/tileset/trainanimationframes/trainanimationframes9.png" id="140_hwi2n"]
 [ext_resource type="Texture2D" uid="uid://qan2wqq7d7ma" path="res://art/tileset/trainanimationframes/trainanimationframes10.png" id="141_f804h"]
 [ext_resource type="Texture2D" uid="uid://tu8d45rjdjsu" path="res://art/tileset/trainanimationframes/trainanimationframes11.png" id="142_2nwan"]
+[ext_resource type="AudioStream" uid="uid://d34qe3vdlg3ai" path="res://audio/659889__blondpanda__short-elevator-music-loop.wav" id="148_oje6l"]
 [ext_resource type="PackedScene" uid="uid://34a4v4krbgj7" path="res://scenes/dogactivity.tscn" id="154_8chhl"]
 
 [sub_resource type="Animation" id="Animation_84thl"]
@@ -1194,6 +1195,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer:volume_db")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_wx15t"]
 resource_name = "fade_in"
@@ -1248,6 +1261,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer:volume_db")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.333333, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, -7.391, -20.255]
 }
 
 [sub_resource type="Animation" id="Animation_7nu10"]
@@ -1484,6 +1509,7 @@ countryexitpath = NodePath("../Country/countryexit")
 countryswitchtextpath = NodePath("../countryswitch/TextureRect")
 trainconductorspawnerpath = NodePath("../trainconductor")
 dogactivitypath = NodePath("../dogactivity")
+trainaudiopath = NodePath("../countryswitch/AudioStreamPlayer")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 4
@@ -2034,7 +2060,8 @@ characters_path = NodePath("../subwayentries")
 subwaylayerpath = NodePath("../Subway")
 countrylayerpath = NodePath("../Country")
 enemyspawnerpath = NodePath("../Spawner")
-start_spawn_every = 1.0
+start_spawn_every = 50.0
+min_spawn_every = 50
 
 [node name="Timer" type="Timer" parent="SubwaySpawner"]
 
@@ -2242,6 +2269,9 @@ libraries = {
 [node name="TextureRect" type="TextureRect" parent="countryswitch"]
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="countryswitch"]
+stream = ExtResource("148_oje6l")
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(284, -11)

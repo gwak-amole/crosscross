@@ -60,6 +60,7 @@ signal tutorial(yes:bool)
 @export var countryswitchtextpath : NodePath
 @export var trainconductorspawnerpath : NodePath
 @export var dogactivitypath : NodePath
+@export var trainaudiopath : NodePath
 @export var lives_start: int = 3
 
 var lives: int
@@ -120,6 +121,7 @@ var lives: int
 @onready var countryswitchtext := get_node(countryswitchtextpath)
 @onready var trainconductors := get_node(trainconductorspawnerpath)
 @onready var dogactivity := get_node(dogactivitypath)
+@onready var trainaudio := get_node(trainaudiopath)
 
 var cor_idx : int
 var times : int = 0
@@ -708,6 +710,7 @@ func _switch_scene_to_country() -> void:
 	countryswitchtext.show()
 	stop_audio = true
 	audioOne.stop()
+	trainaudio.play()
 	countryswitchanim.play("fade_in")
 	countryswitchtext.show()
 	await countryswitchanim.animation_finished
@@ -726,6 +729,7 @@ func _switch_scene_to_country() -> void:
 	countryexit.set_deferred("monitoring", true)
 	countryexit.set_deferred("monitorable", true)
 	var cam := get_viewport().get_camera_2d()
+	trainaudio.stop()
 	stop_audio = false
 	audioOne.play()
 	cam.global_position = subwaypoint.global_position
