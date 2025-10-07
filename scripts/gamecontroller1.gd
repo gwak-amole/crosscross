@@ -61,6 +61,7 @@ signal tutorial(yes:bool)
 @export var trainconductorspawnerpath : NodePath
 @export var dogactivitypath : NodePath
 @export var trainaudiopath : NodePath
+@export var enemyspawningcountrypath : NodePath
 @export var lives_start: int = 3
 
 var lives: int
@@ -122,6 +123,7 @@ var lives: int
 @onready var trainconductors := get_node(trainconductorspawnerpath)
 @onready var dogactivity := get_node(dogactivitypath)
 @onready var trainaudio := get_node(trainaudiopath)
+@onready var enemyspawningcountry := get_node(enemyspawningcountrypath)
 
 var cor_idx : int
 var times : int = 0
@@ -191,6 +193,8 @@ func _ready() -> void:
 	coins.hide()
 	points.hide()
 	hearts_box.hide()
+	enemyspawningcountry.set_deferred("monitoring", false)
+	enemyspawningcountry.set_deferred("monitorable", false)
 	if not (wyltutyes as BaseButton).pressed.is_connected(_on_yes_pressed):
 		(wyltutyes as BaseButton).pressed.connect(_on_yes_pressed)
 	if not (wyltutno as BaseButton).pressed.is_connected(_on_no_pressed):
@@ -218,7 +222,7 @@ func _process(delta) -> void:
 		pass
 	else:
 		if get_tree().paused == true:
-			audioOne.playing = false
+			audioOne.stream_paused = true
 		elif audioOne.playing == false:
 			audioOne.play()
 
@@ -296,6 +300,7 @@ func _on_enemy_contacted(enemy: Node) -> void:
 	points.show()
 	
 	get_tree().paused = false
+	audioOne.stream_paused = false
 	if is_instance_valid(enemy):
 		enemy.queue_free()
 	
@@ -522,8 +527,6 @@ func _on_subway_exit_triggered():
 	for child in cardswipers.get_children():
 		child.queue_free()
 	
-	_spawn_stairs_behind_player()
-	
 	subswitchanim.play("fade_out")
 	await subswitchanim.animation_finished
 	
@@ -582,12 +585,6 @@ func _switch_scene_to_subway() -> void:
 
 func _reset_player_position():
 	mainchara.global_position = subwaypoint.global_position
-
-func _spawn_stairs_behind_player():
-	var stairs := stairs_scene.instantiate()
-	stairs.global_position = mainchara.global_position + Vector2(0, -40)
-	stairs.z_index = mainchara.z_index - 1
-	envir.add_child(stairs)
 	
 func _on_swiper_contacted():
 	if swipe_used:
@@ -602,12 +599,12 @@ func _on_swiper_contacted():
 		await cardswipingactivity._start_swipe()
 		await get_tree().create_timer(5.0).timeout
 		swipercooldown = false
-		
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("cancel"):
 		if pausemenu.visible:
 			pausemenu.close()
+			audioOne.stream_paused = false
 		elif begintut.visible:
 			pass
 		else:
@@ -621,6 +618,7 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 
 func _on_swipe_done() -> void:
 	cardswipingactivity.first_time = true
+	audioOne.stream_paused = false
 	await get_tree().create_timer(5.0).timeout
 	swipe_used = false
 
@@ -728,6 +726,8 @@ func _switch_scene_to_country() -> void:
 	print("After:", mainchara.global_position)
 	countryexit.set_deferred("monitoring", true)
 	countryexit.set_deferred("monitorable", true)
+	enemyspawningcountry.set_deferred("monitoring", true)
+	enemyspawningcountry.set_deferred("monitorable", true)
 	var cam := get_viewport().get_camera_2d()
 	trainaudio.stop()
 	stop_audio = false
@@ -758,6 +758,7 @@ func _on_country_exit_triggered():
 	transitioning = true
 	stop_audio = true
 	audioOne.stop()
+	trainaudio.play()
 	countryswitchanim.play("fade_in")
 	countryswitchtext.show()
 	await countryswitchanim.animation_finished
@@ -768,6 +769,8 @@ func _on_country_exit_triggered():
 	exiting_country = true
 	countryexit.set_deferred("monitoring", false)
 	countryexit.set_deferred("monitorable", false)
+	enemyspawningcountry.set_deferred("monitoring", false)
+	enemyspawningcountry.set_deferred("monitorable", false)
 	_reset_player_position()
 	from_country = true
 	countrylayer.visible = false
@@ -776,6 +779,7 @@ func _on_country_exit_triggered():
 	citylayer.visible = false
 	countrycollision.disabled = true
 	_switch_scene_to_subway()
+	trainaudio.stop()
 	stop_audio = false
 	audioOne.play()
 	exiting_country = false
@@ -813,3 +817,10 @@ func _on_dog_activity_ended():
 	await continuetimer.animation_finished
 	continuecanvas.hide()
 	get_tree().paused = false
+	audioOne.stream_paused = false
+
+func _on_enemyspawnchange_body_entered(body: Node2D) -> void:
+	if body.name == "mainchara":
+		return
+	if body.get_parent() == characters:
+		body.queue_free()

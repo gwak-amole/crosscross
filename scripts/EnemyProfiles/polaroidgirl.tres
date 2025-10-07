@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="EnemyProfile" load_steps=3 format=3 uid="uid://qxw54xkwx2jg"]
+
+[ext_resource type="Script" path="res://scripts/EnemyProfile.gd" id="1_7x662"]
+[ext_resource type="SpriteFrames" uid="uid://cpmctrcjrwpfa" path="res://art/frames/polaroidgirlframes.tres" id="2_cn8vx"]
+
+[resource]
+script = ExtResource("1_7x662")
+display_name = "Polaroid Girl"
+speed = 0.0
+language = "jp"
+anim_idle = "idle"
+anim_contact = "contact"
+sprite_frames = ExtResource("2_cn8vx")
+dialogue_text = "そこに立ってもらえますか？"
+dialogue_text_2 = "思い出はすぐ消えるんですね。"
+choices = PackedStringArray("Peace Sign", "Supermodel Pose", "Stand there awkwardly", "やだ")
+choices2 = PackedStringArray("Finger Heart", "Smile Widely", "Be Uncandidly Candid", "Taekwondo Ready Position")
+correct_idx = 2
+correct_idx_2 = 3
+gender = "female"
+is_rps = false
+is_delinq = false
