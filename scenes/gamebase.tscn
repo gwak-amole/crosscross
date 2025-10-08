@@ -1,4 +1,4 @@
-[gd_scene load_steps=241 format=4 uid="uid://bw1jvqsj3l017"]
+[gd_scene load_steps=243 format=4 uid="uid://bw1jvqsj3l017"]
 
 [ext_resource type="PackedScene" uid="uid://cqsj6ljppkot6" path="res://scenes/mainchara.tscn" id="1_bp8ss"]
 [ext_resource type="Script" path="res://scripts/parallax_background.gd" id="1_eistd"]
@@ -120,7 +120,9 @@
 [ext_resource type="Script" path="res://SubwayEntryProfile.gd" id="76_yxi8b"]
 [ext_resource type="Resource" uid="uid://cktkrwrkql1fg" path="res://scripts/SubwayEntryProfiles/EntryGreen.tres" id="77_n6b4r"]
 [ext_resource type="PackedScene" uid="uid://b1ihgd57sbgla" path="res://scenes/subwayentry.tscn" id="78_yjkvy"]
+[ext_resource type="Resource" uid="uid://cr3vwel01tjnb" path="res://scripts/AnimalProfiles/superdog.tres" id="79_u20yg"]
 [ext_resource type="Script" path="res://scripts/card_swipe_spawner.gd" id="80_7oc0v"]
+[ext_resource type="Resource" uid="uid://deg5x3aaf5ubj" path="res://scripts/AnimalProfiles/labrador.tres" id="80_87dk5"]
 [ext_resource type="Script" path="res://scripts/tutorialexplain.gd" id="80_ur0iw"]
 [ext_resource type="PackedScene" uid="uid://db7b6udtl7tsu" path="res://scenes/subwaycardswipers.tscn" id="81_b46sa"]
 [ext_resource type="Texture2D" uid="uid://ctyruarwmm7it" path="res://art/officemandialogue/tutorial/tutorial0.png" id="92_is8bp"]
@@ -2075,7 +2077,7 @@ eventpath = NodePath("../EventSpawner")
 subwaylayerpath = NodePath("../Subway")
 
 [node name="AnimalSpawner" parent="." instance=ExtResource("73_mqxyc")]
-profiles1 = Array[ExtResource("74_fqsgf")]([ExtResource("75_iuyn7")])
+profiles1 = Array[ExtResource("74_fqsgf")]([ExtResource("75_iuyn7"), ExtResource("79_u20yg"), ExtResource("80_87dk5")])
 animal_scene = ExtResource("74_vdbvj")
 characters_path_1 = NodePath("../animals")
 mainchara_path_1 = NodePath("../mainchara")

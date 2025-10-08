@@ -804,14 +804,24 @@ func _on_bufferzone_country_body_exited(body: Node2D) -> void:
 	if body.name == "mainchara":
 		in_transition_buffer = false
 
-func _on_animal_contacted(body: Node2D):
+func _on_animal_contacted(animal: Node2D):
 	print("ANIMAL HAS BEEN CONTACTED!!!")
 	get_tree().paused = true
 	audioEnc.play()
 	await get_tree().create_timer(2.0).timeout
+	var p = animal.get("profile") if animal else null
+	if p.display_name == "Golden Retriever":
+		print("GOLDEN RETRIEVER")
+		dogactivity.dogtype = 0
+	elif p.display_name == "Super Dog":
+		print("Super DOG")
+		dogactivity.dogtype = 1
+	elif p.display_name == "Labrador":
+		print("LABRADOR")
+		dogactivity.dogtype = 2
 	dogactivity.artificial_ready()
 	await dogactivity.activity_ended
-	body.queue_free()
+	animal.queue_free()
 	
 func _on_dog_activity_ended():
 	continuecanvas.show()
