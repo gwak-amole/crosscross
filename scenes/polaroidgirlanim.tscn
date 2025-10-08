@@ -1,0 +1,405 @@
+[gd_scene load_steps=34 format=3 uid="uid://cal7jmth1c0kh"]
+
+[ext_resource type="Texture2D" uid="uid://t56dlsnffqfi" path="res://art/dialoguegeneral/polaroidgirldialogue/polaroidgirlappear0.png" id="1_b81dg"]
+[ext_resource type="Texture2D" uid="uid://bg4hx626sim6k" path="res://art/dialoguegeneral/citydialoguebg.png" id="1_rugr3"]
+[ext_resource type="Texture2D" uid="uid://bo1v7rvpdqgb5" path="res://art/dialoguegeneral/polaroidgirldialogue/polaroidgirlappear1.png" id="2_qjml7"]
+[ext_resource type="Texture2D" uid="uid://bkank0h27pfdi" path="res://art/dialoguegeneral/polaroidgirldialogue/polaroidgirlappear2.png" id="3_efic5"]
+[ext_resource type="Texture2D" uid="uid://c6xfl4oh3vl7q" path="res://art/dialoguegeneral/subwaydialoguebg.png" id="5_q74mq"]
+[ext_resource type="Texture2D" uid="uid://bcc5mrqfru5ol" path="res://art/tileset/trainanimationframes/countrydialoguebackground.png" id="6_liegn"]
+[ext_resource type="Texture2D" uid="uid://g2lhiwma70uh" path="res://art/dialoguegeneral/polaroidgirldialogue/polaroidgirltakeangry0.png" id="7_msuhl"]
+[ext_resource type="Texture2D" uid="uid://cnps0p6kwa6rs" path="res://art/dialoguegeneral/polaroidgirldialogue/polaroidgirltakeangry1.png" id="8_be3sy"]
+[ext_resource type="Texture2D" uid="uid://bcsf0lsmw4lnp" path="res://art/dialoguegeneral/polaroidgirldialogue/polaroidgirltakeapologize0.png" id="9_y57yc"]
+[ext_resource type="Texture2D" uid="uid://b123352lnn8mn" path="res://art/dialoguegeneral/polaroidgirldialogue/polaroidgirltakeapologize1.png" id="10_utqa7"]
+[ext_resource type="Texture2D" uid="uid://c10f6e2o2e0tv" path="res://art/dialoguegeneral/polaroidgirldialogue/polaroidgirltakephoto0.png" id="11_7hsb7"]
+[ext_resource type="Texture2D" uid="uid://yw4tedwvwfw4" path="res://art/dialoguegeneral/polaroidgirldialogue/polaroidgirltakephoto1.png" id="12_6cje8"]
+[ext_resource type="AudioStream" uid="uid://cp5w2y57ckc75" path="res://audio/488227__plumaudio__happy-blip.wav" id="13_k477t"]
+[ext_resource type="AudioStream" uid="uid://xiipkjlpuwxv" path="res://audio/278164__thedweebman__8-bit-wrong-2.wav" id="14_vvofx"]
+[ext_resource type="Texture2D" uid="uid://cv7e2v48e1h25" path="res://art/dialoguegeneral/polaroidgirldialogue/polaroidgirlpeacesign.png" id="15_mwe1g"]
+[ext_resource type="Texture2D" uid="uid://bhccsq15i8cd7" path="res://art/dialoguegeneral/polaroidgirldialogue/polaroidgirlfingerherat.png" id="16_ca2mm"]
+[ext_resource type="Texture2D" uid="uid://bb4s5jof88ny" path="res://art/dialoguegeneral/polaroidgirldialogue/polaroidgirlfingersupermodelpose.png" id="17_xweji"]
+[ext_resource type="Texture2D" uid="uid://df8q5dpnxiv8w" path="res://art/dialoguegeneral/polaroidgirldialogue/polaroidgirlfingertaekwondo.png" id="18_6v0sa"]
+
+[sub_resource type="Animation" id="Animation_yh8t4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("people:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("bg:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("bg:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ygtr0"]
+resource_name = "angry"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("people:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.833333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("7_msuhl"), ExtResource("8_be3sy"), ExtResource("7_msuhl")]
+}
+
+[sub_resource type="Animation" id="Animation_ucqq5"]
+resource_name = "apologize"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("people:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.833333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("9_y57yc"), ExtResource("10_utqa7"), ExtResource("9_y57yc")]
+}
+
+[sub_resource type="Animation" id="Animation_8rvmw"]
+resource_name = "appear"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("people:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("1_b81dg"), ExtResource("2_qjml7"), ExtResource("3_efic5")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("people:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.366667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("bg:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_rugr3")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("bg:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.0333333, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_blare"]
+resource_name = "countryappear"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("people:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("1_b81dg"), ExtResource("2_qjml7"), ExtResource("3_efic5")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("people:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.366667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("bg:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_liegn")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("bg:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.366667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_t7fos"]
+resource_name = "subwayappear"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("people:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("1_b81dg"), ExtResource("2_qjml7"), ExtResource("3_efic5")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("people:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.366667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("bg:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_q74mq")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("bg:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.366667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_8d1qt"]
+resource_name = "takephoto"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("people:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.833333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("11_7hsb7"), ExtResource("12_6cje8"), ExtResource("11_7hsb7")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0qjgv"]
+_data = {
+"RESET": SubResource("Animation_yh8t4"),
+"angry": SubResource("Animation_ygtr0"),
+"apologize": SubResource("Animation_ucqq5"),
+"appear": SubResource("Animation_8rvmw"),
+"countryappear": SubResource("Animation_blare"),
+"subwayappear": SubResource("Animation_t7fos"),
+"takephoto": SubResource("Animation_8d1qt")
+}
+
+[sub_resource type="Animation" id="Animation_4gqmu"]
+resource_name = "peacesign"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("playerhand:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("15_mwe1g")]
+}
+
+[sub_resource type="Animation" id="Animation_sxej7"]
+resource_name = "fingerheart"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("playerhand:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("16_ca2mm")]
+}
+
+[sub_resource type="Animation" id="Animation_vhpsm"]
+resource_name = "supermodel"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("playerhand:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("17_xweji")]
+}
+
+[sub_resource type="Animation" id="Animation_a3san"]
+resource_name = "taekwondo"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("playerhand:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("18_6v0sa")]
+}
+
+[sub_resource type="Animation" id="Animation_4gbq4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("playerhand:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+
+[sub_resource type="Animation" id="Animation_gxcw8"]
+resource_name = "done"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("playerhand:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gwtyq"]
+_data = {
+"RESET": SubResource("Animation_4gbq4"),
+"done": SubResource("Animation_gxcw8"),
+"fingerheart": SubResource("Animation_sxej7"),
+"peacesign": SubResource("Animation_4gqmu"),
+"supermodel": SubResource("Animation_vhpsm"),
+"taekwondo": SubResource("Animation_a3san")
+}
+
+[node name="polaroidgirlanim" type="Node2D"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_0qjgv")
+}
+
+[node name="bg" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="people" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_k477t")
+bus = &"sfx"
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_vvofx")
+volume_db = -10.584
+bus = &"sfx"
+
+[node name="playerhandanim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_gwtyq")
+}
+
+[node name="playerhand" type="TextureRect" parent="."]
+z_index = 2
+offset_right = 40.0
+offset_bottom = 40.0

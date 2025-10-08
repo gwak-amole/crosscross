@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bo2viocg7ermv"]
+[gd_scene load_steps=14 format=3 uid="uid://bo2viocg7ermv"]
 
 [ext_resource type="Script" path="res://scripts/cardswipingactivity.gd" id="1_qyln0"]
 [ext_resource type="FontFile" uid="uid://r7libpb4d4ao" path="res://fonts/Jersey_10/Jersey10-Regular.ttf" id="1_tebbs"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://2cnmvvvlgopc" path="res://art/tileset/slotbar.png" id="4_gv84t"]
 [ext_resource type="AudioStream" uid="uid://c1rd2en4gt0ha" path="res://audio/644956__craigscottuk__quiz-gameshow-correct-ping-07.mp3" id="6_8rwvu"]
 [ext_resource type="AudioStream" uid="uid://rqnm3vrjraxn" path="res://audio/558121__abdrtar__wrong.mp3" id="7_1sdd4"]
+[ext_resource type="AudioStream" uid="uid://d34qe3vdlg3ai" path="res://audio/659889__blondpanda__short-elevator-music-loop.wav" id="8_b3exk"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6svar"]
 
@@ -241,3 +242,6 @@ stream = ExtResource("6_8rwvu")
 
 [node name="wrong" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_1sdd4")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_b3exk")

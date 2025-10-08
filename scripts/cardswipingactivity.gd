@@ -7,6 +7,7 @@ signal done
 @onready var anim := $Control/Panel/AnimationPlayer
 @onready var audiocorrect := $correct
 @onready var audiowrong := $wrong
+@onready var audio := $AudioStreamPlayer
 
 var filling := false
 var target_zone = Vector2(70, 80)
@@ -32,6 +33,7 @@ func _start_swipe():
 	show()
 	
 	if first_time:
+		audio.play()
 		label.text = "Swipe your card! (Hold SPACE)"
 		anim.play("appear")
 		await anim.animation_finished
@@ -85,6 +87,7 @@ func _check_swipe():
 		_start_swipe()
 	
 func _close_swipe() -> void:
+	audio.stop()
 	hide()
 	emit_signal("done")
 	get_tree().paused = false

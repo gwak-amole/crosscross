@@ -18,6 +18,7 @@ class_name EnemyProfile
 @export var gender : String
 @export var is_rps: bool = false
 @export var is_delinq: bool = false
+@export var is_photo: bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

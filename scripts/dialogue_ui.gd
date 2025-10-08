@@ -44,6 +44,7 @@ var enemy_move : int = -1
 var charm_override : bool = false
 var is_delinq : bool = false
 var delinq_success = false
+var is_photoo = false
 
 func _ready() -> void:
 	visible = false
@@ -87,6 +88,10 @@ func show_dialogue_from_profile(p: EnemyProfile) -> int:
 		is_delinq = true
 	else:
 		is_delinq = false
+	if p.is_photo:
+		is_photoo = true
+	else:
+		is_photoo = false
 	var ap = dlg_scene.get_node_or_null("AnimationPlayer")
 	if ap:
 		await get_tree().create_timer(1.5, true).timeout
@@ -156,6 +161,7 @@ func show_dialogue_from_profile(p: EnemyProfile) -> int:
 		emit_signal("branch_chosen", cor_idx)
 		var picked := await _wait_for_choice()
 		is_rps_mode = false
+		is_photoo = false
 		visible = false
 		return picked
 
@@ -200,10 +206,35 @@ func _wait_for_choice() -> int:
 	tutlabel.hide()
 	var ap = dlg_scene.get_node_or_null("AnimationPlayer")
 	var playeranim = dlg_scene.get_node_or_null("playeranim")
+	var ap2 = dlg_scene.get_node_or_null("playerhandanim")
 	var playertexture = dlg_scene.get_node_or_null("playerhand")
 	var pos_response = dlg_scene.get_node_or_null("AudioStreamPlayer")
 	var neg_response = dlg_scene.get_node_or_null("AudioStreamPlayer2")
-	
+	if is_photoo:
+		print(ap2)
+		playertexture.show()
+		if rand == 1:
+			print("rand = 1!! photo")
+			if picked == 0:
+				print("playing peacesign")
+				ap2.play("peacesign")
+			elif picked == 1:
+				print("playing supermodel")
+				ap2.play("supermodel")
+		else:
+			print("rand = 2!! photoayyyy")
+			if picked == 0:
+				print("playing fingerheart")
+				ap2.play("fingerheart")
+			elif picked == 3:
+				print("playing taekwondo")
+				ap2.play("taekwondo")
+		print("TAKING PHOTO!")
+		ap.play("takephoto")
+		ap2.play("done")
+		playertexture.hide()
+		await ap.animation_finished
+		await get_tree().create_timer(0.5).timeout
 	if is_rps_mode:
 		if enemy_move == 0:
 			text.text = "Rock!"

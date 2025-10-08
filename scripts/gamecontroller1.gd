@@ -61,6 +61,7 @@ signal tutorial(yes:bool)
 @export var trainconductorspawnerpath : NodePath
 @export var dogactivitypath : NodePath
 @export var trainaudiopath : NodePath
+@export var animalspath : NodePath
 @export var enemyspawningcountrypath : NodePath
 @export var lives_start: int = 3
 
@@ -124,6 +125,7 @@ var lives: int
 @onready var dogactivity := get_node(dogactivitypath)
 @onready var trainaudio := get_node(trainaudiopath)
 @onready var enemyspawningcountry := get_node(enemyspawningcountrypath)
+@onready var animals := get_node(animalspath)
 
 var cor_idx : int
 var times : int = 0
@@ -823,4 +825,6 @@ func _on_enemyspawnchange_body_entered(body: Node2D) -> void:
 	if body.name == "mainchara":
 		return
 	if body.get_parent() == characters:
+		body.queue_free()
+	if body.get_parent() == animals:
 		body.queue_free()

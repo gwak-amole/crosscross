@@ -1,4 +1,4 @@
-[gd_scene load_steps=240 format=4 uid="uid://bw1jvqsj3l017"]
+[gd_scene load_steps=241 format=4 uid="uid://bw1jvqsj3l017"]
 
 [ext_resource type="PackedScene" uid="uid://cqsj6ljppkot6" path="res://scenes/mainchara.tscn" id="1_bp8ss"]
 [ext_resource type="Script" path="res://scripts/parallax_background.gd" id="1_eistd"]
@@ -111,6 +111,7 @@
 [ext_resource type="PackedScene" uid="uid://hf0i7twub4rg" path="res://scenes/trainconductor.tscn" id="69_a8jjk"]
 [ext_resource type="PackedScene" uid="uid://cj0g1ga2ecs3f" path="res://scenes/enemy.tscn" id="70_iufsp"]
 [ext_resource type="AudioStream" uid="uid://dv78poq5h755x" path="res://audio/391542__sirplus__lightloop16.wav" id="70_pm85h"]
+[ext_resource type="Resource" uid="uid://qxw54xkwx2jg" path="res://scripts/EnemyProfiles/polaroidgirl.tres" id="72_vxqql"]
 [ext_resource type="PackedScene" uid="uid://3axgnfm00brh" path="res://scenes/animal_spawner.tscn" id="73_mqxyc"]
 [ext_resource type="Script" path="res://scripts/AnimalProfile.gd" id="74_fqsgf"]
 [ext_resource type="PackedScene" uid="uid://d0x4ymtdhtmep" path="res://scenes/animal.tscn" id="74_vdbvj"]
@@ -1552,6 +1553,7 @@ countryswitchtextpath = NodePath("../countryswitch/TextureRect")
 trainconductorspawnerpath = NodePath("../trainconductor")
 dogactivitypath = NodePath("../dogactivity")
 trainaudiopath = NodePath("../countryswitch/AudioStreamPlayer")
+animalspath = NodePath("../animals")
 enemyspawningcountrypath = NodePath("../Country/enemyspawnchange")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -2052,7 +2054,7 @@ animalspath = NodePath("../animals")
 envmishappath = NodePath("../envmishap")
 
 [node name="Spawner" parent="." instance=ExtResource("8_fmll7")]
-profiles1 = Array[ExtResource("10_fgj5o")]([ExtResource("11_nbt5j"), ExtResource("12_qqd8v"), ExtResource("13_sqrlo"), ExtResource("14_iyk3s"), ExtResource("29_ki033"), ExtResource("19_dlvn0"), ExtResource("64_ho1un"), ExtResource("65_1h0d5"), ExtResource("66_dkr6w"), ExtResource("67_7ctnr")])
+profiles1 = Array[ExtResource("10_fgj5o")]([ExtResource("11_nbt5j"), ExtResource("12_qqd8v"), ExtResource("13_sqrlo"), ExtResource("14_iyk3s"), ExtResource("29_ki033"), ExtResource("19_dlvn0"), ExtResource("64_ho1un"), ExtResource("65_1h0d5"), ExtResource("66_dkr6w"), ExtResource("67_7ctnr"), ExtResource("72_vxqql")])
 characters_path_1 = NodePath("../Characters")
 mainchara_path_1 = NodePath("../mainchara")
 eventpath_1 = NodePath("../EventSpawner")
