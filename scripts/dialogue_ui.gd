@@ -212,6 +212,7 @@ func _wait_for_choice() -> int:
 	var neg_response = dlg_scene.get_node_or_null("AudioStreamPlayer2")
 	if is_photoo:
 		print(ap2)
+		print(playertexture)
 		playertexture.show()
 		if rand == 1:
 			print("rand = 1!! photo")
@@ -231,10 +232,10 @@ func _wait_for_choice() -> int:
 				ap2.play("taekwondo")
 		print("TAKING PHOTO!")
 		ap.play("takephoto")
-		ap2.play("done")
-		playertexture.hide()
 		await ap.animation_finished
 		await get_tree().create_timer(0.5).timeout
+		ap2.play("done")
+		playertexture.hide()
 	if is_rps_mode:
 		if enemy_move == 0:
 			text.text = "Rock!"

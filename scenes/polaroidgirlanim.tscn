@@ -400,6 +400,6 @@ libraries = {
 }
 
 [node name="playerhand" type="TextureRect" parent="."]
-z_index = 2
+z_index = 10
 offset_right = 40.0
 offset_bottom = 40.0
