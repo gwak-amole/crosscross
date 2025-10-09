@@ -63,6 +63,9 @@ signal tutorial(yes:bool)
 @export var trainaudiopath : NodePath
 @export var animalspath : NodePath
 @export var enemyspawningcountrypath : NodePath
+@export var riverexitpath : NodePath
+@export var riverpath : NodePath
+@export var enemyspawningriverpath : NodePath
 @export var lives_start: int = 3
 
 var lives: int
@@ -126,6 +129,9 @@ var lives: int
 @onready var trainaudio := get_node(trainaudiopath)
 @onready var enemyspawningcountry := get_node(enemyspawningcountrypath)
 @onready var animals := get_node(animalspath)
+@onready var river := get_node(riverpath)
+@onready var riverexit := get_node(riverexitpath)
+@onready var enemyspawningriver := get_node(enemyspawningriverpath)
 
 var cor_idx : int
 var times : int = 0
@@ -146,6 +152,8 @@ var in_transition_buffer = false
 var transitioning = false
 var exiting_country := false
 var from_country := false
+var exiting_river := false
+var from_river := false
 var stop_audio := false
 
 func _ready() -> void:
@@ -153,6 +161,7 @@ func _ready() -> void:
 	citylayer.visible = true
 	subwaylayer.visible = false
 	countrylayer.visible = false
+	river.visible = false
 	countryblossomslayer.visible = false
 	subswitchtext.hide()
 	wyltutlabel.hide()
@@ -679,6 +688,8 @@ func _on_trainconductor_contacted(conductor: Node) -> void:
 	print(picked)
 	if picked == 0:
 		_switch_scene_to_country()
+	elif picked == 1:
+		_switch_scene_to_river()
 	train_dialogue_ui.close_dialogue()
 	continuecanvas.hide()
 	coins.show()
@@ -838,3 +849,95 @@ func _on_enemyspawnchange_body_entered(body: Node2D) -> void:
 		body.queue_free()
 	if body.get_parent() == animals:
 		body.queue_free()
+
+
+func _on_riverexit_body_entered(body: Node2D) -> void:
+	if body != mainchara:
+		return
+	if river.visible == false:
+		return
+	if not exiting_river:
+		_on_river_exit_triggered()
+
+func _switch_scene_to_river() -> void:
+	transitioning = true
+	countryswitchtext.show()
+	stop_audio = true
+	audioOne.stop()
+	trainaudio.play()
+	countryswitchanim.play("fade_in")
+	countryswitchtext.show()
+	await countryswitchanim.animation_finished
+	countryswitchanim.play("going")
+	await get_tree().create_timer(5.0).timeout
+	countryswitchanim.play("fade_out")
+	await countryswitchanim.animation_finished
+	citylayer.visible = false
+	subwaylayer.visible = false
+	countrylayer.visible = false
+	countryblossomslayer.visible = true
+	river.visible = true
+	print("Before:", mainchara.global_position)
+	mainchara.global_position = subwaypoint.global_position
+	print("After:", mainchara.global_position)
+	riverexit.set_deferred("monitoring", true)
+	riverexit.set_deferred("monitorable", true)
+	enemyspawningriver.set_deferred("monitoring", true)
+	enemyspawningriver.set_deferred("monitorable", true)
+	var cam := get_viewport().get_camera_2d()
+	trainaudio.stop()
+	stop_audio = false
+	audioOne.play()
+	cam.global_position = subwaypoint.global_position
+	countryswitchtext.hide()
+
+	for l in river.get_children():
+		if l is ParallaxLayer:
+			l.motion_offset = Vector2.ZERO
+	_reset_player_position()
+	for child in characters.get_children():
+		if child != mainchara:
+			child.queue_free()
+	for child in events.get_children():
+		child.queue_free()
+	for child in envir.get_children():
+		child.queue_free()
+	for child in cardswipers.get_children():
+		child.queue_free()
+	for child in trainconductors.get_children():
+		child.queue_free()
+	transitioning = false
+
+func _on_river_exit_triggered():
+	if exiting_river:
+		return
+	transitioning = true
+	stop_audio = true
+	audioOne.stop()
+	trainaudio.play()
+	countryswitchanim.play("fade_in")
+	countryswitchtext.show()
+	await countryswitchanim.animation_finished
+	countryswitchanim.play("going")
+	await get_tree().create_timer(5.0).timeout
+	countryswitchanim.play("fade_out")
+	await countryswitchanim.animation_finished
+	exiting_river = true
+	riverexit.set_deferred("monitoring", false)
+	riverexit.set_deferred("monitorable", false)
+	enemyspawningriver.set_deferred("monitoring", false)
+	enemyspawningriver.set_deferred("monitorable", false)
+	_reset_player_position()
+	from_river = true
+	river.visible = false
+	countryblossomslayer.visible = false
+	subwaylayer.visible = true
+	citylayer.visible = false
+	countrylayer.visible = false
+	_switch_scene_to_subway()
+	trainaudio.stop()
+	stop_audio = false
+	audioOne.play()
+	exiting_river = false
+	transitioning = false
+	countryswitchtext.hide()

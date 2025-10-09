@@ -77,11 +77,7 @@ func _on_spawn_tick() -> void:
 	timer.start()
 
 func _spawn_one() -> void:
-	if countrylayer.visible:
-		return
-	if subwaylayer.visible: 
-		return
-	if citylayer.visible:
+	if yanagawalayer.visible == false:
 		return
 	var e := boat_scene.instantiate()
 	if profiles1.size() > 0:

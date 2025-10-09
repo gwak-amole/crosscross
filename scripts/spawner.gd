@@ -14,6 +14,7 @@ signal fever_done(tf: bool)
 @export var new_time_elapsed := elapsed
 @export var controller_path_1: NodePath
 @export var timerpath: NodePath
+@export var yanagawalayerpath: NodePath
 @export var enemy_sceneee: PackedScene
 
 @export var lanes_x: PackedFloat32Array = [160.0, 220.0, 280.0, 360.0, 420.0]
@@ -27,6 +28,7 @@ signal fever_done(tf: bool)
 @onready var camera := get_node_or_null(camerapath_1)
 @onready var splashtext := get_node_or_null(splashtextpath_1)
 @onready var mainchara := get_node(mainchara_path_1)
+@onready var yanagawa := get_node(yanagawalayerpath)
 @onready var timer := get_node(timerpath)
 var rng := RandomNumberGenerator.new()
 var elapsed := 0.0
@@ -76,6 +78,9 @@ func _on_spawn_tick() -> void:
 	timer.start()
 
 func _spawn_one() -> void:
+	if yanagawa.visible == true:
+		print("it's visibile fawg")
+		return
 	var e := enemy_sceneee.instantiate()
 	if profiles1.size() > 0:
 		e.profile = profiles1[rng.randi_range(0, profiles1.size()-1)]

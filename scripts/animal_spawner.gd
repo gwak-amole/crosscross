@@ -75,9 +75,7 @@ func _on_spawn_tick() -> void:
 	timer.start()
 
 func _spawn_one() -> void:
-	if subwaylayer.visible: 
-		return
-	if citylayer.visible:
+	if countrylayer.visible == false:
 		return
 	var e := animal_scene.instantiate()
 	if profiles1.size() > 0:
