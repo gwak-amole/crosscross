@@ -1,16 +1,18 @@
-[gd_resource type="Resource" script_class="BoatsProfile" load_steps=3 format=3 uid="uid://cqd1cis7f1uxm"]
+[gd_resource type="Resource" script_class="BoatsProfile" load_steps=4 format=3 uid="uid://cqd1cis7f1uxm"]
 
+[ext_resource type="PackedScene" uid="uid://d1ir30a2qwf5c" path="res://scenes/ramenchefsanim.tscn" id="1_8kf3u"]
 [ext_resource type="Script" path="res://scripts/BoatsProfile.gd" id="1_ga2ba"]
-[ext_resource type="PackedScene" uid="uid://d31fa6ps2sp3" path="res://scenes/gyarusboatanim.tscn" id="1_ht1pc"]
+[ext_resource type="SpriteFrames" uid="uid://v1mann8f4el7" path="res://art/frames/ramenchefsboatframes.tres" id="3_056ro"]
 
 [resource]
 script = ExtResource("1_ga2ba")
-display_name = "Gyarus Boat"
+display_name = "Ramen Chefs Boat"
 speed = 0.0
-language = "kr"
+language = "cn"
 anim_idle = "idle"
 anim_contact = "contact"
-dialogue_scene = ExtResource("1_ht1pc")
+sprite_frames = ExtResource("3_056ro")
+dialogue_scene = ExtResource("1_8kf3u")
 dialogue_text = "비키라, 너"
 dialogue_text_2 = "왜이케 못생겼냐?"
 choices = PackedStringArray("저도 비켜.", "사귈래", "너무 예뻐셔요!", "와그라노")
@@ -21,3 +23,4 @@ gender = "female"
 is_rps = false
 is_delinq = false
 is_photo = false
+is_boat = true

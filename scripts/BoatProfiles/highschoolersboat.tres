@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="BoatsProfile" load_steps=3 format=3 uid="uid://ccwx644qynmbj"]
+[gd_resource type="Resource" script_class="BoatsProfile" load_steps=4 format=3 uid="uid://ccwx644qynmbj"]
 
 [ext_resource type="PackedScene" uid="uid://cbkdlmtuk1e5o" path="res://scenes/highschoolersboatanim.tscn" id="1_0dnrl"]
 [ext_resource type="Script" path="res://scripts/BoatsProfile.gd" id="1_0hvsx"]
+[ext_resource type="SpriteFrames" uid="uid://gxbs2o7wby8u" path="res://art/frames/highschoolersboat.tres" id="3_pg6o8"]
 
 [resource]
 script = ExtResource("1_0hvsx")
@@ -10,6 +11,7 @@ speed = 0.0
 language = "jp"
 anim_idle = "idle"
 anim_contact = "contact"
+sprite_frames = ExtResource("3_pg6o8")
 dialogue_scene = ExtResource("1_0dnrl")
 dialogue_text = "え、マジでごめん"
 dialogue_text_2 = "あっ、すみません。"
@@ -18,3 +20,7 @@ choices2 = PackedStringArray("おいおいばか", "こちらこそ", "一体何
 correct_idx = 0
 correct_idx_2 = 1
 gender = "male"
+is_rps = false
+is_delinq = false
+is_photo = false
+is_boat = true

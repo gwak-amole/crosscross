@@ -1,10 +1,26 @@
-[gd_resource type="Resource" script_class="BoatsProfile" load_steps=2 format=3 uid="uid://bhwxgcl470oti"]
+[gd_resource type="Resource" script_class="BoatsProfile" load_steps=4 format=3 uid="uid://bhwxgcl470oti"]
 
+[ext_resource type="PackedScene" uid="uid://d31fa6ps2sp3" path="res://scenes/gyarusboatanim.tscn" id="1_7yftw"]
 [ext_resource type="Script" path="res://scripts/BoatsProfile.gd" id="1_hebw2"]
+[ext_resource type="SpriteFrames" uid="uid://ftnp5btjkurs" path="res://art/frames/gyarusboat.tres" id="3_trg07"]
 
 [resource]
 script = ExtResource("1_hebw2")
-display_name = ""
+display_name = "Gyarus Boat"
 speed = 0.0
+language = "kr"
 anim_idle = "idle"
 anim_contact = "contact"
+sprite_frames = ExtResource("3_trg07")
+dialogue_scene = ExtResource("1_7yftw")
+dialogue_text = "비키라, 너"
+dialogue_text_2 = "왜이케 못생겼냐?"
+choices = PackedStringArray("저도 비켜.", "사귈래", "너무 예뻐셔요!", "와그라노")
+choices2 = PackedStringArray("나 만 못생긴게 아니야.", "아이우애오", "Why are you guys so mean", "나도 몰라 :\')")
+correct_idx = 2
+correct_idx_2 = 3
+gender = "female"
+is_rps = false
+is_delinq = false
+is_photo = false
+is_boat = true
