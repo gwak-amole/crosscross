@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://q82vrxsnjd2d"]
+
+[ext_resource type="Script" path="res://scripts/boatspawner.gd" id="1_hd2a6"]
+
+[node name="boatspawner" type="Node2D"]
+script = ExtResource("1_hd2a6")
+start_spawn_every = 0.3
+min_spawn_every = 8
+timerpath = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="."]

@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://d1ir30a2qwf5c"]
+
+[node name="ramenchefsanim" type="Node2D"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="bg" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="people" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0

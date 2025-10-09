@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="BoatsProfile" load_steps=3 format=3 uid="uid://ccwx644qynmbj"]
+
+[ext_resource type="PackedScene" uid="uid://cbkdlmtuk1e5o" path="res://scenes/highschoolersboatanim.tscn" id="1_0dnrl"]
+[ext_resource type="Script" path="res://scripts/BoatsProfile.gd" id="1_0hvsx"]
+
+[resource]
+script = ExtResource("1_0hvsx")
+display_name = "Highschoolers Boat"
+speed = 0.0
+language = "jp"
+anim_idle = "idle"
+anim_contact = "contact"
+dialogue_scene = ExtResource("1_0dnrl")
+dialogue_text = "え、マジでごめん"
+dialogue_text_2 = "あっ、すみません。"
+choices = PackedStringArray("いやいや、大丈夫。", "子供かよ？", "邪魔すんなよ", "付き合ってください")
+choices2 = PackedStringArray("おいおいばか", "こちらこそ", "一体何を言ってるんだ", "好きです")
+correct_idx = 0
+correct_idx_2 = 1
+gender = "male"

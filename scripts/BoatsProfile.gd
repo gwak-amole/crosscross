@@ -1,11 +1,11 @@
 extends Resource
-class_name EnemyProfile
+class_name BoatsProfile
 
-@export var display_name: String = "Office Worker"
-@export var speed: float = 200
+@export var display_name: String
+@export var speed: float
 @export_enum("jp", "en", "kr", "cn", "fr", "rand") var language: String = "jp"
-@export var anim_idle: String
-@export var anim_contact: String
+@export var anim_idle: String = "idle"
+@export var anim_contact: String = "contact"
 @export var sprite_frames: SpriteFrames
 
 @export var dialogue_scene: PackedScene
@@ -19,13 +19,4 @@ class_name EnemyProfile
 @export var is_rps: bool = false
 @export var is_delinq: bool = false
 @export var is_photo: bool = false
-@export var is_boat: bool = false
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+@export var is_boat: bool = true

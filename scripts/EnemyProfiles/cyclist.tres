@@ -22,3 +22,4 @@ correct_idx_2 = 2
 gender = "female"
 is_rps = true
 is_delinq = false
+is_photo = false

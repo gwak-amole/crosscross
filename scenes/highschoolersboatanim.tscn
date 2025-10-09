@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cbkdlmtuk1e5o"]
+
+[node name="highschoolersboatanim" type="Node2D"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="bg" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="people" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0

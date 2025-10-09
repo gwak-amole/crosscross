@@ -1,7 +1,7 @@
 extends Node2D
 
-@export var profiles1: Array[AnimalProfile] = []
-@export var animal_scene: PackedScene
+@export var profiles1: Array[BoatsProfile] = []
+@export var boat_scene: PackedScene
 @export var characters_path_1: NodePath
 @export var mainchara_path_1: NodePath
 @export var start_spawn_every: float = 5
@@ -13,6 +13,7 @@ extends Node2D
 @export var subwaylayerpath: NodePath
 @export var citylayerpath: NodePath
 @export var countrylayerpath: NodePath
+@export var yanagawalayerpath: NodePath
 @export var timerpath: NodePath
 @export var camerapath_1 : NodePath
 
@@ -28,6 +29,7 @@ extends Node2D
 @onready var subwaylayer := get_node(subwaylayerpath)
 @onready var citylayer := get_node(citylayerpath)
 @onready var countrylayer := get_node(countrylayerpath)
+@onready var yanagawalayer := get_node(yanagawalayerpath)
 var rng := RandomNumberGenerator.new()
 var elapsed := 0.0
 var fever_active := false
@@ -37,7 +39,7 @@ var subway_in := false
 
 func _ready() -> void:
 	print("hello help i hate my life what.")
-	if animal_scene == null or characters == null:
+	if boat_scene == null or characters == null:
 		push_error("Spawner miswired: set enemy_scene and characters_path in Inspector.")
 		print("hello help i hate my life what.")
 		return
@@ -75,17 +77,19 @@ func _on_spawn_tick() -> void:
 	timer.start()
 
 func _spawn_one() -> void:
+	if countrylayer.visible:
+		return
 	if subwaylayer.visible: 
 		return
 	if citylayer.visible:
 		return
-	var e := animal_scene.instantiate()
+	var e := boat_scene.instantiate()
 	if profiles1.size() > 0:
 		e.profile = profiles1[rng.randi_range(0, profiles1.size()-1)]
 	characters.add_child(e)
 	
 	var ctrl := get_node(controller_path_1)
-	e.contacted.connect(Callable(ctrl, "_on_animal_contacted"))
+	e.contacted.connect(Callable(ctrl, "_on_enemy_contacted"))
 	
 	var cam := get_viewport().get_camera_2d()
 	var view := get_viewport_rect().size
@@ -96,7 +100,7 @@ func _spawn_one() -> void:
 	var x: float = spawn_lanes[rng.randi_range(0, spawn_lanes.size() - 1)]
 	var y: float = top - spawn_margin_y    
 	e.global_position = Vector2(x, y)
-	print("ANIMAL spawned at", e.global_position)
+	print("BOAT spawned at", e.global_position)
 
 func _on_fever_started() -> void:
 	if fever_active:
@@ -104,15 +108,15 @@ func _on_fever_started() -> void:
 	fever_active = true
 	print("fever is active")
 	max_on_screen = 2
-	min_spawn_every = 4.5
-	start_spawn_every = 4.5
+	min_spawn_every = 0.3
+	start_spawn_every = 2
 	await get_tree().create_timer(2.0).timeout
 	print("yes, here too")
 	
 func _on_fever_ended() -> void:
 	max_on_screen = 1
-	min_spawn_every = 5
-	start_spawn_every = 5
+	min_spawn_every = 0.3
+	start_spawn_every = 8
 	timer.wait_time = min_spawn_every
 	timer.start()
 	print("fever inactive")

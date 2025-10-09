@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BoatsProfile" load_steps=2 format=3 uid="uid://bhwxgcl470oti"]
+
+[ext_resource type="Script" path="res://scripts/BoatsProfile.gd" id="1_hebw2"]
+
+[resource]
+script = ExtResource("1_hebw2")
+display_name = ""
+speed = 0.0
+anim_idle = "idle"
+anim_contact = "contact"
