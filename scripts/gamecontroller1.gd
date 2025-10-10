@@ -67,6 +67,7 @@ signal tutorial(yes:bool)
 @export var riverpath : NodePath
 @export var enemyspawningriverpath : NodePath
 @export var boatspath : NodePath
+@export var yanagawatreepath : NodePath
 @export var lives_start: int = 3
 
 var lives: int
@@ -134,6 +135,7 @@ var lives: int
 @onready var riverexit := get_node(riverexitpath)
 @onready var enemyspawningriver := get_node(enemyspawningriverpath)
 @onready var boats := get_node(boatspath)
+@onready var yanagawatrees := get_node(yanagawatreepath)
 
 var cor_idx : int
 var times : int = 0
@@ -165,6 +167,7 @@ func _ready() -> void:
 	countrylayer.visible = false
 	river.visible = false
 	countryblossomslayer.visible = false
+	yanagawatrees.visible = false
 	subswitchtext.hide()
 	wyltutlabel.hide()
 	wyltutyes.hide()
@@ -885,7 +888,7 @@ func _switch_scene_to_river() -> void:
 	citylayer.visible = false
 	subwaylayer.visible = false
 	countrylayer.visible = false
-	countryblossomslayer.visible = true
+	yanagawatrees.visible = true
 	river.visible = true
 	print("Before:", mainchara.global_position)
 	mainchara.global_position = subwaypoint.global_position
@@ -939,7 +942,7 @@ func _on_river_exit_triggered():
 	subwaylayer.visible = true
 	from_river = true
 	river.visible = false
-	countryblossomslayer.visible = false
+	yanagawatrees.visible = false
 	citylayer.visible = false
 	subwaylayer.visible = true
 	_switch_scene_to_subway()
