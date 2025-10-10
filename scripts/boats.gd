@@ -85,3 +85,11 @@ func _on_boat_slowdown_area_exited(area: Area2D) -> void:
 
 func set_slowed(value: bool) -> void:
 	slowed = value
+
+
+func _on_visible_on_screen_notifier_2d_2_screen_exited() -> void:
+	Globals.spawn_next_boat = true
+
+
+func _on_visible_on_screen_notifier_2d_2_screen_entered() -> void:
+	Globals.spawn_next_boat = false

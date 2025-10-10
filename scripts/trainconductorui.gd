@@ -7,7 +7,7 @@ signal choice_made(idx: int)
 
 @onready var panel := $Panel
 @onready var text := $Panel/Overlay/Text
-@onready var choices_box := $Panel/Overlay/HBoxContainer2
+@onready var choices_box := $Panel/Overlay/Buttons
 @onready var audio := get_node(audio_path)
 @onready var controller := get_node(controllerpath)
 @onready var dialogueholder := get_node(dialogue_holder)
@@ -52,32 +52,42 @@ func show_dialogue_from_profile(p: Node) -> int:
 	else:
 		print("No AnimationPlayer found in dlg_scene")
 	choices_box.show()
-	text.text = "Would you like to go to Kyoto?"
-	_rebuild_buttons(["Yes", "No"])
+	text.text = "Would you like to go to elsewhere?"
+	_rebuild_buttons(["Kyoto", "Yanagawa","No"])
 	_focus_normal()
 	var picked := await _wait_for_choice()
 	visible = false
 	return picked
 
 func _rebuild_buttons(choices: PackedStringArray) -> void:
-	var row = $Panel/Overlay/HBoxContainer2.get_children()
+	var row1 = $Panel/Overlay/Buttons/HBoxContainer2.get_children()
+	var row2 = $Panel/Overlay/Buttons/HBoxContainer3.get_children()
+	var rows = [row1, row2]
 	
-	for btn in row:
-		if btn is TextureButton:
-			btn.visible = false
-			for c in btn.pressed.get_connections():
-				btn.pressed.disconnect(c["callable"])
+	for row in rows:
+		for btn in row:
+			if btn is TextureButton:
+				btn.visible = false
+				for c in btn.pressed.get_connections():
+					btn.pressed.disconnect(c["callable"])
 	
 	var idx :=0
-	for btn in row:
-		if idx >= choices.size():
-			break
-		if btn is TextureButton:
-			var lbl = btn.get_node("Label") as Label
-			lbl.text = choices[idx]
-			btn.visible = true
-			btn.pressed.connect(Callable(self, "_on_choice_pressed").bind(idx))
-			idx += 1
+	for row in rows:
+		for btn in row:
+			if idx >= choices.size():
+				break
+			if btn is TextureButton:
+				var lbl = btn.get_node("Label") as Label
+				lbl.text = choices[idx]
+				btn.visible = true
+				btn.pressed.connect(Callable(self, "_on_choice_pressed").bind(idx))
+				idx += 1
+		
+	await get_tree().create_timer(2.0, true).timeout
+	for row in rows:
+		for btn in row:
+			if btn is TextureButton and btn.visible:
+				btn.disabled = false
 		
 func _wait_for_choice() -> int:
 	var picked:int = await self.choice_made
@@ -86,10 +96,8 @@ func _wait_for_choice() -> int:
 	var ap = dlg_scene.get_node_or_null("AnimationPlayer")
 	var pos_response = dlg_scene.get_node_or_null("AudioStreamPlayer")
 	var neg_response = dlg_scene.get_node_or_null("AudioStreamPlayer2")
-
-	var yes : bool = picked == 0
 	visible = true
-	if yes:
+	if picked == 0 or picked == 1:
 		ap.play("ticket")
 		# pos_response.play()
 	else:
@@ -124,17 +132,36 @@ func _unhandled_input(event: InputEvent) -> void:
 					get_viewport().set_input_as_handled()
 
 func _focus_normal() -> void:
-	var cols: Array = []
-	for btn in choices_box.get_children():
-		if btn is TextureButton and btn.visible:
-			btn.focus_mode = Control.FOCUS_ALL
-			cols.append(btn)
-	var n = cols.size()
-	if n == 0:
-		return
-	for c in range(n):
-		var b := cols[c] as Control
-		b.focus_neighbor_left = cols[(c-1 + n) % n].get_path()
-		b.focus_neighbor_right = cols[(c+1) % n].get_path()
+	var matrix : Array = []
+	for hbox in [$Panel/Overlay/Buttons/HBoxContainer2.get_children(), $Panel/Overlay/Buttons/HBoxContainer3.get_children()]:
+		var cols: Array = []
+		for n in hbox:
+			if n is TextureButton and n.visible:
+				(n as Control).focus_mode = Control.FOCUS_ALL
+				cols.append(n)
+		matrix.append(cols)
 		
-		(cols[0] as Control).grab_focus()
+	for r in matrix.size():
+		var cols : Array = matrix[r]
+		var n := cols.size()
+		if n == 0: continue
+		for c in n:
+			var b := cols[c] as Control
+			b.focus_neighbor_left = cols[(c-1 + n) % n].get_path()
+			b.focus_neighbor_right = cols[(c+1) % n].get_path()
+	
+	for r in matrix.size():
+		var cols : Array = matrix[r]
+		for c in cols.size():
+			var b := cols[c] as Control
+			var r_up := (r-1 + matrix.size()) % matrix.size()
+			var r_dn := (r+1) % matrix.size()
+			var up_row: Array = matrix[r_up]
+			var down_row: Array = matrix[r_dn]
+			if c < up_row.size():
+				b.focus_neighbor_top = (up_row[c] as Control).get_path()
+			if c < down_row.size():
+				b.focus_neighbor_bottom = (down_row[c] as Control).get_path()
+		
+		if matrix.size() > 0 and matrix[0].size() > 0:
+			(matrix[0][0] as Control).grab_focus()

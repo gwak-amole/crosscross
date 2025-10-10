@@ -17,7 +17,7 @@ extends Node2D
 @export var timerpath: NodePath
 @export var camerapath_1 : NodePath
 
-@export var lanes_x: PackedFloat32Array = [160.0, 220.0, 280.0, 360.0, 420.0]
+@export var lanes_x: PackedFloat32Array = [220.0, 360.0]
 @export var x_spawn_left: float = 200
 @export var x_spawn_right: float = 350
 @export var spawn_margin_y: float = 20.0
@@ -61,7 +61,7 @@ func _process(delta):
 	elapsed += delta
 
 func _on_spawn_tick() -> void:
-	if characters.get_child_count() >= max_on_screen:
+	if Globals.spawn_next_boat == false:
 		return
 	_spawn_one()
 	var k := pow(0.5, elapsed / max(half_life_seconds, 0.001))
@@ -85,7 +85,7 @@ func _spawn_one() -> void:
 	characters.add_child(e)
 	
 	var ctrl := get_node(controller_path_1)
-	e.contacted.connect(Callable(ctrl, "_on_enemy_contacted"))
+	e.contacted.connect(Callable(ctrl, "_on_boat_contacted"))
 	
 	var cam := get_viewport().get_camera_2d()
 	var view := get_viewport_rect().size
@@ -110,7 +110,7 @@ func _on_fever_started() -> void:
 	print("yes, here too")
 	
 func _on_fever_ended() -> void:
-	max_on_screen = 1
+	max_on_screen = 2
 	min_spawn_every = 0.3
 	start_spawn_every = 8
 	timer.wait_time = min_spawn_every

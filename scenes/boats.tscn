@@ -22,6 +22,10 @@ animation = &"idle"
 position = Vector2(-2, -84)
 scale = Vector2(2.7, 0.1)
 
+[node name="VisibleOnScreenNotifier2D2" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(2.5, 88.5)
+scale = Vector2(2.25, 0.25)
+
 [node name="boat_hitbox" type="Area2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="boat_hitbox"]
@@ -33,5 +37,7 @@ polygon = PackedVector2Array(-28, -85, 22, -85, 38, 1, 24, 91, -20, 91, -42, 3)
 position = Vector2(1, 123.25)
 shape = SubResource("RectangleShape2D_n7f0c")
 
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D2" to="." method="_on_visible_on_screen_notifier_2d_2_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D2" to="." method="_on_visible_on_screen_notifier_2d_2_screen_exited"]
 [connection signal="area_entered" from="boat_slowdown" to="." method="_on_boat_slowdown_area_entered"]
 [connection signal="area_exited" from="boat_slowdown" to="." method="_on_boat_slowdown_area_exited"]

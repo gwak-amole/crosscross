@@ -23,3 +23,4 @@ gender = "female"
 is_rps = false
 is_delinq = false
 is_photo = false
+is_boat = false

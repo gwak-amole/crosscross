@@ -66,6 +66,7 @@ signal tutorial(yes:bool)
 @export var riverexitpath : NodePath
 @export var riverpath : NodePath
 @export var enemyspawningriverpath : NodePath
+@export var boatspath : NodePath
 @export var lives_start: int = 3
 
 var lives: int
@@ -132,6 +133,7 @@ var lives: int
 @onready var river := get_node(riverpath)
 @onready var riverexit := get_node(riverexitpath)
 @onready var enemyspawningriver := get_node(enemyspawningriverpath)
+@onready var boats := get_node(boatspath)
 
 var cor_idx : int
 var times : int = 0
@@ -206,6 +208,12 @@ func _ready() -> void:
 	hearts_box.hide()
 	enemyspawningcountry.set_deferred("monitoring", false)
 	enemyspawningcountry.set_deferred("monitorable", false)
+	enemyspawningriver.set_deferred("monitoring", false)
+	enemyspawningriver.set_deferred("monitorable", false)
+	countryexit.set_deferred("monitoring", false)
+	countryexit.set_deferred("monitorable", false)
+	riverexit.set_deferred("monitoring", false)
+	riverexit.set_deferred("monitorable", false)
 	if not (wyltutyes as BaseButton).pressed.is_connected(_on_yes_pressed):
 		(wyltutyes as BaseButton).pressed.connect(_on_yes_pressed)
 	if not (wyltutno as BaseButton).pressed.is_connected(_on_no_pressed):
@@ -559,7 +567,7 @@ func _on_subwayentry_contacted(entry) -> void:
 	_switch_scene_to_subway()
 
 func _switch_scene_to_subway() -> void:
-	if not from_country:
+	if not from_country or not from_river:
 		subswitchtext.show()
 		subswitchanim.play("fade_in")
 		await subswitchanim.animation_finished
@@ -572,13 +580,13 @@ func _switch_scene_to_subway() -> void:
 	print("After:", mainchara.global_position)
 	
 	var cam := get_viewport().get_camera_2d()
-	cam.global_position = subwaypoint.global_position # or use a Marker2D as spawn point
+	cam.global_position = subwaypoint.global_position
 	
 	for l in subwaylayer.get_children():
 		if l is ParallaxLayer:
 			l.motion_offset = Vector2.ZERO
 	_reset_player_position()
-	if not from_country:
+	if not from_country or not from_river:
 		subswitchanim.play("fade_out")
 	for child in characters.get_children():
 		if child != mainchara:
@@ -591,8 +599,11 @@ func _switch_scene_to_subway() -> void:
 		child.queue_free()
 	for child in cardswipers.get_children():
 		child.queue_free()
+	for child in boats.get_children():
+		child.queue_free()
 	subswitchtext.hide()
 	from_country = false
+	from_river = false
 
 func _reset_player_position():
 	mainchara.global_position = subwaypoint.global_position
@@ -850,7 +861,6 @@ func _on_enemyspawnchange_body_entered(body: Node2D) -> void:
 	if body.get_parent() == animals:
 		body.queue_free()
 
-
 func _on_riverexit_body_entered(body: Node2D) -> void:
 	if body != mainchara:
 		return
@@ -906,10 +916,15 @@ func _switch_scene_to_river() -> void:
 		child.queue_free()
 	for child in trainconductors.get_children():
 		child.queue_free()
+	for child in boats.get_children():
+		child.queue_free()
 	transitioning = false
 
 func _on_river_exit_triggered():
+	print("yes it's", countryexit.monitorable)
+	print("yes it's", countryexit.monitoring)
 	if exiting_river:
+		print("not going in again")
 		return
 	transitioning = true
 	stop_audio = true
@@ -920,24 +935,27 @@ func _on_river_exit_triggered():
 	await countryswitchanim.animation_finished
 	countryswitchanim.play("going")
 	await get_tree().create_timer(5.0).timeout
+	exiting_river = true
+	subwaylayer.visible = true
+	from_river = true
+	river.visible = false
+	countryblossomslayer.visible = false
+	citylayer.visible = false
+	subwaylayer.visible = true
+	_switch_scene_to_subway()
 	countryswitchanim.play("fade_out")
 	await countryswitchanim.animation_finished
-	exiting_river = true
 	riverexit.set_deferred("monitoring", false)
 	riverexit.set_deferred("monitorable", false)
 	enemyspawningriver.set_deferred("monitoring", false)
 	enemyspawningriver.set_deferred("monitorable", false)
 	_reset_player_position()
-	from_river = true
-	river.visible = false
-	countryblossomslayer.visible = false
-	subwaylayer.visible = true
-	citylayer.visible = false
-	countrylayer.visible = false
-	_switch_scene_to_subway()
 	trainaudio.stop()
 	stop_audio = false
 	audioOne.play()
 	exiting_river = false
 	transitioning = false
 	countryswitchtext.hide()
+
+func _on_boat_contacted(boat: Node) -> void:
+	print("BOAT CONTACTED")
