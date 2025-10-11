@@ -548,6 +548,8 @@ func _on_subway_exit_triggered():
 		child.queue_free()
 	for child in cardswipers.get_children():
 		child.queue_free()
+	for child in trainconductors.get_children():
+		child.queue_free()
 	
 	subswitchanim.play("fade_out")
 	await subswitchanim.animation_finished
@@ -603,6 +605,8 @@ func _switch_scene_to_subway() -> void:
 	for child in cardswipers.get_children():
 		child.queue_free()
 	for child in boats.get_children():
+		child.queue_free()
+	for child in trainconductors.get_children():
 		child.queue_free()
 	subswitchtext.hide()
 	from_country = false
@@ -677,11 +681,11 @@ func set_character_river(choice: String):
 	elif Globals.chosen_gender == 2:
 		match choice:
 			"0":
-				mainchara.get_node("AnimatedSprite2D").sprite_frames = load("res://art/frames/maincharawoman0.tres")
+				mainchara.get_node("AnimatedSprite2D").sprite_frames = load("res://art/frames/mainchara1womanboat.tres")
 			"1":
-				mainchara.get_node("AnimatedSprite2D").sprite_frames = load("res://art/frames/maincharawoman1.tres")
+				mainchara.get_node("AnimatedSprite2D").sprite_frames = load("res://art/frames/mainchara2womanboat.tres")
 			"2":
-				mainchara.get_node("AnimatedSprite2D").sprite_frames = load("res://art/frames/maincharawoman2.tres")
+				mainchara.get_node("AnimatedSprite2D").sprite_frames = load("res://art/frames/mainchara3womanboat.tres")
 
 
 func _on_bufferzone_body_entered(body: Node2D) -> void:

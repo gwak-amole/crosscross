@@ -1,0 +1,34 @@
+[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://xhjsfa6ig3f3"]
+
+[ext_resource type="Texture2D" uid="uid://c2nn0nsfhglp5" path="res://art/boats/boatbalancewave0.png" id="1_edfpc"]
+[ext_resource type="Texture2D" uid="uid://6bsw67ax1s0h" path="res://art/boats/boatbalancewave1.png" id="2_jqo21"]
+[ext_resource type="Texture2D" uid="uid://ujeje51pme4c" path="res://art/boats/boatbalancewave2.png" id="3_dcf5k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i7grq"]
+atlas = ExtResource("1_edfpc")
+region = Rect2(0, 0, 1152, 648)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2g1r6"]
+atlas = ExtResource("2_jqo21")
+region = Rect2(0, 0, 1152, 648)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hlags"]
+atlas = ExtResource("3_dcf5k")
+region = Rect2(0, 0, 1152, 648)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i7grq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2g1r6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hlags")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
