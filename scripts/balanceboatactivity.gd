@@ -9,6 +9,7 @@ extends CanvasLayer
 @onready var clearlabel = $Clear
 @onready var anim = $AnimationPlayer
 @onready var wavesanim = $waves
+@onready var instructionslabel = $Label2
 
 var tilt := 0.0
 var tilt_velocity := 0.0
@@ -27,11 +28,13 @@ func _ready() -> void:
 		p.set_meta("base_x", p.position.x)
 	countdownlabel.hide()
 	clearlabel.hide()
+	instructionslabel.hide()
 	artificial_ready()
 
 func artificial_ready() -> void:
 	clearlabel.hide()
 	countdownlabel.show()
+	instructionslabel.show()
 	wavesanim.play("default")
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	get_tree().paused = true
@@ -57,7 +60,7 @@ func _process(delta):
 	var wave_shift = randf_range(-1.5, 1.5)
 	tilt_velocity += wave_shift * delta
 	
-	if randf() < 0.0015 * wave_intensity:
+	if randf() < 0.005 * wave_intensity:
 		tilt_velocity += randf_range(-1.5, 1.5)
 	
 	tilt_velocity = clamp(tilt_velocity, -5, 5)
@@ -72,7 +75,24 @@ func _process(delta):
 		if not p.has_meta("base_pos"):
 			p.set_meta("base_pos", p.position)
 		var base_pos: Vector2 = p.get_meta("base_pos")
-	
+		
+		var tilt = boat.rotation
+		var max_tilt_radians = deg_to_rad(max_tilt)
+		
+		var slide_strength_x = 100.0
+		var slide_strength_y = 95.0
+		var gravity_pull = 0.25
+		
+		var slide_ratio =  clamp(tilt / max_tilt_radians, -1.0, 1.0)
+		var slide_x = slide_ratio * slide_strength_x
+		
+		var downhill = Vector2(0, 1).rotated(tilt).normalized()
+		var slide_y = downhill.y * abs(slide_ratio) * slide_strength_y
+		
+		var target_pos = base_pos + Vector2(slide_x, slide_y)
+
+		p.position = p.position.lerp(target_pos, gravity_pull)
+		p.rotation = -boat.rotation / 2.0
 	if not game_over:
 		wave_intensity = min(wave_intensity + wave_growth_rate * delta, max_wave_intensity)
 		wave_meter.value = (wave_intensity / max_wave_intensity) * 100
@@ -89,6 +109,7 @@ func _game_over():
 	get_tree().reload_current_scene()
 
 func _win_game():
+	instructionslabel.hide()
 	countdownlabel.hide()
 	clearlabel.show()
 	anim.play("clear")
