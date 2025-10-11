@@ -1,0 +1,122 @@
+[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://d3dd3x6e8wdjg"]
+
+[ext_resource type="Texture2D" uid="uid://dxpkgorr36lj6" path="res://art/maincharas/mainchara3womanboat.png" id="1_rsavo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rwode"]
+atlas = ExtResource("1_rsavo")
+region = Rect2(0, 0, 144, 216)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a7abl"]
+atlas = ExtResource("1_rsavo")
+region = Rect2(144, 0, 144, 216)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m7ask"]
+atlas = ExtResource("1_rsavo")
+region = Rect2(288, 0, 144, 216)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0pmbs"]
+atlas = ExtResource("1_rsavo")
+region = Rect2(432, 0, 144, 216)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xhyna"]
+atlas = ExtResource("1_rsavo")
+region = Rect2(576, 0, 144, 216)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cujjo"]
+atlas = ExtResource("1_rsavo")
+region = Rect2(720, 0, 144, 216)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rwode")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a7abl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m7ask")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0pmbs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xhyna")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cujjo")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rwode")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a7abl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m7ask")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0pmbs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xhyna")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cujjo")
+}],
+"loop": true,
+"name": &"idleside",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rwode")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a7abl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m7ask")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0pmbs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xhyna")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cujjo")
+}],
+"loop": true,
+"name": &"walkingside",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rwode")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a7abl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m7ask")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0pmbs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xhyna")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cujjo")
+}],
+"loop": true,
+"name": &"walkingvert",
+"speed": 8.0
+}]
