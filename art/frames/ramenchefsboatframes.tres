@@ -1,6 +1,15 @@
-[gd_resource type="SpriteFrames" load_steps=12 format=3 uid="uid://v1mann8f4el7"]
+[gd_resource type="SpriteFrames" load_steps=15 format=3 uid="uid://v1mann8f4el7"]
 
 [ext_resource type="Texture2D" uid="uid://ugqhnmmnd5cp" path="res://art/boats/ramenchefboat.png" id="1_1qkow"]
+[ext_resource type="Texture2D" uid="uid://7mm18x5ua8xi" path="res://art/boats/ramenchefboatcontacted.png" id="1_1qquy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0id8q"]
+atlas = ExtResource("1_1qquy")
+region = Rect2(0, 0, 144, 216)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2l8j8"]
+atlas = ExtResource("1_1qquy")
+region = Rect2(144, 0, 144, 216)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wftv3"]
 atlas = ExtResource("1_1qkow")
@@ -44,7 +53,13 @@ region = Rect2(144, 0, 144, 216)
 
 [resource]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0id8q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2l8j8")
+}],
 "loop": true,
 "name": &"contact",
 "speed": 5.0

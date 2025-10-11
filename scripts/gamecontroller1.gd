@@ -665,6 +665,24 @@ func set_character(choice: String):
 			"2":
 				mainchara.get_node("AnimatedSprite2D").sprite_frames = load("res://art/frames/maincharawoman2.tres")
 
+func set_character_river(choice: String):
+	if Globals.chosen_gender == 1:
+		match choice:
+			"0":
+				mainchara.get_node("AnimatedSprite2D").sprite_frames = load("res://art/frames/mainchara1boat.tres")
+			"1":
+				mainchara.get_node("AnimatedSprite2D").sprite_frames = load("res://art/frames/mainchara2boat.tres")
+			"2":
+				mainchara.get_node("AnimatedSprite2D").sprite_frames = load("res://art/frames/mainchara3boat.tres")
+	elif Globals.chosen_gender == 2:
+		match choice:
+			"0":
+				mainchara.get_node("AnimatedSprite2D").sprite_frames = load("res://art/frames/maincharawoman0.tres")
+			"1":
+				mainchara.get_node("AnimatedSprite2D").sprite_frames = load("res://art/frames/maincharawoman1.tres")
+			"2":
+				mainchara.get_node("AnimatedSprite2D").sprite_frames = load("res://art/frames/maincharawoman2.tres")
+
 
 func _on_bufferzone_body_entered(body: Node2D) -> void:
 	if body.name == "mainchara":
@@ -791,6 +809,13 @@ func _on_country_exit_triggered():
 	await countryswitchanim.animation_finished
 	countryswitchanim.play("going")
 	await get_tree().create_timer(5.0).timeout
+	from_country = true
+	countrylayer.visible = false
+	countryblossomslayer.visible = false
+	subwaylayer.visible = true
+	citylayer.visible = false
+	countrycollision.disabled = true
+	_switch_scene_to_subway()
 	countryswitchanim.play("fade_out")
 	await countryswitchanim.animation_finished
 	exiting_country = true
@@ -799,13 +824,6 @@ func _on_country_exit_triggered():
 	enemyspawningcountry.set_deferred("monitoring", false)
 	enemyspawningcountry.set_deferred("monitorable", false)
 	_reset_player_position()
-	from_country = true
-	countrylayer.visible = false
-	countryblossomslayer.visible = false
-	subwaylayer.visible = true
-	citylayer.visible = false
-	countrycollision.disabled = true
-	_switch_scene_to_subway()
 	trainaudio.stop()
 	stop_audio = false
 	audioOne.play()
@@ -885,6 +903,7 @@ func _switch_scene_to_river() -> void:
 	await get_tree().create_timer(5.0).timeout
 	countryswitchanim.play("fade_out")
 	await countryswitchanim.animation_finished
+	set_character_river(Globals.chosen_character)
 	citylayer.visible = false
 	subwaylayer.visible = false
 	countrylayer.visible = false
@@ -933,6 +952,7 @@ func _on_river_exit_triggered():
 	stop_audio = true
 	audioOne.stop()
 	trainaudio.play()
+	set_character(Globals.chosen_character)
 	countryswitchanim.play("fade_in")
 	countryswitchtext.show()
 	await countryswitchanim.animation_finished

@@ -54,7 +54,7 @@ func _physics_process(delta: float) -> void:
 
 func _on_boat_hitbox_area_entered(area: Area2D) -> void:
 	if state != State.MOVE: return
-	if area.name != "player_hitbox": return
+	if area.name != "player_hitbox" and area.name != "player_boat_hitbox": return
 	
 	state = State.CONTACTED
 	hitbox.monitoring = false
@@ -70,6 +70,7 @@ func _on_screen_exited() -> void:
 func _on_boat_slowdown_area_entered(area: Area2D) -> void:
 	if state != State.MOVE: return
 	if area.name == "player_hitbox": return
+	elif area.name == "player_boat_hitbox": return
 	if area.name == "boat_hitbox" and area.get_parent() != self:
 		print("should be slowing down")
 		set_slowed(true)
@@ -78,6 +79,7 @@ func _on_boat_slowdown_area_entered(area: Area2D) -> void:
 func _on_boat_slowdown_area_exited(area: Area2D) -> void:
 	if state != State.MOVE: return
 	if area.name == "player_hitbox": return
+	elif area.name == "player_boat_hitbox": return
 	if area.name == "boat_hitbox" and area.get_parent() != self:
 		print("should be exiting")
 		set_slowed(false)

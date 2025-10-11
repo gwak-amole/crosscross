@@ -1,0 +1,68 @@
+[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://kdjvk1krc3ef"]
+
+[ext_resource type="Texture2D" uid="uid://dg3jyrp05o5f7" path="res://art/maincharas/mainchara3boat.png" id="1_qsfxq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a5mya"]
+atlas = ExtResource("1_qsfxq")
+region = Rect2(0, 0, 144, 216)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sr6v4"]
+atlas = ExtResource("1_qsfxq")
+region = Rect2(144, 0, 144, 216)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tgpln"]
+atlas = ExtResource("1_qsfxq")
+region = Rect2(288, 0, 144, 216)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vfwdj"]
+atlas = ExtResource("1_qsfxq")
+region = Rect2(432, 0, 144, 216)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vcgr0"]
+atlas = ExtResource("1_qsfxq")
+region = Rect2(576, 0, 144, 216)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fh0rl"]
+atlas = ExtResource("1_qsfxq")
+region = Rect2(720, 0, 144, 216)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a5mya")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sr6v4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tgpln")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vfwdj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vcgr0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fh0rl")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"idleside",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"walkingside",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"walkingvert",
+"speed": 5.0
+}]

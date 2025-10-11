@@ -2,7 +2,12 @@ extends CharacterBody2D
 
 @export var growth_per_sec: float = 0.0085
 @export var edge_padding: float = 130
+@export var riverpath : NodePath
 @onready var cam: Camera2D = get_viewport().get_camera_2d()
+@onready var river := get_node(riverpath)
+@onready var player_hitbox := $player_hitbox
+@onready var player_boat_hitbox := $player_boat_hitbox
+@onready var boat_collision := $boatcollision
 
 var enemy_contact_range = false
 var health = 3
@@ -16,10 +21,21 @@ var elapsed := 0.0
 var current_dir = "none"
 
 func _ready():
+	boat_collision.disabled = true
+	player_boat_hitbox.set_deferred("monitoring", false)
+	player_boat_hitbox.set_deferred("monitorable", false)
 	speed = start_speed
 	$AnimatedSprite2D.play("idle")
 
 func _physics_process(delta: float) -> void:
+	if river.visible:
+		boat_collision.disabled = false
+		player_boat_hitbox.set_deferred("monitoring", true)
+		player_boat_hitbox.set_deferred("monitorable", true)
+	elif river.visible == false:
+		boat_collision.disabled = true
+		player_boat_hitbox.set_deferred("monitoring", false)
+		player_boat_hitbox.set_deferred("monitorable", false)
 	player_movement(delta)
 	_clamp_to_camera()
 
@@ -64,13 +80,15 @@ func play_anim(animation):
 		elif animation == 0:
 			anim.play("idleside")
 	elif dir == "left":
-		anim.flip_h = true
+		if river.visible == false:
+			anim.flip_h = true
 		if animation == 1:
 			anim.play("walkingside")
 		elif animation == 0:
 			anim.play("idleside")
 	elif dir == "down":
-		anim.flip_v = true
+		if river.visible == false:
+			anim.flip_v = true
 		if animation == 1:
 			anim.play("walkingvert")
 		elif animation == 0:

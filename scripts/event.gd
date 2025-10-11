@@ -25,7 +25,7 @@ func _on_screen_exited() -> void:
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	if area.name != "player_hitbox": return
+	if area.name != "player_hitbox" and area.name != "player_boat_hitbox": return
 	
 	if self.profile == profile_array[0]:
 		emit_signal("coin_contacted", self)
