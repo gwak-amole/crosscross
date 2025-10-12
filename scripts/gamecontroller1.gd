@@ -331,6 +331,7 @@ func _on_enemy_contacted(enemy: Node) -> void:
 		enemy.queue_free()
 	
 	if lives <= 0:
+		Globals.died_from_boat = false
 		_game_over()
 		
 	if spawner.fever_active:
@@ -740,9 +741,6 @@ func _on_trainconductor_contacted(conductor: Node) -> void:
 	
 	if is_instance_valid(conductor):
 		conductor.queue_free()
-	
-	if lives <= 0:
-		_game_over()
 		
 	if spawner.fever_active:
 		print("CHECKING!")
@@ -1027,6 +1025,7 @@ func _on_boat_activity_finished():
 		_update_hearts()
 		print("lost balance boat game")
 	if lives <= 0:
+		Globals.died_from_boat = true
 		_game_over()
 	else:
 		continuecanvas.show()

@@ -134,5 +134,23 @@ theme_override_fonts/font = ExtResource("8_2uxpo")
 theme_override_font_sizes/font_size = 40
 text = "View Scores"
 
+[node name="gameovermessage" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -241.0
+offset_top = 213.5
+offset_right = 273.0
+offset_bottom = 236.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("8_2uxpo")
+theme_override_font_sizes/font_size = 30
+text = "bro got everyone to hate him"
+horizontal_alignment = 1
+
 [connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

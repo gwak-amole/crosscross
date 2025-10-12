@@ -6,6 +6,7 @@ var chosen_character: String = ""
 var namae : String = ""
 var chosen_gender : int = 0
 var spawn_next_boat : bool = true
+var died_from_boat : bool = false
 
 func _ready():
 	ensure_action_with_key("ui_up", KEY_UP)

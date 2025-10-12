@@ -269,8 +269,7 @@ func _wait_for_choice() -> int:
 			is_rps_mode = false
 			text.hide()
 			playertexture.hide()
-			if subwaylayer.visible:
-				ap.play("angry")
+			ap.play("angry")
 			neg_response.play()
 			await get_tree().create_timer(2.0).timeout
 			visible = false

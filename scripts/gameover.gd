@@ -4,10 +4,14 @@ extends Control
 @onready var audio := $AudioStreamPlayer
 @onready var points := $points/Panel/Label
 @onready var btn := $TextureButton
+@onready var gmovmsg := $gameovermessage
+var rng = RandomNumberGenerator.new()
+var rand : int = -1
 var final_points : int = 0
 var from_leaderboard := false
 
 func _ready() -> void:
+	rand = rng.randi_range(0,5)
 	anim.play("gameover")
 	audio.play()
 	print(final_points)
@@ -19,6 +23,25 @@ func _ready() -> void:
 		Globals.attempt += 1
 		add_score((Globals.namae), final_points)
 	btn.grab_focus()
+	if Globals.died_from_boat == true:
+		if rand == 0 or rand == 1 or rand == 2:
+			gmovmsg.text = "how in the world did you sink a boat on the way to work?"
+		elif rand == 3 or rand == 4:
+			gmovmsg.text = "wait...why were you riding a boat on the way to your corporate 9-5?"
+		elif rand == 5:
+			gmovmsg.text = "새상에 별놈들 다 있다"
+	elif rand == 0:
+		gmovmsg.text = "well... that's one way to get to work."
+	elif rand == 1:
+		gmovmsg.text = "you crossed... the line lol"
+	elif rand == 2:
+		gmovmsg.text = "take a deep breath and cross again!"
+	elif rand == 3:
+		gmovmsg.text = "this is why us foreigners get a bad rep"
+	elif rand == 4:
+		gmovmsg.text = "do you have any idea what you told them?"
+	elif rand == 5:
+		gmovmsg.text = "your boss is still waiting for you at work..."
 
 func _on_texture_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/menu.tscn")
