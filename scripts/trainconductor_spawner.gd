@@ -93,14 +93,14 @@ func _on_fever_started() -> void:
 	fever_active = true
 	print("fever is active")
 	max_on_screen = 1
-	min_spawn_every = 0.1
-	start_spawn_every = 0.7
+	min_spawn_every = 4
+	start_spawn_every = 5
 	print("yes, here too")
 	
 func _on_fever_ended() -> void:
 	max_on_screen = 1
-	min_spawn_every = 0.3
-	start_spawn_every = 1.2
+	min_spawn_every = 4
+	start_spawn_every = 5
 	timer.wait_time = min_spawn_every
 	timer.start()
 	print("fever inactive")

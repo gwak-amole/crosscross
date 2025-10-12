@@ -11,6 +11,12 @@ signal activity_ended
 @onready var anim = $AnimationPlayer
 @onready var wavesanim = $waves
 @onready var instructionslabel = $Label2
+@onready var totalanim = $totalanim
+@onready var continuecanvas = $continuetimer
+@onready var continuetimeranim = $continuetimer/continuetimeranim
+@onready var gameaudio = $gamemusic
+
+var first_time
 
 var tilt := 0.0
 var tilt_velocity := 0.0
@@ -32,9 +38,14 @@ func _ready() -> void:
 	countdownlabel.hide()
 	clearlabel.hide()
 	instructionslabel.hide()
+	first_time = true
 
 func artificial_ready() -> void:
 	self.show()
+	if first_time:
+		totalanim.play("fade_in")
+		await totalanim.animation_finished
+	first_time = false
 	game_over = false
 	tilt = 0.0
 	tilt_velocity = 0.0
@@ -55,10 +66,16 @@ func artificial_ready() -> void:
 	countdownlabel.show()
 	instructionslabel.show()
 	wavesanim.play("default")
+	continuecanvas.show()
+	continuetimeranim.play("continuetimer")
+	await continuetimeranim.animation_finished
+	continuecanvas.hide()
+	gameaudio.play()
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	get_tree().paused = true
 
 func _process(delta):
+	if totalanim.is_playing() or continuetimeranim.is_playing():
+		return
 	if game_over:
 		return
 	
@@ -122,6 +139,7 @@ func _process(delta):
 
 		
 func _game_over():
+	gameaudio.stop()
 	print("Boat donedoneonde")
 	$AudioStreamPlayer.play()
 	await get_tree().create_timer(1.5).timeout
@@ -131,6 +149,7 @@ func _win_game():
 	instructionslabel.hide()
 	countdownlabel.hide()
 	clearlabel.show()
+	gameaudio.stop()
 	anim.play("clear")
 	await anim.animation_finished
 	print("wonwon won won won")

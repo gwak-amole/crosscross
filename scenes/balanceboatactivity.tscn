@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bgoubcyn5t0h5"]
+[gd_scene load_steps=40 format=3 uid="uid://bgoubcyn5t0h5"]
 
 [ext_resource type="Script" path="res://scripts/balanceboatactivity.gd" id="1_xkpwe"]
 [ext_resource type="Texture2D" uid="uid://dm4c6uopwtf7x" path="res://art/boats/boatbalanceboatactivity.png" id="2_qfp6m"]
@@ -6,6 +6,30 @@
 [ext_resource type="Texture2D" uid="uid://bmtygv7ir6wk1" path="res://art/boats/boatbalancebg.png" id="4_ubvoc"]
 [ext_resource type="SpriteFrames" uid="uid://xhjsfa6ig3f3" path="res://art/frames/waves.tres" id="5_ce1cn"]
 [ext_resource type="Texture2D" uid="uid://bdt361fd7cllj" path="res://art/boats/passengershighschoolers.png" id="5_m1x1c"]
+[ext_resource type="AudioStream" uid="uid://rqnm3vrjraxn" path="res://audio/558121__abdrtar__wrong.mp3" id="6_rxr2m"]
+[ext_resource type="Texture2D" uid="uid://ceteumpia1hpe" path="res://art/tileset/continuetimer/continuetimer30.png" id="7_cy5nu"]
+[ext_resource type="Texture2D" uid="uid://dgjwa8cfufk2t" path="res://art/tileset/continuetimer/continuetimer31.png" id="8_i56jw"]
+[ext_resource type="Texture2D" uid="uid://c0wri6qicv7gt" path="res://art/tileset/continuetimer/continuetimer32.png" id="9_fivqe"]
+[ext_resource type="Texture2D" uid="uid://1nhtyxo85iad" path="res://art/tileset/continuetimer/continuetimer33.png" id="10_j30e3"]
+[ext_resource type="Texture2D" uid="uid://sxqoas34bvy4" path="res://art/tileset/continuetimer/continuetimer34.png" id="11_u8a76"]
+[ext_resource type="Texture2D" uid="uid://d3xwxddfstpvv" path="res://art/tileset/continuetimer/continuetimer35.png" id="12_q2vq7"]
+[ext_resource type="Texture2D" uid="uid://c4u17qvi6ncgp" path="res://art/tileset/continuetimer/continuetimer36.png" id="13_y2cau"]
+[ext_resource type="Texture2D" uid="uid://driwcjeqgonf0" path="res://art/tileset/continuetimer/continuetimer20.png" id="14_tssgi"]
+[ext_resource type="Texture2D" uid="uid://bb6f2d3ucoplr" path="res://art/tileset/continuetimer/continuetimer21.png" id="15_nobdg"]
+[ext_resource type="Texture2D" uid="uid://cw8m5eu6fywtj" path="res://art/tileset/continuetimer/continuetimer22.png" id="16_jk2qa"]
+[ext_resource type="Texture2D" uid="uid://1voe3r082gw4" path="res://art/tileset/continuetimer/continuetimer23.png" id="17_dxmn0"]
+[ext_resource type="Texture2D" uid="uid://ddq2ix1vxy81a" path="res://art/tileset/continuetimer/continuetimer24.png" id="18_06vp5"]
+[ext_resource type="Texture2D" uid="uid://dba18d677gtys" path="res://art/tileset/continuetimer/continuetimer25.png" id="19_ihnbt"]
+[ext_resource type="Texture2D" uid="uid://ckup8h3mqd0ie" path="res://art/tileset/continuetimer/continuetimer26.png" id="20_53bda"]
+[ext_resource type="Texture2D" uid="uid://cql7sws4ogmh5" path="res://art/tileset/continuetimer/continuetimer10.png" id="21_bmcui"]
+[ext_resource type="Texture2D" uid="uid://c2u7uuq2vs4gv" path="res://art/tileset/continuetimer/continuetimer11.png" id="22_wbyfy"]
+[ext_resource type="Texture2D" uid="uid://dncdffa5xi7lr" path="res://art/tileset/continuetimer/continuetimer12.png" id="23_4bf1k"]
+[ext_resource type="Texture2D" uid="uid://co66j2712a3jr" path="res://art/tileset/continuetimer/continuetimer13.png" id="24_qi17q"]
+[ext_resource type="Texture2D" uid="uid://d4ld8ijuwum7m" path="res://art/tileset/continuetimer/continuetimer14.png" id="25_s6gv4"]
+[ext_resource type="Texture2D" uid="uid://codgevx8k6byx" path="res://art/tileset/continuetimer/continuetimer15.png" id="26_6ksob"]
+[ext_resource type="Texture2D" uid="uid://daim3hc2jfid7" path="res://art/tileset/continuetimer/continuetimer16.png" id="27_w0d3w"]
+[ext_resource type="AudioStream" uid="uid://nwictacfem7v" path="res://audio/658340__josefpres__8-bit-game-loop-012-simple-mix-4-short-120-bpm.wav" id="28_6rxtj"]
+[ext_resource type="AudioStream" uid="uid://c1rd2en4gt0ha" path="res://audio/644956__craigscottuk__quiz-gameshow-correct-ping-07.mp3" id="30_qlakp"]
 
 [sub_resource type="Animation" id="Animation_wqiko"]
 resource_name = "clear"
@@ -22,6 +46,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("right:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.133333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_gp7tx"]
 length = 0.001
@@ -37,11 +73,156 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("right:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_u35c5"]
 _data = {
 "RESET": SubResource("Animation_gp7tx"),
 "clear": SubResource("Animation_wqiko")
+}
+
+[sub_resource type="Animation" id="Animation_nybtp"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("bg:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.433333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("waves:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("passengers:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("boat:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Label:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Label2:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_0kp0g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("bg:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_prun1"]
+_data = {
+"RESET": SubResource("Animation_0kp0g"),
+"fade_in": SubResource("Animation_nybtp")
+}
+
+[sub_resource type="Animation" id="Animation_e1ir1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("continuetimer:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+
+[sub_resource type="Animation" id="Animation_ral5g"]
+resource_name = "continuetimer"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("continuetimer:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.166667, 0.3, 0.433333, 0.566667, 0.7, 1.06667, 1.13333, 1.23333, 1.36667, 1.5, 1.63333, 1.76667, 2.1, 2.16667, 2.26667, 2.4, 2.53333, 2.66667, 2.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("7_cy5nu"), ExtResource("8_i56jw"), ExtResource("9_fivqe"), ExtResource("10_j30e3"), ExtResource("11_u8a76"), ExtResource("12_q2vq7"), ExtResource("13_y2cau"), ExtResource("14_tssgi"), ExtResource("15_nobdg"), ExtResource("16_jk2qa"), ExtResource("17_dxmn0"), ExtResource("18_06vp5"), ExtResource("19_ihnbt"), ExtResource("20_53bda"), ExtResource("21_bmcui"), ExtResource("22_wbyfy"), ExtResource("23_4bf1k"), ExtResource("24_qi17q"), ExtResource("25_s6gv4"), ExtResource("26_6ksob"), ExtResource("27_w0d3w")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3gaqo"]
+_data = {
+"RESET": SubResource("Animation_e1ir1"),
+"continuetimer": SubResource("Animation_ral5g")
 }
 
 [node name="balanceboatactivity" type="CanvasLayer"]
@@ -54,12 +235,14 @@ offset_bottom = 648.0
 texture = ExtResource("4_ubvoc")
 
 [node name="waves" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
 position = Vector2(578, 321)
 sprite_frames = ExtResource("5_ce1cn")
 frame = 1
 frame_progress = 0.145405
 
 [node name="passengers" type="Node2D" parent="."]
+modulate = Color(1, 1, 1, 0)
 z_index = 1
 position = Vector2(569, 333)
 
@@ -79,6 +262,7 @@ position = Vector2(-11, -83)
 texture = ExtResource("5_m1x1c")
 
 [node name="boat" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
 z_index = 2
 position = Vector2(569, 333)
 texture = ExtResource("2_qfp6m")
@@ -91,6 +275,7 @@ offset_right = 746.0
 offset_bottom = 459.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_rxr2m")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -103,6 +288,7 @@ offset_right = 4.0
 offset_bottom = 27.0
 
 [node name="Label" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -138,6 +324,7 @@ text = "CLEAR!"
 horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -152,3 +339,28 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("3_tf2fi")
 theme_override_font_sizes/font_size = 50
 text = "S and D to balance the boat!"
+
+[node name="totalanim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_prun1")
+}
+
+[node name="continuetimer" type="CanvasLayer" parent="."]
+process_mode = 3
+layer = 3
+
+[node name="continuetimeranim" type="AnimationPlayer" parent="continuetimer"]
+process_mode = 3
+libraries = {
+"": SubResource("AnimationLibrary_3gaqo")
+}
+
+[node name="continuetimer" type="TextureRect" parent="continuetimer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="gamemusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("28_6rxtj")
+
+[node name="right" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("30_qlakp")

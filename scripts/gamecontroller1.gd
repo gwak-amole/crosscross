@@ -855,6 +855,10 @@ func _on_bufferzone_country_body_exited(body: Node2D) -> void:
 		in_transition_buffer = false
 
 func _on_animal_contacted(animal: Node2D):
+	if shield_active == true:
+		shield_active = false
+		shieldicon.hide()
+		return
 	print("ANIMAL HAS BEEN CONTACTED!!!")
 	get_tree().paused = true
 	audioEnc.play()
@@ -988,13 +992,14 @@ func _on_river_exit_triggered():
 	countryswitchtext.hide()
 
 func _on_boat_contacted(boat: Node) -> void:
+	if shield_active == true:
+		shield_active = false
+		shieldicon.hide()
+		return
+	get_tree().paused = true
 	audioEnc.play()
+	await get_tree().create_timer(1.0).timeout
 	balanceboatactivity.artificial_ready()
-	balanceboatactivity.process_mode = Node.PROCESS_MODE_PAUSABLE
-	continuecanvas.show()
-	continuetimer.play("continuetimer")
-	await continuetimer.animation_finished
-	continuecanvas.hide()
 	balanceboatactivity.process_mode = Node.PROCESS_MODE_ALWAYS
 
 func _on_boat_activity_finished():
