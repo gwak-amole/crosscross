@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://bgoubcyn5t0h5"]
+[gd_scene load_steps=45 format=3 uid="uid://bgoubcyn5t0h5"]
 
 [ext_resource type="Script" path="res://scripts/balanceboatactivity.gd" id="1_xkpwe"]
 [ext_resource type="Texture2D" uid="uid://dm4c6uopwtf7x" path="res://art/boats/boatbalanceboatactivity.png" id="2_qfp6m"]
@@ -6,9 +6,14 @@
 [ext_resource type="Texture2D" uid="uid://bmtygv7ir6wk1" path="res://art/boats/boatbalancebg.png" id="4_ubvoc"]
 [ext_resource type="SpriteFrames" uid="uid://xhjsfa6ig3f3" path="res://art/frames/waves.tres" id="5_ce1cn"]
 [ext_resource type="Texture2D" uid="uid://bdt361fd7cllj" path="res://art/boats/passengershighschoolers.png" id="5_m1x1c"]
+[ext_resource type="Texture2D" uid="uid://d2unxg1t30f8e" path="res://art/boats/passengersgyaru0.png" id="5_nc8b1"]
+[ext_resource type="Texture2D" uid="uid://d1w0rnge1qp1v" path="res://art/boats/passengersgyaru1.png" id="6_772kj"]
 [ext_resource type="AudioStream" uid="uid://rqnm3vrjraxn" path="res://audio/558121__abdrtar__wrong.mp3" id="6_rxr2m"]
 [ext_resource type="Texture2D" uid="uid://ceteumpia1hpe" path="res://art/tileset/continuetimer/continuetimer30.png" id="7_cy5nu"]
+[ext_resource type="Texture2D" uid="uid://nt0l0ofjtbtn" path="res://art/boats/passengersgyaru2.png" id="7_tjs3i"]
+[ext_resource type="Texture2D" uid="uid://cu7s1fimkthpq" path="res://art/boats/passengersramenchef0.png" id="8_dcq17"]
 [ext_resource type="Texture2D" uid="uid://dgjwa8cfufk2t" path="res://art/tileset/continuetimer/continuetimer31.png" id="8_i56jw"]
+[ext_resource type="Texture2D" uid="uid://d3ip86q4bbtmm" path="res://art/boats/passengersramenchef1.png" id="9_3tk2s"]
 [ext_resource type="Texture2D" uid="uid://c0wri6qicv7gt" path="res://art/tileset/continuetimer/continuetimer32.png" id="9_fivqe"]
 [ext_resource type="Texture2D" uid="uid://1nhtyxo85iad" path="res://art/tileset/continuetimer/continuetimer33.png" id="10_j30e3"]
 [ext_resource type="Texture2D" uid="uid://sxqoas34bvy4" path="res://art/tileset/continuetimer/continuetimer34.png" id="11_u8a76"]
@@ -235,34 +240,57 @@ offset_bottom = 648.0
 texture = ExtResource("4_ubvoc")
 
 [node name="waves" type="AnimatedSprite2D" parent="."]
-modulate = Color(1, 1, 1, 0)
 position = Vector2(578, 321)
 sprite_frames = ExtResource("5_ce1cn")
 frame = 1
 frame_progress = 0.145405
 
 [node name="passengers" type="Node2D" parent="."]
-modulate = Color(1, 1, 1, 0)
 z_index = 1
 position = Vector2(569, 333)
 
-[node name="Sprite2D" type="Sprite2D" parent="passengers"]
+[node name="highschoolers" type="Node2D" parent="passengers"]
+
+[node name="Sprite2D" type="Sprite2D" parent="passengers/highschoolers"]
 z_index = 1
-position = Vector2(-116, -84)
+position = Vector2(-116, -91)
 texture = ExtResource("5_m1x1c")
 
-[node name="Sprite2D2" type="Sprite2D" parent="passengers"]
+[node name="Sprite2D2" type="Sprite2D" parent="passengers/highschoolers"]
 z_index = 1
-position = Vector2(99, -83)
+position = Vector2(99, -90)
 texture = ExtResource("5_m1x1c")
 
-[node name="Sprite2D3" type="Sprite2D" parent="passengers"]
+[node name="Sprite2D3" type="Sprite2D" parent="passengers/highschoolers"]
 z_index = 1
-position = Vector2(-11, -83)
+position = Vector2(-11, -91)
 texture = ExtResource("5_m1x1c")
+
+[node name="gyarus" type="Node2D" parent="passengers"]
+
+[node name="Sprite2D4" type="Sprite2D" parent="passengers/gyarus"]
+position = Vector2(-113, -98)
+texture = ExtResource("5_nc8b1")
+
+[node name="Sprite2D5" type="Sprite2D" parent="passengers/gyarus"]
+position = Vector2(-12, -97)
+texture = ExtResource("6_772kj")
+
+[node name="Sprite2D6" type="Sprite2D" parent="passengers/gyarus"]
+position = Vector2(100, -99)
+texture = ExtResource("7_tjs3i")
+
+[node name="ramenchefs" type="Node2D" parent="passengers"]
+
+[node name="Sprite2D7" type="Sprite2D" parent="passengers/ramenchefs"]
+position = Vector2(-60, -97)
+texture = ExtResource("8_dcq17")
+
+[node name="Sprite2D8" type="Sprite2D" parent="passengers/ramenchefs"]
+position = Vector2(43, -98)
+texture = ExtResource("9_3tk2s")
 
 [node name="boat" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0)
 z_index = 2
 position = Vector2(569, 333)
 texture = ExtResource("2_qfp6m")
@@ -288,7 +316,6 @@ offset_right = 4.0
 offset_bottom = 27.0
 
 [node name="Label" type="Label" parent="."]
-modulate = Color(1, 1, 1, 0)
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -324,7 +351,6 @@ text = "CLEAR!"
 horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="."]
-modulate = Color(1, 1, 1, 0)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

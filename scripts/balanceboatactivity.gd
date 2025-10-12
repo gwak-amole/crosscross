@@ -29,12 +29,15 @@ var max_wave_intensity := 5.0
 
 var survival := 15.0
 var elapsed_time := 0.0
+var boattype : int = -1
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_DISABLED
 	self.hide()
 	for p in passengers.get_children():
-		p.set_meta("base_x", p.position.x)
+		for child in p.get_children():
+			child.set_meta("base_x", p.position.x)
+		p.hide()
 	countdownlabel.hide()
 	clearlabel.hide()
 	instructionslabel.hide()
@@ -42,6 +45,15 @@ func _ready() -> void:
 
 func artificial_ready() -> void:
 	self.show()
+	elapsed_time = 0.0
+	for p in passengers.get_children():
+		p.hide()
+	if boattype == 0:
+		$passengers/highschoolers.show()
+	elif boattype == 1:
+		$passengers/gyarus.show()
+	elif boattype == 2:
+		$passengers/ramenchefs.show()
 	if first_time:
 		totalanim.play("fade_in")
 		await totalanim.animation_finished
@@ -49,7 +61,6 @@ func artificial_ready() -> void:
 	game_over = false
 	tilt = 0.0
 	tilt_velocity = 0.0
-	elapsed_time = 0.0
 	wave_intensity = 0.5
 	countdownlabel.hide()
 	clearlabel.hide()
@@ -128,7 +139,6 @@ func _process(delta):
 		var target_pos = base_pos + Vector2(slide_x, slide_y)
 
 		p.position = p.position.lerp(target_pos, gravity_pull)
-		p.rotation = -boat.rotation / 2.0
 	if not game_over:
 		wave_intensity = min(wave_intensity + wave_growth_rate * delta, max_wave_intensity)
 		wave_meter.value = (wave_intensity / max_wave_intensity) * 100
@@ -153,6 +163,8 @@ func _win_game():
 	anim.play("clear")
 	await anim.animation_finished
 	print("wonwon won won won")
+	for p in passengers.get_children():
+		p.hide()
 	get_tree().paused = false
 	hide()
 	emit_signal("activity_ended")

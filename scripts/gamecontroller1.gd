@@ -968,6 +968,8 @@ func _on_river_exit_triggered():
 	countryswitchtext.show()
 	await countryswitchanim.animation_finished
 	countryswitchanim.play("going")
+	for child in boats.get_children():
+		child.queue_free()
 	await get_tree().create_timer(5.0).timeout
 	exiting_river = true
 	subwaylayer.visible = true
@@ -997,6 +999,16 @@ func _on_boat_contacted(boat: Node) -> void:
 		shieldicon.hide()
 		return
 	get_tree().paused = true
+	var p = boat.get("profile") if boat else null
+	if p.display_name == "Highschoolers Boat":
+		print("GOLDEN RETRIEVER")
+		balanceboatactivity.boattype = 0
+	elif p.display_name == "Gyarus Boat":
+		print("Super DOG")
+		balanceboatactivity.boattype = 1
+	elif p.display_name == "Ramen Chefs Boat":
+		print("LABRADOR")
+		balanceboatactivity.boattype = 2
 	audioEnc.play()
 	await get_tree().create_timer(1.0).timeout
 	balanceboatactivity.artificial_ready()
