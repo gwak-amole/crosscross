@@ -1,5 +1,6 @@
 extends CanvasLayer
 
+signal activity_ended
 @onready var boat = $boat
 @onready var player = $boat/mainchara
 @onready var passengers = $passengers
@@ -20,18 +21,36 @@ var wave_intensity := 0.5
 var wave_growth_rate := 0.2
 var max_wave_intensity := 5.0
 
-var survival := 20.0
+var survival := 15.0
 var elapsed_time := 0.0
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_DISABLED
+	self.hide()
 	for p in passengers.get_children():
 		p.set_meta("base_x", p.position.x)
 	countdownlabel.hide()
 	clearlabel.hide()
 	instructionslabel.hide()
-	artificial_ready()
 
 func artificial_ready() -> void:
+	self.show()
+	game_over = false
+	tilt = 0.0
+	tilt_velocity = 0.0
+	elapsed_time = 0.0
+	wave_intensity = 0.5
+	countdownlabel.hide()
+	clearlabel.hide()
+	
+	for p in passengers.get_children():
+		if p.has_meta("base_pos"):
+			p.position = p.get_meta("base_pos")
+		p.rotation = 0
+	
+	boat.rotation = 0
+	tilt_meter.value = 0
+	wave_meter.value = 0
 	clearlabel.hide()
 	countdownlabel.show()
 	instructionslabel.show()
@@ -106,7 +125,7 @@ func _game_over():
 	print("Boat donedoneonde")
 	$AudioStreamPlayer.play()
 	await get_tree().create_timer(1.5).timeout
-	get_tree().reload_current_scene()
+	reset_game()
 
 func _win_game():
 	instructionslabel.hide()
@@ -117,4 +136,24 @@ func _win_game():
 	print("wonwon won won won")
 	get_tree().paused = false
 	hide()
+	emit_signal("activity_ended")
 	process_mode = Node.PROCESS_MODE_DISABLED
+
+func reset_game():
+	game_over = false
+	tilt = 0.0
+	tilt_velocity = 0.0
+	elapsed_time = 0.0
+	wave_intensity = 0.5
+	countdownlabel.hide()
+	clearlabel.hide()
+	
+	for p in passengers.get_children():
+		if p.has_meta("base_pos"):
+			p.position = p.get_meta("base_pos")
+		p.rotation = 0
+	
+	boat.rotation = 0
+	tilt_meter.value = 0
+	wave_meter.value = 0
+	artificial_ready()

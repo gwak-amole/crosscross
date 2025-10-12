@@ -1,4 +1,4 @@
-[gd_scene load_steps=263 format=4 uid="uid://bw1jvqsj3l017"]
+[gd_scene load_steps=264 format=4 uid="uid://bw1jvqsj3l017"]
 
 [ext_resource type="PackedScene" uid="uid://cqsj6ljppkot6" path="res://scenes/mainchara.tscn" id="1_bp8ss"]
 [ext_resource type="Script" path="res://scripts/parallax_background.gd" id="1_eistd"]
@@ -167,6 +167,7 @@
 [ext_resource type="Texture2D" uid="uid://tu8d45rjdjsu" path="res://art/tileset/trainanimationframes/trainanimationframes11.png" id="142_2nwan"]
 [ext_resource type="AudioStream" uid="uid://d34qe3vdlg3ai" path="res://audio/659889__blondpanda__short-elevator-music-loop.wav" id="148_oje6l"]
 [ext_resource type="PackedScene" uid="uid://34a4v4krbgj7" path="res://scenes/dogactivity.tscn" id="154_8chhl"]
+[ext_resource type="PackedScene" uid="uid://bgoubcyn5t0h5" path="res://scenes/balanceboatactivity.tscn" id="168_15rne"]
 
 [sub_resource type="Animation" id="Animation_84thl"]
 length = 0.001
@@ -1642,6 +1643,7 @@ riverpath = NodePath("../River")
 enemyspawningriverpath = NodePath("../River/enemyspawnchange")
 boatspath = NodePath("../boats")
 yanagawatreepath = NodePath("../yanagawatrees")
+balanceboatpath = NodePath("../balanceboatactivity")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 4
@@ -2447,6 +2449,8 @@ bus = &"sfx"
 [node name="fevertimer" type="Timer" parent="."]
 
 [node name="continuetimer" type="CanvasLayer" parent="."]
+process_mode = 3
+layer = 3
 
 [node name="continuetimeranim" type="AnimationPlayer" parent="continuetimer"]
 process_mode = 3
@@ -2641,6 +2645,8 @@ vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="dogactivity" parent="." instance=ExtResource("154_8chhl")]
+
+[node name="balanceboatactivity" parent="." instance=ExtResource("168_15rne")]
 
 [connection signal="pressed" from="tutorial/Control/HBoxContainer/yes" to="GameController" method="_on_yes_pressed"]
 [connection signal="pressed" from="tutorial/Control/HBoxContainer/no" to="GameController" method="_on_no_pressed"]

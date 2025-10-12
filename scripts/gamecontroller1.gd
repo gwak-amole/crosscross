@@ -68,6 +68,7 @@ signal tutorial(yes:bool)
 @export var enemyspawningriverpath : NodePath
 @export var boatspath : NodePath
 @export var yanagawatreepath : NodePath
+@export var balanceboatpath : NodePath
 @export var lives_start: int = 3
 
 var lives: int
@@ -136,6 +137,7 @@ var lives: int
 @onready var enemyspawningriver := get_node(enemyspawningriverpath)
 @onready var boats := get_node(boatspath)
 @onready var yanagawatrees := get_node(yanagawatreepath)
+@onready var balanceboatactivity := get_node(balanceboatpath)
 
 var cor_idx : int
 var times : int = 0
@@ -189,6 +191,7 @@ func _ready() -> void:
 	dialogue_ui.charm_used.connect(_on_charm_used)
 	cardswipingactivity.connect("done", Callable(self, "_on_swipe_done"))
 	dogactivity.connect("activity_ended", Callable(self, "_on_dog_activity_ended"))
+	balanceboatactivity.connect("activity_ended", Callable(self, "_on_boat_activity_ended"))
 	heart_nodes.clear()
 	if hearts_box:
 		for c in hearts_box.get_children():
@@ -985,4 +988,19 @@ func _on_river_exit_triggered():
 	countryswitchtext.hide()
 
 func _on_boat_contacted(boat: Node) -> void:
-	print("BOAT CONTACTED")
+	audioEnc.play()
+	balanceboatactivity.artificial_ready()
+	balanceboatactivity.process_mode = Node.PROCESS_MODE_PAUSABLE
+	continuecanvas.show()
+	continuetimer.play("continuetimer")
+	await continuetimer.animation_finished
+	continuecanvas.hide()
+	balanceboatactivity.process_mode = Node.PROCESS_MODE_ALWAYS
+
+func _on_boat_activity_finished():
+	continuecanvas.show()
+	continuetimer.play("continuetimer")
+	await continuetimer.animation_finished
+	continuecanvas.hide()
+	get_tree().paused = false
+	audioOne.stream_paused = false
