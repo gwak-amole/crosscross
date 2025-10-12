@@ -1,6 +1,8 @@
 extends CanvasLayer
 
 signal activity_ended
+signal lost
+@export var controllerpath : NodePath
 @onready var boat = $boat
 @onready var player = $boat/mainchara
 @onready var passengers = $passengers
@@ -8,6 +10,7 @@ signal activity_ended
 @onready var wave_meter = $waveprogressbar
 @onready var countdownlabel = $Label
 @onready var clearlabel = $Clear
+@onready var faillabel = $fail
 @onready var anim = $AnimationPlayer
 @onready var wavesanim = $waves
 @onready var instructionslabel = $Label2
@@ -15,8 +18,12 @@ signal activity_ended
 @onready var continuecanvas = $continuetimer
 @onready var continuetimeranim = $continuetimer/continuetimeranim
 @onready var gameaudio = $gamemusic
+@onready var attemptslabel = $attempts
+@onready var controller := get_node(controllerpath)
 
-var first_time
+var first_time: bool = true
+var attempts : int = 3
+var finished : int = 0
 
 var tilt := 0.0
 var tilt_velocity := 0.0
@@ -40,6 +47,7 @@ func _ready() -> void:
 		p.hide()
 	countdownlabel.hide()
 	clearlabel.hide()
+	faillabel.hide()
 	instructionslabel.hide()
 	first_time = true
 
@@ -56,14 +64,19 @@ func artificial_ready() -> void:
 		$passengers/ramenchefs.show()
 	if first_time:
 		totalanim.play("fade_in")
+		countdownlabel.hide()
+		clearlabel.hide()
+		faillabel.hide()
 		await totalanim.animation_finished
+	countdownlabel.hide()
+	clearlabel.hide()
+	faillabel.hide()
 	first_time = false
 	game_over = false
+	attemptslabel.text = str("Attempts: " + str(attempts))
 	tilt = 0.0
 	tilt_velocity = 0.0
 	wave_intensity = 0.5
-	countdownlabel.hide()
-	clearlabel.hide()
 	
 	for p in passengers.get_children():
 		if p.has_meta("base_pos"):
@@ -74,6 +87,7 @@ func artificial_ready() -> void:
 	tilt_meter.value = 0
 	wave_meter.value = 0
 	clearlabel.hide()
+	faillabel.hide()
 	countdownlabel.show()
 	instructionslabel.show()
 	wavesanim.play("default")
@@ -95,7 +109,9 @@ func _process(delta):
 	countdownlabel.text = str(round(remaining))
 	
 	if elapsed_time >= survival:
-		_win_game()
+		finished += 1
+		if finished == 1:
+			_win_game()
 		return
 	
 	var control_force := 6.0
@@ -146,28 +162,39 @@ func _process(delta):
 	if abs(tilt) >= max_tilt:
 		game_over = true
 		_game_over()
-
+	
 		
 func _game_over():
 	gameaudio.stop()
+	attempts -= 1
 	print("Boat donedoneonde")
 	$AudioStreamPlayer.play()
 	await get_tree().create_timer(1.5).timeout
-	reset_game()
+	if attempts > 0:
+		reset_game()
+	elif attempts <= 0:
+		finished += 1
+		if finished == 1:
+			attemptslabel.text = str("Attempts: " + str(attempts))
+			lose_game()
 
 func _win_game():
 	instructionslabel.hide()
 	countdownlabel.hide()
 	clearlabel.show()
+	faillabel.hide()
 	gameaudio.stop()
 	anim.play("clear")
 	await anim.animation_finished
 	print("wonwon won won won")
 	for p in passengers.get_children():
 		p.hide()
-	get_tree().paused = false
 	hide()
+	controller.balance_boat = true
 	emit_signal("activity_ended")
+	print(controller.balance_boat, "should be true here")
+	attempts = 3
+	finished = 0
 	process_mode = Node.PROCESS_MODE_DISABLED
 
 func reset_game():
@@ -178,6 +205,7 @@ func reset_game():
 	wave_intensity = 0.5
 	countdownlabel.hide()
 	clearlabel.hide()
+	faillabel.hide()
 	
 	for p in passengers.get_children():
 		if p.has_meta("base_pos"):
@@ -188,3 +216,22 @@ func reset_game():
 	tilt_meter.value = 0
 	wave_meter.value = 0
 	artificial_ready()
+
+func lose_game() -> void:
+	instructionslabel.hide()
+	countdownlabel.hide()
+	faillabel.show()
+	clearlabel.hide()
+	gameaudio.stop()
+	anim.play("fail")
+	await anim.animation_finished
+	print("lost lost lsot lost")
+	for p in passengers.get_children():
+		p.hide()
+	hide()
+	controller.balance_boat = false
+	emit_signal("activity_ended")
+	print(controller.balance_boat, "should be false here")
+	attempts = 3
+	finished = 0
+	process_mode = Node.PROCESS_MODE_DISABLED

@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://bgoubcyn5t0h5"]
+[gd_scene load_steps=47 format=3 uid="uid://bgoubcyn5t0h5"]
 
 [ext_resource type="Script" path="res://scripts/balanceboatactivity.gd" id="1_xkpwe"]
 [ext_resource type="Texture2D" uid="uid://dm4c6uopwtf7x" path="res://art/boats/boatbalanceboatactivity.png" id="2_qfp6m"]
@@ -35,6 +35,46 @@
 [ext_resource type="Texture2D" uid="uid://daim3hc2jfid7" path="res://art/tileset/continuetimer/continuetimer16.png" id="27_w0d3w"]
 [ext_resource type="AudioStream" uid="uid://nwictacfem7v" path="res://audio/658340__josefpres__8-bit-game-loop-012-simple-mix-4-short-120-bpm.wav" id="28_6rxtj"]
 [ext_resource type="AudioStream" uid="uid://c1rd2en4gt0ha" path="res://audio/644956__craigscottuk__quiz-gameshow-correct-ping-07.mp3" id="30_qlakp"]
+[ext_resource type="AudioStream" uid="uid://cwwgbkaesp3a3" path="res://audio/450614__breviceps__8-bit-collect-sound-timer-countdown.wav" id="34_lu6y8"]
+
+[sub_resource type="Animation" id="Animation_gp7tx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Clear:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("right:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("fail:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_wqiko"]
 resource_name = "clear"
@@ -64,12 +104,35 @@ tracks/1/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_gp7tx"]
+[sub_resource type="Animation" id="Animation_5qwa5"]
+resource_name = "fail"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("fail:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.266667, 1.43333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u35c5"]
+_data = {
+"RESET": SubResource("Animation_gp7tx"),
+"clear": SubResource("Animation_wqiko"),
+"fail": SubResource("Animation_5qwa5")
+}
+
+[sub_resource type="Animation" id="Animation_0kp0g"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Clear:modulate")
+tracks/0/path = NodePath("bg:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -77,24 +140,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("right:playing")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_u35c5"]
-_data = {
-"RESET": SubResource("Animation_gp7tx"),
-"clear": SubResource("Animation_wqiko")
 }
 
 [sub_resource type="Animation" id="Animation_nybtp"]
@@ -172,21 +217,6 @@ tracks/5/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_0kp0g"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("bg:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_prun1"]
 _data = {
 "RESET": SubResource("Animation_0kp0g"),
@@ -207,6 +237,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [null]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("readysetgo:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_ral5g"]
 resource_name = "continuetimer"
@@ -222,6 +264,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [ExtResource("7_cy5nu"), ExtResource("8_i56jw"), ExtResource("9_fivqe"), ExtResource("10_j30e3"), ExtResource("11_u8a76"), ExtResource("12_q2vq7"), ExtResource("13_y2cau"), ExtResource("14_tssgi"), ExtResource("15_nobdg"), ExtResource("16_jk2qa"), ExtResource("17_dxmn0"), ExtResource("18_06vp5"), ExtResource("19_ihnbt"), ExtResource("20_53bda"), ExtResource("21_bmcui"), ExtResource("22_wbyfy"), ExtResource("23_4bf1k"), ExtResource("24_qi17q"), ExtResource("25_s6gv4"), ExtResource("26_6ksob"), ExtResource("27_w0d3w")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("readysetgo:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.233333, 1.26667, 2.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3gaqo"]
@@ -350,6 +404,29 @@ theme_override_font_sizes/font_size = 400
 text = "CLEAR!"
 horizontal_alignment = 1
 
+[node name="fail" type="Label" parent="."]
+visible = false
+z_index = 10
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -315.0
+offset_top = -241.0
+offset_right = 351.0
+offset_bottom = 189.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.909641, 0.153842, 0.262162, 1)
+theme_override_colors/font_outline_color = Color(0.492408, 0, 0.205099, 1)
+theme_override_constants/outline_size = 30
+theme_override_fonts/font = ExtResource("3_tf2fi")
+theme_override_font_sizes/font_size = 400
+text = "FAIL"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Label2" type="Label" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
@@ -385,8 +462,23 @@ libraries = {
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="readysetgo" type="AudioStreamPlayer" parent="continuetimer"]
+stream = ExtResource("34_lu6y8")
+bus = &"music"
+
 [node name="gamemusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("28_6rxtj")
 
 [node name="right" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("30_qlakp")
+
+[node name="attempts" type="Label" parent="."]
+offset_left = 909.0
+offset_top = 58.0
+offset_right = 1053.0
+offset_bottom = 102.0
+theme_override_colors/font_outline_color = Color(0.108057, 0.194981, 0.552125, 1)
+theme_override_constants/outline_size = 15
+theme_override_fonts/font = ExtResource("3_tf2fi")
+theme_override_font_sizes/font_size = 40
+text = "Attempts: "

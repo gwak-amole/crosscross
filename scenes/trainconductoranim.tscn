@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bnqyg1rw7c7r3"]
+[gd_scene load_steps=17 format=3 uid="uid://bnqyg1rw7c7r3"]
 
 [ext_resource type="Texture2D" uid="uid://cpjb0q5avkxab" path="res://art/trainconductor/trainconductorappear0.png" id="1_vavvy"]
 [ext_resource type="Texture2D" uid="uid://c3fns8n2ki6yk" path="res://art/trainconductor/trainconductorappear1.png" id="2_kvmkn"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bpjj35axg2puh" path="res://art/trainconductor/trainconductorticket1.png" id="7_jn8ff"]
 [ext_resource type="Texture2D" uid="uid://dlgvkhytl0jl4" path="res://art/trainconductor/trainconductorno0.png" id="8_tibye"]
 [ext_resource type="Texture2D" uid="uid://cgcwhdwgp0e0g" path="res://art/trainconductor/trainconductorno1.png" id="9_o0hqv"]
+[ext_resource type="AudioStream" uid="uid://cp5w2y57ckc75" path="res://audio/488227__plumaudio__happy-blip.wav" id="10_sm0wa"]
 
 [sub_resource type="Animation" id="Animation_ajw1u"]
 length = 0.001
@@ -171,3 +172,7 @@ offset_bottom = 40.0
 [node name="person" type="TextureRect" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_sm0wa")
+bus = &"sfx"

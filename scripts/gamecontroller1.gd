@@ -161,6 +161,7 @@ var from_country := false
 var exiting_river := false
 var from_river := false
 var stop_audio := false
+var balance_boat : bool = false
 
 func _ready() -> void:
 	set_character(Globals.chosen_character)
@@ -191,7 +192,7 @@ func _ready() -> void:
 	dialogue_ui.charm_used.connect(_on_charm_used)
 	cardswipingactivity.connect("done", Callable(self, "_on_swipe_done"))
 	dogactivity.connect("activity_ended", Callable(self, "_on_dog_activity_ended"))
-	balanceboatactivity.connect("activity_ended", Callable(self, "_on_boat_activity_ended"))
+	balanceboatactivity.connect("activity_ended", Callable(self, "_on_boat_activity_finished"))
 	heart_nodes.clear()
 	if hearts_box:
 		for c in hearts_box.get_children():
@@ -394,7 +395,7 @@ func _loop_points() -> void:
 func _increment_points() -> void:
 	if points_frozen == false:
 		times += 1
-		points_int += int(15 * pow(power, times))
+		points_int += int(15 * pow(power, times * 0.1))
 		_update_points()
 	elif points_frozen == true:
 		pass
@@ -902,6 +903,7 @@ func _on_riverexit_body_entered(body: Node2D) -> void:
 		_on_river_exit_triggered()
 
 func _switch_scene_to_river() -> void:
+	Globals.spawn_next_boat = true
 	transitioning = true
 	countryswitchtext.show()
 	stop_audio = true
@@ -1015,9 +1017,21 @@ func _on_boat_contacted(boat: Node) -> void:
 	balanceboatactivity.process_mode = Node.PROCESS_MODE_ALWAYS
 
 func _on_boat_activity_finished():
-	continuecanvas.show()
-	continuetimer.play("continuetimer")
-	await continuetimer.animation_finished
-	continuecanvas.hide()
+	print(balance_boat)
+	if balance_boat == true:
+		print("won balance boat game")
+		pass
+	elif balance_boat == false:
+		_lose_life()
+		points_int -= (points_int / 10)
+		_update_hearts()
+		print("lost balance boat game")
+	if lives <= 0:
+		_game_over()
+	else:
+		continuecanvas.show()
+		continuetimer.play("continuetimer")
+		await continuetimer.animation_finished
+		continuecanvas.hide()
+		audioOne.stream_paused = false
 	get_tree().paused = false
-	audioOne.stream_paused = false

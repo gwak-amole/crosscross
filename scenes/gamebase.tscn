@@ -1,4 +1,4 @@
-[gd_scene load_steps=264 format=4 uid="uid://bw1jvqsj3l017"]
+[gd_scene load_steps=265 format=4 uid="uid://bw1jvqsj3l017"]
 
 [ext_resource type="PackedScene" uid="uid://cqsj6ljppkot6" path="res://scenes/mainchara.tscn" id="1_bp8ss"]
 [ext_resource type="Script" path="res://scripts/parallax_background.gd" id="1_eistd"]
@@ -166,6 +166,7 @@
 [ext_resource type="Texture2D" uid="uid://qan2wqq7d7ma" path="res://art/tileset/trainanimationframes/trainanimationframes10.png" id="141_f804h"]
 [ext_resource type="Texture2D" uid="uid://tu8d45rjdjsu" path="res://art/tileset/trainanimationframes/trainanimationframes11.png" id="142_2nwan"]
 [ext_resource type="AudioStream" uid="uid://d34qe3vdlg3ai" path="res://audio/659889__blondpanda__short-elevator-music-loop.wav" id="148_oje6l"]
+[ext_resource type="AudioStream" uid="uid://cwwgbkaesp3a3" path="res://audio/450614__breviceps__8-bit-collect-sound-timer-countdown.wav" id="149_3kcli"]
 [ext_resource type="PackedScene" uid="uid://34a4v4krbgj7" path="res://scenes/dogactivity.tscn" id="154_8chhl"]
 [ext_resource type="PackedScene" uid="uid://bgoubcyn5t0h5" path="res://scenes/balanceboatactivity.tscn" id="168_15rne"]
 
@@ -1222,6 +1223,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [ExtResource("39_xrlb6"), ExtResource("40_6jf6k"), ExtResource("41_r8c2t"), ExtResource("42_iltey"), ExtResource("43_8daek"), ExtResource("44_gxins"), ExtResource("45_amroq"), ExtResource("46_ha8ji"), ExtResource("47_hjens"), ExtResource("48_v1n8y"), ExtResource("49_56kwd"), ExtResource("50_gn5as"), ExtResource("51_iwwjy"), ExtResource("52_nnlbi"), ExtResource("53_ht8yi"), ExtResource("54_m5k1v"), ExtResource("55_ltvf4"), ExtResource("56_byldx"), ExtResource("57_0bwgm"), ExtResource("58_yq1qy"), ExtResource("59_dtb4p")]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("readysetgo:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.233333, 1.26667, 2.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3gaqo"]
 _data = {
@@ -2207,7 +2220,7 @@ profiles1 = Array[ExtResource("80_svbuc")]([ExtResource("81_g1syo"), ExtResource
 boat_scene = ExtResource("77_apqsm")
 characters_path_1 = NodePath("../boats")
 mainchara_path_1 = NodePath("../mainchara")
-max_on_screen = 2
+min_spawn_every = 1
 controller_path_1 = NodePath("../GameController")
 subwaylayerpath = NodePath("../Subway")
 citylayerpath = NodePath("../City")
@@ -2462,6 +2475,10 @@ libraries = {
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="readysetgo" type="AudioStreamPlayer" parent="continuetimer"]
+stream = ExtResource("149_3kcli")
+bus = &"music"
+
 [node name="subwayswitch" type="CanvasLayer" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="subwayswitch"]
@@ -2647,6 +2664,7 @@ autowrap_mode = 3
 [node name="dogactivity" parent="." instance=ExtResource("154_8chhl")]
 
 [node name="balanceboatactivity" parent="." instance=ExtResource("168_15rne")]
+controllerpath = NodePath("../GameController")
 
 [connection signal="pressed" from="tutorial/Control/HBoxContainer/yes" to="GameController" method="_on_yes_pressed"]
 [connection signal="pressed" from="tutorial/Control/HBoxContainer/no" to="GameController" method="_on_no_pressed"]

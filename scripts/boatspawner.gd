@@ -5,7 +5,7 @@ extends Node2D
 @export var characters_path_1: NodePath
 @export var mainchara_path_1: NodePath
 @export var start_spawn_every: float = 5
-@export var min_spawn_every:= 5
+@export var min_spawn_every:= 1
 @export var max_on_screen: int = 1
 @export var half_life_seconds := 45.0
 @export var new_time_elapsed := elapsed
@@ -63,6 +63,8 @@ func _process(delta):
 func _on_spawn_tick() -> void:
 	if Globals.spawn_next_boat == false:
 		return
+	if characters.get_child_count() >= max_on_screen:
+		return
 	_spawn_one()
 	var k := pow(0.5, elapsed / max(half_life_seconds, 0.001))
 	var next := min_spawn_every + (start_spawn_every - min_spawn_every) * k
@@ -104,15 +106,15 @@ func _on_fever_started() -> void:
 	fever_active = true
 	print("fever is active")
 	max_on_screen = 2
-	min_spawn_every = 0.3
-	start_spawn_every = 2
+	min_spawn_every = 0.5
+	start_spawn_every = 3
 	await get_tree().create_timer(2.0).timeout
 	print("yes, here too")
 	
 func _on_fever_ended() -> void:
 	max_on_screen = 2
-	min_spawn_every = 0.3
-	start_spawn_every = 8
+	min_spawn_every = 1
+	start_spawn_every = 5
 	timer.wait_time = min_spawn_every
 	timer.start()
 	print("fever inactive")

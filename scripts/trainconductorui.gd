@@ -99,7 +99,7 @@ func _wait_for_choice() -> int:
 	visible = true
 	if picked == 0 or picked == 1:
 		ap.play("ticket")
-		# pos_response.play()
+		pos_response.play()
 	else:
 		ap.play("bye")
 		# neg_response.play()
