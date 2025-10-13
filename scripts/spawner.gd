@@ -39,10 +39,8 @@ var puddle_cooldown := false
 var subway_in := false
 
 func _ready() -> void:
-	print("hello help i hate my life what.")
 	if enemy_sceneee == null or characters == null:
 		push_error("Spawner miswired: set enemy_scene and characters_path in Inspector.")
-		print("hello help i hate my life what.")
 		return
 	if not controller.fever.is_connected(_on_fever_started):
 		controller.fever.connect(_on_fever_started)
@@ -54,15 +52,14 @@ func _ready() -> void:
 	if not timer.timeout.is_connected(_on_spawn_tick):
 		timer.timeout.connect(_on_spawn_tick)
 	timer.start()
-	print(characters)
-	print(profiles1)
-	
 
 func _process(delta):
 	elapsed += delta
 
 func _on_spawn_tick() -> void:
 	if characters.get_child_count() >= max_on_screen:
+		return
+	if yanagawa.visible == true:
 		return
 	_spawn_one()
 	var k := pow(0.5, elapsed / max(half_life_seconds, 0.001))
@@ -78,9 +75,6 @@ func _on_spawn_tick() -> void:
 	timer.start()
 
 func _spawn_one() -> void:
-	if yanagawa.visible == true:
-		print("it's visibile fawg")
-		return
 	var e := enemy_sceneee.instantiate()
 	if profiles1.size() > 0:
 		e.profile = profiles1[rng.randi_range(0, profiles1.size()-1)]
@@ -101,7 +95,6 @@ func _spawn_one() -> void:
 	var x: float = spawn_lanes[rng.randi_range(0, spawn_lanes.size() - 1)]
 	var y: float = top - spawn_margin_y    
 	e.global_position = Vector2(x, y)
-	print("spawned at", e.global_position)
 
 
 func _on_fever_started() -> void:
@@ -118,7 +111,6 @@ func _on_fever_started() -> void:
 	start_spawn_every = 0.7
 	await get_tree().create_timer(2.0).timeout
 	camera.speed += 10
-	print("yes, here too")
 	
 func _on_fever_ended() -> void:
 	eventspawner._end_fever()

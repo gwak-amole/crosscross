@@ -30,6 +30,17 @@ func _ready() -> void:
 			gmovmsg.text = "wait...why were you riding a boat on the way to your corporate 9-5?"
 		elif rand == 5:
 			gmovmsg.text = "새상에 별놈들 다 있다"
+	elif Globals.died_from_delinq == true:
+		gmovmsg.text = "so seems like you were punched to oblivion"
+	elif Globals.died_from_photo == true:
+		if rand >= 0 and rand <= 3:
+			gmovmsg.text = "(in)arguably a corporate job is harder than modeling..."
+		elif rand > 3:
+			gmovmsg.text = "was the fame too much?"
+	elif Globals.died_from_wannabeidol:
+		gmovmsg.text = "you know what, understandable. I couldn't bear his singing either."
+	elif Globals.died_from_cats:
+		gmovmsg.text = "unfortunately you will need to pay taxes in real life as well"
 	elif rand == 0:
 		gmovmsg.text = "well... that's one way to get to work."
 	elif rand == 1:

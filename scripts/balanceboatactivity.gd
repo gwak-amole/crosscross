@@ -4,7 +4,6 @@ signal activity_ended
 signal lost
 @export var controllerpath : NodePath
 @onready var boat = $boat
-@onready var player = $boat/mainchara
 @onready var passengers = $passengers
 @onready var tilt_meter = $ProgressBar
 @onready var wave_meter = $waveprogressbar

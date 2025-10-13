@@ -6,10 +6,8 @@ signal charm_contacted(event: Node)
 
 @export var profile: EventProfile
 @export var profile_array : Array[EventProfile] = []
-@export var tutorialpath : NodePath
 @onready var anim: AnimatedSprite2D = $CharacterBody2D/AnimatedSprite2D
 @onready var onscreen: VisibleOnScreenNotifier2D = $CharacterBody2D/VisibleOnScreenNotifier2D
-@onready var tutorial := get_node(tutorialpath)
 
 func _ready():
 	self.process_mode = Node.PROCESS_MODE_ALWAYS

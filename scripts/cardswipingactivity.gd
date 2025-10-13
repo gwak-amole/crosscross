@@ -60,7 +60,6 @@ func _check_swipe():
 	if bar.value >= target_zone.x and bar.value <= target_zone.y:
 		label.text = "Success!"
 		audiocorrect.play()
-		emit_signal("swipe_success")
 		swipe_done = true
 		await get_tree().create_timer(1.0).timeout
 		anim.play("hide")

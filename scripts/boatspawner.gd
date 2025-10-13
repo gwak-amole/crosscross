@@ -17,7 +17,7 @@ extends Node2D
 @export var timerpath: NodePath
 @export var camerapath_1 : NodePath
 
-@export var lanes_x: PackedFloat32Array = [220.0, 360.0]
+@export var lanes_x: PackedFloat32Array = [200.0, 360.0]
 @export var x_spawn_left: float = 200
 @export var x_spawn_right: float = 350
 @export var spawn_margin_y: float = 20.0

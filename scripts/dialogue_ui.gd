@@ -314,6 +314,7 @@ func _wait_for_choice() -> int:
 					wrong = false
 				else:
 					wrong = true
+					Globals.died_from_delinq = true
 			else:
 				pass
 		if is_buffcat:
@@ -326,6 +327,8 @@ func _wait_for_choice() -> int:
 			else:
 				pass
 		if wrong:
+			if is_photoo:
+				Globals.died_from_photo = true
 			ap.play("angry")
 			neg_response.play()
 		else:
@@ -552,6 +555,7 @@ func _wannabe_event() -> bool:
 	else:
 		ap.play("angry")
 		no_keep_life = true
+		Globals.died_from_wannabeidol = true
 	return no_keep_life
 
 func _buffcat_event() -> bool:
@@ -567,4 +571,5 @@ func _buffcat_event() -> bool:
 		return true
 	else:
 		ap.play("payfail")
+		Globals.died_from_cats = true
 		return false

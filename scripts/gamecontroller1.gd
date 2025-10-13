@@ -165,6 +165,10 @@ var balance_boat : bool = false
 
 func _ready() -> void:
 	set_character(Globals.chosen_character)
+	Globals.died_from_delinq = false
+	Globals.died_from_photo = false
+	Globals.died_from_cats = true
+	Globals.died_from_wannabeidol = true
 	citylayer.visible = true
 	subwaylayer.visible = false
 	countrylayer.visible = false
@@ -333,6 +337,11 @@ func _on_enemy_contacted(enemy: Node) -> void:
 	if lives <= 0:
 		Globals.died_from_boat = false
 		_game_over()
+	else:
+		Globals.died_from_cats = false
+		Globals.died_from_delinq = false
+		Globals.died_from_photo = false
+		Globals.died_from_wannabeidol = false
 		
 	if spawner.fever_active:
 		fevertext.show()
@@ -891,6 +900,8 @@ func _on_enemyspawnchange_body_entered(body: Node2D) -> void:
 		body.queue_free()
 	if body.get_parent() == animals:
 		body.queue_free()
+	if body.get_parent() == boats:
+		body.queue_free()
 
 func _on_riverexit_body_entered(body: Node2D) -> void:
 	if body != mainchara:
@@ -997,6 +1008,8 @@ func _on_boat_contacted(boat: Node) -> void:
 	if shield_active == true:
 		shield_active = false
 		shieldicon.hide()
+		return
+	if in_transition_buffer or transitioning:
 		return
 	get_tree().paused = true
 	var p = boat.get("profile") if boat else null

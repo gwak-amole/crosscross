@@ -69,7 +69,6 @@ func _on_spawn_tick() -> void:
 	timer.start()
 
 func _spawn_one() -> void:
-	print("tryan start one")
 	var e := entry_scene.instantiate()
 	thechance = 0
 	if profiles.size() > 0:
