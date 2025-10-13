@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="EnemyProfile" load_steps=3 format=3 uid="uid://bxw0lx0y77jj"]
+
+[ext_resource type="PackedScene" uid="uid://y0i5asi41nhe" path="res://scenes/bufftriplecat.tscn" id="1_leggr"]
+[ext_resource type="Script" path="res://scripts/EnemyProfile.gd" id="1_vy1tl"]
+
+[resource]
+script = ExtResource("1_vy1tl")
+display_name = "Buff Cat"
+speed = 0.0
+language = "en"
+anim_idle = "idle"
+anim_contact = "contact"
+dialogue_scene = ExtResource("1_leggr")
+dialogue_text = "pay up~"
+dialogue_text_2 = "we are a tollbooth so pay pls~"
+choices = PackedStringArray("wait, what do I pay with?", "do you want fish?", "who said you could decide?", "can I adopt you?")
+choices2 = PackedStringArray("that\'s really cute", "wait how do you speak english??", "what if I say no?", "how\'d you get that swole :0")
+correct_idx = 1
+correct_idx_2 = 3
+gender = "male"
+is_rps = false
+is_delinq = false
+is_photo = false
+is_boat = false
+is_wannabe = false
+is_buffcat = true

@@ -20,6 +20,8 @@ class_name EnemyProfile
 @export var is_delinq: bool = false
 @export var is_photo: bool = false
 @export var is_boat: bool = false
+@export var is_wannabe : bool = false
+@export var is_buffcat : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="EnemyProfile" load_steps=3 format=3 uid="uid://3gybf8uhj1cq"]
+
+[ext_resource type="PackedScene" uid="uid://cck62qld1vvhs" path="res://scenes/wannabeidolanim.tscn" id="1_dtw57"]
+[ext_resource type="Script" path="res://scripts/EnemyProfile.gd" id="1_lj1la"]
+
+[resource]
+script = ExtResource("1_lj1la")
+display_name = "Wannabe Idol"
+speed = 3.0
+language = "cn"
+anim_idle = "idle"
+anim_contact = "contact"
+dialogue_scene = ExtResource("1_dtw57")
+dialogue_text = "跟我一起跳舞吧！"
+dialogue_text_2 = "给我唱歌！"
+choices = PackedStringArray("你肯定失败的", "你这么丑啊", "对不起，我不会跳舞。", "好、要跳什么舞？")
+choices2 = PackedStringArray("不会唱歌", "唱什么歌？", "你喜欢BTS吗？", "好像你也不会唱歌。")
+correct_idx = 3
+correct_idx_2 = 1
+gender = "male"
+is_rps = false
+is_delinq = false
+is_photo = false
+is_boat = false
+is_wannabe = true
+is_buffcat = false

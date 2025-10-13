@@ -45,6 +45,9 @@ var charm_override : bool = false
 var is_delinq : bool = false
 var delinq_success = false
 var is_photoo = false
+var is_wannabe = false
+var wannabe_success = false
+var is_buffcat = false
 
 func _ready() -> void:
 	visible = false
@@ -92,6 +95,14 @@ func show_dialogue_from_profile(p: EnemyProfile) -> int:
 		is_photoo = true
 	else:
 		is_photoo = false
+	if p.is_wannabe:
+		is_wannabe = true
+	else:
+		is_wannabe = false
+	if p.is_buffcat:
+		is_buffcat = true
+	else:
+		is_buffcat = false
 	var ap = dlg_scene.get_node_or_null("AnimationPlayer")
 	if ap:
 		await get_tree().create_timer(1.5, true).timeout
@@ -305,10 +316,25 @@ func _wait_for_choice() -> int:
 					wrong = true
 			else:
 				pass
+		if is_buffcat:
+			if wrong:
+				var buffcat_success:bool = await _buffcat_event()
+				if buffcat_success:
+					wrong = false
+				else:
+					wrong = true
+			else:
+				pass
 		if wrong:
 			ap.play("angry")
 			neg_response.play()
 		else:
+			if is_wannabe:
+				var wannabe_wrong = await _wannabe_event()
+				if wannabe_wrong:
+					picked = 0
+			else:
+				pass
 			ap.play("apologize")
 			pos_response.play()
 		await get_tree().create_timer(2.0).timeout
@@ -508,3 +534,37 @@ func start_delinq_event() -> void:
 	else:
 		ap.play("punch")
 		await ap.animation_finished
+
+func _wannabe_event() -> bool:
+	var ap = dlg_scene.get_node_or_null("AnimationPlayer")
+	var no_keep_life : bool = false
+	ap.play("sing")
+	await get_tree().create_timer(0.1).timeout
+	var timer = get_tree().create_timer(1.75)
+	while timer.time_left > 0:
+		await get_tree().process_frame
+		if Input.is_action_just_pressed("ui_accept"):
+			wannabe_success = true
+			break
+	if wannabe_success:
+		ap.play("happysing")
+		no_keep_life = false
+	else:
+		ap.play("angry")
+		no_keep_life = true
+	return no_keep_life
+
+func _buffcat_event() -> bool:
+	var ap = dlg_scene.get_node_or_null("AnimationPlayer")
+	var buffcat_presstimes := 0
+	var timer = get_tree().create_timer(1.75)
+	while timer.time_left > 0:
+		await get_tree().process_frame
+		if Input.is_action_just_pressed("ui_accept"):
+			buffcat_presstimes += 1
+	if buffcat_presstimes >= 10:
+		ap.play("paysuccess")
+		return true
+	else:
+		ap.play("payfail")
+		return false
