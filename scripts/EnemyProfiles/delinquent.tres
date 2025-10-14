@@ -24,3 +24,5 @@ is_rps = false
 is_delinq = true
 is_photo = false
 is_boat = false
+is_wannabe = false
+is_buffcat = false

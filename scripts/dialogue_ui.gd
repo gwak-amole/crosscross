@@ -550,7 +550,7 @@ func _wannabe_event() -> bool:
 			wannabe_success = true
 			break
 	if wannabe_success:
-		ap.play("happysing")
+		ap.play("apologize")
 		no_keep_life = false
 	else:
 		ap.play("angry")

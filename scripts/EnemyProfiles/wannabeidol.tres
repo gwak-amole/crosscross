@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="EnemyProfile" load_steps=3 format=3 uid="uid://3gybf8uhj1cq"]
+[gd_resource type="Resource" script_class="EnemyProfile" load_steps=4 format=3 uid="uid://3gybf8uhj1cq"]
 
 [ext_resource type="PackedScene" uid="uid://cck62qld1vvhs" path="res://scenes/wannabeidolanim.tscn" id="1_dtw57"]
 [ext_resource type="Script" path="res://scripts/EnemyProfile.gd" id="1_lj1la"]
+[ext_resource type="SpriteFrames" uid="uid://bwncndd0cmx7r" path="res://art/frames/wannabeidol_frames.tres" id="3_xw8mx"]
 
 [resource]
 script = ExtResource("1_lj1la")
@@ -10,6 +11,7 @@ speed = 3.0
 language = "cn"
 anim_idle = "idle"
 anim_contact = "contact"
+sprite_frames = ExtResource("3_xw8mx")
 dialogue_scene = ExtResource("1_dtw57")
 dialogue_text = "跟我一起跳舞吧！"
 dialogue_text_2 = "给我唱歌！"

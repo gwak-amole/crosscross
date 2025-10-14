@@ -1,4 +1,4 @@
-[gd_scene load_steps=265 format=4 uid="uid://bw1jvqsj3l017"]
+[gd_scene load_steps=268 format=4 uid="uid://bw1jvqsj3l017"]
 
 [ext_resource type="PackedScene" uid="uid://cqsj6ljppkot6" path="res://scenes/mainchara.tscn" id="1_bp8ss"]
 [ext_resource type="Script" path="res://scripts/parallax_background.gd" id="1_eistd"]
@@ -93,6 +93,7 @@
 [ext_resource type="Texture2D" uid="uid://dcbvgwpd5c1xs" path="res://art/tileset/fever/splash/splash5.png" id="52_7ofgf"]
 [ext_resource type="Texture2D" uid="uid://cth4yu6g7svu" path="res://art/tileset/trainstationenter.png" id="52_axss5"]
 [ext_resource type="Texture2D" uid="uid://ckup8h3mqd0ie" path="res://art/tileset/continuetimer/continuetimer26.png" id="52_nnlbi"]
+[ext_resource type="Texture2D" uid="uid://bf3wdo5mjfjg2" path="res://art/tileset/yanagawastation.png" id="53_d2t6c"]
 [ext_resource type="Texture2D" uid="uid://cql7sws4ogmh5" path="res://art/tileset/continuetimer/continuetimer10.png" id="53_ht8yi"]
 [ext_resource type="Texture2D" uid="uid://dxc7scp88smcd" path="res://art/tileset/fever/splash/splash6.png" id="53_r112x"]
 [ext_resource type="Texture2D" uid="uid://pv6cyv1lyb4u" path="res://art/tileset/fever/splash/splash7.png" id="54_4vdu8"]
@@ -119,6 +120,7 @@
 [ext_resource type="PackedScene" uid="uid://d0x4ymtdhtmep" path="res://scenes/animal.tscn" id="74_vdbvj"]
 [ext_resource type="Script" path="res://scripts/subway_spawner.gd" id="75_avgf5"]
 [ext_resource type="Resource" uid="uid://cb5v5vo3cvtps" path="res://scripts/AnimalProfiles/goldenretriever.tres" id="75_iuyn7"]
+[ext_resource type="Resource" uid="uid://3gybf8uhj1cq" path="res://scripts/EnemyProfiles/wannabeidol.tres" id="75_upaek"]
 [ext_resource type="PackedScene" uid="uid://q82vrxsnjd2d" path="res://scenes/boatspawner.tscn" id="76_tp8ts"]
 [ext_resource type="Script" path="res://SubwayEntryProfile.gd" id="76_yxi8b"]
 [ext_resource type="PackedScene" uid="uid://ceefpbypn4hv3" path="res://scenes/boats.tscn" id="77_apqsm"]
@@ -801,9 +803,16 @@ texture = ExtResource("52_axss5")
 texture_region_size = Vector2i(216, 216)
 0:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gwa8g"]
+texture = ExtResource("53_d2t6c")
+texture_region_size = Vector2i(12, 12)
+0:0/size_in_atlas = Vector2i(18, 18)
+0:0/0 = 0
+
 [sub_resource type="TileSet" id="TileSet_cv65d"]
 tile_size = Vector2i(12, 12)
 sources/0 = SubResource("TileSetAtlasSource_6cmld")
+sources/1 = SubResource("TileSetAtlasSource_gwa8g")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vyxw2"]
 size = Vector2(708, 32)
@@ -2176,7 +2185,7 @@ tile_map_data = PackedByteArray("AAAAAOb+AAAAAAAAAAAAAOf+AAAAAAAAAAAAAOj+AAAAAAA
 tile_set = SubResource("TileSet_hyemw")
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="River/ParallaxLayer4"]
-tile_map_data = PackedByteArray("AAAXAAD/AAAAAAAAAAA=")
+tile_map_data = PackedByteArray("AAAYAAD/AQAAAAAAAAA=")
 tile_set = SubResource("TileSet_cv65d")
 
 [node name="riverexit" type="Area2D" parent="River"]
@@ -2208,7 +2217,7 @@ animalspath = NodePath("../animals")
 envmishappath = NodePath("../envmishap")
 
 [node name="Spawner" parent="." instance=ExtResource("8_fmll7")]
-profiles1 = Array[ExtResource("10_fgj5o")]([ExtResource("11_nbt5j"), ExtResource("12_qqd8v"), ExtResource("13_sqrlo"), ExtResource("14_iyk3s"), ExtResource("29_ki033"), ExtResource("19_dlvn0"), ExtResource("64_ho1un"), ExtResource("65_1h0d5"), ExtResource("66_dkr6w"), ExtResource("67_7ctnr"), ExtResource("72_vxqql")])
+profiles1 = Array[ExtResource("10_fgj5o")]([ExtResource("11_nbt5j"), ExtResource("12_qqd8v"), ExtResource("13_sqrlo"), ExtResource("14_iyk3s"), ExtResource("29_ki033"), ExtResource("19_dlvn0"), ExtResource("64_ho1un"), ExtResource("65_1h0d5"), ExtResource("66_dkr6w"), ExtResource("67_7ctnr"), ExtResource("72_vxqql"), ExtResource("75_upaek")])
 characters_path_1 = NodePath("../Characters")
 mainchara_path_1 = NodePath("../mainchara")
 eventpath_1 = NodePath("../EventSpawner")
@@ -2286,7 +2295,8 @@ subwaylayerpath = NodePath("../Subway")
 countrylayerpath = NodePath("../Country")
 yanagawalayerpath = NodePath("../River")
 enemyspawnerpath = NodePath("../Spawner")
-start_spawn_every = 1.0
+start_spawn_every = 50.0
+min_spawn_every = 50
 
 [node name="Timer" type="Timer" parent="SubwaySpawner"]
 
@@ -2319,7 +2329,7 @@ volume_db = 8.744
 bus = &"music"
 
 [node name="points" type="CanvasLayer" parent="."]
-layer = 6
+layer = 0
 
 [node name="Panel" type="Panel" parent="points"]
 anchors_preset = 5
