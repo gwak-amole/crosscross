@@ -1,7 +1,8 @@
-[gd_resource type="Resource" script_class="EnemyProfile" load_steps=3 format=3 uid="uid://bxw0lx0y77jj"]
+[gd_resource type="Resource" script_class="EnemyProfile" load_steps=4 format=3 uid="uid://bxw0lx0y77jj"]
 
 [ext_resource type="PackedScene" uid="uid://y0i5asi41nhe" path="res://scenes/bufftriplecat.tscn" id="1_leggr"]
 [ext_resource type="Script" path="res://scripts/EnemyProfile.gd" id="1_vy1tl"]
+[ext_resource type="SpriteFrames" uid="uid://d4ibjw12u37ky" path="res://art/frames/buffcattrioframes.tres" id="3_dtj6p"]
 
 [resource]
 script = ExtResource("1_vy1tl")
@@ -10,6 +11,7 @@ speed = 0.0
 language = "en"
 anim_idle = "idle"
 anim_contact = "contact"
+sprite_frames = ExtResource("3_dtj6p")
 dialogue_scene = ExtResource("1_leggr")
 dialogue_text = "pay up~"
 dialogue_text_2 = "we are a tollbooth so pay pls~"

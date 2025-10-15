@@ -333,13 +333,15 @@ func _wait_for_choice() -> int:
 			neg_response.play()
 		else:
 			if is_wannabe:
-				var wannabe_wrong = await _wannabe_event()
+				var wannabe_wrong:bool= await _wannabe_event()
 				if wannabe_wrong:
 					picked = 0
+					print("going here")
+					ap.play("angry")
+					neg_response.play()
 			else:
-				pass
-			ap.play("apologize")
-			pos_response.play()
+				ap.play("apologize")
+				pos_response.play()
 		await get_tree().create_timer(2.0).timeout
 		visible = false
 		panel.hide()
@@ -541,20 +543,26 @@ func start_delinq_event() -> void:
 func _wannabe_event() -> bool:
 	var ap = dlg_scene.get_node_or_null("AnimationPlayer")
 	var no_keep_life : bool = false
+	wannabe_success = false
 	ap.play("sing")
+	await get_tree().create_timer(0.1).timeout
 	await get_tree().create_timer(0.1).timeout
 	var timer = get_tree().create_timer(1.75)
 	while timer.time_left > 0:
 		await get_tree().process_frame
 		if Input.is_action_just_pressed("ui_accept"):
+			print("ui accept was pressed")
 			wannabe_success = true
 			break
+	print("wanna_be_success", wannabe_success)
 	if wannabe_success:
 		ap.play("apologize")
 		no_keep_life = false
+		wannabe_success = false
 	else:
 		ap.play("angry")
 		no_keep_life = true
+		wannabe_success = false
 		Globals.died_from_wannabeidol = true
 	return no_keep_life
 
@@ -568,8 +576,10 @@ func _buffcat_event() -> bool:
 			buffcat_presstimes += 1
 	if buffcat_presstimes >= 10:
 		ap.play("paysuccess")
+		buffcat_presstimes = 0
 		return true
 	else:
 		ap.play("payfail")
 		Globals.died_from_cats = true
+		buffcat_presstimes = 0
 		return false

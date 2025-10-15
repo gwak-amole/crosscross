@@ -1,12 +1,21 @@
-[gd_scene load_steps=18 format=3 uid="uid://cck62qld1vvhs"]
+[gd_scene load_steps=26 format=3 uid="uid://cck62qld1vvhs"]
 
 [ext_resource type="Texture2D" uid="uid://5dt8dnitkmdg" path="res://art/wannabeidoldialogue/wannabeidolappear0.png" id="1_66w1k"]
+[ext_resource type="Texture2D" uid="uid://cdm2j3ymvnen2" path="res://art/wannabeidoldialogue/wannabeidolangry0.png" id="1_gjk6m"]
 [ext_resource type="Texture2D" uid="uid://bg4hx626sim6k" path="res://art/dialoguegeneral/citydialoguebg.png" id="1_lnymu"]
 [ext_resource type="Texture2D" uid="uid://c6xfl4oh3vl7q" path="res://art/dialoguegeneral/subwaydialoguebg.png" id="2_5t2eo"]
 [ext_resource type="Texture2D" uid="uid://bcc5mrqfru5ol" path="res://art/tileset/trainanimationframes/countrydialoguebackground.png" id="2_bdep4"]
+[ext_resource type="Texture2D" uid="uid://drplon77aadgh" path="res://art/wannabeidoldialogue/wannabeidolangry1.png" id="2_sf5w3"]
 [ext_resource type="Texture2D" uid="uid://dkmd48xnw8drh" path="res://art/wannabeidoldialogue/wannabeidolappear1.png" id="2_udv82"]
 [ext_resource type="Texture2D" uid="uid://bgxbcc4x2sggw" path="res://art/wannabeidoldialogue/wannabeidolappear2.png" id="3_5vcmo"]
+[ext_resource type="Texture2D" uid="uid://hypxc71fiejg" path="res://art/wannabeidoldialogue/wannabeidolapologize0.png" id="3_mqq4i"]
+[ext_resource type="Texture2D" uid="uid://xg54dtrx3er4" path="res://art/wannabeidoldialogue/wannabeidolapologize1.png" id="4_et6pw"]
 [ext_resource type="Texture2D" uid="uid://cekxrj2cl734f" path="res://art/wannabeidoldialogue/wannabeidolhairsway.png" id="6_fj8wc"]
+[ext_resource type="Texture2D" uid="uid://d3tn8tfoltjny" path="res://art/wannabeidoldialogue/wannabeidolsing0.png" id="11_0ffqf"]
+[ext_resource type="Texture2D" uid="uid://d3ebxo20pd344" path="res://art/wannabeidoldialogue/wannabeidolsing1.png" id="12_ntnk5"]
+[ext_resource type="AudioStream" uid="uid://cp5w2y57ckc75" path="res://audio/488227__plumaudio__happy-blip.wav" id="14_x2gmg"]
+[ext_resource type="AudioStream" uid="uid://0rpc2thbcgos" path="res://audio/crosscross_angry_man.wav" id="15_kd3jl"]
+[ext_resource type="FontFile" uid="uid://r7libpb4d4ao" path="res://fonts/Jersey_10/Jersey10-Regular.ttf" id="16_dhmeq"]
 
 [sub_resource type="Animation" id="Animation_488xh"]
 length = 0.001
@@ -22,9 +31,22 @@ tracks/0/keys = {
 "update": 1,
 "values": [null]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_46dur"]
 resource_name = "angry"
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -35,11 +57,24 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.466667, 0.933333),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [null, null, null]
+"values": [ExtResource("1_gjk6m"), ExtResource("2_sf5w3"), ExtResource("1_gjk6m")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_4tnft"]
 resource_name = "apologize"
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -50,7 +85,19 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.466667, 0.933333),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [null, null, null]
+"values": [ExtResource("3_mqq4i"), ExtResource("4_et6pw"), ExtResource("3_mqq4i")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_n27q8"]
@@ -103,6 +150,18 @@ tracks/3/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Panel:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_0teip"]
 resource_name = "countryappear"
@@ -154,6 +213,18 @@ tracks/3/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Panel:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_g61bv"]
 resource_name = "hairsway"
@@ -171,23 +242,9 @@ tracks/0/keys = {
 "values": [ExtResource("3_5vcmo"), ExtResource("6_fj8wc"), ExtResource("3_5vcmo")]
 }
 
-[sub_resource type="Animation" id="Animation_mxi8h"]
-resource_name = "happysing"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("person:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.466667, 0.933333),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [null, null, null]
-}
-
 [sub_resource type="Animation" id="Animation_4b2pm"]
 resource_name = "sing"
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -198,7 +255,19 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.466667, 0.933333),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [null, null, null]
+"values": [ExtResource("11_0ffqf"), ExtResource("12_ntnk5"), ExtResource("11_0ffqf")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_f0kok"]
@@ -251,6 +320,18 @@ tracks/3/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Panel:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cwpv6"]
 _data = {
@@ -260,7 +341,6 @@ _data = {
 "appear": SubResource("Animation_n27q8"),
 "countryappear": SubResource("Animation_0teip"),
 "hairsway": SubResource("Animation_g61bv"),
-"happysing": SubResource("Animation_mxi8h"),
 "sing": SubResource("Animation_4b2pm"),
 "subwayappear": SubResource("Animation_f0kok")
 }
@@ -280,3 +360,39 @@ texture = ExtResource("1_lnymu")
 [node name="person" type="TextureRect" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_x2gmg")
+bus = &"sfx"
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_kd3jl")
+bus = &"sfx"
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 345.0
+offset_top = 47.0
+offset_right = 783.0
+offset_bottom = 113.0
+grow_vertical = 0
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -210.0
+offset_top = -28.5
+offset_right = 210.0
+offset_bottom = 28.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("16_dhmeq")
+theme_override_font_sizes/font_size = 50
+text = "Space to SING TOGETHER!"
+horizontal_alignment = 1

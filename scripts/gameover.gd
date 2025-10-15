@@ -11,7 +11,7 @@ var final_points : int = 0
 var from_leaderboard := false
 
 func _ready() -> void:
-	rand = rng.randi_range(0,5)
+	rand = rng.randi_range(0,6)
 	anim.play("gameover")
 	audio.play()
 	print(final_points)
@@ -30,6 +30,10 @@ func _ready() -> void:
 			gmovmsg.text = "wait...why were you riding a boat on the way to your corporate 9-5?"
 		elif rand == 5:
 			gmovmsg.text = "새상에 별놈들 다 있다"
+		elif rand == 6:
+			var new_num = rng.randi_range(0, 2)
+			if new_num == 2:
+				gmovmsg.text = "QUEUE THE TITANIC MUSIC"
 	elif Globals.died_from_delinq == true:
 		gmovmsg.text = "so seems like you were punched to oblivion"
 	elif Globals.died_from_photo == true:
@@ -53,6 +57,10 @@ func _ready() -> void:
 		gmovmsg.text = "do you have any idea what you told them?"
 	elif rand == 5:
 		gmovmsg.text = "your boss is still waiting for you at work..."
+	elif rand == 6:
+		var new_num = rng.randi_range(0,2)
+		if new_num == 2:
+			gmovmsg.text = "you got the SUPER SECRET MESSAGE! it's your lucky day!"
 
 func _on_texture_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/menu.tscn")
