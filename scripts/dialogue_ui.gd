@@ -322,6 +322,7 @@ func _wait_for_choice() -> int:
 				var buffcat_success:bool = await _buffcat_event()
 				if buffcat_success:
 					wrong = false
+					picked = cor_idx
 				else:
 					wrong = true
 			else:
@@ -569,17 +570,20 @@ func _wannabe_event() -> bool:
 func _buffcat_event() -> bool:
 	var ap = dlg_scene.get_node_or_null("AnimationPlayer")
 	var buffcat_presstimes := 0
-	var timer = get_tree().create_timer(1.75)
+	ap.play("instructions")
+	var timer = get_tree().create_timer(2.5)
 	while timer.time_left > 0:
 		await get_tree().process_frame
 		if Input.is_action_just_pressed("ui_accept"):
 			buffcat_presstimes += 1
 	if buffcat_presstimes >= 10:
 		ap.play("paysuccess")
+		await get_tree().create_timer(2.0).timeout
 		buffcat_presstimes = 0
 		return true
 	else:
 		ap.play("payfail")
+		await get_tree().create_timer(2.0).timeout
 		Globals.died_from_cats = true
 		buffcat_presstimes = 0
 		return false

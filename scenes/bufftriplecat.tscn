@@ -1,10 +1,19 @@
-[gd_scene load_steps=16 format=3 uid="uid://y0i5asi41nhe"]
+[gd_scene load_steps=26 format=3 uid="uid://y0i5asi41nhe"]
 
+[ext_resource type="Texture2D" uid="uid://bl3mv3hibt7u4" path="res://art/buffcattrio/buffcattrioangry0.png" id="1_5injm"]
+[ext_resource type="Texture2D" uid="uid://bv0hmtvaacjvh" path="res://art/buffcattrio/buffcattrioappear0.png" id="1_87oc2"]
 [ext_resource type="Texture2D" uid="uid://bg4hx626sim6k" path="res://art/dialoguegeneral/citydialoguebg.png" id="1_ousym"]
 [ext_resource type="Texture2D" uid="uid://c6xfl4oh3vl7q" path="res://art/dialoguegeneral/subwaydialoguebg.png" id="1_upyjc"]
 [ext_resource type="Texture2D" uid="uid://bcc5mrqfru5ol" path="res://art/tileset/trainanimationframes/countrydialoguebackground.png" id="2_6n0re"]
+[ext_resource type="Texture2D" uid="uid://07udvom7n5a" path="res://art/buffcattrio/buffcattrioangry1.png" id="2_gkxdv"]
+[ext_resource type="Texture2D" uid="uid://djmv4ii2wysy0" path="res://art/buffcattrio/buffcattrioappear1.png" id="2_wchg8"]
+[ext_resource type="Texture2D" uid="uid://cwnfbk0oc3cn5" path="res://art/buffcattrio/buffcattrioappear2.png" id="3_vk101"]
+[ext_resource type="Texture2D" uid="uid://cgarsggj4kmw2" path="res://art/buffcattrio/buffcattrioapologize0.png" id="3_w0ilu"]
 [ext_resource type="AudioStream" uid="uid://cp5w2y57ckc75" path="res://audio/488227__plumaudio__happy-blip.wav" id="4_8slu5"]
+[ext_resource type="Texture2D" uid="uid://bkermf53ia7hg" path="res://art/buffcattrio/buffcattrioapologize1.png" id="4_yj6p6"]
 [ext_resource type="AudioStream" uid="uid://0rpc2thbcgos" path="res://audio/crosscross_angry_man.wav" id="5_q30e3"]
+[ext_resource type="Texture2D" uid="uid://bqc3g5y4n8asc" path="res://art/buffcattrio/buffcattriohairsway.png" id="6_nlgnn"]
+[ext_resource type="FontFile" uid="uid://r7libpb4d4ao" path="res://fonts/Jersey_10/Jersey10-Regular.ttf" id="14_6appq"]
 
 [sub_resource type="Animation" id="Animation_mqh4w"]
 length = 0.001
@@ -44,9 +53,46 @@ tracks/2/keys = {
 "update": 1,
 "values": [null]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Panel:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Panel/Label:text")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [""]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Panel2:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_bdgrd"]
 resource_name = "angry"
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -57,11 +103,24 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.466667, 0.933333),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [null, null, null]
+"values": [ExtResource("1_5injm"), ExtResource("2_gkxdv"), ExtResource("1_5injm")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel2:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_d3wbo"]
 resource_name = "apologize"
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -72,7 +131,19 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.466667, 0.933333),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [null, null, null]
+"values": [ExtResource("3_w0ilu"), ExtResource("4_yj6p6"), ExtResource("3_w0ilu")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel2:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_pv2xs"]
@@ -84,10 +155,10 @@ tracks/0/path = NodePath("cat:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.0333333, 0.1, 0.2),
+"times": PackedFloat32Array(0, 0.1, 0.166667),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [null, null, null]
+"values": [ExtResource("1_87oc2"), ExtResource("2_wchg8"), ExtResource("3_vk101")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -125,6 +196,18 @@ tracks/3/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Panel:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_ip22m"]
 resource_name = "countryappear"
@@ -135,10 +218,10 @@ tracks/0/path = NodePath("cat:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.166667),
+"times": PackedFloat32Array(0, 0.1, 0.166667),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [null, null, null]
+"values": [ExtResource("1_87oc2"), ExtResource("2_wchg8"), ExtResource("3_vk101")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -176,9 +259,22 @@ tracks/3/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Panel:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_q1wup"]
 resource_name = "hairsway"
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -189,37 +285,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.466667, 0.933333),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [null, null, null]
-}
-
-[sub_resource type="Animation" id="Animation_b5i8v"]
-resource_name = "payfail"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("cat:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.466667, 0.933333),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [null, null, null]
-}
-
-[sub_resource type="Animation" id="Animation_xnot3"]
-resource_name = "paysuccess"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("cat:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.466667, 0.933333),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [null, null, null]
+"values": [ExtResource("3_vk101"), ExtResource("6_nlgnn"), ExtResource("3_vk101")]
 }
 
 [sub_resource type="Animation" id="Animation_sgjjo"]
@@ -231,10 +297,10 @@ tracks/0/path = NodePath("cat:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.166667),
+"times": PackedFloat32Array(0, 0.1, 0.166667),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [null, null, null]
+"values": [ExtResource("1_87oc2"), ExtResource("2_wchg8"), ExtResource("3_vk101")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -272,6 +338,114 @@ tracks/3/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Panel:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_rinfh"]
+resource_name = "payfail"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.466667, 0.933333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel/Label:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["PAY FAILED"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Panel2:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_j4g6n"]
+resource_name = "paysuccess"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.466667, 0.933333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel/Label:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["PAY SUCCESS"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Panel2:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_al3xy"]
+resource_name = "instructions"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.433333, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6e67y"]
 _data = {
@@ -281,8 +455,9 @@ _data = {
 "appear": SubResource("Animation_pv2xs"),
 "countryappear": SubResource("Animation_ip22m"),
 "hairsway": SubResource("Animation_q1wup"),
-"payfail": SubResource("Animation_b5i8v"),
-"paysuccess": SubResource("Animation_xnot3"),
+"instructions": SubResource("Animation_al3xy"),
+"payfail": SubResource("Animation_rinfh"),
+"paysuccess": SubResource("Animation_j4g6n"),
 "subwayappear": SubResource("Animation_sgjjo")
 }
 
@@ -298,7 +473,6 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="cat" type="TextureRect" parent="."]
-modulate = Color(1, 1, 1, 0)
 offset_right = 40.0
 offset_bottom = 40.0
 
@@ -309,3 +483,59 @@ bus = &"sfx"
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_q30e3")
 bus = &"sfx"
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = -1
+anchor_right = 0.5
+offset_left = 319.0
+offset_top = 533.0
+offset_right = 811.0
+offset_bottom = 613.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -73.0
+offset_top = -22.0
+offset_right = 73.0
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("14_6appq")
+theme_override_font_sizes/font_size = 50
+horizontal_alignment = 1
+
+[node name="Panel2" type="Panel" parent="."]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = -1
+anchor_right = 0.5
+offset_left = 190.0
+offset_top = 35.0
+offset_right = 947.0
+offset_bottom = 115.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="Panel2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -359.0
+offset_top = -27.5
+offset_right = 359.0
+offset_bottom = 27.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("14_6appq")
+theme_override_font_sizes/font_size = 50
+text = "Rapidly press SPACE to soothe the cat(s)!"
+horizontal_alignment = 1
