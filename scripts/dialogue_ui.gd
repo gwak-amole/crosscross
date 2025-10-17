@@ -337,6 +337,8 @@ func _wait_for_choice() -> int:
 				var wannabe_wrong:bool= await _wannabe_event()
 				if wannabe_wrong:
 					picked = 0
+					ap.play("handno")
+					await get_tree().create_timer(1.5).timeout
 					print("going here")
 					ap.play("angry")
 					neg_response.play()
@@ -554,6 +556,8 @@ func _wannabe_event() -> bool:
 		if Input.is_action_just_pressed("ui_accept"):
 			print("ui accept was pressed")
 			wannabe_success = true
+			ap.play("handsing")
+			await get_tree().create_timer(1.5).timeout
 			break
 	print("wanna_be_success", wannabe_success)
 	if wannabe_success:
@@ -577,6 +581,8 @@ func _buffcat_event() -> bool:
 		if Input.is_action_just_pressed("ui_accept"):
 			buffcat_presstimes += 1
 	if buffcat_presstimes >= 10:
+		ap.play("payup")
+		await get_tree().create_timer(1.5).timeout
 		ap.play("paysuccess")
 		await get_tree().create_timer(2.0).timeout
 		buffcat_presstimes = 0

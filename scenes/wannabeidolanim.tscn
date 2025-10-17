@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cck62qld1vvhs"]
+[gd_scene load_steps=32 format=3 uid="uid://cck62qld1vvhs"]
 
 [ext_resource type="Texture2D" uid="uid://5dt8dnitkmdg" path="res://art/wannabeidoldialogue/wannabeidolappear0.png" id="1_66w1k"]
 [ext_resource type="Texture2D" uid="uid://cdm2j3ymvnen2" path="res://art/wannabeidoldialogue/wannabeidolangry0.png" id="1_gjk6m"]
@@ -13,9 +13,13 @@
 [ext_resource type="Texture2D" uid="uid://cekxrj2cl734f" path="res://art/wannabeidoldialogue/wannabeidolhairsway.png" id="6_fj8wc"]
 [ext_resource type="Texture2D" uid="uid://d3tn8tfoltjny" path="res://art/wannabeidoldialogue/wannabeidolsing0.png" id="11_0ffqf"]
 [ext_resource type="Texture2D" uid="uid://d3ebxo20pd344" path="res://art/wannabeidoldialogue/wannabeidolsing1.png" id="12_ntnk5"]
+[ext_resource type="Texture2D" uid="uid://b32prcej6iagu" path="res://art/wannabeidoldialogue/wannabeidolsingtgt0.png" id="14_ei0t1"]
 [ext_resource type="AudioStream" uid="uid://cp5w2y57ckc75" path="res://audio/488227__plumaudio__happy-blip.wav" id="14_x2gmg"]
 [ext_resource type="AudioStream" uid="uid://0rpc2thbcgos" path="res://audio/crosscross_angry_man.wav" id="15_kd3jl"]
+[ext_resource type="Texture2D" uid="uid://bnifhbgqe2nfv" path="res://art/wannabeidoldialogue/wannabeidolsingtgt1.png" id="15_pmxd6"]
 [ext_resource type="FontFile" uid="uid://r7libpb4d4ao" path="res://fonts/Jersey_10/Jersey10-Regular.ttf" id="16_dhmeq"]
+[ext_resource type="Texture2D" uid="uid://viq8hadaocc6" path="res://art/wannabeidoldialogue/wannabeidolsingno0.png" id="16_vr25o"]
+[ext_resource type="Texture2D" uid="uid://yo3qc1t4txxf" path="res://art/wannabeidoldialogue/wannabeidolsingno1.png" id="17_mrjcc"]
 
 [sub_resource type="Animation" id="Animation_488xh"]
 length = 0.001
@@ -42,6 +46,30 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("playerhand:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("playerhand:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
 }
 
 [sub_resource type="Animation" id="Animation_46dur"]
@@ -94,6 +122,18 @@ tracks/1/path = NodePath("Panel:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("playerhand:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -162,6 +202,18 @@ tracks/4/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("playerhand:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_0teip"]
 resource_name = "countryappear"
@@ -220,6 +272,18 @@ tracks/4/path = NodePath("Panel:modulate")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("playerhand:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -332,6 +396,74 @@ tracks/4/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("playerhand:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_gpfpg"]
+resource_name = "handsing"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("playerhand:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.433333, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("14_ei0t1"), ExtResource("15_pmxd6"), ExtResource("14_ei0t1")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("playerhand:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_p3ps6"]
+resource_name = "handno"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("playerhand:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.433333, 0.933333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("16_vr25o"), ExtResource("17_mrjcc"), ExtResource("16_vr25o")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("playerhand:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cwpv6"]
 _data = {
@@ -341,6 +473,8 @@ _data = {
 "appear": SubResource("Animation_n27q8"),
 "countryappear": SubResource("Animation_0teip"),
 "hairsway": SubResource("Animation_g61bv"),
+"handno": SubResource("Animation_p3ps6"),
+"handsing": SubResource("Animation_gpfpg"),
 "sing": SubResource("Animation_4b2pm"),
 "subwayappear": SubResource("Animation_f0kok")
 }
@@ -396,3 +530,7 @@ theme_override_fonts/font = ExtResource("16_dhmeq")
 theme_override_font_sizes/font_size = 50
 text = "Space to SING TOGETHER!"
 horizontal_alignment = 1
+
+[node name="playerhand" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0

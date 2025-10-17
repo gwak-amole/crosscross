@@ -11,7 +11,11 @@ var final_points : int = 0
 var from_leaderboard := false
 
 func _ready() -> void:
-	rand = rng.randi_range(0,6)
+	print("remember rand", Globals.remember_rand, rand)
+	if Globals.remember_rand >= 0:
+		rand = Globals.remember_rand
+	else:
+		rand = rng.randi_range(0,6)
 	anim.play("gameover")
 	audio.play()
 	print(final_points)
@@ -63,10 +67,12 @@ func _ready() -> void:
 			gmovmsg.text = "you got the SUPER SECRET MESSAGE! it's your lucky day!"
 
 func _on_texture_button_pressed() -> void:
+	Globals.remember_rand = -1
 	get_tree().change_scene_to_file("res://scenes/menu.tscn")
 
 
 func _on_button_pressed() -> void:
+	Globals.remember_rand = rand
 	if from_leaderboard == true:
 		var scene = load("res://scenes/leaderboard.tscn") as PackedScene
 		var go = scene.instantiate()

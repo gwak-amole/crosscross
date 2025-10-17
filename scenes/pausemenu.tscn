@@ -86,6 +86,7 @@ alignment = 1
 
 [node name="Resume" type="TextureButton" parent="Control/Panel/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 texture_normal = ExtResource("3_s8y4u")
 texture_pressed = ExtResource("4_k5lke")
 texture_focused = ExtResource("5_ort8r")
@@ -110,6 +111,7 @@ horizontal_alignment = 1
 
 [node name="Restart" type="TextureButton" parent="Control/Panel/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 texture_normal = ExtResource("3_s8y4u")
 texture_pressed = ExtResource("4_k5lke")
 texture_focused = ExtResource("5_ort8r")
@@ -134,6 +136,7 @@ horizontal_alignment = 1
 
 [node name="Quit" type="TextureButton" parent="Control/Panel/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 texture_normal = ExtResource("3_s8y4u")
 texture_pressed = ExtResource("4_k5lke")
 texture_focused = ExtResource("5_ort8r")

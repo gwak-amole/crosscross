@@ -11,6 +11,7 @@ var died_from_delinq : bool = false
 var died_from_photo : bool = false
 var died_from_cats : bool = false
 var died_from_wannabeidol : bool = false
+var remember_rand: int = -1
 
 func _ready():
 	ensure_action_with_key("ui_up", KEY_UP)

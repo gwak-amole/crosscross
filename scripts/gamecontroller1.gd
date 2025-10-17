@@ -167,8 +167,8 @@ func _ready() -> void:
 	set_character(Globals.chosen_character)
 	Globals.died_from_delinq = false
 	Globals.died_from_photo = false
-	Globals.died_from_cats = true
-	Globals.died_from_wannabeidol = true
+	Globals.died_from_cats = false
+	Globals.died_from_wannabeidol = false
 	citylayer.visible = true
 	subwaylayer.visible = false
 	countrylayer.visible = false
