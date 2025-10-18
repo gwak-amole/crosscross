@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://5vuwykaxrudb"]
+[gd_scene load_steps=37 format=3 uid="uid://5vuwykaxrudb"]
 
 [ext_resource type="Texture2D" uid="uid://dtq5eyka26sms" path="res://art/officemandialogue/enteranim/howtoplayblank.png" id="1_bfawb"]
 [ext_resource type="Script" path="res://scripts/characterselectwoman.gd" id="1_rf4mm"]
@@ -7,7 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://b8rkudbwagj45" path="res://art/maincharas/maincharawomanprofiles0.png" id="4_upda2"]
 [ext_resource type="Texture2D" uid="uid://c33axh4ab2yqd" path="res://art/maincharas/maincharawomanprofiles1.png" id="5_2u22q"]
 [ext_resource type="Texture2D" uid="uid://baf78v3fejaq8" path="res://art/maincharas/maincharawomanprofiles2.png" id="6_f3142"]
+[ext_resource type="Texture2D" uid="uid://dbo1nb8bmy6kd" path="res://art/maincharas/maincharawomanprofiles0pressed.png" id="6_j5npd"]
 [ext_resource type="AudioStream" uid="uid://ctoer8llha4x8" path="res://audio/467519__arnasarnas__hip-hop-beat-6.wav" id="7_1o4oj"]
+[ext_resource type="Texture2D" uid="uid://d1qsi43xxffxv" path="res://art/maincharas/maincharawomanprofiles1pressed.png" id="8_hp1ce"]
+[ext_resource type="Texture2D" uid="uid://bo87mrpjjrmd8" path="res://art/maincharas/maincharawomanprofiles2pressed.png" id="10_1e7ye"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yf4gs"]
 atlas = ExtResource("4_upda2")
@@ -24,6 +27,14 @@ region = Rect2(400, 0, 200, 300)
 [sub_resource type="AtlasTexture" id="AtlasTexture_mp3gg"]
 atlas = ExtResource("4_upda2")
 region = Rect2(600, 0, 200, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hhkld"]
+atlas = ExtResource("6_j5npd")
+region = Rect2(0, 0, 200, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_awo4f"]
+atlas = ExtResource("6_j5npd")
+region = Rect2(200, 0, 200, 300)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4cirm"]
 animations = [{
@@ -43,6 +54,17 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hhkld")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_awo4f")
+}],
+"loop": true,
+"name": &"focused",
+"speed": 1.0
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_26tll"]
@@ -60,6 +82,14 @@ region = Rect2(400, 0, 200, 300)
 [sub_resource type="AtlasTexture" id="AtlasTexture_3im2q"]
 atlas = ExtResource("5_2u22q")
 region = Rect2(600, 0, 200, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6v2wg"]
+atlas = ExtResource("8_hp1ce")
+region = Rect2(0, 0, 200, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3gmbn"]
+atlas = ExtResource("8_hp1ce")
+region = Rect2(200, 0, 200, 300)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_a2wt4"]
 animations = [{
@@ -79,6 +109,17 @@ animations = [{
 "loop": true,
 "name": &"default",
 "speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6v2wg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3gmbn")
+}],
+"loop": true,
+"name": &"focused",
+"speed": 1.0
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xutwy"]
@@ -97,6 +138,14 @@ region = Rect2(400, 0, 200, 300)
 atlas = ExtResource("6_f3142")
 region = Rect2(600, 0, 200, 300)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_jjnen"]
+atlas = ExtResource("10_1e7ye")
+region = Rect2(0, 0, 200, 300)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1jgkx"]
+atlas = ExtResource("10_1e7ye")
+region = Rect2(200, 0, 200, 300)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_lrtva"]
 animations = [{
 "frames": [{
@@ -114,6 +163,17 @@ animations = [{
 }],
 "loop": true,
 "name": &"default",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jjnen")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1jgkx")
+}],
+"loop": true,
+"name": &"focused",
 "speed": 1.0
 }]
 
@@ -179,6 +239,7 @@ grow_vertical = 2
 script = ExtResource("1_rf4mm")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("1_bfawb")
@@ -198,6 +259,7 @@ offset_bottom = 49.0001
 grow_horizontal = 2
 grow_vertical = 0
 focus_neighbor_bottom = NodePath("../LineEdit")
+mouse_filter = 2
 theme_override_fonts/font = ExtResource("2_n5y28")
 theme_override_font_sizes/font_size = 30
 text = "confirm"
@@ -236,12 +298,14 @@ layout_mode = 2
 size_flags_horizontal = 3
 focus_neighbor_right = NodePath("../Button2")
 focus_neighbor_bottom = NodePath("../../LineEdit")
+mouse_filter = 2
 script = ExtResource("3_v57d2")
 characterselectpath = NodePath("../..")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="HBoxContainer/Button"]
 position = Vector2(109, 157)
 sprite_frames = SubResource("SpriteFrames_4cirm")
+animation = &"focused"
 
 [node name="Button2" type="Button" parent="HBoxContainer"]
 layout_mode = 2
@@ -249,24 +313,28 @@ size_flags_horizontal = 3
 focus_neighbor_left = NodePath("../Button")
 focus_neighbor_right = NodePath("../Button3")
 focus_neighbor_bottom = NodePath("../../LineEdit")
+mouse_filter = 2
 script = ExtResource("3_v57d2")
 characterselectpath = NodePath("../..")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="HBoxContainer/Button2"]
 position = Vector2(109, 157)
 sprite_frames = SubResource("SpriteFrames_a2wt4")
+animation = &"focused"
 
 [node name="Button3" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_neighbor_left = NodePath("../Button2")
 focus_neighbor_bottom = NodePath("../../LineEdit")
+mouse_filter = 2
 script = ExtResource("3_v57d2")
 characterselectpath = NodePath("../..")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="HBoxContainer/Button3"]
 position = Vector2(109, 157)
 sprite_frames = SubResource("SpriteFrames_lrtva")
+animation = &"focused"
 
 [node name="LineEdit" type="LineEdit" parent="."]
 process_mode = 3

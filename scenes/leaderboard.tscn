@@ -154,6 +154,7 @@ offset_left = 542.0
 offset_top = 552.0
 offset_right = 616.0
 offset_bottom = 604.0
+mouse_filter = 2
 theme_override_fonts/font = ExtResource("2_mi7i6")
 theme_override_font_sizes/font_size = 40
 text = "done

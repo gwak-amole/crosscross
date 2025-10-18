@@ -91,6 +91,7 @@ offset_bottom = 49.0001
 grow_horizontal = 2
 grow_vertical = 0
 focus_neighbor_bottom = NodePath("../LineEdit")
+mouse_filter = 2
 theme_override_fonts/font = ExtResource("1_j6yqu")
 theme_override_font_sizes/font_size = 30
 text = "confirm"
@@ -128,13 +129,14 @@ layout_mode = 2
 size_flags_horizontal = 3
 focus_neighbor_right = NodePath("../Button2")
 focus_neighbor_bottom = NodePath("../../LineEdit")
+mouse_filter = 2
 script = ExtResource("2_7fhse")
 characterselectpath = NodePath("../..")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="HBoxContainer/Button"]
 position = Vector2(109, 157)
 sprite_frames = ExtResource("3_gape0")
-frame_progress = 0.595312
+animation = &"focused"
 
 [node name="Button2" type="Button" parent="HBoxContainer"]
 layout_mode = 2
@@ -142,25 +144,28 @@ size_flags_horizontal = 3
 focus_neighbor_left = NodePath("../Button")
 focus_neighbor_right = NodePath("../Button3")
 focus_neighbor_bottom = NodePath("../../LineEdit")
+mouse_filter = 2
 script = ExtResource("2_7fhse")
 characterselectpath = NodePath("../..")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="HBoxContainer/Button2"]
 position = Vector2(109, 157)
 sprite_frames = ExtResource("4_o7xnk")
-frame_progress = 0.299194
+animation = &"focused"
 
 [node name="Button3" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_neighbor_left = NodePath("../Button2")
 focus_neighbor_bottom = NodePath("../../LineEdit")
+mouse_filter = 2
 script = ExtResource("2_7fhse")
 characterselectpath = NodePath("../..")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="HBoxContainer/Button3"]
 position = Vector2(109, 156)
 sprite_frames = ExtResource("5_g2l17")
+animation = &"focused"
 
 [node name="LineEdit" type="LineEdit" parent="."]
 layout_mode = 1
@@ -189,6 +194,12 @@ libraries = {
 }
 
 [connection signal="pressed" from="Confirm" to="." method="_on_confirm_button_pressed"]
+[connection signal="focus_entered" from="HBoxContainer/Button" to="HBoxContainer/Button" method="_on_focused"]
+[connection signal="focus_exited" from="HBoxContainer/Button" to="HBoxContainer/Button" method="_on_unfocused"]
 [connection signal="pressed" from="HBoxContainer/Button" to="HBoxContainer/Button" method="_on_pressed"]
+[connection signal="focus_entered" from="HBoxContainer/Button2" to="HBoxContainer/Button2" method="_on_focused"]
+[connection signal="focus_exited" from="HBoxContainer/Button2" to="HBoxContainer/Button2" method="_on_unfocused"]
 [connection signal="pressed" from="HBoxContainer/Button2" to="HBoxContainer/Button2" method="_on_pressed"]
+[connection signal="focus_entered" from="HBoxContainer/Button3" to="HBoxContainer/Button3" method="_on_focused"]
+[connection signal="focus_exited" from="HBoxContainer/Button3" to="HBoxContainer/Button3" method="_on_unfocused"]
 [connection signal="pressed" from="HBoxContainer/Button3" to="HBoxContainer/Button3" method="_on_pressed"]

@@ -11,7 +11,6 @@ var final_points : int = 0
 var from_leaderboard := false
 
 func _ready() -> void:
-	print("remember rand", Globals.remember_rand, rand)
 	if Globals.remember_rand >= 0:
 		rand = Globals.remember_rand
 	else:

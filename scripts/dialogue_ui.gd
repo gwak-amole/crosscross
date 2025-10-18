@@ -19,7 +19,6 @@ signal charm_used
 @onready var text := $Panel/Overlay/Text
 @onready var choices_box := $Panel/Overlay/Buttons
 @onready var rps_choices_box := $Panel/Overlay/rpsbuttons
-@onready var tutorial := $Panel/Overlay/tutorial
 @onready var audio := get_node(audio_path)
 @onready var spawner := get_node(spawnerpath)
 @onready var anim := get_node(animpath)

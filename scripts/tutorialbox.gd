@@ -74,7 +74,7 @@ func _end_tutorial() -> void:
 func _get_lines_for_step(step: String) -> Array:
 	match step:
 		"step_0":
-			return ["Welcome to Crosscross!", "You are an officeman, just trying to cross the street to get to work!"]
+			return ["Welcome to Crosscross!", "You are an office worker, just trying to cross the street to get to work!"]
 		"step_1":
 			return ["People might run into you!", "Try to work it out with them through conversation, even if you don't know their language!"]
 		"step_2":
