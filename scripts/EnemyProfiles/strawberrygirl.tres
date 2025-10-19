@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="EnemyProfile" load_steps=4 format=3 uid="uid://b7qngx3sodrwr"]
+
+[ext_resource type="Script" path="res://scripts/EnemyProfile.gd" id="1_3rqxr"]
+[ext_resource type="PackedScene" uid="uid://br7tm4diue5e2" path="res://scenes/strawberrygirlanim.tscn" id="1_d17fu"]
+[ext_resource type="SpriteFrames" uid="uid://dx3wed85k4ovg" path="res://art/frames/strawberrygirl_frames.tres" id="2_qehqm"]
+
+[resource]
+script = ExtResource("1_3rqxr")
+display_name = "Strawberry Girl"
+speed = 0.0
+language = "rand"
+anim_idle = "idle"
+anim_contact = "contact"
+sprite_frames = ExtResource("2_qehqm")
+dialogue_scene = ExtResource("1_d17fu")
+dialogue_text = "Uważaj!"
+dialogue_text_2 = "Nic się nie stało."
+choices = PackedStringArray("Przepraszam! Nie zauważyłem", "Spokojnie, nic się nie stało.", "Ty też mogłaś uważać.", "Silencio por favor")
+choices2 = PackedStringArray("To dobrze, że masz refleks.", "To dobrze, że masz refleks.", "My bad gang", "Dziękuję, przepraszam jeszcze raz.")
+correct_idx = 0
+correct_idx_2 = 3
+gender = "female"
+is_rps = false
+is_delinq = false
+is_photo = false
+is_boat = false
+is_wannabe = false
+is_buffcat = false

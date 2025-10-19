@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://br7tm4diue5e2"]
+
+[ext_resource type="AudioStream" uid="uid://cp5w2y57ckc75" path="res://audio/488227__plumaudio__happy-blip.wav" id="1_v32y0"]
+[ext_resource type="AudioStream" uid="uid://xiipkjlpuwxv" path="res://audio/278164__thedweebman__8-bit-wrong-2.wav" id="2_otoeg"]
+
+[node name="strawberrygirlanim" type="Node2D"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="bg" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="person" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_v32y0")
+bus = &"sfx"
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_otoeg")
+volume_db = -10.584
+bus = &"sfx"
