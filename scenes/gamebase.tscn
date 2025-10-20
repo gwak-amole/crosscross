@@ -1,4 +1,4 @@
-[gd_scene load_steps=269 format=4 uid="uid://bw1jvqsj3l017"]
+[gd_scene load_steps=270 format=4 uid="uid://bw1jvqsj3l017"]
 
 [ext_resource type="PackedScene" uid="uid://cqsj6ljppkot6" path="res://scenes/mainchara.tscn" id="1_bp8ss"]
 [ext_resource type="Script" path="res://scripts/parallax_background.gd" id="1_eistd"]
@@ -126,6 +126,7 @@
 [ext_resource type="Resource" uid="uid://bxw0lx0y77jj" path="res://scripts/EnemyProfiles/bufftriplecat.tres" id="77_0im36"]
 [ext_resource type="PackedScene" uid="uid://ceefpbypn4hv3" path="res://scenes/boats.tscn" id="77_apqsm"]
 [ext_resource type="Resource" uid="uid://cktkrwrkql1fg" path="res://scripts/SubwayEntryProfiles/EntryGreen.tres" id="77_n6b4r"]
+[ext_resource type="Resource" uid="uid://b7qngx3sodrwr" path="res://scripts/EnemyProfiles/strawberrygirl.tres" id="78_oevbr"]
 [ext_resource type="PackedScene" uid="uid://b1ihgd57sbgla" path="res://scenes/subwayentry.tscn" id="78_yjkvy"]
 [ext_resource type="Resource" uid="uid://cr3vwel01tjnb" path="res://scripts/AnimalProfiles/superdog.tres" id="79_u20yg"]
 [ext_resource type="Script" path="res://scripts/card_swipe_spawner.gd" id="80_7oc0v"]
@@ -2218,7 +2219,7 @@ animalspath = NodePath("../animals")
 envmishappath = NodePath("../envmishap")
 
 [node name="Spawner" parent="." instance=ExtResource("8_fmll7")]
-profiles1 = Array[ExtResource("10_fgj5o")]([ExtResource("11_nbt5j"), ExtResource("12_qqd8v"), ExtResource("13_sqrlo"), ExtResource("14_iyk3s"), ExtResource("29_ki033"), ExtResource("19_dlvn0"), ExtResource("64_ho1un"), ExtResource("65_1h0d5"), ExtResource("66_dkr6w"), ExtResource("67_7ctnr"), ExtResource("72_vxqql"), ExtResource("75_upaek"), ExtResource("77_0im36")])
+profiles1 = Array[ExtResource("10_fgj5o")]([ExtResource("11_nbt5j"), ExtResource("12_qqd8v"), ExtResource("13_sqrlo"), ExtResource("14_iyk3s"), ExtResource("29_ki033"), ExtResource("19_dlvn0"), ExtResource("64_ho1un"), ExtResource("65_1h0d5"), ExtResource("66_dkr6w"), ExtResource("67_7ctnr"), ExtResource("72_vxqql"), ExtResource("75_upaek"), ExtResource("77_0im36"), ExtResource("78_oevbr")])
 characters_path_1 = NodePath("../Characters")
 mainchara_path_1 = NodePath("../mainchara")
 eventpath_1 = NodePath("../EventSpawner")
@@ -2520,6 +2521,7 @@ offset_bottom = 40.0
 texture = ExtResource("117_3msv0")
 
 [node name="countryswitch" type="CanvasLayer" parent="."]
+process_mode = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="countryswitch"]
 libraries = {

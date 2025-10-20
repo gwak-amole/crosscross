@@ -57,6 +57,8 @@ func _process(delta):
 	elapsed += delta
 
 func _on_spawn_tick() -> void:
+	if controller.transitioning:
+		return
 	if characters.get_child_count() >= max_on_screen:
 		return
 	if yanagawa.visible == true:

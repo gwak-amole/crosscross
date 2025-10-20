@@ -55,6 +55,8 @@ func _on_spawn_tick() -> void:
 		return
 	if characters.get_child_count() != 0:
 		return
+	if controller.transitioning:
+		return
 	_spawn_one()
 	var k := pow(0.5, elapsed / max(half_life_seconds, 0.001))
 	var next := min_spawn_every + (start_spawn_every - min_spawn_every) * k

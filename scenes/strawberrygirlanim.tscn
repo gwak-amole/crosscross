@@ -1,13 +1,279 @@
-[gd_scene load_steps=3 format=3 uid="uid://br7tm4diue5e2"]
+[gd_scene load_steps=22 format=3 uid="uid://br7tm4diue5e2"]
 
 [ext_resource type="AudioStream" uid="uid://cp5w2y57ckc75" path="res://audio/488227__plumaudio__happy-blip.wav" id="1_v32y0"]
+[ext_resource type="Texture2D" uid="uid://r5xynqxqpeb7" path="res://art/dialoguegeneral/strawberrygirl/strawberrygirlappear0.png" id="1_vlr20"]
 [ext_resource type="AudioStream" uid="uid://xiipkjlpuwxv" path="res://audio/278164__thedweebman__8-bit-wrong-2.wav" id="2_otoeg"]
+[ext_resource type="Texture2D" uid="uid://bdeprro35y6eh" path="res://art/dialoguegeneral/strawberrygirl/strawberrygirlappear1.png" id="2_r5ee3"]
+[ext_resource type="Texture2D" uid="uid://hmliv8k74l33" path="res://art/dialoguegeneral/strawberrygirl/strawberrygirlappear2.png" id="3_f78uy"]
+[ext_resource type="Texture2D" uid="uid://bg4hx626sim6k" path="res://art/dialoguegeneral/citydialoguebg.png" id="4_dnlki"]
+[ext_resource type="Texture2D" uid="uid://cjmcl04rqotfm" path="res://art/dialoguegeneral/strawberrygirl/strawberrygirlangry0.png" id="5_52myp"]
+[ext_resource type="Texture2D" uid="uid://bcc5mrqfru5ol" path="res://art/tileset/trainanimationframes/countrydialoguebackground.png" id="5_gr4w7"]
+[ext_resource type="Texture2D" uid="uid://wk4egi3ippct" path="res://art/dialoguegeneral/strawberrygirl/strawberrygirlangry1.png" id="6_gygv2"]
+[ext_resource type="Texture2D" uid="uid://c6xfl4oh3vl7q" path="res://art/dialoguegeneral/subwaydialoguebg.png" id="6_tdhtx"]
+[ext_resource type="Texture2D" uid="uid://cfdxk74iuargw" path="res://art/dialoguegeneral/strawberrygirl/strawberrygirlhairsway.png" id="7_n063f"]
+[ext_resource type="Texture2D" uid="uid://b1m4gd6ipw4fw" path="res://art/dialoguegeneral/strawberrygirl/strawberrygirlapologize0.png" id="9_vm4gh"]
+[ext_resource type="Texture2D" uid="uid://ccp3i2lt4vq5p" path="res://art/dialoguegeneral/strawberrygirl/strawberrygirlapologize1.png" id="10_2ilp8"]
+
+[sub_resource type="Animation" id="Animation_22v0a"]
+resource_name = "appear"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("person:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("1_vlr20"), ExtResource("2_r5ee3"), ExtResource("3_f78uy")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("person:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.266667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("bg:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_dnlki")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("bg:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_f0fat"]
+resource_name = "angry"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("person:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.433333, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("5_52myp"), ExtResource("6_gygv2"), ExtResource("5_52myp")]
+}
+
+[sub_resource type="Animation" id="Animation_k76m7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("person:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("person:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("bg:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+
+[sub_resource type="Animation" id="Animation_5ndvo"]
+resource_name = "countryappear"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("person:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("1_vlr20"), ExtResource("2_r5ee3"), ExtResource("3_f78uy")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("person:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.266667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("bg:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_gr4w7")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("bg:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_l04rl"]
+resource_name = "subwayappear"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("person:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("1_vlr20"), ExtResource("2_r5ee3"), ExtResource("3_f78uy")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("person:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.266667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("bg:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_tdhtx")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("bg:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_qejc6"]
+resource_name = "apologize"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("person:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.433333, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("9_vm4gh"), ExtResource("10_2ilp8"), ExtResource("9_vm4gh")]
+}
+
+[sub_resource type="Animation" id="Animation_qmlub"]
+resource_name = "hairsway"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("person:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.433333, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("3_f78uy"), ExtResource("7_n063f"), ExtResource("3_f78uy")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wa7am"]
+_data = {
+"RESET": SubResource("Animation_k76m7"),
+"angry": SubResource("Animation_f0fat"),
+"apologize": SubResource("Animation_qejc6"),
+"appear": SubResource("Animation_22v0a"),
+"countryappear": SubResource("Animation_5ndvo"),
+"hairsway": SubResource("Animation_qmlub"),
+"subwayappear": SubResource("Animation_l04rl")
+}
 
 [node name="strawberrygirlanim" type="Node2D"]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_wa7am")
+}
 
 [node name="bg" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
 offset_right = 40.0
 offset_bottom = 40.0
 

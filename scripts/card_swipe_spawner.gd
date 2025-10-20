@@ -43,6 +43,8 @@ func _process(delta):
 func _on_spawn_tick() -> void:
 	if characters.get_child_count() >= max_on_screen:
 		return
+	if controller.transitioning:
+		return
 	_spawn_one()
 	var k := pow(0.5, elapsed / max(half_life_seconds, 0.001))
 	var next := min_spawn_every + (start_spawn_every - min_spawn_every) * k
@@ -57,34 +59,37 @@ func _on_spawn_tick() -> void:
 	timer.start()
 
 func _spawn_one() -> void:
-	if subwaylayer.visible:
-		print("SPAWNING ALL")
-		var e := cardswiper_scene.instantiate()
-		var f := cardswiper_scene.instantiate()
-		var g := cardswiper_scene.instantiate()
-		var ctrl := get_node(controller_path)
-		print(ctrl)
-		e.swiper_contacted.connect(Callable(ctrl, "_on_swiper_contacted"))
-		f.swiper_contacted.connect(Callable(ctrl, "_on_swiper_contacted"))
-		g.swiper_contacted.connect(Callable(ctrl, "_on_swiper_contacted"))
+	if subwaylayer.visible == false:
+		print("subway layer is:", subwaylayer.visible)
+		return
+	print("subway layer is apparently:", subwaylayer.visible)
+	print("SPAWNING ALL")
+	var e := cardswiper_scene.instantiate()
+	var f := cardswiper_scene.instantiate()
+	var g := cardswiper_scene.instantiate()
+	var ctrl := get_node(controller_path)
+	print(ctrl)
+	e.swiper_contacted.connect(Callable(ctrl, "_on_swiper_contacted"))
+	f.swiper_contacted.connect(Callable(ctrl, "_on_swiper_contacted"))
+	g.swiper_contacted.connect(Callable(ctrl, "_on_swiper_contacted"))
 
-		print("[SPAWNER] hooked swiper signal")
-		
-		var cam := get_viewport().get_camera_2d()
-		var view := get_viewport_rect().size
-		var top := cam.global_position.y - (view.y * 0.5) 
+	print("[SPAWNER] hooked swiper signal")
+	
+	var cam := get_viewport().get_camera_2d()
+	var view := get_viewport_rect().size
+	var top := cam.global_position.y - (view.y * 0.5) 
 
-		var y: float = top - spawn_margin_y    
-		e.global_position = Vector2(125.0, y)
-		f.global_position = Vector2(295.0, y)
-		g.global_position = Vector2(457.0, y)
-		characters.add_child(e)
-		characters.add_child(f)
-		characters.add_child(g)
-		print("Spawned at: ", e.global_position)
-		print("Spawned at: ", f.global_position)
-		print("Spawned at: ", g.global_position)
-		print(mainchara.global_position)
+	var y: float = top - spawn_margin_y    
+	e.global_position = Vector2(125.0, y)
+	f.global_position = Vector2(295.0, y)
+	g.global_position = Vector2(457.0, y)
+	characters.add_child(e)
+	characters.add_child(f)
+	characters.add_child(g)
+	print("Spawned at: ", e.global_position)
+	print("Spawned at: ", f.global_position)
+	print("Spawned at: ", g.global_position)
+	print(mainchara.global_position)
 	
 func _start_fever() -> void:
 	max_on_screen = 0

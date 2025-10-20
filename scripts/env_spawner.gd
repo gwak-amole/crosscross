@@ -45,6 +45,8 @@ func _process(delta):
 func _on_spawn_tick() -> void:
 	if characters.get_child_count() >= max_on_screen:
 		return
+	if controller.transitioning:
+		return
 	if no_spawning:
 		pass
 	else:

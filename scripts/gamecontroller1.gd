@@ -773,6 +773,17 @@ func _switch_scene_to_country() -> void:
 	countryswitchtext.show()
 	await countryswitchanim.animation_finished
 	countryswitchanim.play("going")
+	for child in characters.get_children():
+		if child != mainchara:
+			child.queue_free()
+	for child in events.get_children():
+		child.queue_free()
+	for child in envir.get_children():
+		child.queue_free()
+	for child in cardswipers.get_children():
+		child.queue_free()
+	for child in trainconductors.get_children():
+		child.queue_free()
 	await get_tree().create_timer(5.0).timeout
 	countryswitchanim.play("fade_out")
 	await countryswitchanim.animation_finished
@@ -799,17 +810,6 @@ func _switch_scene_to_country() -> void:
 		if l is ParallaxLayer:
 			l.motion_offset = Vector2.ZERO
 	_reset_player_position()
-	for child in characters.get_children():
-		if child != mainchara:
-			child.queue_free()
-	for child in events.get_children():
-		child.queue_free()
-	for child in envir.get_children():
-		child.queue_free()
-	for child in cardswipers.get_children():
-		child.queue_free()
-	for child in trainconductors.get_children():
-		child.queue_free()
 	transitioning = false
 
 func _on_country_exit_triggered():
@@ -922,6 +922,19 @@ func _switch_scene_to_river() -> void:
 	countryswitchtext.show()
 	await countryswitchanim.animation_finished
 	countryswitchanim.play("going")
+	for child in characters.get_children():
+		if child != mainchara:
+			child.queue_free()
+	for child in events.get_children():
+		child.queue_free()
+	for child in envir.get_children():
+		child.queue_free()
+	for child in cardswipers.get_children():
+		child.queue_free()
+	for child in trainconductors.get_children():
+		child.queue_free()
+	for child in boats.get_children():
+		child.queue_free()
 	await get_tree().create_timer(5.0).timeout
 	countryswitchanim.play("fade_out")
 	await countryswitchanim.animation_finished
@@ -949,19 +962,6 @@ func _switch_scene_to_river() -> void:
 		if l is ParallaxLayer:
 			l.motion_offset = Vector2.ZERO
 	_reset_player_position()
-	for child in characters.get_children():
-		if child != mainchara:
-			child.queue_free()
-	for child in events.get_children():
-		child.queue_free()
-	for child in envir.get_children():
-		child.queue_free()
-	for child in cardswipers.get_children():
-		child.queue_free()
-	for child in trainconductors.get_children():
-		child.queue_free()
-	for child in boats.get_children():
-		child.queue_free()
 	transitioning = false
 
 func _on_river_exit_triggered():
