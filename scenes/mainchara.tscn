@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cqsj6ljppkot6"]
 
 [ext_resource type="Script" path="res://scripts/mainchara.gd" id="1_rjewh"]
-[ext_resource type="SpriteFrames" uid="uid://iys04nkgwo1k" path="res://art/frames/mainchara1boat.tres" id="2_py842"]
+[ext_resource type="SpriteFrames" uid="uid://bn68erkw1m8r3" path="res://art/frames/maincharawalking1.tres" id="2_nxlg5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bsa8o"]
 size = Vector2(25, 13.5)
@@ -14,7 +14,7 @@ z_index = 100
 script = ExtResource("1_rjewh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = ExtResource("2_py842")
+sprite_frames = ExtResource("2_nxlg5")
 animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

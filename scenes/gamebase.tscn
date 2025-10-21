@@ -1,4 +1,4 @@
-[gd_scene load_steps=270 format=4 uid="uid://bw1jvqsj3l017"]
+[gd_scene load_steps=275 format=4 uid="uid://bw1jvqsj3l017"]
 
 [ext_resource type="PackedScene" uid="uid://cqsj6ljppkot6" path="res://scenes/mainchara.tscn" id="1_bp8ss"]
 [ext_resource type="Script" path="res://scripts/parallax_background.gd" id="1_eistd"]
@@ -29,12 +29,15 @@
 [ext_resource type="Texture2D" uid="uid://cvbk1vq3tg6um" path="res://art/cyclistdialogue/rps/paperhovered.png" id="15_rj3pp"]
 [ext_resource type="Texture2D" uid="uid://ds3cujwrod7e1" path="res://art/buttonpressed.png" id="15_xx0pf"]
 [ext_resource type="Texture2D" uid="uid://cigjl7bb1afvv" path="res://art/cyclistdialogue/rps/scissors.png" id="16_5gh8d"]
+[ext_resource type="Texture2D" uid="uid://dvt35mtpt8lh5" path="res://art/officemandialogue/tutorial/trainconductor.png" id="16_5wxpt"]
 [ext_resource type="AudioStream" uid="uid://cai46fkp8prdj" path="res://audio/crosscrosstutorial.wav" id="16_8umf1"]
 [ext_resource type="Texture2D" uid="uid://4hym7kquodgj" path="res://art/buttonhover.png" id="16_f22in"]
 [ext_resource type="PackedScene" uid="uid://cst0h64fojjuo" path="res://scenes/dialoguebox.tscn" id="16_qaekd"]
+[ext_resource type="Texture2D" uid="uid://d25dw6sqt5y55" path="res://art/officemandialogue/tutorial/minigame0.png" id="17_7nxsw"]
 [ext_resource type="FontFile" uid="uid://bgr6t4hvjjyhk" path="res://fonts/NotoSansCJK-VF.ttf.ttc" id="17_akqme"]
 [ext_resource type="Texture2D" uid="uid://bk4dfdvbsq41h" path="res://art/cyclistdialogue/rps/scissorspressed.png" id="17_o4g14"]
 [ext_resource type="Texture2D" uid="uid://b8f7pmepvw8er" path="res://art/cyclistdialogue/rps/scissorshovered.png" id="18_tqgl0"]
+[ext_resource type="Texture2D" uid="uid://dvqg7ufdk7b62" path="res://art/officemandialogue/tutorial/minigame2.png" id="18_wre0m"]
 [ext_resource type="Texture2D" uid="uid://dfvihird05hq7" path="res://art/officemandialogue/tutorial/dialoguebox.png" id="19_1mn2x"]
 [ext_resource type="Resource" uid="uid://5hd6h5x6h0vu" path="res://scripts/EnemyProfiles/fashionista.tres" id="19_dlvn0"]
 [ext_resource type="AudioStream" uid="uid://bsb52apuyvh6w" path="res://audio/hurt.wav" id="21_7si0i"]
@@ -256,73 +259,8 @@ tracks/0/keys = {
 "values": [ExtResource("93_8msp4"), ExtResource("94_4lij7"), ExtResource("95_6e11v")]
 }
 
-[sub_resource type="Animation" id="Animation_1pkwq"]
-resource_name = "step_2"
-length = 1.6
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("tutorialbox/begintuttexture:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.366667, 0.8, 1.26667),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [ExtResource("96_tysbg"), ExtResource("97_g8ndf"), ExtResource("96_tysbg"), ExtResource("98_jex2v")]
-}
-
-[sub_resource type="Animation" id="Animation_ipwia"]
-resource_name = "step_3"
-length = 1.6
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("tutorialbox/begintuttexture:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.8, 1.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [ExtResource("99_tvs27"), ExtResource("100_ywqbt"), ExtResource("99_tvs27"), ExtResource("101_qfjxq")]
-}
-
-[sub_resource type="Animation" id="Animation_xfof4"]
-resource_name = "step_4"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("tutorialbox/begintuttexture:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.866667),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [ExtResource("102_cvo0u"), ExtResource("103_ks5d5"), ExtResource("102_cvo0u")]
-}
-
-[sub_resource type="Animation" id="Animation_heoxf"]
-resource_name = "step_5"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("tutorialbox/begintuttexture:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("104_qm2tc")]
-}
-
 [sub_resource type="Animation" id="Animation_e63h1"]
-resource_name = "step_6"
+resource_name = "step_8"
 length = 1.5
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -349,16 +287,117 @@ tracks/1/keys = {
 "values": [-4.09, -75.176]
 }
 
+[sub_resource type="Animation" id="Animation_heoxf"]
+resource_name = "step_7"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("tutorialbox/begintuttexture:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("104_qm2tc")]
+}
+
+[sub_resource type="Animation" id="Animation_xfof4"]
+resource_name = "step_6"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("tutorialbox/begintuttexture:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.866667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("102_cvo0u"), ExtResource("103_ks5d5"), ExtResource("102_cvo0u")]
+}
+
+[sub_resource type="Animation" id="Animation_ipwia"]
+resource_name = "step_5"
+length = 1.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("tutorialbox/begintuttexture:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("99_tvs27"), ExtResource("100_ywqbt"), ExtResource("99_tvs27"), ExtResource("101_qfjxq")]
+}
+
+[sub_resource type="Animation" id="Animation_1pkwq"]
+resource_name = "step_4"
+length = 1.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("tutorialbox/begintuttexture:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.366667, 0.8, 1.26667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("96_tysbg"), ExtResource("97_g8ndf"), ExtResource("96_tysbg"), ExtResource("98_jex2v")]
+}
+
+[sub_resource type="Animation" id="Animation_qev5a"]
+resource_name = "step_2"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("tutorialbox/begintuttexture:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0666667, 0.6, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("95_6e11v"), ExtResource("16_5wxpt"), ExtResource("95_6e11v")]
+}
+
+[sub_resource type="Animation" id="Animation_xha3k"]
+resource_name = "step_3"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("tutorialbox/begintuttexture:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.666667, 1.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("17_7nxsw"), ExtResource("18_wre0m"), ExtResource("17_7nxsw")]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0uc7b"]
 _data = {
 "RESET": SubResource("Animation_84thl"),
 "step_0": SubResource("Animation_308ey"),
 "step_1": SubResource("Animation_tbwdu"),
-"step_2": SubResource("Animation_1pkwq"),
-"step_3": SubResource("Animation_ipwia"),
-"step_4": SubResource("Animation_xfof4"),
-"step_5": SubResource("Animation_heoxf"),
-"step_6": SubResource("Animation_e63h1")
+"step_2": SubResource("Animation_qev5a"),
+"step_3": SubResource("Animation_xha3k"),
+"step_4": SubResource("Animation_1pkwq"),
+"step_5": SubResource("Animation_ipwia"),
+"step_6": SubResource("Animation_xfof4"),
+"step_7": SubResource("Animation_heoxf"),
+"step_8": SubResource("Animation_e63h1")
 }
 
 [sub_resource type="Animation" id="Animation_ewwyk"]
@@ -2161,6 +2200,7 @@ tile_set = SubResource("TileSet_bdas5")
 [node name="ParallaxLayer" type="ParallaxLayer" parent="River"]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="River/ParallaxLayer"]
+scale = Vector2(0.998979, 1)
 tile_map_data = PackedByteArray("AAACAPH/AQAAAAAAAAACAPL/AQAAAAAAAAACAPP/AQAAAAAAAAACAPT/AQAAAAAAAAACAPX/AQAAAAAAAAACAPb/AQAAAAAAAAACAPf/AQAAAAAAAAACAPj/AQAAAAAAAAACAPn/AQAAAAAAAAACAPr/AQAAAAAAAAACAPv/AQAAAAAAAAACAPz/AQAAAAAAAAACAP3/AQAAAAAAAAACAP7/AQAAAAAAAAACAP//AQAAAAAAAAADAPH/AQAAAAAAAAADAPL/AQAAAAAAAAADAPP/AQAAAAAAAAADAPT/AQAAAAAAAAADAPX/AQAAAAAAAAADAPb/AQAAAAAAAAADAPf/AQAAAAAAAAADAPj/AQAAAAAAAAADAPn/AQAAAAAAAAADAPr/AQAAAAAAAAADAPv/AQAAAAAAAAADAPz/AQAAAAAAAAADAP3/AQAAAAAAAAADAP7/AQAAAAAAAAADAP//AQAAAAAAAAAEAPH/AQAAAAAAAAAEAPL/AQAAAAAAAAAEAPP/AQAAAAAAAAAEAPT/AQAAAAAAAAAEAPX/AQAAAAAAAAAEAPb/AQAAAAAAAAAEAPf/AQAAAAAAAAAEAPj/AQAAAAAAAAAEAPn/AQAAAAAAAAAEAPr/AQAAAAAAAAAEAPv/AQAAAAAAAAAEAPz/AQAAAAAAAAAEAP3/AQAAAAAAAAAEAP7/AQAAAAAAAAAEAP//AQAAAAAAAAAFAPH/AQAAAAAAAAAFAPL/AQAAAAAAAAAFAPP/AQAAAAAAAAAFAPT/AQAAAAAAAAAFAPX/AQAAAAAAAAAFAPb/AQAAAAAAAAAFAPf/AQAAAAAAAAAFAPj/AQAAAAAAAAAFAPn/AQAAAAAAAAAFAPr/AQAAAAAAAAAFAPv/AQAAAAAAAAAFAPz/AQAAAAAAAAAFAP3/AQAAAAAAAAAFAP7/AQAAAAAAAAAFAP//AQAAAAAAAAACAOT/AQAAAAAAAAACAOX/AQAAAAAAAAACAOb/AQAAAAAAAAACAOf/AQAAAAAAAAACAOj/AQAAAAAAAAACAOn/AQAAAAAAAAACAOr/AQAAAAAAAAACAOv/AQAAAAAAAAACAOz/AQAAAAAAAAACAO3/AQAAAAAAAAACAO7/AQAAAAAAAAACAO//AQAAAAAAAAACAPD/AQAAAAAAAAADAOT/AQAAAAAAAAADAOX/AQAAAAAAAAADAOb/AQAAAAAAAAADAOf/AQAAAAAAAAADAOj/AQAAAAAAAAADAOn/AQAAAAAAAAADAOr/AQAAAAAAAAADAOv/AQAAAAAAAAADAOz/AQAAAAAAAAADAO3/AQAAAAAAAAADAO7/AQAAAAAAAAADAO//AQAAAAAAAAADAPD/AQAAAAAAAAAEAOT/AQAAAAAAAAAEAOX/AQAAAAAAAAAEAOb/AQAAAAAAAAAEAOf/AQAAAAAAAAAEAOj/AQAAAAAAAAAEAOn/AQAAAAAAAAAEAOr/AQAAAAAAAAAEAOv/AQAAAAAAAAAEAOz/AQAAAAAAAAAEAO3/AQAAAAAAAAAEAO7/AQAAAAAAAAAEAO//AQAAAAAAAAAEAPD/AQAAAAAAAAAFAOT/AQAAAAAAAAAFAOX/AQAAAAAAAAAFAOb/AQAAAAAAAAAFAOf/AQAAAAAAAAAFAOj/AQAAAAAAAAAFAOn/AQAAAAAAAAAFAOr/AQAAAAAAAAAFAOv/AQAAAAAAAAAFAOz/AQAAAAAAAAAFAO3/AQAAAAAAAAAFAO7/AQAAAAAAAAAFAO//AQAAAAAAAAAFAPD/AQAAAAAAAAACAN7/AQAAAAAAAAACAN//AQAAAAAAAAACAOD/AQAAAAAAAAACAOH/AQAAAAAAAAACAOL/AQAAAAAAAAACAOP/AQAAAAAAAAADAN7/AQAAAAAAAAADAN//AQAAAAAAAAADAOD/AQAAAAAAAAADAOH/AQAAAAAAAAADAOL/AQAAAAAAAAADAOP/AQAAAAAAAAAEAN7/AQAAAAAAAAAEAN//AQAAAAAAAAAEAOD/AQAAAAAAAAAEAOH/AQAAAAAAAAAEAOL/AQAAAAAAAAAEAOP/AQAAAAAAAAAFAN7/AQAAAAAAAAAFAN//AQAAAAAAAAAFAOD/AQAAAAAAAAAFAOH/AQAAAAAAAAAFAOL/AQAAAAAAAAAFAOP/AQAAAAAAAAACANP/AQAAAAAAAAACANT/AQAAAAAAAAACANX/AQAAAAAAAAACANb/AQAAAAAAAAACANf/AQAAAAAAAAACANj/AQAAAAAAAAACANn/AQAAAAAAAAACANr/AQAAAAAAAAACANv/AQAAAAAAAAACANz/AQAAAAAAAAACAN3/AQAAAAAAAAADANP/AQAAAAAAAAADANT/AQAAAAAAAAADANX/AQAAAAAAAAADANb/AQAAAAAAAAADANf/AQAAAAAAAAADANj/AQAAAAAAAAADANn/AQAAAAAAAAADANr/AQAAAAAAAAADANv/AQAAAAAAAAADAN3/AQAAAAAAAAAEANP/AQAAAAAAAAAEANT/AQAAAAAAAAAEANX/AQAAAAAAAAAEANb/AQAAAAAAAAAEANf/AQAAAAAAAAAEANj/AQAAAAAAAAAEANn/AQAAAAAAAAAEANr/AQAAAAAAAAAEANv/AQAAAAAAAAAEANz/AQAAAAAAAAAEAN3/AQAAAAAAAAAFANP/AQAAAAAAAAAFANT/AQAAAAAAAAAFANX/AQAAAAAAAAAFANb/AQAAAAAAAAAFANf/AQAAAAAAAAAFANj/AQAAAAAAAAAFANn/AQAAAAAAAAAFANr/AQAAAAAAAAAFANv/AQAAAAAAAAAFANz/AQAAAAAAAAAFAN3/AQAAAAAAAAACANH/AQAAAAAAAAACANL/AQAAAAAAAAADANH/AQAAAAAAAAADANL/AQAAAAAAAAAEANH/AQAAAAAAAAAEANL/AQAAAAAAAAAFANH/AQAAAAAAAAAFANL/AQAAAAAAAAAGAPX/AQAAAAAAAAAGAPb/AQAAAAAAAAAGAPf/AQAAAAAAAAAGAPj/AQAAAAAAAAAGAPn/AQAAAAAAAAAGAPr/AQAAAAAAAAAGAPv/AQAAAAAAAAAGAPz/AQAAAAAAAAAGAP3/AQAAAAAAAAAGAP7/AQAAAAAAAAAGAP//AQAAAAAAAAAHAPX/AQAAAAAAAAAHAPb/AQAAAAAAAAAHAPf/AQAAAAAAAAAHAPj/AQAAAAAAAAAHAPn/AQAAAAAAAAAHAPr/AQAAAAAAAAAHAPv/AQAAAAAAAAAHAPz/AQAAAAAAAAAHAP3/AQAAAAAAAAAHAP7/AQAAAAAAAAAHAP//AQAAAAAAAAAGAOn/AQAAAAAAAAAGAOr/AQAAAAAAAAAGAOv/AQAAAAAAAAAGAOz/AQAAAAAAAAAGAO3/AQAAAAAAAAAGAO7/AQAAAAAAAAAGAO//AQAAAAAAAAAGAPD/AQAAAAAAAAAGAPH/AQAAAAAAAAAGAPL/AQAAAAAAAAAGAPP/AQAAAAAAAAAGAPT/AQAAAAAAAAAHAOz/AQAAAAAAAAAHAO3/AQAAAAAAAAAHAO7/AQAAAAAAAAAHAO//AQAAAAAAAAAHAPD/AQAAAAAAAAAHAPH/AQAAAAAAAAAHAPL/AQAAAAAAAAAHAPP/AQAAAAAAAAAHAPT/AQAAAAAAAAAHAOj/AQAAAAAAAAAHAOn/AQAAAAAAAAAHAOr/AQAAAAAAAAAHAOv/AQAAAAAAAAAGAN//AQAAAAAAAAAGAOD/AQAAAAAAAAAGAOH/AQAAAAAAAAAGAOL/AQAAAAAAAAAGAOP/AQAAAAAAAAAGAOT/AQAAAAAAAAAGAOX/AQAAAAAAAAAGAOb/AQAAAAAAAAAGAOf/AQAAAAAAAAAGAOj/AQAAAAAAAAAHAN//AQAAAAAAAAAHAOD/AQAAAAAAAAAHAOH/AQAAAAAAAAAHAOL/AQAAAAAAAAAHAOP/AQAAAAAAAAAHAOT/AQAAAAAAAAAHAOX/AQAAAAAAAAAHAOb/AQAAAAAAAAAHAOf/AQAAAAAAAAAGANb/AQAAAAAAAAAGANf/AQAAAAAAAAAGANj/AQAAAAAAAAAGANn/AQAAAAAAAAAGANr/AQAAAAAAAAAGANv/AQAAAAAAAAAGANz/AQAAAAAAAAAGAN3/AQAAAAAAAAAGAN7/AQAAAAAAAAAHANb/AQAAAAAAAAAHANf/AQAAAAAAAAAHANj/AQAAAAAAAAAHANn/AQAAAAAAAAAHANr/AQAAAAAAAAAHANv/AQAAAAAAAAAHANz/AQAAAAAAAAAHAN3/AQAAAAAAAAAHAN7/AQAAAAAAAAAGANH/AQAAAAAAAAAGANL/AQAAAAAAAAAGANP/AQAAAAAAAAAGANT/AQAAAAAAAAAGANX/AQAAAAAAAAAHANH/AQAAAAAAAAAHANL/AQAAAAAAAAAHANP/AQAAAAAAAAAHANT/AQAAAAAAAAAHANX/AQAAAAAAAAAAANH/AQAAAAAAAAAAANL/AQAAAAAAAAAAANP/AQAAAAAAAAAAANT/AQAAAAAAAAAAANX/AQAAAAAAAAAAANb/AQAAAAAAAAAAANf/AQAAAAAAAAAAANj/AQAAAAAAAAAAANn/AQAAAAAAAAAAANr/AQAAAAAAAAAAANv/AQAAAAAAAAAAANz/AQAAAAAAAAABANH/AQAAAAAAAAABANL/AQAAAAAAAAABANP/AQAAAAAAAAABANT/AQAAAAAAAAABANX/AQAAAAAAAAABANb/AQAAAAAAAAABANf/AQAAAAAAAAABANj/AQAAAAAAAAABANn/AQAAAAAAAAABANr/AQAAAAAAAAABANv/AQAAAAAAAAABANz/AQAAAAAAAAAAAN3/AQAAAAAAAAAAAN7/AQAAAAAAAAAAAN//AQAAAAAAAAAAAOD/AQAAAAAAAAAAAOH/AQAAAAAAAAAAAOL/AQAAAAAAAAAAAOP/AQAAAAAAAAAAAOT/AQAAAAAAAAAAAOX/AQAAAAAAAAAAAOb/AQAAAAAAAAAAAOf/AQAAAAAAAAAAAOj/AQAAAAAAAAABAN3/AQAAAAAAAAABAN7/AQAAAAAAAAABAN//AQAAAAAAAAABAOD/AQAAAAAAAAABAOH/AQAAAAAAAAABAOL/AQAAAAAAAAABAOP/AQAAAAAAAAABAOT/AQAAAAAAAAABAOX/AQAAAAAAAAABAOb/AQAAAAAAAAABAOf/AQAAAAAAAAABAOj/AQAAAAAAAAAAAOn/AQAAAAAAAAAAAOr/AQAAAAAAAAAAAOv/AQAAAAAAAAAAAOz/AQAAAAAAAAAAAO3/AQAAAAAAAAAAAO7/AQAAAAAAAAAAAO//AQAAAAAAAAAAAPD/AQAAAAAAAAAAAPH/AQAAAAAAAAAAAPL/AQAAAAAAAAAAAPP/AQAAAAAAAAABAOn/AQAAAAAAAAABAOr/AQAAAAAAAAABAOv/AQAAAAAAAAABAOz/AQAAAAAAAAABAO3/AQAAAAAAAAABAO7/AQAAAAAAAAABAO//AQAAAAAAAAABAPD/AQAAAAAAAAABAPH/AQAAAAAAAAABAPL/AQAAAAAAAAABAPP/AQAAAAAAAAAAAPT/AQAAAAAAAAAAAPX/AQAAAAAAAAAAAPb/AQAAAAAAAAAAAPf/AQAAAAAAAAAAAPj/AQAAAAAAAAAAAPn/AQAAAAAAAAAAAPr/AQAAAAAAAAAAAPv/AQAAAAAAAAAAAPz/AQAAAAAAAAAAAP3/AQAAAAAAAAAAAP7/AQAAAAAAAAAAAP//AQAAAAAAAAABAPT/AQAAAAAAAAABAPX/AQAAAAAAAAABAPb/AQAAAAAAAAABAPf/AQAAAAAAAAABAPj/AQAAAAAAAAABAPn/AQAAAAAAAAABAPr/AQAAAAAAAAABAPv/AQAAAAAAAAABAPz/AQAAAAAAAAABAP3/AQAAAAAAAAABAP7/AQAAAAAAAAABAP//AQAAAAAAAAADANz/AQAAAAAAAAABAAMAAQAAAAAAAAABAAIAAQAAAAAAAAABAAEAAQAAAAAAAAABAAAAAQAAAAAAAAACAAAAAQAAAAAAAAADAAAAAQAAAAAAAAAEAAAAAQAAAAAAAAAFAAAAAQAAAAAAAAAFAAEAAQAAAAAAAAAFAAIAAQAAAAAAAAAEAAMAAQAAAAAAAAADAAMAAQAAAAAAAAADAAIAAQAAAAAAAAACAAIAAQAAAAAAAAACAAEAAQAAAAAAAAADAAEAAQAAAAAAAAAEAAEAAQAAAAAAAAAEAAIAAQAAAAAAAAACAAMAAQAAAAAAAAAFAAMAAQAAAAAAAAAGAAMAAQAAAAAAAAAGAAIAAQAAAAAAAAAGAAEAAQAAAAAAAAAGAAAAAQAAAAAAAAAHAAAAAQAAAAAAAAAHAAEAAQAAAAAAAAAHAAIAAQAAAAAAAAAHAAMAAQAAAAAAAAAAAAMAAQAAAAAAAAAAAAIAAQAAAAAAAAAAAAEAAQAAAAAAAAAAAAAAAQAAAAAAAAA=")
 tile_set = SubResource("TileSet_j1g8r")
 
@@ -2387,6 +2427,7 @@ z_index = 2
 
 [node name="mainchara" parent="." instance=ExtResource("1_bp8ss")]
 position = Vector2(285, 2)
+scale = Vector2(0.998941, 1)
 riverpath = NodePath("../River")
 
 [node name="cherryblossoms" type="ParallaxBackground" parent="."]

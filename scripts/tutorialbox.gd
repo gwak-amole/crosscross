@@ -11,6 +11,8 @@ signal tutorialfinished
 	{"anim": "step_3",},
 	{"anim": "step_4",},
 	{"anim": "step_5",},
+	{"anim": "step_6",},
+	{"anim": "step_7",},
 ]
 
 @onready var anim: AnimationPlayer = $begintut
@@ -60,7 +62,7 @@ func _on_step_finished() -> void:
 		_end_tutorial()
 
 func _end_tutorial() -> void:
-	anim.play("step_6")
+	anim.play("step_8")
 	dialoguebox.anim.play("end")
 	dialoguebox.anim2.play("notok")
 	await anim.animation_finished
@@ -78,12 +80,16 @@ func _get_lines_for_step(step: String) -> Array:
 		"step_1":
 			return ["People might run into you!", "Try to work it out with them through conversation, even if you don't know their language!"]
 		"step_2":
-			return ["You'll find coins.", "If you get 5, you'll have a FEVER!", "During a FEVER, everything goes faster but points MULTIPLY!"]
+			return ["If you go into the subway station, you can find the train conductor!", "The train conductor will take you to different locations, so keep a look out for him!"]
 		"step_3":
-			return ["Shields will protect you from your next encounter so that you don't have to talk."]
+			return ["In these different locations, there are location-specific, unique minigames!"]
 		"step_4":
-			return ["Charms will charm the person you bumped into so that they will forgive you!"]
+			return ["You'll find coins.", "If you get 5, you'll have a FEVER!", "During a FEVER, everything goes faster but points MULTIPLY!"]
 		"step_5":
+			return ["Shields will protect you from your next encounter so that you don't have to talk."]
+		"step_6":
+			return ["Charms will charm the person you bumped into so that they will forgive you!"]
+		"step_7":
 			return ["Use ARROWS or WASD to move around.", "Choose dialogue options with ARROWS/WASD and SPACE.", "Pause the game using ESC.", "Good luck!"]
 		_:
 			return []
