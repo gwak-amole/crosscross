@@ -162,6 +162,7 @@ var exiting_river := false
 var from_river := false
 var stop_audio := false
 var balance_boat : bool = false
+var old_mainchara_speed : int = -1
 
 func _ready() -> void:
 	set_character(Globals.chosen_character)
@@ -283,6 +284,8 @@ func _on_enemy_contacted(enemy: Node) -> void:
 	if shield_active == true:
 		shield_active = false
 		shieldicon.hide()
+		return
+	if river.visible:
 		return
 	coinicon.hide()
 	coins.hide()
@@ -453,6 +456,10 @@ func _on_puddle_contacted(e:Node) -> void:
 func _fever_done() -> void:
 	power = 1.2
 	cooldown = 5.0
+	print(mainchara.speed)
+	mainchara.max_speed = 400
+	mainchara.speed = old_mainchara_speed
+	print("after fx done", mainchara.speed)
 	print(power)
 	anim.stop()
 	anim.play("fever_fadeout")
@@ -467,6 +474,11 @@ func _on_fever_request() -> void:
 	eventspawner._start_fever()
 	
 func _fever_start() -> void:
+	print(mainchara.speed)
+	old_mainchara_speed = mainchara.speed
+	mainchara.max_speed = 450
+	mainchara.speed  += 50
+	print("after fx", mainchara.speed)
 	anim.play("fever_constant")
 	points.add_theme_color_override("font_color", Color(255, 204, 0))
 	fevertext.show()
@@ -542,10 +554,11 @@ func _on_subway_exit_triggered():
 	subswitchtext.show()
 	subswitchanim.play("fade_in")
 	await subswitchanim.animation_finished
-	transitioning = false
 	subwaylayer.visible = false
 	citylayer.visible = true
 	_reset_player_position()
+	transitioning = false
+	print("no longer transitioning")
 	
 	for child in characters.get_children():
 		if child != mainchara:
@@ -703,6 +716,9 @@ func set_character_river(choice: String):
 
 
 func _on_bufferzone_body_entered(body: Node2D) -> void:
+	if citylayer.visible:
+		return
+	print('BUFFERZONE STILL WORKS FOR SOME REASON')
 	if body.name == "mainchara":
 		in_transition_buffer = true
 
@@ -764,6 +780,7 @@ func _on_trainconductor_contacted(conductor: Node) -> void:
 		print("points unfrozen")
 
 func _switch_scene_to_country() -> void:
+	stairexit.set_deferred("monitorable", false)
 	transitioning = true
 	countryswitchtext.show()
 	stop_audio = true
@@ -773,17 +790,8 @@ func _switch_scene_to_country() -> void:
 	countryswitchtext.show()
 	await countryswitchanim.animation_finished
 	countryswitchanim.play("going")
-	for child in characters.get_children():
-		if child != mainchara:
-			child.queue_free()
-	for child in events.get_children():
-		child.queue_free()
-	for child in envir.get_children():
-		child.queue_free()
-	for child in cardswipers.get_children():
-		child.queue_free()
-	for child in trainconductors.get_children():
-		child.queue_free()
+	stairexit.set_deferred("monitoring", false)
+	stairexit.set_deferred("monitorable", false)
 	await get_tree().create_timer(5.0).timeout
 	countryswitchanim.play("fade_out")
 	await countryswitchanim.animation_finished
@@ -810,7 +818,20 @@ func _switch_scene_to_country() -> void:
 		if l is ParallaxLayer:
 			l.motion_offset = Vector2.ZERO
 	_reset_player_position()
+	await get_tree().create_timer(1.0).timeout
 	transitioning = false
+	print("no longer transitioning")
+	for child in characters.get_children():
+		if child != mainchara:
+			child.queue_free()
+	for child in events.get_children():
+		child.queue_free()
+	for child in envir.get_children():
+		child.queue_free()
+	for child in cardswipers.get_children():
+		child.queue_free()
+	for child in trainconductors.get_children():
+		child.queue_free()
 
 func _on_country_exit_triggered():
 	if exiting_country:
@@ -843,8 +864,21 @@ func _on_country_exit_triggered():
 	stop_audio = false
 	audioOne.play()
 	exiting_country = false
-	transitioning = false
 	countryswitchtext.hide()
+	await get_tree().create_timer(1.0).timeout
+	transitioning = false
+	print("no longer transitioning")
+	for child in characters.get_children():
+		if child != mainchara:
+			child.queue_free()
+	for child in events.get_children():
+		child.queue_free()
+	for child in envir.get_children():
+		child.queue_free()
+	for child in cardswipers.get_children():
+		child.queue_free()
+	for child in trainconductors.get_children():
+		child.queue_free()
 	
 func _on_countryexit_body_entered(body: Node2D) -> void:
 	if body != mainchara:
@@ -855,6 +889,9 @@ func _on_countryexit_body_entered(body: Node2D) -> void:
 		_on_country_exit_triggered()
 
 func _on_bufferzone_country_body_entered(body: Node2D) -> void:
+	if citylayer.visible:
+		return
+	print('BUFFERZONE STILL WORKS FOR SOME REASON')
 	if body.name == "mainchara":
 		in_transition_buffer = true
 
@@ -867,6 +904,11 @@ func _on_animal_contacted(animal: Node2D):
 		shield_active = false
 		shieldicon.hide()
 		return
+	points.hide()
+	points_int -= (points_int / 10)
+	_update_points()
+	times -= times/5
+	points_frozen = true
 	print("ANIMAL HAS BEEN CONTACTED!!!")
 	get_tree().paused = true
 	audioEnc.play()
@@ -892,6 +934,8 @@ func _on_dog_activity_ended():
 	continuecanvas.hide()
 	get_tree().paused = false
 	audioOne.stream_paused = false
+	await get_tree().create_timer(3.0).timeout
+	points_frozen = false
 
 func _on_enemyspawnchange_body_entered(body: Node2D) -> void:
 	if body.name == "mainchara":
@@ -901,6 +945,8 @@ func _on_enemyspawnchange_body_entered(body: Node2D) -> void:
 	if body.get_parent() == animals:
 		body.queue_free()
 	if body.get_parent() == boats:
+		body.queue_free()
+	if body.get_parent() == events:
 		body.queue_free()
 
 func _on_riverexit_body_entered(body: Node2D) -> void:
@@ -922,19 +968,8 @@ func _switch_scene_to_river() -> void:
 	countryswitchtext.show()
 	await countryswitchanim.animation_finished
 	countryswitchanim.play("going")
-	for child in characters.get_children():
-		if child != mainchara:
-			child.queue_free()
-	for child in events.get_children():
-		child.queue_free()
-	for child in envir.get_children():
-		child.queue_free()
-	for child in cardswipers.get_children():
-		child.queue_free()
-	for child in trainconductors.get_children():
-		child.queue_free()
-	for child in boats.get_children():
-		child.queue_free()
+	stairexit.set_deferred("monitoring", false)
+	stairexit.set_deferred("monitorable", false)
 	await get_tree().create_timer(5.0).timeout
 	countryswitchanim.play("fade_out")
 	await countryswitchanim.animation_finished
@@ -962,7 +997,21 @@ func _switch_scene_to_river() -> void:
 		if l is ParallaxLayer:
 			l.motion_offset = Vector2.ZERO
 	_reset_player_position()
+	
+	await get_tree().create_timer(1.0).timeout
 	transitioning = false
+	print("no longer transitioning")
+	for child in characters.get_children():
+		if child != mainchara:
+			child.queue_free()
+	for child in events.get_children():
+		child.queue_free()
+	for child in envir.get_children():
+		child.queue_free()
+	for child in cardswipers.get_children():
+		child.queue_free()
+	for child in trainconductors.get_children():
+		child.queue_free()
 
 func _on_river_exit_triggered():
 	print("yes it's", countryexit.monitorable)
@@ -1001,9 +1050,22 @@ func _on_river_exit_triggered():
 	stop_audio = false
 	audioOne.play()
 	exiting_river = false
-	transitioning = false
 	countryswitchtext.hide()
-
+	await get_tree().create_timer(1.0).timeout
+	transitioning = false
+	print("no longer transitioning")
+	for child in characters.get_children():
+		if child != mainchara:
+			child.queue_free()
+	for child in events.get_children():
+		child.queue_free()
+	for child in envir.get_children():
+		child.queue_free()
+	for child in cardswipers.get_children():
+		child.queue_free()
+	for child in trainconductors.get_children():
+		child.queue_free()
+	
 func _on_boat_contacted(boat: Node) -> void:
 	if shield_active == true:
 		shield_active = false
@@ -1012,6 +1074,11 @@ func _on_boat_contacted(boat: Node) -> void:
 	if in_transition_buffer or transitioning:
 		return
 	get_tree().paused = true
+	points.hide()
+	points_int -= (points_int / 10)
+	_update_points()
+	times -= times/5
+	points_frozen = true
 	var p = boat.get("profile") if boat else null
 	if p.display_name == "Highschoolers Boat":
 		print("GOLDEN RETRIEVER")
@@ -1047,3 +1114,5 @@ func _on_boat_activity_finished():
 		continuecanvas.hide()
 		audioOne.stream_paused = false
 	get_tree().paused = false
+	await get_tree().create_timer(3.0).timeout
+	points_frozen = false

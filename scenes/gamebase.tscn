@@ -259,99 +259,6 @@ tracks/0/keys = {
 "values": [ExtResource("93_8msp4"), ExtResource("94_4lij7"), ExtResource("95_6e11v")]
 }
 
-[sub_resource type="Animation" id="Animation_e63h1"]
-resource_name = "step_8"
-length = 1.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("tutorialbox/begintuttexture:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.0333333, 0.6),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("tutorialbox/AudioStreamPlayer:volume_db")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.233333, 1.13333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [-4.09, -75.176]
-}
-
-[sub_resource type="Animation" id="Animation_heoxf"]
-resource_name = "step_7"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("tutorialbox/begintuttexture:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("104_qm2tc")]
-}
-
-[sub_resource type="Animation" id="Animation_xfof4"]
-resource_name = "step_6"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("tutorialbox/begintuttexture:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.866667),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [ExtResource("102_cvo0u"), ExtResource("103_ks5d5"), ExtResource("102_cvo0u")]
-}
-
-[sub_resource type="Animation" id="Animation_ipwia"]
-resource_name = "step_5"
-length = 1.6
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("tutorialbox/begintuttexture:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.8, 1.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [ExtResource("99_tvs27"), ExtResource("100_ywqbt"), ExtResource("99_tvs27"), ExtResource("101_qfjxq")]
-}
-
-[sub_resource type="Animation" id="Animation_1pkwq"]
-resource_name = "step_4"
-length = 1.6
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("tutorialbox/begintuttexture:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.366667, 0.8, 1.26667),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [ExtResource("96_tysbg"), ExtResource("97_g8ndf"), ExtResource("96_tysbg"), ExtResource("98_jex2v")]
-}
-
 [sub_resource type="Animation" id="Animation_qev5a"]
 resource_name = "step_2"
 length = 1.2
@@ -384,6 +291,99 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [ExtResource("17_7nxsw"), ExtResource("18_wre0m"), ExtResource("17_7nxsw")]
+}
+
+[sub_resource type="Animation" id="Animation_1pkwq"]
+resource_name = "step_4"
+length = 1.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("tutorialbox/begintuttexture:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.366667, 0.8, 1.26667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("96_tysbg"), ExtResource("97_g8ndf"), ExtResource("96_tysbg"), ExtResource("98_jex2v")]
+}
+
+[sub_resource type="Animation" id="Animation_ipwia"]
+resource_name = "step_5"
+length = 1.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("tutorialbox/begintuttexture:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("99_tvs27"), ExtResource("100_ywqbt"), ExtResource("99_tvs27"), ExtResource("101_qfjxq")]
+}
+
+[sub_resource type="Animation" id="Animation_xfof4"]
+resource_name = "step_6"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("tutorialbox/begintuttexture:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.866667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("102_cvo0u"), ExtResource("103_ks5d5"), ExtResource("102_cvo0u")]
+}
+
+[sub_resource type="Animation" id="Animation_heoxf"]
+resource_name = "step_7"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("tutorialbox/begintuttexture:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("104_qm2tc")]
+}
+
+[sub_resource type="Animation" id="Animation_e63h1"]
+resource_name = "step_8"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("tutorialbox/begintuttexture:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("tutorialbox/AudioStreamPlayer:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.233333, 1.13333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-4.09, -75.176]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0uc7b"]
@@ -2427,7 +2427,7 @@ z_index = 2
 
 [node name="mainchara" parent="." instance=ExtResource("1_bp8ss")]
 position = Vector2(285, 2)
-scale = Vector2(0.998941, 1)
+scale = Vector2(0.998941, 1.00088)
 riverpath = NodePath("../River")
 
 [node name="cherryblossoms" type="ParallaxBackground" parent="."]

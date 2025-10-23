@@ -36,10 +36,8 @@ var old_maincharaspeed : float = 0
 var subway_in := false
 
 func _ready() -> void:
-	print("hello help i hate my life what.")
 	if animal_scene == null or characters == null:
 		push_error("Spawner miswired: set enemy_scene and characters_path in Inspector.")
-		print("hello help i hate my life what.")
 		return
 	if not controller.fever.is_connected(_on_fever_started):
 		controller.fever.connect(_on_fever_started)

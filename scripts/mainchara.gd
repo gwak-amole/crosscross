@@ -15,7 +15,7 @@ var player_alive = true
 var start_speed := 200
 @export var speed : float
 @export var slowdown_factor : float = 1
-var max_speed := 350
+var max_speed := 400
 var elapsed := 0.0
 
 var current_dir = "none"

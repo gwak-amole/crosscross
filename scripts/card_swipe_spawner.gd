@@ -42,8 +42,10 @@ func _process(delta):
 
 func _on_spawn_tick() -> void:
 	if characters.get_child_count() >= max_on_screen:
+		print("reason number 1 is the reason why cards aren't spawning")
 		return
 	if controller.transitioning:
+		print("reason number 2 is the reason why cards aren't spawning")
 		return
 	_spawn_one()
 	var k := pow(0.5, elapsed / max(half_life_seconds, 0.001))
@@ -60,6 +62,7 @@ func _on_spawn_tick() -> void:
 
 func _spawn_one() -> void:
 	if subwaylayer.visible == false:
+		print("reason number 3 is the reason why cards aren't spawning")
 		print("subway layer is:", subwaylayer.visible)
 		return
 	print("subway layer is apparently:", subwaylayer.visible)

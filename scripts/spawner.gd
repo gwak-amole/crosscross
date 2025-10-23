@@ -77,6 +77,8 @@ func _on_spawn_tick() -> void:
 	timer.start()
 
 func _spawn_one() -> void:
+	if yanagawa.visible == true:
+		return
 	var e := enemy_sceneee.instantiate()
 	if profiles1.size() > 0:
 		e.profile = profiles1[rng.randi_range(0, profiles1.size()-1)]
@@ -108,7 +110,7 @@ func _on_fever_started() -> void:
 	old_speed = camera.speed
 	camera.max_scroll_speed = 250
 	camera.speed += 40
-	max_on_screen = 12
+	max_on_screen = 8
 	min_spawn_every = 0.1
 	start_spawn_every = 0.7
 	await get_tree().create_timer(2.0).timeout
