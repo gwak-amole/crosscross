@@ -1,57 +1,56 @@
-[gd_scene load_steps=16 format=3 uid="uid://hf0i7twub4rg"]
+[gd_scene load_steps=15 format=3 uid="uid://hf0i7twub4rg"]
 
-[ext_resource type="Texture2D" uid="uid://h7emchyv0jv4" path="res://art/dialoguegeneral/trainconductorcontacted.png" id="1_b33io"]
 [ext_resource type="Script" path="res://scripts/trainconductor.gd" id="1_vygo5"]
-[ext_resource type="Texture2D" uid="uid://cu8arwyh2qj8h" path="res://art/dialoguegeneral/trainconductor.png" id="2_wintw"]
+[ext_resource type="Texture2D" uid="uid://ck8442sdqwvbh" path="res://art/trainconductor/trainconductor.png" id="2_bm5bs"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3t5ev"]
-atlas = ExtResource("1_b33io")
+[sub_resource type="AtlasTexture" id="AtlasTexture_lynb0"]
+atlas = ExtResource("2_bm5bs")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x7u64"]
+atlas = ExtResource("2_bm5bs")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g7x7r"]
+atlas = ExtResource("2_bm5bs")
 region = Rect2(0, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kyoso"]
-atlas = ExtResource("1_b33io")
+[sub_resource type="AtlasTexture" id="AtlasTexture_6vxve"]
+atlas = ExtResource("2_bm5bs")
 region = Rect2(64, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mpwnb"]
-atlas = ExtResource("2_wintw")
-region = Rect2(0, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fgjoy"]
-atlas = ExtResource("2_wintw")
-region = Rect2(64, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pvnco"]
-atlas = ExtResource("2_wintw")
+[sub_resource type="AtlasTexture" id="AtlasTexture_0u5iq"]
+atlas = ExtResource("2_bm5bs")
 region = Rect2(128, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fbwqs"]
-atlas = ExtResource("2_wintw")
+[sub_resource type="AtlasTexture" id="AtlasTexture_el1b3"]
+atlas = ExtResource("2_bm5bs")
 region = Rect2(192, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6ptsm"]
-atlas = ExtResource("2_wintw")
+[sub_resource type="AtlasTexture" id="AtlasTexture_547dr"]
+atlas = ExtResource("2_bm5bs")
 region = Rect2(256, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_o8sv0"]
-atlas = ExtResource("2_wintw")
+[sub_resource type="AtlasTexture" id="AtlasTexture_ifxur"]
+atlas = ExtResource("2_bm5bs")
 region = Rect2(320, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_qcl36"]
-atlas = ExtResource("2_wintw")
+[sub_resource type="AtlasTexture" id="AtlasTexture_j8txj"]
+atlas = ExtResource("2_bm5bs")
 region = Rect2(384, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_72ilw"]
-atlas = ExtResource("2_wintw")
+[sub_resource type="AtlasTexture" id="AtlasTexture_lbi28"]
+atlas = ExtResource("2_bm5bs")
 region = Rect2(448, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tuvmt"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3t5ev")
+"texture": SubResource("AtlasTexture_lynb0")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_kyoso")
+"texture": SubResource("AtlasTexture_x7u64")
 }],
 "loop": true,
 "name": &"contact",
@@ -59,28 +58,28 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_mpwnb")
+"texture": SubResource("AtlasTexture_g7x7r")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_fgjoy")
+"texture": SubResource("AtlasTexture_6vxve")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_pvnco")
+"texture": SubResource("AtlasTexture_0u5iq")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_fbwqs")
+"texture": SubResource("AtlasTexture_el1b3")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6ptsm")
+"texture": SubResource("AtlasTexture_547dr")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_o8sv0")
+"texture": SubResource("AtlasTexture_ifxur")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_qcl36")
+"texture": SubResource("AtlasTexture_j8txj")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_72ilw")
+"texture": SubResource("AtlasTexture_lbi28")
 }],
 "loop": true,
 "name": &"idle",
@@ -96,9 +95,7 @@ script = ExtResource("1_vygo5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_tuvmt")
-animation = &"idle"
-frame = 3
-frame_progress = 0.187317
+animation = &"contact"
 
 [node name="train_hitbox" type="Area2D" parent="."]
 
