@@ -2337,8 +2337,8 @@ subwaylayerpath = NodePath("../Subway")
 countrylayerpath = NodePath("../Country")
 yanagawalayerpath = NodePath("../River")
 enemyspawnerpath = NodePath("../Spawner")
-start_spawn_every = 50.0
-min_spawn_every = 50
+start_spawn_every = 10.0
+min_spawn_every = 5
 
 [node name="Timer" type="Timer" parent="SubwaySpawner"]
 
