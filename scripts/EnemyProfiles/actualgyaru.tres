@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="EnemyProfile" load_steps=3 format=3 uid="uid://chkkqbm44tic5"]
+
+[ext_resource type="Script" path="res://scripts/EnemyProfile.gd" id="1_7pab0"]
+[ext_resource type="SpriteFrames" uid="uid://d263go1ckyxvb" path="res://art/frames/actualgyaru_frames.tres" id="2_pu3to"]
+
+[resource]
+script = ExtResource("1_7pab0")
+display_name = "Actual Gyaru"
+speed = 0.0
+language = "jp"
+anim_idle = "idle"
+anim_contact = "contact"
+sprite_frames = ExtResource("2_pu3to")
+dialogue_text = ""
+dialogue_text_2 = ""
+choices = PackedStringArray()
+choices2 = PackedStringArray()
+correct_idx = 0
+correct_idx_2 = 0
+gender = ""
+is_rps = false
+is_delinq = false
+is_photo = false
+is_boat = false
+is_wannabe = false
+is_buffcat = false

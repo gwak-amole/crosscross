@@ -1,4 +1,4 @@
-[gd_scene load_steps=275 format=4 uid="uid://bw1jvqsj3l017"]
+[gd_scene load_steps=276 format=4 uid="uid://bw1jvqsj3l017"]
 
 [ext_resource type="PackedScene" uid="uid://cqsj6ljppkot6" path="res://scenes/mainchara.tscn" id="1_bp8ss"]
 [ext_resource type="Script" path="res://scripts/parallax_background.gd" id="1_eistd"]
@@ -139,6 +139,7 @@
 [ext_resource type="PackedScene" uid="uid://db7b6udtl7tsu" path="res://scenes/subwaycardswipers.tscn" id="81_b46sa"]
 [ext_resource type="Resource" uid="uid://ccwx644qynmbj" path="res://scripts/BoatProfiles/highschoolersboat.tres" id="81_g1syo"]
 [ext_resource type="Resource" uid="uid://bhwxgcl470oti" path="res://scripts/BoatProfiles/gyarusboat.tres" id="82_j4ixt"]
+[ext_resource type="Resource" uid="uid://chkkqbm44tic5" path="res://scripts/EnemyProfiles/actualgyaru.tres" id="82_ocqyv"]
 [ext_resource type="Resource" uid="uid://cqd1cis7f1uxm" path="res://scripts/BoatProfiles/ramenchefsboat.tres" id="83_g2hpc"]
 [ext_resource type="Texture2D" uid="uid://ctyruarwmm7it" path="res://art/officemandialogue/tutorial/tutorial0.png" id="92_is8bp"]
 [ext_resource type="Texture2D" uid="uid://btl3vmfna0sp5" path="res://art/officemandialogue/tutorial/dialogue0.png" id="93_8msp4"]
@@ -2259,7 +2260,7 @@ animalspath = NodePath("../animals")
 envmishappath = NodePath("../envmishap")
 
 [node name="Spawner" parent="." instance=ExtResource("8_fmll7")]
-profiles1 = Array[ExtResource("10_fgj5o")]([ExtResource("11_nbt5j"), ExtResource("12_qqd8v"), ExtResource("13_sqrlo"), ExtResource("14_iyk3s"), ExtResource("29_ki033"), ExtResource("19_dlvn0"), ExtResource("64_ho1un"), ExtResource("65_1h0d5"), ExtResource("66_dkr6w"), ExtResource("67_7ctnr"), ExtResource("72_vxqql"), ExtResource("75_upaek"), ExtResource("77_0im36"), ExtResource("78_oevbr")])
+profiles1 = Array[ExtResource("10_fgj5o")]([ExtResource("11_nbt5j"), ExtResource("12_qqd8v"), ExtResource("13_sqrlo"), ExtResource("14_iyk3s"), ExtResource("29_ki033"), ExtResource("19_dlvn0"), ExtResource("64_ho1un"), ExtResource("65_1h0d5"), ExtResource("66_dkr6w"), ExtResource("67_7ctnr"), ExtResource("72_vxqql"), ExtResource("75_upaek"), ExtResource("77_0im36"), ExtResource("78_oevbr"), ExtResource("82_ocqyv")])
 characters_path_1 = NodePath("../Characters")
 mainchara_path_1 = NodePath("../mainchara")
 eventpath_1 = NodePath("../EventSpawner")
@@ -2337,8 +2338,8 @@ subwaylayerpath = NodePath("../Subway")
 countrylayerpath = NodePath("../Country")
 yanagawalayerpath = NodePath("../River")
 enemyspawnerpath = NodePath("../Spawner")
-start_spawn_every = 10.0
-min_spawn_every = 5
+start_spawn_every = 50.0
+min_spawn_every = 45
 
 [node name="Timer" type="Timer" parent="SubwaySpawner"]
 
