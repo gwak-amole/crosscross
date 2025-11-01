@@ -1,23 +1,25 @@
-[gd_resource type="Resource" script_class="EnemyProfile" load_steps=3 format=3 uid="uid://chkkqbm44tic5"]
+[gd_resource type="Resource" script_class="EnemyProfile" load_steps=4 format=3 uid="uid://chkkqbm44tic5"]
 
 [ext_resource type="Script" path="res://scripts/EnemyProfile.gd" id="1_7pab0"]
+[ext_resource type="PackedScene" uid="uid://brglsn01njec2" path="res://scenes/actualgyaruanim.tscn" id="1_yydmu"]
 [ext_resource type="SpriteFrames" uid="uid://d263go1ckyxvb" path="res://art/frames/actualgyaru_frames.tres" id="2_pu3to"]
 
 [resource]
 script = ExtResource("1_7pab0")
 display_name = "Actual Gyaru"
 speed = 0.0
-language = "jp"
+language = "kr"
 anim_idle = "idle"
 anim_contact = "contact"
 sprite_frames = ExtResource("2_pu3to")
-dialogue_text = ""
-dialogue_text_2 = ""
-choices = PackedStringArray()
-choices2 = PackedStringArray()
-correct_idx = 0
-correct_idx_2 = 0
-gender = ""
+dialogue_scene = ExtResource("1_yydmu")
+dialogue_text = "넌또 뭐야"
+dialogue_text_2 = "난다요 오마에?"
+choices = PackedStringArray("Watch where you\'re going gworl", "마이 배드 갱", "うるさいな、ただぶつかっただけだろ", "아, 진짜 죄송해요ㅠ")
+choices2 = PackedStringArray("お前の日本語はなんでそうなの？", "あ、外人だからぶつかったんでしょ？", "I sincerely apologize-I didn\'t mean to", "산타 할아버지 없거든")
+correct_idx = 3
+correct_idx_2 = 2
+gender = "female"
 is_rps = false
 is_delinq = false
 is_photo = false

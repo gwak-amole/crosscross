@@ -166,6 +166,7 @@ var old_mainchara_speed : int = -1
 
 func _ready() -> void:
 	set_character(Globals.chosen_character)
+	Globals.from_options_or_leaderboard = false
 	Globals.died_from_delinq = false
 	Globals.died_from_photo = false
 	Globals.died_from_cats = false

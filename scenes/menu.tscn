@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b3oyolehvq7bb"]
+[gd_scene load_steps=18 format=3 uid="uid://b3oyolehvq7bb"]
 
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_fipnj"]
 [ext_resource type="Texture2D" uid="uid://dut3equccgufo" path="res://art/mainscreentop.png" id="2_t0hpa"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://drpaagak24bm3" path="res://art/mainscreenbottompressed.png" id="6_yrdkt"]
 [ext_resource type="Texture2D" uid="uid://0s8qs2rd088s" path="res://art/mainscreenbottomhover.png" id="7_tloel"]
 [ext_resource type="Texture2D" uid="uid://mv6847k26oon" path="res://art/officemandialogue/mainscreen.png" id="9_d0baq"]
+[ext_resource type="Texture2D" uid="uid://dfvihird05hq7" path="res://art/officemandialogue/tutorial/dialoguebox.png" id="11_p0aun"]
 
 [sub_resource type="Animation" id="Animation_ymuvf"]
 length = 0.001
@@ -97,6 +98,7 @@ mouse_filter = 2
 script = ExtResource("1_fipnj")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+process_mode = 3
 libraries = {
 "": SubResource("AnimationLibrary_s2t2x")
 }
@@ -178,6 +180,77 @@ theme_override_fonts/font = ExtResource("5_qicq6")
 theme_override_font_sizes/font_size = 40
 text = "Leaderboard"
 
+[node name="Control" type="Control" parent="."]
+process_mode = 3
+z_index = 200
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="tuttext" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_top = 160.0
+offset_right = 1152.0
+offset_bottom = 443.0
+texture = ExtResource("11_p0aun")
+
+[node name="languagechoice" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -410.0
+offset_top = -85.5
+offset_right = 410.0
+offset_bottom = -30.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_qicq6")
+theme_override_font_sizes/font_size = 50
+text = "language / 言語
+"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -110.5
+offset_top = -26.0
+offset_right = 110.5
+offset_bottom = 26.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="eng" type="Button" parent="Control/HBoxContainer"]
+process_mode = 3
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/font = ExtResource("5_qicq6")
+theme_override_font_sizes/font_size = 40
+text = "English
+"
+
+[node name="jp" type="Button" parent="Control/HBoxContainer"]
+process_mode = 3
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/font = ExtResource("5_qicq6")
+theme_override_font_sizes/font_size = 40
+text = "日本語"
+
 [connection signal="pressed" from="VBoxContainer/Start Button" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Instructions Button" to="." method="_on_instructions_button_pressed"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Control/HBoxContainer/eng" to="." method="_on_eng_pressed"]
+[connection signal="pressed" from="Control/HBoxContainer/jp" to="." method="_on_jp_pressed"]

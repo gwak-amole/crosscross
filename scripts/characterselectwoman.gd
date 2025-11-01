@@ -53,7 +53,10 @@ func _on_confirm_button_pressed():
 		anim.play("fade_out")
 		await anim.animation_finished
 		audio.stop()
-		get_tree().change_scene_to_file("res://scenes/gamebase.tscn")
+		call_deferred("change_scene_safe")
+
+func change_scene_safe():
+	get_tree().change_scene_to_file("res://scenes/gamebase.tscn")
 
 func _play_all_btns() -> void:
 	for b in btns:

@@ -8,6 +8,7 @@ extends Control
 @onready var audio := $AudioStreamPlayer
 
 func _on_button_pressed() -> void:
+	Globals.from_options_or_leaderboard = true
 	get_tree().change_scene_to_file("res://scenes/menu.tscn")
 
 func _ready() -> void:
