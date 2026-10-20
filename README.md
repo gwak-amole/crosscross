@@ -11,8 +11,6 @@ Or you could just get really good at the game and never collide with anyone!
 <br>
 | Speed Scaling | Cooldown Reduction |
 |---|---|
-|<img width="363" height="219" alt="Screenshot 2026-10-20 at 09 39 34" src="https://github.com/user-attachments/assets/005f7a0c-00d5-416a-ae94-488f2e6c7fd2" />|<img width="362" height="145" alt="Screenshot 2026-10-20 at 09 38 52" src="https://github.com/user-attachments/assets/860d805d-207c-4997-87c2-cf188eddf8c1" />
-
-
-|<img width="634" height="342" alt="Screenshot 2026-10-20 at 09 33 41" src="https://github.com/user-attachments/assets/0147bb7f-9b88-4df4-946e-ca3992195d0e" />|<img width="810" height="220" alt="Screenshot 2026-10-20 at 09 38 04" src="https://github.com/user-attachments/assets/3305e892-67db-4b3f-9b8a-dcb6ad943222" />|
+| <img width="363" height="219" alt="Screenshot 2026-10-20 at 09 39 34" src="https://github.com/user-attachments/assets/005f7a0c-00d5-416a-ae94-488f2e6c7fd2" /> | <img width="362" height="145" alt="Screenshot 2026-10-20 at 09 38 52" src="https://github.com/user-attachments/assets/860d805d-207c-4997-87c2-cf188eddf8c1" /> |
+| <img width="634" height="342" alt="Screenshot 2026-10-20 at 09 33 41" src="https://github.com/user-attachments/assets/0147bb7f-9b88-4df4-946e-ca3992195d0e" /> | <img width="810" height="220" alt="Screenshot 2026-10-20 at 09 38 04" src="https://github.com/user-attachments/assets/3305e892-67db-4b3f-9b8a-dcb6ad943222" />|
 
