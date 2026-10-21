@@ -24,6 +24,7 @@ Or you could just get really good at the game and never collide with anyone!
 
 ## Play it!
 **_PLEASE READ_: Because I wanted to keep the original arcade vibe, MOUSE CLICKS DO NOT WORK and buttons must be navigated through/selected using WASD/arrow keys and the ENTER key**
+<br>
 You can play the game here on itch.io: https://gwak-amole.itch.io/crosscross
 - WASD/arrow keys to navigate UI, control character
 - ENTER key to confirm
