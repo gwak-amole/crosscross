@@ -23,8 +23,8 @@ Or you could just get really good at the game and never collide with anyone!
 | <img width="634" height="342" alt="Screenshot 2026-10-20 at 09 33 41" src="https://github.com/user-attachments/assets/0147bb7f-9b88-4df4-946e-ca3992195d0e" /> | <img width="810" height="220" alt="Screenshot 2026-10-20 at 09 38 04" src="https://github.com/user-attachments/assets/3305e892-67db-4b3f-9b8a-dcb6ad943222" />|
 
 ## Play it!
-You can play the game here on itch.io: 
-**Because I wanted to keep the original arcade vibe, mouse clicks do not work and buttons must be navigated through/selected using WASD/arrow keys and the ENTER key**
+**_PLEASE READ_: Because I wanted to keep the original arcade vibe, MOUSE CLICKS DO NOT WORK and buttons must be navigated through/selected using WASD/arrow keys and the ENTER key**
+You can play the game here on itch.io: https://gwak-amole.itch.io/crosscross
 - WASD/arrow keys to navigate UI, control character
 - ENTER key to confirm
 - ESC key to pause the game
