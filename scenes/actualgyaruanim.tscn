@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://brglsn01njec2"]
+[gd_scene load_steps=22 format=3 uid="uid://brglsn01njec2"]
 
 [ext_resource type="Texture2D" uid="uid://b7erodvkkebcd" path="res://art/dialoguegeneral/actualgyarudialogue/actualgyaruappear0.png" id="1_4rpfk"]
 [ext_resource type="Texture2D" uid="uid://couc5yqjcs5uf" path="res://art/dialoguegeneral/actualgyarudialogue/actualgyaruangry0.png" id="1_v3iqc"]
@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://bcc5mrqfru5ol" path="res://art/tileset/trainanimationframes/countrydialoguebackground.png" id="5_0h2cc"]
 [ext_resource type="Texture2D" uid="uid://dhb80yjs5py5d" path="res://art/dialoguegeneral/actualgyarudialogue/actualgyaruhairsway.png" id="5_o30c6"]
 [ext_resource type="Texture2D" uid="uid://c6xfl4oh3vl7q" path="res://art/dialoguegeneral/subwaydialoguebg.png" id="6_qxmji"]
+[ext_resource type="AudioStream" uid="uid://cp5w2y57ckc75" path="res://audio/488227__plumaudio__happy-blip.wav" id="12_opxek"]
+[ext_resource type="AudioStream" uid="uid://xiipkjlpuwxv" path="res://audio/278164__thedweebman__8-bit-wrong-2.wav" id="13_2iyud"]
 
 [sub_resource type="Animation" id="Animation_65axg"]
 length = 0.001
@@ -277,3 +279,12 @@ offset_bottom = 40.0
 [node name="person" type="TextureRect" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_opxek")
+bus = &"sfx"
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_2iyud")
+volume_db = -10.584
+bus = &"sfx"

@@ -17,9 +17,9 @@
 [ext_resource type="AudioStream" uid="uid://cp5w2y57ckc75" path="res://audio/488227__plumaudio__happy-blip.wav" id="14_x2gmg"]
 [ext_resource type="AudioStream" uid="uid://0rpc2thbcgos" path="res://audio/crosscross_angry_man.wav" id="15_kd3jl"]
 [ext_resource type="Texture2D" uid="uid://bnifhbgqe2nfv" path="res://art/wannabeidoldialogue/wannabeidolsingtgt1.png" id="15_pmxd6"]
-[ext_resource type="FontFile" uid="uid://r7libpb4d4ao" path="res://fonts/Jersey_10/Jersey10-Regular.ttf" id="16_dhmeq"]
 [ext_resource type="Texture2D" uid="uid://viq8hadaocc6" path="res://art/wannabeidoldialogue/wannabeidolsingno0.png" id="16_vr25o"]
 [ext_resource type="Texture2D" uid="uid://yo3qc1t4txxf" path="res://art/wannabeidoldialogue/wannabeidolsingno1.png" id="17_mrjcc"]
+[ext_resource type="FontVariation" uid="uid://ncum0s0l7pbc" path="res://fonts/Jersey_10/jerseyjersey.tres" id="20_y1kjx"]
 
 [sub_resource type="Animation" id="Animation_488xh"]
 length = 0.001
@@ -531,9 +531,9 @@ bus = &"sfx"
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = 345.0
+offset_left = 143.0
 offset_top = 47.0
-offset_right = 783.0
+offset_right = 1041.0
 offset_bottom = 113.0
 grow_vertical = 0
 
@@ -544,15 +544,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -210.0
+offset_left = -227.5
 offset_top = -28.5
-offset_right = 210.0
+offset_right = 227.5
 offset_bottom = 28.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("16_dhmeq")
+theme_override_fonts/font = ExtResource("20_y1kjx")
 theme_override_font_sizes/font_size = 50
-text = "Space to SING TOGETHER!"
+text = "CONFIRM to SING TOGETHER!"
 horizontal_alignment = 1
 
 [node name="playerhand" type="TextureRect" parent="."]

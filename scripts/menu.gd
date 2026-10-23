@@ -8,9 +8,13 @@ signal jp_signal(jp: bool)
 @onready var instructionslabel := $"VBoxContainer/Instructions Button/Label"
 @onready var leaderboardbtn := $Button
 
+const FONT_ENGLISH = preload("res://fonts/Jersey_10/Jersey10-Regular.ttf")
+const FONT_JAPANESE = preload("res://fonts/Kosugi_Maru/KosugiMaru-Regular.ttf")
+
 func _ready() -> void:
 	langchoice.hide()
 	anim.play("mainmenu")
+	add_theme_font_size_override("font_size", 30)
 	if Globals.from_options_or_leaderboard == false:
 		await _tutorial_ask()
 	_focus_menu()
@@ -24,7 +28,6 @@ func _ready() -> void:
 func _on_start_button_pressed() -> void:
 	anim.play("exit")
 	await anim.animation_finished
-	print("switching")
 	get_tree().change_scene_to_file("res://scenes/choosegender.tscn")
 
 func _on_instructions_button_pressed() -> void:
@@ -68,9 +71,6 @@ func _tutorial_ask() -> void:
 	
 	await get_tree().process_frame
 	var jp: bool = await jp_signal
-	print(jp)
-	if jp: print("jp chosen here too")
-	else: print("eng chosen here too")
 	langchoice.hide()
 	_on_tutorial_finished()
 
@@ -78,11 +78,13 @@ func _on_tutorial_finished() -> void:
 	get_tree().paused = false
 
 func _on_eng_pressed():
-	print("eng chosen")
+	TranslationServer.set_locale("english")
+	Globals.jp = false
 	emit_signal("jp_signal", false)
 	
 func _on_jp_pressed():
-	print("Jp chosen")
+	TranslationServer.set_locale("japanese")
+	Globals.jp = true
 	emit_signal("jp_signal", true)
 
 func _focus_tutorial_ask() -> void:

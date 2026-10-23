@@ -20,7 +20,6 @@ func _ready():
 
 func _unhandled_input(event):
 	if event.is_action_pressed("ui_up"):
-		print(" UP U P UUP UP ")
 		if confirm_btn.has_focus() and last_button_before_confirm:
 			last_button_before_confirm.grab_focus()
 
@@ -35,24 +34,20 @@ func _on_confirmbtn_pressed() -> void:
 			Globals.chosen_gender = selected
 			anim.play("fade_out")
 			await anim.animation_finished
-			get_tree().change_scene_to_file("res://scenes/characterselectwoman.tscn")
+			get_tree().change_scene_to_file("res://scenes/characterselectwoman1.tscn")
 
 func _on_texture_button_pressed() -> void:
 	selected = 1
-	print(selected)
 	confirm_btn.disabled = false
 	highlight_button(first_btn)
 	unhighlight_button(second_btn)
-	print(last_button_before_confirm)
 
 
 func _on_texture_button_2_pressed() -> void:
 	selected = 2
-	print(selected)
 	confirm_btn.disabled = false
 	highlight_button(second_btn)
 	unhighlight_button(first_btn)
-	print(last_button_before_confirm)
 
 func highlight_button(btn: TextureButton):
 	btn.modulate = Color(1, 1, 1, 1)

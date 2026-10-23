@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=9 format=3 uid="uid://lwbsankkv01a"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://lwbsankkv01a"]
 
 [ext_resource type="Texture2D" uid="uid://bpxveoo0bri14" path="res://art/animals/dogscontacted.png" id="1_ujklf"]
 [ext_resource type="Texture2D" uid="uid://dd7w7uha3pwx6" path="res://art/animals/dogs.png" id="2_tox5r"]

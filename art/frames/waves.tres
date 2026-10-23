@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://xhjsfa6ig3f3"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://xhjsfa6ig3f3"]
 
 [ext_resource type="Texture2D" uid="uid://c2nn0nsfhglp5" path="res://art/boats/boatbalancewave0.png" id="1_edfpc"]
 [ext_resource type="Texture2D" uid="uid://6bsw67ax1s0h" path="res://art/boats/boatbalancewave1.png" id="2_jqo21"]

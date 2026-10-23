@@ -105,7 +105,6 @@ func show_dialogue_from_profile(p: EnemyProfile) -> int:
 	var ap = dlg_scene.get_node_or_null("AnimationPlayer")
 	if ap:
 		await get_tree().create_timer(1.5, true).timeout
-		print("playing animations")
 		if citylayer.visible:
 			if ap.has_animation("appear"):
 				ap.play("appear")
@@ -126,21 +125,19 @@ func show_dialogue_from_profile(p: EnemyProfile) -> int:
 		text.show()
 		choices_box.show()
 		if controller.charm_active:
-			print("reaches here")
 			charm.disabled = false
 			charm.show()
-			print("charm showed")
 		else:
-			print("for some reason charm hides")
 			charm.hide()
 		if tutorial_wanted:
 			tutlabel.show()
-			tutanim.play("introtodialogue")
-			print("introtodialogue")
+			if Globals.jp == false:
+				tutanim.play("introtodialogue")
+			elif Globals.jp == true:
+				tutanim.play("introtodialogue_jp")
 			tutanim.animation_finished.connect(_on_intro_finished, CONNECT_ONE_SHOT)
-			print("not wantec")
 	else:
-		print("No AnimationPlayer found in dlg_scene")
+		pass
 	
 	if p.is_rps:
 		rps_choices_box.show()
@@ -221,26 +218,17 @@ func _wait_for_choice() -> int:
 	var pos_response = dlg_scene.get_node_or_null("AudioStreamPlayer")
 	var neg_response = dlg_scene.get_node_or_null("AudioStreamPlayer2")
 	if is_photoo:
-		print(ap2)
-		print(playertexture)
 		playertexture.show()
 		if rand == 1:
-			print("rand = 1!! photo")
 			if picked == 0:
-				print("playing peacesign")
 				ap2.play("peacesign")
 			elif picked == 1:
-				print("playing supermodel")
 				ap2.play("supermodel")
 		else:
-			print("rand = 2!! photoayyyy")
 			if picked == 0:
-				print("playing fingerheart")
 				ap2.play("fingerheart")
 			elif picked == 3:
-				print("playing taekwondo")
 				ap2.play("taekwondo")
-		print("TAKING PHOTO!")
 		ap.play("takephoto")
 		await ap.animation_finished
 		await get_tree().create_timer(0.5).timeout
@@ -272,8 +260,6 @@ func _wait_for_choice() -> int:
 			playeranim.play("paper")
 		elif picked == 2:
 			playeranim.play("scissors")
-		print(picked)
-		print(enemy_move)
 		await get_tree().create_timer(2.0).timeout
 		if picked == enemy_move:
 			is_rps_mode = false
@@ -338,7 +324,6 @@ func _wait_for_choice() -> int:
 					picked = 0
 					ap.play("handno")
 					await get_tree().create_timer(1.5).timeout
-					print("going here")
 					ap.play("angry")
 					neg_response.play()
 			else:
@@ -355,7 +340,6 @@ func _on_choice_pressed(idx:int) -> void:
 	emit_signal("choice_made", idx)
 
 func _on_charm_pressed() -> void:
-	print("reaches here")
 	choices_box.hide()
 	charm.hide()
 	charm_override = true
@@ -383,15 +367,19 @@ func close_dialogue():
 	visible = false
 
 func _on_intro_finished(anim_name: String) -> void:
-	if anim_name == "introtodialogue":
+	if anim_name == "introtodialogue" or anim_name == "introtodialogue_jp":
 		if controller.charm_active:
 			if tutorial_wanted:
-				print("here's a charm")
-				tutanim.play("heresacharm")
+				if Globals.jp == false:
+					tutanim.play("heresacharm")
+				else:
+					tutanim.play("heresacharm_jp")
 		else:
 			if tutorial_wanted:
-				tutanim.play("heresnotacharm")
-				print("here's not a charm")
+				if Globals.jp == false:
+					tutanim.play("heresnotacharm")
+				else:
+					tutanim.play("heresnotacharm_jp")
 		
 		again_tutorial_wanted = false
 
@@ -405,7 +393,6 @@ func _play_rps_minigame(p: EnemyProfile) -> void:
 	
 	_rebuild_rps_buttons(p.choices if p.choices.size() > 0 else PackedStringArray(["Rock","Paper","Scissors"]))
 	_focus_rps()
-	print("rps box vis:", rps_choices_box.visible, " mod:", rps_choices_box.modulate)
 
 	enemy_move = rng.randi_range(0, 2)
 	var enemy_string_move = ""
@@ -415,7 +402,6 @@ func _play_rps_minigame(p: EnemyProfile) -> void:
 		enemy_string_move = "paper"
 	elif enemy_move == 2:
 		enemy_string_move = "scissors"
-	print("enemy_move", enemy_move, enemy_string_move)
 
 
 func _on_rps_choice_pressed(idx:int) -> void:
@@ -553,12 +539,10 @@ func _wannabe_event() -> bool:
 	while timer.time_left > 0:
 		await get_tree().process_frame
 		if Input.is_action_just_pressed("ui_accept"):
-			print("ui accept was pressed")
 			wannabe_success = true
 			ap.play("handsing")
 			await get_tree().create_timer(1.5).timeout
 			break
-	print("wanna_be_success", wannabe_success)
 	if wannabe_success:
 		ap.play("apologize")
 		no_keep_life = false

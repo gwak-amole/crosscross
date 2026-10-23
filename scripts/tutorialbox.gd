@@ -50,9 +50,14 @@ func _play_step(idx: int) -> void:
 	if anim and tutorial_steps[idx]["anim"] != "":
 		anim.play(tutorial_steps[idx]["anim"])
 	
-	var step_lines = _get_lines_for_step(tutorial_steps[idx]["anim"])
-	if step_lines.size() > 0:
-		dialoguebox.start_dialogue(step_lines, step_idx == 0)
+	if Globals.jp == false:
+		var step_lines = _get_lines_for_step(tutorial_steps[idx]["anim"])
+		if step_lines.size() > 0:
+			dialoguebox.start_dialogue(step_lines, step_idx == 0)
+	elif Globals.jp == true:
+		var step_lines = _get_lines_for_step_jp(tutorial_steps[idx]["anim"])
+		if step_lines.size() > 0:
+			dialoguebox.start_dialogue(step_lines, step_idx == 0)
 
 func _on_step_finished() -> void:
 	step_idx += 1
@@ -90,6 +95,27 @@ func _get_lines_for_step(step: String) -> Array:
 		"step_6":
 			return ["Charms will charm the person you bumped into so that they will forgive you!"]
 		"step_7":
-			return ["Use ARROWS or WASD to move around.", "Choose dialogue options with ARROWS/WASD and SPACE.", "Pause the game using ESC.", "Good luck!"]
+			return ["Use JOYSTICK to move around.", "Choose dialogue options with JOYSTICK and CONFIRM.", "Pause the game using ESC.", "Good luck!"]
+		_:
+			return []
+
+func _get_lines_for_step_jp(step: String) -> Array:
+	match step:
+		"step_0":
+			return ["クロスクロスへようこそ！", "あなたは会社員。仕事に行くために道を渡ろうとしています！"]
+		"step_1":
+			return ["人とぶつかるかもしれません！", "たとえ言葉が通じなくても、会話でうまく切り抜けましょう！"]
+		"step_2":
+			return ["地下鉄の駅に行くと、車掌さんに会えます！", "車掌さんに話しかけると、いろんな場所へ連れて行ってくれます！見逃さないように！"]
+		"step_3":
+			return ["各地には、その場所ならではのミニゲームがあります！"]
+		"step_4":
+			return ["コインを見つけられます。", "5枚集めるとフィーバー状態に！", "フィーバー中はすべてが速くなり、ポイントが倍増します！"]
+		"step_5":
+			return ["シールドは次の接触からあなたを守り、会話をスキップできます。"]
+		"step_6":
+			return ["チャームは相手をとりこにして、許してもらえます！"]
+		"step_7":
+			return ["ジョイスティックで移動します。", "ジョイスティックと決定キーで会話の選択肢を選びましょう。", "ESCキーで一時停止します。", "がんばってね!"]
 		_:
 			return []

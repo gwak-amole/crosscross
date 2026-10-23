@@ -31,7 +31,6 @@ var thechance := 0
 var elapsed := 0.0
 
 func _ready() -> void:
-	print("we exist too")
 	if entry_scene == null or characters == null:
 		push_error("Spawner miswired: set enemy_scene and characters_path in Inspector.")
 		return
@@ -74,17 +73,13 @@ func _spawn_one() -> void:
 	var e := entry_scene.instantiate()
 	thechance = 0
 	if profiles.size() > 0:
-		print("chance: ", thechance)
 		e.profile = profiles[thechance]
 	thechance = 0
 	
 	var ctrl := get_node(controller_path)
-	print("controller_path:", controller_path, " resolved to: ", ctrl)
-	print("connecting to:", ctrl, " for entry:", e)
 	e.entry_contacted.connect(Callable(ctrl, "_on_subwayentry_contacted"))
 	e.subwaysin.connect(Callable(enemyspawner, "_on_subwayentry_entered"))
 	e.subwaysout.connect(Callable(enemyspawner, "_on_subwayentry_exited"))
-	print("[SPAWNER] hooked subway entry signal")
 	
 	var cam := get_viewport().get_camera_2d()
 	var view := get_viewport_rect().size
@@ -94,5 +89,3 @@ func _spawn_one() -> void:
 	var y: float = top - spawn_margin_y    
 	e.global_position = Vector2(x, y)
 	characters.add_child(e)
-
-	print("SUBWAY Spawned at: ", e.global_position)

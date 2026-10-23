@@ -18,7 +18,6 @@ func fade_in(duration: float = 0.5) -> void:
 	emit_signal("fade_done")
 
 func fade_out(duration: float = 0.5) -> void:
-	print("fading out")
 	if not anim.has_animation("fade_out"):
 		push_warning("missin fade_out anim")
 		return

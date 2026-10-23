@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=15 format=3 uid="uid://ftnp5btjkurs"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://ftnp5btjkurs"]
 
 [ext_resource type="Texture2D" uid="uid://c8lb0ejgwuvur" path="res://art/boats/gyaruboatcontacted.png" id="1_0ajai"]
 [ext_resource type="Texture2D" uid="uid://b3d5jbjf7kqov" path="res://art/boats/gyaruboat.png" id="1_ur1i1"]

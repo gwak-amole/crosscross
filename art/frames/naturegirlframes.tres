@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=12 format=3 uid="uid://dfrwsiirabbcr"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://dfrwsiirabbcr"]
 
 [ext_resource type="Texture2D" uid="uid://38jm2413ee6r" path="res://art/dialoguegeneral/naturegirl.png" id="1_4dx6y"]
 

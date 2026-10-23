@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=15 format=3 uid="uid://v1mann8f4el7"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://v1mann8f4el7"]
 
 [ext_resource type="Texture2D" uid="uid://ugqhnmmnd5cp" path="res://art/boats/ramenchefboat.png" id="1_1qkow"]
 [ext_resource type="Texture2D" uid="uid://7mm18x5ua8xi" path="res://art/boats/ramenchefboatcontacted.png" id="1_1qquy"]

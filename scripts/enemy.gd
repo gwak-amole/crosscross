@@ -61,7 +61,6 @@ func _on_enemy_hitbox_area_entered(area: Area2D) -> void:
 	hitbox.monitoring = false
 	if anim.sprite_frames and anim.sprite_frames.has_animation(_anim_contact):
 		anim.play(_anim_contact)
-	print("[ENEMY] contact.")
 	emit_signal("contacted", self)
 
 func _on_screen_exited() -> void:
@@ -73,10 +72,8 @@ func _on_enemy_slowdown_area_entered(area: Area2D) -> void:
 	if state != State.MOVE: return
 	if area.name == "player_hitbox": return
 	if area.name == "enemy_hitbox" and area.get_parent() != self:
-		print("should be slowing down")
 		set_slowed(true)
 	if area.name == "train_hitbox" and area.get_parent() != self:
-		print("should be slowing down")
 		set_slowed(true)
 
 
@@ -84,10 +81,8 @@ func _on_enemy_slowdown_area_exited(area: Area2D) -> void:
 	if state != State.MOVE: return
 	if area.name == "player_hitbox": return
 	if area.name == "enemy_hitbox" and area.get_parent() != self:
-		print("should be exiting")
 		set_slowed(false)
 	if area.name == "train_hitbox" and area.get_parent() != self:
-		print("should be exiting")
 		set_slowed(false)
 
 

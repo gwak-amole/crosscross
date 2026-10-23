@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=12 format=3 uid="uid://c4htfwhoqb5gx"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://c4htfwhoqb5gx"]
 
 [ext_resource type="Texture2D" uid="uid://fog1pq8ysgn8" path="res://art/officemancrosscrossv2.png" id="1_5p60s"]
 

@@ -70,8 +70,6 @@ func _spawn_one() -> void:
 		thechance = 1
 	elif chance  > 7  and chance <= 9:
 		thechance = 2
-	print(chance)
-	print(thechance)
 	if profiles.size() > 0:
 		e.profile = profiles[thechance]
 	characters.add_child(e)
@@ -82,7 +80,6 @@ func _spawn_one() -> void:
 	e.coin_contacted.connect(Callable(ctrl, "_on_coin_contacted"))
 	e.shield_contacted.connect(Callable(ctrl, "_on_shield_contacted"))
 	e.charm_contacted.connect(Callable(ctrl, "_on_charm_contacted"))
-	print("[SPAWNER] hooked event signal")
 	
 	var cam := get_viewport().get_camera_2d()
 	var view := get_viewport_rect().size
@@ -92,8 +89,6 @@ func _spawn_one() -> void:
 	var y: float = top - spawn_margin_y    
 	e.global_position = Vector2(x, y)
 
-	print("Spawned at: ", e.global_position)
-	
 func _start_fever() -> void:
 	max_on_screen = 0
 

@@ -72,7 +72,10 @@ func artificial_ready() -> void:
 	faillabel.hide()
 	first_time = false
 	game_over = false
-	attemptslabel.text = str("Attempts: " + str(attempts))
+	if Globals.jp == false:
+		attemptslabel.text = str("Attempts: " + str(attempts))
+	else:
+		attemptslabel.text = str("試行回数: " + str(attempts))
 	tilt = 0.0
 	tilt_velocity = 0.0
 	wave_intensity = 0.5
@@ -166,7 +169,6 @@ func _process(delta):
 func _game_over():
 	gameaudio.stop()
 	attempts -= 1
-	print("Boat donedoneonde")
 	$AudioStreamPlayer.play()
 	await get_tree().create_timer(1.5).timeout
 	if attempts > 0:
@@ -185,13 +187,11 @@ func _win_game():
 	gameaudio.stop()
 	anim.play("clear")
 	await anim.animation_finished
-	print("wonwon won won won")
 	for p in passengers.get_children():
 		p.hide()
 	hide()
 	controller.balance_boat = true
 	emit_signal("activity_ended")
-	print(controller.balance_boat, "should be true here")
 	attempts = 3
 	finished = 0
 	process_mode = Node.PROCESS_MODE_DISABLED
@@ -224,13 +224,11 @@ func lose_game() -> void:
 	gameaudio.stop()
 	anim.play("fail")
 	await anim.animation_finished
-	print("lost lost lsot lost")
 	for p in passengers.get_children():
 		p.hide()
 	hide()
 	controller.balance_boat = false
 	emit_signal("activity_ended")
-	print(controller.balance_boat, "should be false here")
 	attempts = 3
 	finished = 0
 	process_mode = Node.PROCESS_MODE_DISABLED

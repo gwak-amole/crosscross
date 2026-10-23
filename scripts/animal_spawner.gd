@@ -49,8 +49,6 @@ func _ready() -> void:
 	if not timer.timeout.is_connected(_on_spawn_tick):
 		timer.timeout.connect(_on_spawn_tick)
 	timer.start()
-	print(characters)
-	print(profiles1)
 	
 
 func _process(delta):
@@ -94,18 +92,15 @@ func _spawn_one() -> void:
 	var x: float = spawn_lanes[rng.randi_range(0, spawn_lanes.size() - 1)]
 	var y: float = top - spawn_margin_y    
 	e.global_position = Vector2(x, y)
-	print("ANIMAL spawned at", e.global_position)
 
 func _on_fever_started() -> void:
 	if fever_active:
 		return
 	fever_active = true
-	print("fever is active")
 	max_on_screen = 2
 	min_spawn_every = 4.5
 	start_spawn_every = 4.5
 	await get_tree().create_timer(2.0).timeout
-	print("yes, here too")
 	
 func _on_fever_ended() -> void:
 	max_on_screen = 1
@@ -113,5 +108,4 @@ func _on_fever_ended() -> void:
 	start_spawn_every = 5
 	timer.wait_time = min_spawn_every
 	timer.start()
-	print("fever inactive")
 	fever_active = false

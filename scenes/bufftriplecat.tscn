@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://bqc3g5y4n8asc" path="res://art/buffcattrio/buffcattriohairsway.png" id="6_nlgnn"]
 [ext_resource type="Texture2D" uid="uid://bxcesk0ga371a" path="res://art/buffcattrio/buffcattriopayup0.png" id="12_46ggc"]
 [ext_resource type="Texture2D" uid="uid://cv3le3f1cmia" path="res://art/buffcattrio/buffcattriopayup1.png" id="13_vh52k"]
-[ext_resource type="FontFile" uid="uid://r7libpb4d4ao" path="res://fonts/Jersey_10/Jersey10-Regular.ttf" id="14_6appq"]
+[ext_resource type="FontVariation" uid="uid://ncum0s0l7pbc" path="res://fonts/Jersey_10/jerseyjersey.tres" id="17_j3otu"]
 
 [sub_resource type="Animation" id="Animation_mqh4w"]
 length = 0.001
@@ -434,6 +434,34 @@ tracks/2/keys = {
 "values": [Color(1, 1, 1, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_bw4va"]
+resource_name = "payup"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("playerhand:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.466667, 0.933333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("12_46ggc"), ExtResource("13_vh52k"), ExtResource("12_46ggc")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("playerhand:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_sgjjo"]
 resource_name = "subwayappear"
 tracks/0/type = "value"
@@ -509,34 +537,6 @@ tracks/5/keys = {
 "values": [Color(1, 1, 1, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_bw4va"]
-resource_name = "payup"
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("playerhand:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.466667, 0.933333),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [ExtResource("12_46ggc"), ExtResource("13_vh52k"), ExtResource("12_46ggc")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("playerhand:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.0333333),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6e67y"]
 _data = {
 "RESET": SubResource("Animation_mqh4w"),
@@ -599,7 +599,7 @@ offset_right = 73.0
 offset_bottom = 22.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("14_6appq")
+theme_override_fonts/font = ExtResource("17_j3otu")
 theme_override_font_sizes/font_size = 50
 horizontal_alignment = 1
 
@@ -607,29 +607,30 @@ horizontal_alignment = 1
 modulate = Color(1, 1, 1, 0)
 anchors_preset = -1
 anchor_right = 0.5
-offset_left = 190.0
+offset_left = 60.0
 offset_top = 35.0
-offset_right = 947.0
+offset_right = 1113.0
 offset_bottom = 115.0
 grow_horizontal = 2
 size_flags_horizontal = 4
 
 [node name="Label" type="Label" parent="Panel2"]
+z_index = 300
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -359.0
+offset_left = -377.5
 offset_top = -27.5
-offset_right = 359.0
+offset_right = 377.5
 offset_bottom = 27.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("14_6appq")
+theme_override_fonts/font = ExtResource("17_j3otu")
 theme_override_font_sizes/font_size = 50
-text = "Rapidly press SPACE to soothe the cat(s)!"
+text = "Rapidly press CONFIRM to soothe the cat(s)!"
 horizontal_alignment = 1
 
 [node name="playerhand" type="TextureRect" parent="."]

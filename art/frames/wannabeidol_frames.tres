@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=13 format=3 uid="uid://bwncndd0cmx7r"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://bwncndd0cmx7r"]
 
 [ext_resource type="Texture2D" uid="uid://drnbxjlscfxfb" path="res://art/wannabeidoldialogue/wannabeidol.png" id="1_h84kw"]
 [ext_resource type="Texture2D" uid="uid://djqo8np17goqw" path="res://art/wannabeidoldialogue/wannabeidolcontacted.png" id="1_wnyu5"]

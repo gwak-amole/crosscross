@@ -77,7 +77,6 @@ func _spawn_one() -> void:
 	
 	var ctrl := get_node(controller_path)
 	e.contacted.connect(Callable(ctrl, "_on_trainconductor_contacted"))
-	print("TRAIN CONDUCTOR CONTACTED IS IN SPAWNER")
 	var cam := get_viewport().get_camera_2d()
 	var view := get_viewport_rect().size
 	var top := cam.global_position.y - (view.y * 0.5)
@@ -93,11 +92,9 @@ func _on_fever_started() -> void:
 	if fever_active:
 		return
 	fever_active = true
-	print("fever is active")
 	max_on_screen = 1
 	min_spawn_every = 4
 	start_spawn_every = 5
-	print("yes, here too")
 	
 func _on_fever_ended() -> void:
 	max_on_screen = 1
@@ -105,5 +102,4 @@ func _on_fever_ended() -> void:
 	start_spawn_every = 5
 	timer.wait_time = min_spawn_every
 	timer.start()
-	print("fever inactive")
 	fever_active = false

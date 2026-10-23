@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dm63opj0hhthb" path="res://art/officemandialogue/broidklol/gameoverbuttonpressed.png" id="5_by1ue"]
 [ext_resource type="Texture2D" uid="uid://becofd8tvqc6f" path="res://art/officemandialogue/broidklol/gameoverbuttonhover.png" id="6_commo"]
 [ext_resource type="AudioStream" uid="uid://c7ieijd4ieu1x" path="res://audio/615453__melokacool__game-over-1.wav" id="7_oufef"]
-[ext_resource type="FontFile" uid="uid://r7libpb4d4ao" path="res://fonts/Jersey_10/Jersey10-Regular.ttf" id="8_2uxpo"]
+[ext_resource type="FontVariation" uid="uid://ncum0s0l7pbc" path="res://fonts/Jersey_10/jerseyjersey.tres" id="9_er1bm"]
 
 [sub_resource type="Animation" id="Animation_n2yst"]
 length = 0.001
@@ -112,7 +112,7 @@ offset_top = 27.0
 offset_right = 12.0
 offset_bottom = 97.0
 grow_horizontal = 2
-theme_override_fonts/font = ExtResource("8_2uxpo")
+theme_override_fonts/font = ExtResource("9_er1bm")
 theme_override_font_sizes/font_size = 64
 text = "0"
 horizontal_alignment = 1
@@ -120,21 +120,18 @@ vertical_alignment = 1
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -537.0
-offset_top = -623.0
-offset_right = -358.0
-offset_bottom = -571.0
+anchors_preset = -1
+anchor_left = 0.0729167
+anchor_top = 0.0385802
+anchor_right = 0.228299
+anchor_bottom = 0.118827
 grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 2
-theme_override_fonts/font = ExtResource("8_2uxpo")
+theme_override_fonts/font = ExtResource("9_er1bm")
 theme_override_font_sizes/font_size = 40
 text = "View Scores"
+metadata/_edit_use_anchors_ = true
 
 [node name="gameovermessage" type="Label" parent="."]
 layout_mode = 1
@@ -149,7 +146,7 @@ offset_right = 273.0
 offset_bottom = 236.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("8_2uxpo")
+theme_override_fonts/font = ExtResource("9_er1bm")
 theme_override_font_sizes/font_size = 30
 text = "bro got everyone to hate him"
 horizontal_alignment = 1

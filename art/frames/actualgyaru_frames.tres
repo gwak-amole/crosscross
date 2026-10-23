@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=12 format=3 uid="uid://d263go1ckyxvb"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://d263go1ckyxvb"]
 
 [ext_resource type="Texture2D" uid="uid://b5qts2sg1c3xo" path="res://art/dialoguegeneral/actualgyarudialogue/actualgyaru.png" id="1_6hgph"]
 

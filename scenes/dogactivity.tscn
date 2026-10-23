@@ -1,10 +1,11 @@
-[gd_scene load_steps=35 format=3 uid="uid://34a4v4krbgj7"]
+[gd_scene load_steps=36 format=3 uid="uid://34a4v4krbgj7"]
 
 [ext_resource type="Script" path="res://scripts/dogactivity.gd" id="1_ubjsf"]
 [ext_resource type="Texture2D" uid="uid://bcc5mrqfru5ol" path="res://art/tileset/trainanimationframes/countrydialoguebackground.png" id="2_25u4b"]
 [ext_resource type="FontFile" uid="uid://r7libpb4d4ao" path="res://fonts/Jersey_10/Jersey10-Regular.ttf" id="2_n3gbv"]
 [ext_resource type="Texture2D" uid="uid://cd4v405ml1721" path="res://art/heartcrosscross.png" id="3_3nt87"]
 [ext_resource type="Texture2D" uid="uid://djoc6g7bltvrf" path="res://art/animals/goldenretrievercalm.png" id="4_7vbhx"]
+[ext_resource type="FontVariation" uid="uid://ncum0s0l7pbc" path="res://fonts/Jersey_10/jerseyjersey.tres" id="4_kae45"]
 [ext_resource type="Texture2D" uid="uid://wrereixey1fq" path="res://art/animals/goldenretrieverbark.png" id="5_rcy2d"]
 [ext_resource type="Texture2D" uid="uid://c1s7074imxmcw" path="res://art/animals/goldenretrievernormal.png" id="6_206qa"]
 [ext_resource type="AudioStream" uid="uid://bxsq8lh6cpdmh" path="res://audio/singularheartbeat_crosscross.wav" id="7_wlbpy"]
@@ -395,7 +396,7 @@ offset_left = 413.0
 offset_top = 122.0
 offset_right = 739.0
 offset_bottom = 171.0
-theme_override_fonts/font = ExtResource("2_n3gbv")
+theme_override_fonts/font = ExtResource("4_kae45")
 theme_override_font_sizes/font_size = 40
 text = "pet to comfort the dog"
 horizontal_alignment = 1
@@ -442,13 +443,13 @@ libraries = {
 stream = ExtResource("7_wlbpy")
 
 [node name="Label2" type="Label" parent="."]
-offset_left = 305.0
+offset_left = 144.0
 offset_top = 524.0
-offset_right = 860.0
+offset_right = 1059.0
 offset_bottom = 568.0
-theme_override_fonts/font = ExtResource("2_n3gbv")
+theme_override_fonts/font = ExtResource("4_kae45")
 theme_override_font_sizes/font_size = 40
-text = "hit SPACE when the heart is the largest!"
+text = "hit CONFIRM when the heart is the largest!"
 horizontal_alignment = 1
 
 [node name="totalanim" type="AnimationPlayer" parent="."]

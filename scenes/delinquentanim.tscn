@@ -17,7 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://dx6neo161jlf1" path="res://art/delinquent dialogue/delinquentpunchdodge0.png" id="12_042e6"]
 [ext_resource type="Texture2D" uid="uid://d3y2543ml2y6j" path="res://art/delinquent dialogue/delinquentpunchdodge1.png" id="13_6rekc"]
 [ext_resource type="Texture2D" uid="uid://bcc5mrqfru5ol" path="res://art/tileset/trainanimationframes/countrydialoguebackground.png" id="15_ajj4n"]
-[ext_resource type="FontFile" uid="uid://r7libpb4d4ao" path="res://fonts/Jersey_10/Jersey10-Regular.ttf" id="17_kof1v"]
+[ext_resource type="FontVariation" uid="uid://ncum0s0l7pbc" path="res://fonts/Jersey_10/jerseyjersey.tres" id="18_c7a86"]
 [ext_resource type="AudioStream" uid="uid://bsb52apuyvh6w" path="res://audio/hurt.wav" id="18_vflyc"]
 
 [sub_resource type="Animation" id="Animation_ad68n"]
@@ -477,9 +477,9 @@ stream = ExtResource("8_yiwyp")
 bus = &"sfx"
 
 [node name="Panel" type="Panel" parent="."]
-offset_left = 396.0
+offset_left = 167.0
 offset_top = 56.0
-offset_right = 713.0
+offset_right = 1033.0
 offset_bottom = 122.0
 
 [node name="Label" type="Label" parent="Panel"]
@@ -489,15 +489,15 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -139.5
+offset_left = -156.5
 offset_top = -28.5
-offset_right = 139.5
+offset_right = 156.5
 offset_bottom = 28.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("17_kof1v")
+theme_override_fonts/font = ExtResource("18_c7a86")
 theme_override_font_sizes/font_size = 50
-text = "Space to DODGE!"
+text = "CONFIRM to DODGE!"
 horizontal_alignment = 1
 
 [node name="encounter" type="AudioStreamPlayer" parent="."]

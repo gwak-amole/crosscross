@@ -1,8 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://bo2viocg7ermv"]
+[gd_scene format=3 uid="uid://bo2viocg7ermv"]
 
-[ext_resource type="Script" path="res://scripts/cardswipingactivity.gd" id="1_qyln0"]
-[ext_resource type="FontFile" uid="uid://r7libpb4d4ao" path="res://fonts/Jersey_10/Jersey10-Regular.ttf" id="1_tebbs"]
+[ext_resource type="Script" uid="uid://cx5opejvehd1v" path="res://scripts/cardswipingactivity.gd" id="1_qyln0"]
 [ext_resource type="Texture2D" uid="uid://dihy64buen1yt" path="res://art/tileset/subwaycardswipebg.png" id="2_jblgc"]
+[ext_resource type="FontVariation" uid="uid://ncum0s0l7pbc" path="res://fonts/Jersey_10/jerseyjersey.tres" id="3_8jdkf"]
 [ext_resource type="Texture2D" uid="uid://b5lpdh3w2ha81" path="res://art/tileset/subwaycard.png" id="3_knp0i"]
 [ext_resource type="Texture2D" uid="uid://2cnmvvvlgopc" path="res://art/tileset/slotbar.png" id="4_gv84t"]
 [ext_resource type="AudioStream" uid="uid://c1rd2en4gt0ha" path="res://audio/644956__craigscottuk__quiz-gameshow-correct-ping-07.mp3" id="6_8rwvu"]
@@ -156,16 +156,16 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xfqb8"]
 _data = {
-"RESET": SubResource("Animation_jj73m"),
-"appear": SubResource("Animation_wny73"),
-"hide": SubResource("Animation_gub8m")
+&"RESET": SubResource("Animation_jj73m"),
+&"appear": SubResource("Animation_wny73"),
+&"hide": SubResource("Animation_gub8m")
 }
 
-[node name="cardswipingactivity" type="CanvasLayer"]
+[node name="cardswipingactivity" type="CanvasLayer" unique_id=619135751]
 process_mode = 3
 script = ExtResource("1_qyln0")
 
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control" parent="." unique_id=1642135266]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -173,7 +173,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Panel" type="Panel" parent="Control"]
+[node name="Panel" type="Panel" parent="Control" unique_id=1877306938]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -182,7 +182,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_6svar")
 
-[node name="TextureRect" type="TextureRect" parent="Control/Panel"]
+[node name="TextureRect" type="TextureRect" parent="Control/Panel" unique_id=1036133950]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -197,7 +197,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_jblgc")
 
-[node name="Label" type="Label" parent="Control/Panel"]
+[node name="Label" type="Label" parent="Control/Panel" unique_id=950009304]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -207,12 +207,12 @@ offset_top = 167.0
 offset_right = 225.0
 offset_bottom = 258.0
 grow_horizontal = 2
-theme_override_fonts/font = ExtResource("1_tebbs")
+theme_override_fonts/font = ExtResource("3_8jdkf")
 theme_override_font_sizes/font_size = 40
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="ProgressBar" type="ProgressBar" parent="Control/Panel"]
+[node name="ProgressBar" type="ProgressBar" parent="Control/Panel" unique_id=1470766179]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.288194
@@ -223,25 +223,23 @@ grow_horizontal = 2
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/Panel"]
-libraries = {
-"": SubResource("AnimationLibrary_xfqb8")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/Panel" unique_id=62752047]
+libraries/ = SubResource("AnimationLibrary_xfqb8")
 
-[node name="card" type="Sprite2D" parent="."]
+[node name="card" type="Sprite2D" parent="." unique_id=568903998]
 position = Vector2(237, 409)
 texture = ExtResource("3_knp0i")
 
-[node name="slot" type="Sprite2D" parent="."]
+[node name="slot" type="Sprite2D" parent="." unique_id=721142812]
 position = Vector2(561, 491)
 scale = Vector2(2.13182, 1)
 texture = ExtResource("4_gv84t")
 
-[node name="correct" type="AudioStreamPlayer" parent="."]
+[node name="correct" type="AudioStreamPlayer" parent="." unique_id=441319452]
 stream = ExtResource("6_8rwvu")
 
-[node name="wrong" type="AudioStreamPlayer" parent="."]
+[node name="wrong" type="AudioStreamPlayer" parent="." unique_id=1821626702]
 stream = ExtResource("7_1sdd4")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=345037556]
 stream = ExtResource("8_b3exk")

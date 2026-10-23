@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=27 format=3 uid="uid://bn68erkw1m8r3"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://bn68erkw1m8r3"]
 
 [ext_resource type="Texture2D" uid="uid://maycdjanhxgp" path="res://art/maincharas/mainchara2.png" id="1_a0opj"]
 [ext_resource type="Texture2D" uid="uid://fpaset1040xf" path="res://art/maincharas/mainchara2idleside.png" id="2_aeq1x"]

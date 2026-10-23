@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://bgoubcyn5t0h5"]
+[gd_scene load_steps=48 format=3 uid="uid://bgoubcyn5t0h5"]
 
 [ext_resource type="Script" path="res://scripts/balanceboatactivity.gd" id="1_xkpwe"]
 [ext_resource type="Texture2D" uid="uid://dm4c6uopwtf7x" path="res://art/boats/boatbalanceboatactivity.png" id="2_qfp6m"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://1nhtyxo85iad" path="res://art/tileset/continuetimer/continuetimer33.png" id="10_j30e3"]
 [ext_resource type="Texture2D" uid="uid://sxqoas34bvy4" path="res://art/tileset/continuetimer/continuetimer34.png" id="11_u8a76"]
 [ext_resource type="Texture2D" uid="uid://d3xwxddfstpvv" path="res://art/tileset/continuetimer/continuetimer35.png" id="12_q2vq7"]
+[ext_resource type="FontVariation" uid="uid://ncum0s0l7pbc" path="res://fonts/Jersey_10/jerseyjersey.tres" id="13_3y467"]
 [ext_resource type="Texture2D" uid="uid://c4u17qvi6ncgp" path="res://art/tileset/continuetimer/continuetimer36.png" id="13_y2cau"]
 [ext_resource type="Texture2D" uid="uid://driwcjeqgonf0" path="res://art/tileset/continuetimer/continuetimer20.png" id="14_tssgi"]
 [ext_resource type="Texture2D" uid="uid://bb6f2d3ucoplr" path="res://art/tileset/continuetimer/continuetimer21.png" id="15_nobdg"]
@@ -439,9 +440,9 @@ offset_right = 109.0
 offset_bottom = 189.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("3_tf2fi")
+theme_override_fonts/font = ExtResource("13_3y467")
 theme_override_font_sizes/font_size = 50
-text = "S and D to balance the boat!"
+text = "LEFT and RIGHT to balance the boat!"
 
 [node name="totalanim" type="AnimationPlayer" parent="."]
 libraries = {
@@ -479,6 +480,6 @@ offset_right = 1053.0
 offset_bottom = 102.0
 theme_override_colors/font_outline_color = Color(0.108057, 0.194981, 0.552125, 1)
 theme_override_constants/outline_size = 15
-theme_override_fonts/font = ExtResource("3_tf2fi")
+theme_override_fonts/font = ExtResource("13_3y467")
 theme_override_font_sizes/font_size = 40
 text = "Attempts: "

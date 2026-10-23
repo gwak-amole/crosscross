@@ -1,0 +1,342 @@
+[gd_scene format=3 uid="uid://dpwrmrfjyyrsm"]
+
+[ext_resource type="Script" uid="uid://c5l0rpl3488be" path="res://scripts/keyboard.gd" id="1_fh0i7"]
+[ext_resource type="FontVariation" uid="uid://ncum0s0l7pbc" path="res://fonts/Jersey_10/jerseyjersey.tres" id="1_wr2i6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5eelh"]
+font = ExtResource("1_wr2i6")
+
+[node name="keyboard" type="Control" unique_id=869788582]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_fh0i7")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1423770509]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+color = Color(0.152941, 0.168627, 0.541176, 0.380392)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect" unique_id=1181254161]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 27.0
+offset_top = 14.0
+offset_right = -27.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect/VBoxContainer" unique_id=150745709]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="ColorRect/VBoxContainer/MarginContainer" unique_id=718985920]
+layout_mode = 2
+color = Color(0.110495, 0.119995, 0.176208, 1)
+
+[node name="Label" type="Label" parent="ColorRect/VBoxContainer/MarginContainer" unique_id=1950035378]
+layout_mode = 2
+size_flags_vertical = 1
+label_settings = SubResource("LabelSettings_5eelh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="ColorRect/VBoxContainer" unique_id=1912498444]
+layout_mode = 2
+size_flags_vertical = 3
+columns = 5
+
+[node name="A" type="Button" parent="ColorRect/VBoxContainer/GridContainer" unique_id=1407399383]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_wr2i6")
+theme_override_font_sizes/font_size = 25
+text = "A"
+
+[node name="B" type="Button" parent="ColorRect/VBoxContainer/GridContainer" unique_id=222213547]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_wr2i6")
+theme_override_font_sizes/font_size = 25
+text = "B"
+
+[node name="C" type="Button" parent="ColorRect/VBoxContainer/GridContainer" unique_id=979460985]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_wr2i6")
+theme_override_font_sizes/font_size = 25
+text = "C"
+
+[node name="D" type="Button" parent="ColorRect/VBoxContainer/GridContainer" unique_id=1598805693]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_neighbor_left = NodePath("../C")
+focus_neighbor_right = NodePath("../E")
+focus_neighbor_bottom = NodePath("../D2")
+theme_override_fonts/font = ExtResource("1_wr2i6")
+theme_override_font_sizes/font_size = 25
+text = "D"
+
+[node name="E" type="Button" parent="ColorRect/VBoxContainer/GridContainer" unique_id=1883914054]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_neighbor_left = NodePath("../D")
+focus_neighbor_bottom = NodePath("../E2")
+theme_override_fonts/font = ExtResource("1_wr2i6")
+theme_override_font_sizes/font_size = 25
+text = "E"
+
+[node name="G" type="Button" parent="ColorRect/VBoxContainer/GridContainer" unique_id=1615118544]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_wr2i6")
+theme_override_font_sizes/font_size = 25
+text = "F"
+
+[node name="B2" type="Button" parent="ColorRect/VBoxContainer/GridContainer" unique_id=1095532614]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_wr2i6")
+theme_override_font_sizes/font_size = 25
+text = "G"
+
+[node name="C2" type="Button" parent="ColorRect/VBoxContainer/GridContainer" unique_id=217709295]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_wr2i6")
+theme_override_font_sizes/font_size = 25
+text = "H"
+
+[node name="D2" type="Button" parent="ColorRect/VBoxContainer/GridContainer" unique_id=371690774]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_neighbor_left = NodePath("../C2")
+focus_neighbor_top = NodePath("../D")
+focus_neighbor_right = NodePath("../E2")
+focus_neighbor_bottom = NodePath("../D3")
+theme_override_fonts/font = ExtResource("1_wr2i6")
+theme_override_font_sizes/font_size = 25
+text = "I"
+
+[node name="E2" type="Button" parent="ColorRect/VBoxContainer/GridContainer" unique_id=1834523203]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_neighbor_left = NodePath("../D2")
+focus_neighbor_top = NodePath("../E")
+focus_neighbor_bottom = NodePath("../E3")
+theme_override_fonts/font = ExtResource("1_wr2i6")
+theme_override_font_sizes/font_size = 25
+text = "J"
+
+[node name="A3" type="Button" parent="ColorRect/VBoxContainer/GridContainer" unique_id=1587715842]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_wr2i6")
+theme_override_font_sizes/font_size = 25
+text = "K"
+
+[node name="B3" type="Button" parent="ColorRect/VBoxContainer/GridContainer" unique_id=62341561]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_wr2i6")
+theme_override_font_sizes/font_size = 25
+text = "L"
+
+[node name="C3" type="Button" parent="ColorRect/VBoxContainer/GridContainer" unique_id=1357602539]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_wr2i6")
+theme_override_font_sizes/font_size = 25
+text = "M"
+
+[node name="D3" type="Button" parent="ColorRect/VBoxContainer/GridContainer" unique_id=586918720]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_neighbor_left = NodePath("../C3")
+focus_neighbor_top = NodePath("../D2")
+focus_neighbor_right = NodePath("../E3")
+focus_neighbor_bottom = NodePath("../D4")
+theme_override_fonts/font = ExtResource("1_wr2i6")
+theme_override_font_sizes/font_size = 25
+text = "N"
+
+[node name="E3" type="Button" parent="ColorRect/VBoxContainer/GridContainer" unique_id=72880497]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_neighbor_left = NodePath("../D3")
+focus_neighbor_top = NodePath("../E2")
+focus_neighbor_bottom = NodePath("../E4")
+theme_override_fonts/font = ExtResource("1_wr2i6")
+theme_override_font_sizes/font_size = 25
+text = "O"
+
+[node name="A4" type="Button" parent="ColorRect/VBoxContainer/GridContainer" unique_id=1406616246]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_wr2i6")
+theme_override_font_sizes/font_size = 25
+text = "P"
+
+[node name="B4" type="Button" parent="ColorRect/VBoxContainer/GridContainer" unique_id=614308247]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_wr2i6")
+theme_override_font_sizes/font_size = 25
+text = "Q"
+
+[node name="C4" type="Button" parent="ColorRect/VBoxContainer/GridContainer" unique_id=47576612]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_wr2i6")
+theme_override_font_sizes/font_size = 25
+text = "R"
+
+[node name="D4" type="Button" parent="ColorRect/VBoxContainer/GridContainer" unique_id=944446978]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_wr2i6")
+theme_override_font_sizes/font_size = 25
+text = "S"
+
+[node name="E4" type="Button" parent="ColorRect/VBoxContainer/GridContainer" unique_id=1979014238]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_wr2i6")
+theme_override_font_sizes/font_size = 25
+text = "T"
+
+[node name="A5" type="Button" parent="ColorRect/VBoxContainer/GridContainer" unique_id=1663704438]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_wr2i6")
+theme_override_font_sizes/font_size = 25
+text = "U"
+
+[node name="B5" type="Button" parent="ColorRect/VBoxContainer/GridContainer" unique_id=778951557]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_wr2i6")
+theme_override_font_sizes/font_size = 25
+text = "V"
+
+[node name="C5" type="Button" parent="ColorRect/VBoxContainer/GridContainer" unique_id=77229230]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_wr2i6")
+theme_override_font_sizes/font_size = 25
+text = "W"
+
+[node name="D5" type="Button" parent="ColorRect/VBoxContainer/GridContainer" unique_id=80150595]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_wr2i6")
+theme_override_font_sizes/font_size = 25
+text = "X"
+
+[node name="E5" type="Button" parent="ColorRect/VBoxContainer/GridContainer" unique_id=1664143339]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_wr2i6")
+theme_override_font_sizes/font_size = 25
+text = "Y"
+
+[node name="E6" type="Button" parent="ColorRect/VBoxContainer/GridContainer" unique_id=1926324348]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_wr2i6")
+theme_override_font_sizes/font_size = 25
+text = "Z"
+
+[node name="backspace" type="Button" parent="ColorRect/VBoxContainer/GridContainer" unique_id=1678095056]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_wr2i6")
+theme_override_font_sizes/font_size = 25
+text = "<X"
+
+[node name="E7" type="Button" parent="ColorRect/VBoxContainer/GridContainer" unique_id=1651642122]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_wr2i6")
+theme_override_font_sizes/font_size = 25
+text = "Clear"
+
+[node name="E8" type="Button" parent="ColorRect/VBoxContainer/GridContainer" unique_id=663244041]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("1_wr2i6")
+theme_override_font_sizes/font_size = 25
+text = "OK"
+
+[connection signal="pressed" from="ColorRect/VBoxContainer/GridContainer/A" to="." method="key_press" binds= ["A"]]
+[connection signal="pressed" from="ColorRect/VBoxContainer/GridContainer/B" to="." method="key_press" binds= ["B"]]
+[connection signal="pressed" from="ColorRect/VBoxContainer/GridContainer/C" to="." method="key_press" binds= ["C"]]
+[connection signal="pressed" from="ColorRect/VBoxContainer/GridContainer/D" to="." method="key_press" binds= ["D"]]
+[connection signal="pressed" from="ColorRect/VBoxContainer/GridContainer/E" to="." method="key_press" binds= ["E"]]
+[connection signal="pressed" from="ColorRect/VBoxContainer/GridContainer/G" to="." method="key_press" binds= ["F"]]
+[connection signal="pressed" from="ColorRect/VBoxContainer/GridContainer/B2" to="." method="key_press" binds= ["G"]]
+[connection signal="pressed" from="ColorRect/VBoxContainer/GridContainer/C2" to="." method="key_press" binds= ["H"]]
+[connection signal="pressed" from="ColorRect/VBoxContainer/GridContainer/D2" to="." method="key_press" binds= ["I"]]
+[connection signal="pressed" from="ColorRect/VBoxContainer/GridContainer/E2" to="." method="key_press" binds= ["J"]]
+[connection signal="pressed" from="ColorRect/VBoxContainer/GridContainer/A3" to="." method="key_press" binds= ["K"]]
+[connection signal="pressed" from="ColorRect/VBoxContainer/GridContainer/B3" to="." method="key_press" binds= ["L"]]
+[connection signal="pressed" from="ColorRect/VBoxContainer/GridContainer/C3" to="." method="key_press" binds= ["M"]]
+[connection signal="pressed" from="ColorRect/VBoxContainer/GridContainer/D3" to="." method="key_press" binds= ["N"]]
+[connection signal="pressed" from="ColorRect/VBoxContainer/GridContainer/E3" to="." method="key_press" binds= ["O"]]
+[connection signal="pressed" from="ColorRect/VBoxContainer/GridContainer/A4" to="." method="key_press" binds= ["P"]]
+[connection signal="pressed" from="ColorRect/VBoxContainer/GridContainer/B4" to="." method="key_press" binds= ["Q"]]
+[connection signal="pressed" from="ColorRect/VBoxContainer/GridContainer/C4" to="." method="key_press" binds= ["R"]]
+[connection signal="pressed" from="ColorRect/VBoxContainer/GridContainer/D4" to="." method="key_press" binds= ["S"]]
+[connection signal="pressed" from="ColorRect/VBoxContainer/GridContainer/E4" to="." method="key_press" binds= ["T"]]
+[connection signal="pressed" from="ColorRect/VBoxContainer/GridContainer/A5" to="." method="key_press" binds= ["U"]]
+[connection signal="pressed" from="ColorRect/VBoxContainer/GridContainer/B5" to="." method="key_press" binds= ["V"]]
+[connection signal="pressed" from="ColorRect/VBoxContainer/GridContainer/C5" to="." method="key_press" binds= ["W"]]
+[connection signal="pressed" from="ColorRect/VBoxContainer/GridContainer/D5" to="." method="key_press" binds= ["X"]]
+[connection signal="pressed" from="ColorRect/VBoxContainer/GridContainer/E5" to="." method="key_press" binds= ["Y"]]
+[connection signal="pressed" from="ColorRect/VBoxContainer/GridContainer/E6" to="." method="key_press" binds= ["Z"]]
+[connection signal="pressed" from="ColorRect/VBoxContainer/GridContainer/backspace" to="." method="key_backspace"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/GridContainer/E7" to="." method="key_clear"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/GridContainer/E8" to="." method="key_confirm"]

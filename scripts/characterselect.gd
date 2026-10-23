@@ -19,6 +19,7 @@ func _ready():
 	first_btn.grab_focus()
 	name_input.connect("text_submitted", Callable(self, "_on_name_submitted"))
 	name_input.text_changed.connect(_on_input_changed)
+	confirm_btn.focus_entered.connect(_update_confirm_state)
 	for i in range(btns.size()):
 		btns[i].pressed.connect(_on_character_chosen.bind(i))
 	_play_all_btns()
@@ -28,7 +29,6 @@ func _on_input_changed(_new_text: String):
 
 func _on_character_chosen(index: int):
 	chosen_character = index
-	print("Chose character:", index)
 	_update_confirm_state()
 	
 func _update_confirm_state():
@@ -39,7 +39,6 @@ func _update_confirm_state():
 
 func _on_character_button_pressed(character_name: String):
 	selected = character_name
-	print(selected)
 	confirm_btn.disabled = false
 	
 func _on_confirm_button_pressed():
@@ -47,7 +46,6 @@ func _on_confirm_button_pressed():
 	Globals.namae = player_name
 	get_tree().paused = false
 	emit_signal("confirmed")
-	print(selected)
 	if selected:
 		Globals.chosen_character = selected
 		anim.play("fade_out")

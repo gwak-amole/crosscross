@@ -165,6 +165,8 @@ var balance_boat : bool = false
 var old_mainchara_speed : int = -1
 
 func _ready() -> void:
+	Engine.max_fps = 60
+	DisplayServer.window_set_size(Vector2i(1152, 648))
 	set_character(Globals.chosen_character)
 	Globals.from_options_or_leaderboard = false
 	Globals.died_from_delinq = false
@@ -312,8 +314,6 @@ func _on_enemy_contacted(enemy: Node) -> void:
 		push_error("dialogue_ui_path is not set to a DialogueUI node")
 		return
 	var picked:int = await dialogue_ui.show_dialogue_from_profile(p)
-	print(picked)
-	print(cor_idx)
 	dialogue_ui.close_dialogue()
 	var wrong : bool = picked != cor_idx
 	if wrong:
@@ -362,7 +362,6 @@ func _on_enemy_contacted(enemy: Node) -> void:
 	if get_tree():
 		await get_tree().create_timer(3.0).timeout
 		points_frozen = false
-		print("points unfrozen")
 
 func _update_hearts() -> void:
 	var shown : int = clamp(lives, 0, heart_nodes.size())
@@ -373,20 +372,16 @@ func _lose_life() -> void:
 	lives = max(lives - 1, 0)
 	_update_hearts()
 	points_frozen = true
-	print("points frozen")
 	points_int -= (points_int / 10)
 	_update_points()
 	times -= times/5
 	await get_tree().create_timer(5.0).timeout
 	points_frozen = false
-	print("points unfrozen")
 
 func _game_over() -> void:
 	var scene = load("res://scenes/gameover.tscn") as PackedScene
 	var go := scene.instantiate()
 	go.final_points = points_int
-	print(points_int)
-	print(go.final_points)
 	var tree = get_tree()
 	var old = tree.current_scene
 	tree.root.add_child(go)
@@ -396,8 +391,6 @@ func _game_over() -> void:
 	
 func _on_branch_chosen(idx: int) -> void:
 	cor_idx = idx
-	print("branch chosen; correct index =", cor_idx)
-
 func _loop_points() -> void:
 	await get_tree().create_timer(cooldown).timeout
 	while true:
@@ -441,7 +434,10 @@ func _on_puddle_contacted(e:Node) -> void:
 	if puddle_tut_wanted:
 		if tutanim.is_playing() == false:
 			tutexplain.show()
-			tutanim.play("puddle")
+			if Globals.jp == false:
+				tutanim.play("puddle")
+			else:
+				tutanim.play("puddle_jp")
 			puddle_tut_wanted = false
 		else:
 			pass
@@ -457,11 +453,8 @@ func _on_puddle_contacted(e:Node) -> void:
 func _fever_done() -> void:
 	power = 1.2
 	cooldown = 5.0
-	print(mainchara.speed)
 	mainchara.max_speed = 400
 	mainchara.speed = old_mainchara_speed
-	print("after fx done", mainchara.speed)
-	print(power)
 	anim.stop()
 	anim.play("fever_fadeout")
 	points.add_theme_color_override("font_color", Color(255, 255, 255))
@@ -475,11 +468,9 @@ func _on_fever_request() -> void:
 	eventspawner._start_fever()
 	
 func _fever_start() -> void:
-	print(mainchara.speed)
 	old_mainchara_speed = mainchara.speed
 	mainchara.max_speed = 450
 	mainchara.speed  += 50
-	print("after fx", mainchara.speed)
 	anim.play("fever_constant")
 	points.add_theme_color_override("font_color", Color(255, 204, 0))
 	fevertext.show()
@@ -506,7 +497,6 @@ func _tutorial_ask() -> void:
 	
 	await get_tree().process_frame
 	var yes: bool = await tutorial
-	print(yes)
 	
 	wyltutlabel.hide()
 	wyltutyes.hide()
@@ -559,7 +549,6 @@ func _on_subway_exit_triggered():
 	citylayer.visible = true
 	_reset_player_position()
 	transitioning = false
-	print("no longer transitioning")
 	
 	for child in characters.get_children():
 		if child != mainchara:
@@ -596,7 +585,6 @@ func _on_stairexit_body_entered(body: Node2D) -> void:
 		_on_subway_exit_triggered()
 
 func _on_subwayentry_contacted(entry) -> void:
-	print(entry)
 	_switch_scene_to_subway()
 
 func _switch_scene_to_subway() -> void:
@@ -608,9 +596,7 @@ func _switch_scene_to_subway() -> void:
 	stairexit.set_deferred("monitorable", true)
 	citylayer.visible = false
 	subwaylayer.visible = true
-	print("Before:", mainchara.global_position)
 	mainchara.global_position = subwaypoint.global_position
-	print("After:", mainchara.global_position)
 	
 	var cam := get_viewport().get_camera_2d()
 	cam.global_position = subwaypoint.global_position
@@ -645,7 +631,6 @@ func _reset_player_position():
 	
 func _on_swiper_contacted():
 	if swipe_used:
-		print("Swipe activity already done so ignoring")
 		return
 	if in_transition_buffer or transitioning:
 		return
@@ -719,7 +704,6 @@ func set_character_river(choice: String):
 func _on_bufferzone_body_entered(body: Node2D) -> void:
 	if citylayer.visible:
 		return
-	print('BUFFERZONE STILL WORKS FOR SOME REASON')
 	if body.name == "mainchara":
 		in_transition_buffer = true
 
@@ -744,7 +728,6 @@ func _on_trainconductor_contacted(conductor: Node) -> void:
 	_update_points()
 	times -= times/5
 	points_frozen = true
-	print("points frozen")
 	get_tree().paused = true
 	audioEnc.play()
 
@@ -752,7 +735,6 @@ func _on_trainconductor_contacted(conductor: Node) -> void:
 		push_error("dialogue_ui_path is not set to a DialogueUI node")
 		return
 	var picked:int = await train_dialogue_ui.show_dialogue_from_profile(conductor)
-	print(picked)
 	if picked == 0:
 		_switch_scene_to_country()
 	elif picked == 1:
@@ -769,7 +751,6 @@ func _on_trainconductor_contacted(conductor: Node) -> void:
 		conductor.queue_free()
 		
 	if spawner.fever_active:
-		print("CHECKING!")
 		fevertext.show()
 		texture.show()
 		anim.play("fever_constant")
@@ -778,7 +759,6 @@ func _on_trainconductor_contacted(conductor: Node) -> void:
 	if get_tree():
 		await get_tree().create_timer(3.0).timeout
 		points_frozen = false
-		print("points unfrozen")
 
 func _switch_scene_to_country() -> void:
 	stairexit.set_deferred("monitorable", false)
@@ -801,9 +781,7 @@ func _switch_scene_to_country() -> void:
 	countryblossomslayer.visible = true
 	countrylayer.visible = true
 	countrycollision.disabled = false
-	print("Before:", mainchara.global_position)
 	mainchara.global_position = subwaypoint.global_position
-	print("After:", mainchara.global_position)
 	countryexit.set_deferred("monitoring", true)
 	countryexit.set_deferred("monitorable", true)
 	enemyspawningcountry.set_deferred("monitoring", true)
@@ -821,7 +799,6 @@ func _switch_scene_to_country() -> void:
 	_reset_player_position()
 	await get_tree().create_timer(1.0).timeout
 	transitioning = false
-	print("no longer transitioning")
 	for child in characters.get_children():
 		if child != mainchara:
 			child.queue_free()
@@ -868,7 +845,6 @@ func _on_country_exit_triggered():
 	countryswitchtext.hide()
 	await get_tree().create_timer(1.0).timeout
 	transitioning = false
-	print("no longer transitioning")
 	for child in characters.get_children():
 		if child != mainchara:
 			child.queue_free()
@@ -892,7 +868,6 @@ func _on_countryexit_body_entered(body: Node2D) -> void:
 func _on_bufferzone_country_body_entered(body: Node2D) -> void:
 	if citylayer.visible:
 		return
-	print('BUFFERZONE STILL WORKS FOR SOME REASON')
 	if body.name == "mainchara":
 		in_transition_buffer = true
 
@@ -910,19 +885,15 @@ func _on_animal_contacted(animal: Node2D):
 	_update_points()
 	times -= times/5
 	points_frozen = true
-	print("ANIMAL HAS BEEN CONTACTED!!!")
 	get_tree().paused = true
 	audioEnc.play()
 	await get_tree().create_timer(2.0).timeout
 	var p = animal.get("profile") if animal else null
 	if p.display_name == "Golden Retriever":
-		print("GOLDEN RETRIEVER")
 		dogactivity.dogtype = 0
 	elif p.display_name == "Super Dog":
-		print("Super DOG")
 		dogactivity.dogtype = 1
 	elif p.display_name == "Labrador":
-		print("LABRADOR")
 		dogactivity.dogtype = 2
 	dogactivity.artificial_ready()
 	await dogactivity.activity_ended
@@ -980,9 +951,7 @@ func _switch_scene_to_river() -> void:
 	countrylayer.visible = false
 	yanagawatrees.visible = true
 	river.visible = true
-	print("Before:", mainchara.global_position)
 	mainchara.global_position = subwaypoint.global_position
-	print("After:", mainchara.global_position)
 	riverexit.set_deferred("monitoring", true)
 	riverexit.set_deferred("monitorable", true)
 	enemyspawningriver.set_deferred("monitoring", true)
@@ -1001,7 +970,6 @@ func _switch_scene_to_river() -> void:
 	
 	await get_tree().create_timer(1.0).timeout
 	transitioning = false
-	print("no longer transitioning")
 	for child in characters.get_children():
 		if child != mainchara:
 			child.queue_free()
@@ -1015,10 +983,7 @@ func _switch_scene_to_river() -> void:
 		child.queue_free()
 
 func _on_river_exit_triggered():
-	print("yes it's", countryexit.monitorable)
-	print("yes it's", countryexit.monitoring)
 	if exiting_river:
-		print("not going in again")
 		return
 	transitioning = true
 	stop_audio = true
@@ -1054,7 +1019,6 @@ func _on_river_exit_triggered():
 	countryswitchtext.hide()
 	await get_tree().create_timer(1.0).timeout
 	transitioning = false
-	print("no longer transitioning")
 	for child in characters.get_children():
 		if child != mainchara:
 			child.queue_free()
@@ -1082,13 +1046,10 @@ func _on_boat_contacted(boat: Node) -> void:
 	points_frozen = true
 	var p = boat.get("profile") if boat else null
 	if p.display_name == "Highschoolers Boat":
-		print("GOLDEN RETRIEVER")
 		balanceboatactivity.boattype = 0
 	elif p.display_name == "Gyarus Boat":
-		print("Super DOG")
 		balanceboatactivity.boattype = 1
 	elif p.display_name == "Ramen Chefs Boat":
-		print("LABRADOR")
 		balanceboatactivity.boattype = 2
 	audioEnc.play()
 	await get_tree().create_timer(1.0).timeout
@@ -1096,15 +1057,12 @@ func _on_boat_contacted(boat: Node) -> void:
 	balanceboatactivity.process_mode = Node.PROCESS_MODE_ALWAYS
 
 func _on_boat_activity_finished():
-	print(balance_boat)
 	if balance_boat == true:
-		print("won balance boat game")
 		pass
 	elif balance_boat == false:
 		_lose_life()
 		points_int -= (points_int / 10)
 		_update_hearts()
-		print("lost balance boat game")
 	if lives <= 0:
 		Globals.died_from_boat = true
 		_game_over()

@@ -67,7 +67,6 @@ func _spawn_one() -> void:
 	var e := env_scene.instantiate()
 	thechance = rng.randi_range(0, 2)
 	if profiles.size() > 0:
-		print("chance: ", thechance)
 		e.profile = profiles[thechance]
 	characters.add_child(e)
 	thechance = 0

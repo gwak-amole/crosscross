@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=13 format=3 uid="uid://d4ibjw12u37ky"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://d4ibjw12u37ky"]
 
 [ext_resource type="Texture2D" uid="uid://b3ajmf2ncbygm" path="res://art/buffcattrio/buffcattrio.png" id="1_85ire"]
 [ext_resource type="Texture2D" uid="uid://cueejglmor1s6" path="res://art/buffcattrio/buffcattriocontacted.png" id="1_wgxjf"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b3oyolehvq7bb"]
+[gd_scene load_steps=20 format=3 uid="uid://b3oyolehvq7bb"]
 
 [ext_resource type="Script" path="res://scripts/menu.gd" id="1_fipnj"]
 [ext_resource type="Texture2D" uid="uid://dut3equccgufo" path="res://art/mainscreentop.png" id="2_t0hpa"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://0s8qs2rd088s" path="res://art/mainscreenbottomhover.png" id="7_tloel"]
 [ext_resource type="Texture2D" uid="uid://mv6847k26oon" path="res://art/officemandialogue/mainscreen.png" id="9_d0baq"]
 [ext_resource type="Texture2D" uid="uid://dfvihird05hq7" path="res://art/officemandialogue/tutorial/dialoguebox.png" id="11_p0aun"]
+[ext_resource type="FontVariation" uid="uid://ncum0s0l7pbc" path="res://fonts/Jersey_10/jerseyjersey.tres" id="12_h7abd"]
 
 [sub_resource type="Animation" id="Animation_ymuvf"]
 length = 0.001
@@ -78,13 +79,18 @@ _data = {
 "mainmenu": SubResource("Animation_66w07")
 }
 
-[sub_resource type="LabelSettings" id="LabelSettings_7typk"]
-font = ExtResource("5_qicq6")
-font_size = 75
+[sub_resource type="LabelSettings" id="LabelSettings_nccss"]
+font = ExtResource("12_h7abd")
+font_size = 50
 
-[sub_resource type="LabelSettings" id="LabelSettings_3rocn"]
+[sub_resource type="LabelSettings" id="LabelSettings_xergk"]
+font = ExtResource("12_h7abd")
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_ajpwp"]
+line_spacing = 5.0
 font = ExtResource("5_qicq6")
-font_size = 45
+font_size = 50
 
 [node name="Menu" type="Control"]
 process_mode = 3
@@ -137,12 +143,12 @@ stretch_mode = 3
 
 [node name="Label" type="Label" parent="VBoxContainer/Start Button"]
 layout_mode = 0
-offset_left = 153.0
-offset_top = 7.0
-offset_right = 297.0
+offset_left = 39.0
+offset_top = 11.0
+offset_right = 409.0
 offset_bottom = 93.0
 text = "start"
-label_settings = SubResource("LabelSettings_7typk")
+label_settings = SubResource("LabelSettings_nccss")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -163,9 +169,8 @@ offset_left = 129.0
 offset_top = 1.0
 offset_right = 319.0
 offset_bottom = 87.0
-text = "options
-"
-label_settings = SubResource("LabelSettings_3rocn")
+text = "options"
+label_settings = SubResource("LabelSettings_xergk")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -176,12 +181,13 @@ offset_top = 23.0
 offset_right = 251.0
 offset_bottom = 75.0
 mouse_filter = 2
-theme_override_fonts/font = ExtResource("5_qicq6")
+theme_override_fonts/font = ExtResource("12_h7abd")
 theme_override_font_sizes/font_size = 40
 text = "Leaderboard"
 
 [node name="Control" type="Control" parent="."]
 process_mode = 3
+visible = false
 z_index = 200
 layout_mode = 1
 anchors_preset = 15
@@ -206,15 +212,16 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -410.0
-offset_top = -85.5
+offset_top = -95.0
 offset_right = 410.0
-offset_bottom = -30.5
+offset_bottom = -35.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("5_qicq6")
 theme_override_font_sizes/font_size = 50
 text = "language / 言語
 "
+label_settings = SubResource("LabelSettings_ajpwp")
 horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control"]
@@ -235,18 +242,22 @@ alignment = 1
 [node name="eng" type="Button" parent="Control/HBoxContainer"]
 process_mode = 3
 layout_mode = 2
+focus_neighbor_top = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
 mouse_filter = 2
-theme_override_fonts/font = ExtResource("5_qicq6")
-theme_override_font_sizes/font_size = 40
+theme_override_fonts/font = ExtResource("12_h7abd")
+theme_override_font_sizes/font_size = 30
 text = "English
 "
 
 [node name="jp" type="Button" parent="Control/HBoxContainer"]
 process_mode = 3
 layout_mode = 2
+focus_neighbor_top = NodePath(".")
+focus_neighbor_bottom = NodePath(".")
 mouse_filter = 2
-theme_override_fonts/font = ExtResource("5_qicq6")
-theme_override_font_sizes/font_size = 40
+theme_override_fonts/font = ExtResource("12_h7abd")
+theme_override_font_sizes/font_size = 30
 text = "日本語"
 
 [connection signal="pressed" from="VBoxContainer/Start Button" to="." method="_on_start_button_pressed"]

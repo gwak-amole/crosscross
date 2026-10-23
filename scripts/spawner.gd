@@ -105,7 +105,6 @@ func _on_fever_started() -> void:
 	if fever_active:
 		return
 	fever_active = true
-	print("fever is active")
 	eventspawner._start_fever()
 	old_speed = camera.speed
 	camera.max_scroll_speed = 250
@@ -123,7 +122,6 @@ func _on_fever_ended() -> void:
 	start_spawn_every = 1.2
 	timer.wait_time = min_spawn_every
 	timer.start()
-	print("fever inactive")
 	fever_active = false
 	camera.speed = old_speed
 	camera.max_scroll_speed = 200
@@ -140,9 +138,7 @@ func slowpuddle() -> void:
 		pass
 
 func _on_subwayentry_entered() -> void:
-	print("reached here! lanes_x limited")
 	subway_in = true
 
 func _on_subwayentry_exited() -> void:
-	print("reached here! lanes_x fine now")
 	subway_in = false

@@ -1,13 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://xjox21x5hafw"]
+[gd_scene load_steps=14 format=3 uid="uid://xjox21x5hafw"]
 
 [ext_resource type="Script" path="res://scripts/characterselect.gd" id="1_djjj8"]
-[ext_resource type="FontFile" uid="uid://r7libpb4d4ao" path="res://fonts/Jersey_10/Jersey10-Regular.ttf" id="1_j6yqu"]
 [ext_resource type="Script" path="res://scripts/cycbutton.gd" id="2_7fhse"]
 [ext_resource type="Texture2D" uid="uid://dtq5eyka26sms" path="res://art/officemandialogue/enteranim/howtoplayblank.png" id="2_ofekc"]
 [ext_resource type="SpriteFrames" uid="uid://dsvqep8ulyeg0" path="res://art/frames/mainchara0.tres" id="3_gape0"]
+[ext_resource type="FontVariation" uid="uid://ncum0s0l7pbc" path="res://fonts/Jersey_10/jerseyjersey.tres" id="4_g34u0"]
 [ext_resource type="SpriteFrames" uid="uid://chblmkjie7vmx" path="res://art/frames/mainchara1.tres" id="4_o7xnk"]
 [ext_resource type="SpriteFrames" uid="uid://cmhept455xma0" path="res://art/frames/mainchara2.tres" id="5_g2l17"]
 [ext_resource type="AudioStream" uid="uid://ctoer8llha4x8" path="res://audio/467519__arnasarnas__hip-hop-beat-6.wav" id="8_8fd6o"]
+[ext_resource type="PackedScene" uid="uid://dpwrmrfjyyrsm" path="res://scenes/keyboard.tscn" id="9_8emyr"]
 
 [sub_resource type="Animation" id="Animation_w5vt1"]
 length = 0.001
@@ -92,7 +93,7 @@ grow_horizontal = 2
 grow_vertical = 0
 focus_neighbor_bottom = NodePath("../LineEdit")
 mouse_filter = 2
-theme_override_fonts/font = ExtResource("1_j6yqu")
+theme_override_fonts/font = ExtResource("4_g34u0")
 theme_override_font_sizes/font_size = 30
 text = "confirm"
 
@@ -104,7 +105,7 @@ anchor_top = 0.0679012
 anchor_right = 0.517361
 anchor_bottom = 0.104938
 grow_horizontal = 2
-theme_override_fonts/font = ExtResource("1_j6yqu")
+theme_override_fonts/font = ExtResource("4_g34u0")
 theme_override_font_sizes/font_size = 50
 text = "choose your character"
 metadata/_edit_use_anchors_ = true
@@ -180,7 +181,7 @@ offset_right = 59.0
 offset_bottom = -87.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_fonts/font = ExtResource("1_j6yqu")
+theme_override_fonts/font = ExtResource("4_g34u0")
 theme_override_font_sizes/font_size = 30
 placeholder_text = "Player Name"
 alignment = 1
@@ -192,6 +193,15 @@ stream = ExtResource("8_8fd6o")
 libraries = {
 "": SubResource("AnimationLibrary_637gh")
 }
+
+[node name="keyboard" parent="." instance=ExtResource("9_8emyr")]
+layout_mode = 1
+offset_left = 45.0
+offset_top = 281.0
+offset_right = -789.0
+offset_bottom = -48.0
+lineedit_path = NodePath("../LineEdit")
+confirm_path_1 = NodePath("../Confirm")
 
 [connection signal="pressed" from="Confirm" to="." method="_on_confirm_button_pressed"]
 [connection signal="focus_entered" from="HBoxContainer/Button" to="HBoxContainer/Button" method="_on_focused"]

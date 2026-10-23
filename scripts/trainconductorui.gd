@@ -35,7 +35,6 @@ func show_dialogue_from_profile(p: Node) -> int:
 	var ap = dlg_scene.get_node_or_null("AnimationPlayer")
 	if ap:
 		await get_tree().create_timer(1.5, true).timeout
-		print("playing animations")
 		if ap.has_animation("appear"):
 			ap.play("appear")
 			await get_tree().create_timer(0.1, true).timeout
@@ -48,9 +47,8 @@ func show_dialogue_from_profile(p: Node) -> int:
 			ap.play("hairsway")
 		text.show()
 		choices_box.show()
-		print("text and choices box supposed to show")
 	else:
-		print("No AnimationPlayer found in dlg_scene")
+		pass
 	choices_box.show()
 	text.text = "Would you like to go to elsewhere?"
 	_rebuild_buttons(["Kyoto", "Yanagawa","No"])

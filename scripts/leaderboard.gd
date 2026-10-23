@@ -57,7 +57,6 @@ func _on_button_pressed() -> void:
 		var scene = load("res://scenes/gameover.tscn") as PackedScene
 		var go := scene.instantiate()
 		go.from_leaderboard = true
-		print(go.final_points)
 		var tree = get_tree()
 		var old = tree.current_scene
 		tree.root.add_child(go)

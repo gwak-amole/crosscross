@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=12 format=3 uid="uid://0gx737k4tjbv"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://0gx737k4tjbv"]
 
 [ext_resource type="Texture2D" uid="uid://bncmqc80etovt" path="res://art/dialoguegeneral/delinquent.png" id="1_hjkk2"]
 

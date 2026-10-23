@@ -17,8 +17,10 @@ func _ready() -> void:
 		rand = rng.randi_range(0,6)
 	anim.play("gameover")
 	audio.play()
-	print(final_points)
-	points.text = ("Points: " + str(final_points))
+	if Globals.jp == false:
+		points.text = ("Points: " + str(final_points))
+	else:
+		points.text = ("スコア: " + str(final_points))
 	if from_leaderboard == true:
 		pass
 		from_leaderboard = false
@@ -88,7 +90,6 @@ func _on_button_pressed() -> void:
 		var go := scene.instantiate()
 		go.final_points = final_points
 		go.from_gameover = true
-		print(go.final_points)
 		var tree = get_tree()
 		var old = tree.current_scene
 		tree.root.add_child(go)

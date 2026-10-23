@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=12 format=3 uid="uid://cpmctrcjrwpfa"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://cpmctrcjrwpfa"]
 
 [ext_resource type="Texture2D" uid="uid://bisdkrxm4wi7i" path="res://art/dialoguegeneral/polaroidgirldialogue/polaroidgirl.png" id="1_d8l1j"]
 

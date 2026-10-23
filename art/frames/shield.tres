@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://tqulyh6lv0ju"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://tqulyh6lv0ju"]
 
 [ext_resource type="Texture2D" uid="uid://i3h2tbwyics2" path="res://art/tileset/events.png" id="1_dvqv5"]
 

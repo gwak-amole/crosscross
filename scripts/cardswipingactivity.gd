@@ -21,7 +21,7 @@ func _ready():
 	bar.min_value = 0
 	bar.max_value = 100
 	card.position = start_pos
-	label.text = "Swipe your card! (Hold SPACE)"
+	label.text = "Swipe your card! (Hold CONFIRM)"
 	first_time = true
 	hide()
 
@@ -33,7 +33,7 @@ func _start_swipe():
 	show()
 	
 	if first_time:
-		label.text = "Swipe your card! (Hold SPACE)"
+		label.text = "Swipe your card! (Hold CONFIRM)"
 		anim.play("appear")
 		await anim.animation_finished
 	else:

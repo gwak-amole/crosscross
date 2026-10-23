@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=13 format=3 uid="uid://dx3wed85k4ovg"]
+[gd_resource type="SpriteFrames" format=3 uid="uid://dx3wed85k4ovg"]
 
 [ext_resource type="Texture2D" uid="uid://b40wth3fprjkf" path="res://art/dialoguegeneral/strawberrygirl/strawberrygirl.png" id="1_cdmfs"]
 [ext_resource type="Texture2D" uid="uid://bim2kbfhh5040" path="res://art/dialoguegeneral/strawberrygirl/strawberrygirlcontacted.png" id="1_f7qob"]

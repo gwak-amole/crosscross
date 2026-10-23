@@ -1,10 +1,11 @@
-[gd_scene load_steps=22 format=3 uid="uid://cv6o03g7cy6hx"]
+[gd_scene load_steps=23 format=3 uid="uid://cv6o03g7cy6hx"]
 
 [ext_resource type="Texture2D" uid="uid://olou0j7is62" path="res://art/officemandialogue/howtoplay.png" id="1_qtbhj"]
 [ext_resource type="Script" path="res://scripts/options.gd" id="1_wwl5i"]
 [ext_resource type="FontFile" uid="uid://r7libpb4d4ao" path="res://fonts/Jersey_10/Jersey10-Regular.ttf" id="2_q57w2"]
 [ext_resource type="Texture2D" uid="uid://dtq5eyka26sms" path="res://art/officemandialogue/enteranim/howtoplayblank.png" id="3_iei2f"]
 [ext_resource type="Texture2D" uid="uid://ee6ovrdfhp38" path="res://art/officemandialogue/enteranim/enteranim8.png" id="3_jqdse"]
+[ext_resource type="FontVariation" uid="uid://ncum0s0l7pbc" path="res://fonts/Jersey_10/jerseyjersey.tres" id="4_sfa5v"]
 [ext_resource type="Texture2D" uid="uid://bxvag3rxfjpgl" path="res://art/officemandialogue/enteranim/enteranim0.png" id="4_yv75f"]
 [ext_resource type="Texture2D" uid="uid://cw4d3i2e6kket" path="res://art/officemandialogue/enteranim/enteranim1.png" id="5_0dcad"]
 [ext_resource type="Texture2D" uid="uid://bja2gicuq7kvu" path="res://art/officemandialogue/enteranim/enteranim2.png" id="6_rtaqu"]
@@ -124,7 +125,7 @@ anchor_top = 0.79784
 anchor_right = 0.52691
 anchor_bottom = 0.870371
 mouse_filter = 2
-theme_override_fonts/font = ExtResource("2_q57w2")
+theme_override_fonts/font = ExtResource("4_sfa5v")
 theme_override_font_sizes/font_size = 35
 text = "back"
 metadata/_edit_use_anchors_ = true
@@ -180,7 +181,7 @@ grow_vertical = 2
 
 [node name="Label" type="Label" parent="Panel/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_q57w2")
+theme_override_fonts/font = ExtResource("4_sfa5v")
 theme_override_font_sizes/font_size = 30
 text = "Master"
 
@@ -192,7 +193,7 @@ bus_name = "Master"
 
 [node name="Label2" type="Label" parent="Panel/VBoxContainer"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_q57w2")
+theme_override_fonts/font = ExtResource("4_sfa5v")
 theme_override_font_sizes/font_size = 30
 text = "Music"
 

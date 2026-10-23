@@ -17,7 +17,6 @@ func _process(delta):
 	_sync_animation_frame()
 
 func _on_pressed():
-	print("pressed")
 	self.is_stay_focused = true
 	if self.name == "Button":
 		charselect._on_character_button_pressed("0")
