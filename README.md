@@ -11,6 +11,14 @@ Or you could just get really good at the game and never collide with anyone!
 | <img width="1440" height="900" alt="Screenshot 2026-10-20 at 11 58 31" src="https://github.com/user-attachments/assets/cbf03334-496d-410f-b6a0-0d24d05bfce4" /> | <img width="577" height="349" alt="Screenshot 2025-09-01 at 20 33 18" src="https://github.com/user-attachments/assets/564a02b6-80f1-4b1a-8be0-e5557d24b6b4" /> | <img width="688" height="464" alt="Screenshot 2026-10-20 at 11 57 58" src="https://github.com/user-attachments/assets/61ef694d-42a6-430c-bcf1-3200b19e5d84" /> |
 | <img width="1440" height="900" alt="Screenshot 2026-10-20 at 12 01 38" src="https://github.com/user-attachments/assets/8f117b68-aba0-4163-a1b3-343fc6c1135b" /> | <img width="1420" height="799" alt="Screenshot 2026-10-20 at 12 53 56" src="https://github.com/user-attachments/assets/7e57a951-3efa-44c1-8876-15ed49771921" /> | <img width="1420" height="799" alt="Screenshot 2026-10-20 at 12 54 32" src="https://github.com/user-attachments/assets/9213ee7f-5cec-4c06-a638-463d04fe5908" /> |
 
+## Play it!
+**_PLEASE READ_: Because I wanted to keep the original arcade vibe, MOUSE CLICKS DO NOT WORK and buttons must be navigated through/selected using WASD/arrow keys and the ENTER key**
+<br>
+You can play the game here on itch.io: https://gwak-amole.itch.io/crosscross
+- WASD/arrow keys to navigate UI, control character
+- ENTER key to confirm
+- ESC key to pause the game
+Have fun!! :D
 
 ## Technical Highlights
 - **Godot Resource Modularity**: I made the addition of content modular! All characters, in-game collectibles, environmental obstacles, animals, etc are Godot text resources (and their own classes respectively). They are controlled in the game using singular template scripts that draw from the .tres files!
@@ -21,14 +29,6 @@ Or you could just get really good at the game and never collide with anyone!
 | --- | --- |
 | <img width="363" height="219" alt="Screenshot 2026-10-20 at 09 39 34" src="https://github.com/user-attachments/assets/005f7a0c-00d5-416a-ae94-488f2e6c7fd2" /> | <img width="362" height="145" alt="Screenshot 2026-10-20 at 09 38 52" src="https://github.com/user-attachments/assets/860d805d-207c-4997-87c2-cf188eddf8c1" /> |
 | <img width="634" height="342" alt="Screenshot 2026-10-20 at 09 33 41" src="https://github.com/user-attachments/assets/0147bb7f-9b88-4df4-946e-ca3992195d0e" /> | <img width="810" height="220" alt="Screenshot 2026-10-20 at 09 38 04" src="https://github.com/user-attachments/assets/3305e892-67db-4b3f-9b8a-dcb6ad943222" />|
-
-## Play it!
-**_PLEASE READ_: Because I wanted to keep the original arcade vibe, MOUSE CLICKS DO NOT WORK and buttons must be navigated through/selected using WASD/arrow keys and the ENTER key**
-You can play the game here on itch.io: https://gwak-amole.itch.io/crosscross
-- WASD/arrow keys to navigate UI, control character
-- ENTER key to confirm
-- ESC key to pause the game
-Have fun!! :D
 
 ## General Credits
 - Godot 4.3 Game Engine / GDScript: https://docs.godotengine.org/en/4.3/
