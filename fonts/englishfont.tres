@@ -1,0 +1,10 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dvtuss7i8771i"]
+
+[ext_resource type="FontFile" uid="uid://r7libpb4d4ao" path="res://fonts/Jersey_10/Jersey10-Regular.ttf" id="1_20pq3"]
+
+[resource]
+default_font = ExtResource("1_20pq3")
+Button/font_sizes/font_size = 45
+Button/fonts/font = ExtResource("1_20pq3")
+Label/font_sizes/font_size = 45
+Label/fonts/font = ExtResource("1_20pq3")

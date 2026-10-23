@@ -1,0 +1,8 @@
+[gd_resource type="FontVariation" load_steps=3 format=3 uid="uid://ncum0s0l7pbc"]
+
+[ext_resource type="FontFile" uid="uid://r7libpb4d4ao" path="res://fonts/Jersey_10/Jersey10-Regular.ttf" id="1_y1y10"]
+[ext_resource type="FontFile" uid="uid://yyi8us04tvy4" path="res://fonts/Kosugi_Maru/KosugiMaru-Regular.ttf" id="2_gxoyv"]
+
+[resource]
+fallbacks = Array[Font]([ExtResource("2_gxoyv")])
+base_font = ExtResource("1_y1y10")

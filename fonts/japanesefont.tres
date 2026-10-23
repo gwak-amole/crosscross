@@ -1,0 +1,10 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://brfflwane24ul"]
+
+[ext_resource type="FontFile" uid="uid://yyi8us04tvy4" path="res://fonts/Kosugi_Maru/KosugiMaru-Regular.ttf" id="1_m1hbq"]
+
+[resource]
+default_font = ExtResource("1_m1hbq")
+Button/font_sizes/font_size = 30
+Button/fonts/font = ExtResource("1_m1hbq")
+Label/font_sizes/font_size = 30
+Label/fonts/font = ExtResource("1_m1hbq")
