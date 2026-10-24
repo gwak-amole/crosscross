@@ -31,6 +31,7 @@ Have fun!! :D
 | <img width="634" height="342" alt="Screenshot 2026-10-20 at 09 33 41" src="https://github.com/user-attachments/assets/0147bb7f-9b88-4df4-946e-ca3992195d0e" /> | <img width="810" height="220" alt="Screenshot 2026-10-20 at 09 38 04" src="https://github.com/user-attachments/assets/3305e892-67db-4b3f-9b8a-dcb6ad943222" />|
 
 ## General Credits
+**DEVELOPMENT WAS DONE IN 4.3, BUT I RECENTLY CHANGED IT TO GODOT 4.6 WHEN UPLOADING TO ITCH.IO**
 - Godot 4.3 Game Engine / GDScript: https://docs.godotengine.org/en/4.3/
 - Aseprite for pixel art: https://www.aseprite.org/
 
