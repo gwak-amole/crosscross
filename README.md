@@ -22,7 +22,7 @@ Have fun!! :D
 
 ## Technical Highlights
 - **Godot Resource Modularity**: I made the addition of content modular! All characters, in-game collectibles, environmental obstacles, animals, etc are Godot text resources (and their own classes respectively). They are controlled in the game using singular template scripts that draw from the .tres files!
-- **Difficulty Scaling**: The speed of the player, camera going up, and characters going down is scaled by a regular exponential growth rate function. The enemy spawning cooldown is shortened by a half life function. Both functions are below.
+- **Difficulty Scaling**: The speed of the player, camera going up, and characters going down is scaled by a regular exponential growth rate function. The enemy spawning cooldown is shortened by a half life function. The functions are below.
 
 
 | Speed Scaling | Cooldown Reduction |
